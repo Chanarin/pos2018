@@ -22,6 +22,18 @@
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('backpack::base.dashboard') }}</span></a></li>
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/elfinder') }}"><i class="fa fa-files-o"></i> <span>File manager</span></a></li>
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/setting') }}"><i class="fa fa-cog"></i> <span>Settings</span></a></li>
+
+
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/checklist') }}"><i class="fa fa-cog"></i> <span>Checklist</span></a></li>
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/customer') }}"><i class="fa fa-cog"></i> <span>Customer</span></a></li>
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/item') }}"><i class="fa fa-cog"></i> <span>Item</span></a></li>
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/itemcategory') }}"><i class="fa fa-cog"></i> <span>Item Category</span></a></li>
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/openitem') }}"><i class="fa fa-cog"></i> <span>Open Item</span></a></li>
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/purchase') }}"><i class="fa fa-cog"></i> <span>Purchase</span></a></li>
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/production') }}"><i class="fa fa-cog"></i> <span>Production</span></a></li>
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/pos') }}"><i class="fa fa-cog"></i> <span>POS</span></a></li>
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice') }}"><i class="fa fa-cog"></i> <span>Invoice</span></a></li>
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/report') }}"><i class="fa fa-cog"></i> <span>Report</span></a></li>
           <!-- ======================================= -->
           <li class="header">{{ trans('backpack::base.user') }}</li>
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/logout') }}"><i class="fa fa-sign-out"></i> <span>{{ trans('backpack::base.logout') }}</span></a></li>
@@ -30,3 +42,5 @@
       <!-- /.sidebar -->
     </aside>
 @endif
+
+
