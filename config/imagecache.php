@@ -35,7 +35,8 @@ return array(
         public_path('uploads/slider'),
         public_path('uploads/donate'),
         public_path('uploads/gallery'),
-        public_path('images')
+        public_path('images'),
+        public_path('images/items'),
     ),
 
     /*
