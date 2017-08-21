@@ -1,0 +1,22 @@
+Usage
+
+Open the console and enter one of the commands to generate:
+
+Models (available options: --softdelete)
+$ php artisan backpack:model
+Requests
+$ php artisan backpack:request
+Views (available options: --plain)
+$ php artisan backpack:view
+Config files
+$ php artisan backpack:config
+All files for a new Backpack\CRUD interface:
+$ php artisan backpack:crud {Entity_name}
+A new Backpack\CRUD file:
+$ php artisan backpack:crud-controller {Entity_name}
+$ php artisan backpack:crud-model {Entity_name}
+$ php artisan backpack:crud-request {Entity_name}
+
+
+
+php artisan make:migration create_teams_table --create=teams

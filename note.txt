@@ -1,0 +1,9 @@
+php artisan make:seeder UsersTableSeeder
+
+php artisan db:seed
+
+php artisan db:seed --class=UsersTableSeeder
+
+php artisan clear-compiled
+composer dump-autoload
+php artisan optimize
