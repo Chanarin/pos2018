@@ -27,7 +27,7 @@ class OpenItemCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\OpenItem');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/openitem');
-        $this->crud->setEntityNameStrings('openitem', 'open_items');
+        $this->crud->setEntityNameStrings('Open Item', 'Open Items');
 
         /*
         |--------------------------------------------------------------------------

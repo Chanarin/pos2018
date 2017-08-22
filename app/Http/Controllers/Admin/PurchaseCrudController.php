@@ -20,7 +20,7 @@ class PurchaseCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\Purchase');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/purchase');
-        $this->crud->setEntityNameStrings('purchase', 'purchases');
+        $this->crud->setEntityNameStrings('Purchase', 'Purchases');
 
         /*
         |--------------------------------------------------------------------------

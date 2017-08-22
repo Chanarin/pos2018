@@ -17,7 +17,7 @@ class CreateItemCategoriesTable extends Migration
             $table->increments('id');
             $table->integer('parent_id')->default(0)->nullable();
             $table->string('title')->nullable();
-            $table->string('image')->nullable();
+            $table->text('image')->nullable();
             $table->string('description')->nullable();
             $table->enum('status',['ACTIVE','INACTIVE'])->default('ACTIVE');
             $table->timestamps();

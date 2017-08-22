@@ -20,7 +20,7 @@ class ProductionCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\Production');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/production');
-        $this->crud->setEntityNameStrings('production', 'productions');
+        $this->crud->setEntityNameStrings('Production', 'Productions');
 
         /*
         |--------------------------------------------------------------------------

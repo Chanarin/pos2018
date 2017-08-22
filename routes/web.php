@@ -23,8 +23,8 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin']
     Route::get('ajax-customer-phone', 'CustomerCrudController@getPhones');
     Route::get('ajax-customer-name', 'CustomerCrudController@getName');
 
-    Route::get('admin/api/item-category', 'ItemCategoryCrudController@index2');
-    Route::get('admin/api/item-category/{id}', 'ItemCategoryCrudController@show2');
+    Route::get('api/item-category', 'ItemCategoryCrudController@index2');
+    Route::get('api/item-category/{id}', 'ItemCategoryCrudController@show2');
 
     Route::get('ajax-open-item-number', 'OpenItemCrudController@getOpenNumber');
     Route::get('ajax-open-item-user', 'OpenItemCrudController@getUser');

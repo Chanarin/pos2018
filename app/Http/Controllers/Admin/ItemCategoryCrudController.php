@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use App\Models\ItemCategory;
+use Illuminate\Http\Request;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\ItemCategoryRequest as StoreRequest;
@@ -10,6 +12,28 @@ use App\Http\Requests\ItemCategoryRequest as UpdateRequest;
 
 class ItemCategoryCrudController extends CrudController
 {
+    public function index2(Request $request)
+    {
+        $search_term = $request->input('q');
+        $page = $request->input('page');
+
+        if ($search_term)
+        {
+            $results = ItemCategory::where('name', 'LIKE', '%'.$search_term.'%')->paginate(10);
+        }
+        else
+        {
+            $results = ItemCategory::paginate(10);
+        }
+
+        return $results;
+    }
+
+    public function show2($id)
+    {
+        return ItemCategory::find($id);
+    }
+
     public function setup()
     {
 
@@ -20,15 +44,57 @@ class ItemCategoryCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\ItemCategory');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/itemcategory');
-        $this->crud->setEntityNameStrings('itemcategory', 'item_categories');
+        $this->crud->setEntityNameStrings('Item Category', 'Item Categories');
 
         /*
         |--------------------------------------------------------------------------
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
+        $this->crud->addColumn([
+            'label' => 'Category',
+            'type' => 'select',
+            'name' => 'parent_id',
+            'entity' => 'parent',
+            'attribute' => 'title',
+            'model' => "App\Models\ItemCategory",
+        ]);
 
-        $this->crud->setFromDb();
+        $this->crud->addColumn([
+            'name' => 'title',
+            'label' => 'Title',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'description',
+            'label' => 'Description',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'image',
+            'label' => 'image',
+            'type' => 'image2m',
+            'attributes' => [
+                'als' =>'Image',
+                'class' =>'',
+                'style' =>'width: 60px; height: 40px',
+            ],
+            'link' => true,
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'status',
+            'label' => 'Status',
+        ]);
+        //=============================
+        //=============================
+        $this->crud->addField([    // WYSIWYG
+            'name' => 'item_category_form',
+            'type' => 'view',
+            'view' => 'pos.item_category.form'
+        ]);
+
+//        $this->crud->setFromDb();
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -76,12 +142,12 @@ class ItemCategoryCrudController extends CrudController
         // Please note the drawbacks of this though:
         // - 1-n and n-n columns are not searchable
         // - date and datetime columns won't be sortable anymore
-        // $this->crud->enableAjaxTable();
+         $this->crud->enableAjaxTable();
 
         // ------ DATATABLE EXPORT BUTTONS
         // Show export to PDF, CSV, XLS and Print buttons on the table view.
         // Does not work well with AJAX datatables.
-        // $this->crud->enableExportButtons();
+//         $this->crud->enableExportButtons();
 
         // ------ ADVANCED QUERIES
         // $this->crud->addClause('active');
