@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\_POS_;
+use App\Helpers\IDP;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
@@ -72,6 +74,10 @@ class ItemCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+
+        $iDP = new IDP($request->_data_,_POS_::items,$this->crud->entry->id);
+        $iDP->saveAllDetail();
+
         return $redirect_location;
     }
 
@@ -81,6 +87,8 @@ class ItemCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+
+
         return $redirect_location;
     }
 }

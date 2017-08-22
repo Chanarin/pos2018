@@ -231,7 +231,7 @@
 
             }).on('change',function () {
                 var id = $(this).val();
-                alert(id);
+                //alert(id);
             });
 
         }

@@ -5,6 +5,7 @@ namespace App\Helpers;
 use App\Models\ChecklistDetail;
 use App\Models\InvoiceDetail;
 use App\Models\Item;
+use App\Models\ItemDetail;
 use App\Models\OpenItemDetail;
 use App\Models\ProductionDetail;
 use App\Models\PurchaseDetail;
@@ -15,7 +16,7 @@ class IDP
     public $type = '';
     public $ref_id = 0;
 
-    public function __construct($data = [],$type,$ref_id)
+    public function __construct($data = [], $type, $ref_id)
     {
         $this->type = $type;
         $this->ref_id = $ref_id;
@@ -24,30 +25,35 @@ class IDP
 
     public function saveAllDetail()
     {
-        if(count($this->data)>0)
-        {
-            foreach ($this->data as $row)
-            {
-                $item_id = isset($row['item_id'])?$row['item_id']:0;
+        if (count($this->data) > 0) {
+            foreach ($this->data as $row) {
 
-                $item_code = isset($row['item_code'])?$row['item_code']:'';
-                $title = isset($row['title'])?$row['title']:'';
-                $description = isset($row['description'])?$row['description']:'';
-                $unit = isset($row['unit'])?$row['unit']:'';
 
-                $qty = isset($row['qty'])?$row['qty']:0;
-                $cost = isset($row['cost'])?$row['cost']:0;
-                $price = isset($row['price'])?$row['price']:0;
-                $discount = isset($row['discount'])?$row['discount']:0;
+                $item_code = isset($row['item_code']) ? $row['item_code'] : '';
 
-                $note = isset($row['note'])?$row['note']:'';
+                if($item_code > 0){
+                    $item_id = $item_code;
+                }else {
+                    $item_id = isset($row['item_id']) ? $row['item_id'] : 0;
+                }
 
-                $item_detail = isset($row['detail'])?$row['detail']:[];
+                $title = isset($row['title']) ? $row['title'] : '';
+                $description = isset($row['description']) ? $row['description'] : '';
+                $unit = isset($row['unit']) ? $row['unit'] : '';
 
-                $itemDetailP = new ItemDetailP($this->type , $item_id , $this->ref_id ,
-                   $item_id , $item_code ,
-                   $title , $unit, $qty,
-                   $cost, $price, $discount, $note, $item_detail);
+                $qty = isset($row['qty']) ? $row['qty'] : 0;
+                $cost = isset($row['cost']) ? $row['cost'] : 0;
+                $price = isset($row['price']) ? $row['price'] : 0;
+                $discount = isset($row['discount']) ? $row['discount'] : 0;
+
+                $note = isset($row['note']) ? $row['note'] : '';
+
+                $item_detail = isset($row['detail']) ? $row['detail'] : [];
+
+                $itemDetailP = new ItemDetailP($this->type, $item_id, $this->ref_id,
+                    $item_id, $item_code,
+                    $title, $unit, $qty,
+                    $cost, $price, $discount, $note, $item_detail);
 
             }
         }
@@ -113,6 +119,13 @@ class ItemDetailP
             $this->createItem();
             $this->saveDetail();
         }
+
+
+        if ($this->type == _POS_::items) {
+            if($this->title != null && $this->title != '') {
+                $this->createItemDetail();
+            }
+        }
     }
 
     private function createItem()
@@ -175,6 +188,34 @@ class ItemDetailP
         }
     }
 
+    private function createItemDetail()
+    {
+        if (!($this->item_id > 0)) {
+
+            $mi = new Item();
+            $mi->item_code = $this->item_code;
+            $mi->title = $this->title;
+            //$mi->description = $this->description ;
+            //$mi->image = $this->image ;
+            $mi->unit = $this->unit;
+            if ($mi->save()) {
+                $this->item_id = $mi->id;
+            }
+        }
+
+        $md = new ItemDetail();
+
+        $md->item_id = $this->item_id;
+        $md->item_code = $this->item_code;
+        $md->title = $this->title;
+//        $md->description  =  $this->description ;
+        $md->unit = $this->unit;
+        $md->qty = $this->qty;
+        $md->cost = $this->cost;
+        $md->note = $this->note;
+        return $md->save() ? $md : null;
+    }
+
 }
 
 class _POS_
@@ -184,4 +225,5 @@ class _POS_
     const open_items = 'open_items';
     const production = 'production';
     const purchase = 'purchase';
+    const items = 'items';
 }
