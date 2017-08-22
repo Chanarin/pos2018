@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 
 class ItemCategory extends Model
 {
@@ -54,9 +56,10 @@ class ItemCategory extends Model
                     if (starts_with($value, 'data:image')) {
                         //dd(file_get_contents($value));
                         $filename = rand(11111, 99999) . '_' . time() . '_' . rand(1000, 5000) . '.png';
-                        Image::make(file_get_contents($value))->save("images/items/$filename");
+                        Image::make(file_get_contents($value))->save("images/item_categories/$filename");
 
-                        $att[] = "uploads/$filename";
+//                        $att[] = "uploads/$filename";
+                        $att[] = "images/item_categories/$filename";
                     }
                 }
 
@@ -71,9 +74,9 @@ class ItemCategory extends Model
                 if (starts_with($value, 'data:image')) {
                     //dd(file_get_contents($value));
                     $filename = rand(11111, 99999) . '_' . time() . '_' . rand(1000, 5000) . '.png';
-                    Image::make(file_get_contents($value))->save("images/items/$filename");
+                    Image::make(file_get_contents($value))->save("images/item_categories/$filename");
 
-                    $att[] = "images/items/$filename";
+                    $att[] = "images/item_categories/$filename";
                 }else {
                     if($value != '') {
                         $att[] = $value;
@@ -84,8 +87,6 @@ class ItemCategory extends Model
 
 
         $this->attributes[$attribute_name] = json_encode($att);
-
-
 
     }
 

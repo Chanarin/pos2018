@@ -15,11 +15,11 @@ class Production extends Model
     |--------------------------------------------------------------------------
     */
 
-    //protected $table = 'productions';
-    //protected $primaryKey = 'id';
+    protected $table = 'production';
+    protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    // protected $fillable = [];
+     protected $fillable = ['production_number','_date_','customer_id','ref','description'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -34,7 +34,10 @@ class Production extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function customerTitle()
+    {
+        return $this->belongsTo('App\Models\Customer', 'customer_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

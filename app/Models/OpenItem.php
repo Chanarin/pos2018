@@ -15,11 +15,11 @@ class OpenItem extends Model
     |--------------------------------------------------------------------------
     */
 
-    //protected $table = 'open_items';
-    //protected $primaryKey = 'id';
+    protected $table = 'open_items';
+    protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    // protected $fillable = [];
+     protected $fillable = ['open_number','_date_','description','user_id'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -34,7 +34,10 @@ class OpenItem extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function customerTitle()
+    {
+        return $this->belongsTo('App\Models\Customers', 'customer_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

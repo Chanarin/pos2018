@@ -19,7 +19,7 @@ class CreateItemsTable extends Migration
             $table->string('item_code')->nullable();
             $table->string('title')->index()->nullable();
             $table->string('description')->nullable();
-            $table->string('image')->nullable();
+            $table->text('image')->nullable();
             $table->string('unit')->nullable();
             $table->timestamps();
             $table->softDeletes();

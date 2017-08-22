@@ -15,11 +15,11 @@ class Customer extends Model
     |--------------------------------------------------------------------------
     */
 
-    //protected $table = 'customers';
-    //protected $primaryKey = 'id';
-    // public $timestamps = false;
+    protected $table = 'customers';
+    protected $primaryKey = 'id';
+     public $timestamps = true;
     // protected $guarded = ['id'];
-    // protected $fillable = [];
+     protected $fillable = ['name','gender','phone','description'];
     // protected $hidden = [];
     // protected $dates = [];
 
