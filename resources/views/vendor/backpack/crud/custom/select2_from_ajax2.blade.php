@@ -5,8 +5,8 @@
     $old_value = old($field['name']) ? old($field['name']) : (isset($field['value']) ? $field['value'] : (isset($field['default']) ? $field['default'] : false ));
 @endphp
 
-{{--<div @include('crud::inc.field_wrapper_attributes') >
-    <label>{!! $field['label'] !!}</label>--}}
+<div @include('crud::inc.field_wrapper_attributes') >
+    <label>{!! $field['label'] !!}</label>
     <?php $entity_model = $crud->model; ?>
 
     <select
@@ -31,7 +31,7 @@
     @if (isset($field['hint']))
         <p class="help-block">{!! $field['hint'] !!}</p>
     @endif
-{{--</div>--}}
+</div>
 
 {{-- ########################################## --}}
 {{-- Extra CSS and JS for this particular field --}}
