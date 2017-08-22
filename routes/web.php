@@ -3,8 +3,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('admin/view-report', function () {
+    return view('pos.report.index');
+});
+Route::get('admin/sale', function () {
+    return view('pos.sale.index');
+});
+Route::get('admin/print-invoice', function () {
+    return view('pos.invoice.index');
+});
 Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin'], function () {
+
     // Backpack\CRUD: Define the resources for the entities you want to CRUD.
     CRUD::resource('checklist', 'ChecklistCrudController');
     CRUD::resource('customer', 'CustomerCrudController');

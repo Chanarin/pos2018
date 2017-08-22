@@ -41,7 +41,7 @@ class ProductionCrudController extends CrudController
             'label' => 'Customer Production',
             'type' => 'select',
             'name' => 'customer_id',
-            'entity' => 'customerTitle',
+            'entity' => 'customer',
             'attribute' => 'name',
             'model' => "App\Models\Customer",
         ]);

@@ -9,5 +9,6 @@ class Checklist extends Model
 {
     use CrudTrait;
 
+    protected $fillable = ['checklist_number','_date_'];
 
 }

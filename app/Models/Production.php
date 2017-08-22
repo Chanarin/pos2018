@@ -34,7 +34,7 @@ class Production extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function customerTitle()
+    public function customer()
     {
         return $this->belongsTo('App\Models\Customer', 'customer_id');
     }
