@@ -3,7 +3,7 @@
         @php
         $field = [
             'label' => 'Category',
-            'type' => 'select2',
+            'type' => 'select',
             'name' => 'category_id',
             'value' => isset($crud->entry->category_id)?$crud->entry->category_id:null,
             'entity' => 'category',
@@ -78,7 +78,7 @@
     <div class="form-group col-md-12">
         @php
         $field = [
-            'max_rows' => 100,
+            'max_rows' => 20,
             'max_rows_sub' => 5,
             'level' => 1,
             'label' => "Item Detail",
@@ -87,8 +87,8 @@
             'type' => 'item_detail',
             'columns' => [
                 'item_id' => ['label' => 'Item ID','show' => false,'width' => -1],
-                'item_code' => ['label' => 'Code','show' => true,'width' => -1],
-                'title' => ['label' => 'Title','show' => true,'width' => -1],
+                'item_code' => ['label' => 'Code','show' => true,'width' => 150],
+                'title' => ['label' => 'Title','show' => true,'width' => 150],
                 'description' => ['label' => 'Description','show' => false,'width' => -1],
                 'unit' => ['label' => 'Unit','show' => true,'width' => -1],
                 'qty' => ['label' => 'Qty','show' => true,'width' => -1],

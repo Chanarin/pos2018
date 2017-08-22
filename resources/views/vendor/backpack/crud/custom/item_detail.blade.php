@@ -1,7 +1,6 @@
 
 @php
     $r_id = rand(11111, 99999) .  time() . rand(1000, 5000);
-
 @endphp
 
 <div class="array-container form-group">
@@ -10,12 +9,11 @@
 
         <thead>
         <tr>
-
             @foreach( $field['columns'] as $k => $prop )
                 @php
 
                 @endphp
-                <th style="font-weight: 600!important; @if($prop['show'] == false) display: none !important;  @endif " >
+                <th style="font-weight: 600!important; @if($prop['show'] == false) display: none !important;  @endif ; @if($prop['width'] > 0) width:{{$prop['width']}}px ; @endif " >
                     {{ $prop['label'] }}
                 </th>
             @endforeach
@@ -28,11 +26,17 @@
 
         <tbody class="table-striped">
             @for($i_loop = 1;$i_loop <= $field['max_rows'] ;$i_loop++)
-            <tr class="array-row" data-id="uid{{$r_id}}_{{$i_loop}}" style="@if($i_loop >= 5) display: none !important; @endif ">
+            <tr class="array-row" data-id="uid{{$r_id}}_{{$i_loop}}" style="@if($i_loop > 6) display: none !important; @endif ">
                 @php $colspan = 2; @endphp
                 @foreach( $field['columns'] as  $k => $prop)
-                    <td  style="@if($prop['show'] == false) display: none !important; @else  @php $colspan++; @endphp  @endif">
-                        <input style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}" type="text">
+                    <td  style="@if($prop['show'] == false) display: none !important; @else  @php $colspan++; @endphp  @endif ;  @if($prop['width'] > 0) width:{{$prop['width']}}px ; @endif ">
+                        @if($k == 'item_code')
+                            <select  data-url="{{ url('/api/item') }}" data-multiple="false"   data-placeholder="" style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}" >
+                                <option value=""></option>
+                            </select>
+                        @else
+                            <input style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}" type="text">
+                        @endif
                     </td>
                 @endforeach
                 <td  style="width: 10px !important;">
@@ -46,13 +50,13 @@
             ======== Sub Item ===================================--}}
             <tr style="display: none;" id="uid{{$r_id}}_{{$i_loop}}">
                 <td style="padding-left: 10px;" colspan="{{ $colspan }}">
-                    <table class="table table-responsive" style="border: 1px solid red;">
+                    <table class="table table-responsive" style="border: 1px solid rgba(204,204,204,0.72);">
                         <tr>
                             @foreach( $field['columns'] as $k => $prop )
                                 @php
 
                                 @endphp
-                                <th style="font-weight: 600!important; @if($prop['show'] == false) display: none !important;  @endif " >
+                                <th style="font-weight: 600!important; @if($prop['show'] == false) display: none !important;  @endif    ; @if($prop['width'] > 0) width:{{$prop['width']}}px ; @endif " >
                                     {{ $prop['label'] }}
                                 </th>
                             @endforeach
@@ -62,12 +66,20 @@
                         </tr>
                         <tbody class="table-striped-sub">
                             @for($i_loop_sub = 1; $i_loop_sub <= $field['max_rows_sub']; $i_loop_sub++)
-                            <tr class="array-row"  style="@if($i_loop_sub >= 5) display: none !important; @endif ">
+                            <tr class="array-row"  style="@if($i_loop_sub > 5) display: none !important; @endif ">
                                 @php $colspan = 2; @endphp
                                 @foreach( $field['columns'] as  $k => $prop)
                                     <td  style="@if($prop['show'] == false) display: none !important; @else  @php $colspan++; @endphp  @endif">
-                                        <input style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}" type="text">
+                                        @if($k == 'item_code')
+                                            <select  data-url="{{ url('/api/item') }}" data-multiple="false"   data-placeholder="" style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}" >
+                                                <option value=""></option>
+                                            </select>
+                                        @else
+                                            <input style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}" type="text">
+                                        @endif
                                     </td>
+
+
                                 @endforeach
                                 <td  style="width: 10px !important;">
                                     <button class="btn btn-sm btn-danger del{{$r_id}}" type="button"><span class="sr-only">Delete</span> - </button>
@@ -88,6 +100,8 @@
 
 </div>
 
+
+<input type="hidden" class="q-item-name">
 {{-- ########################################## --}}
 {{-- Extra CSS and JS for this particular field --}}
 {{-- If a field type is shown multiple times on a form, the CSS and JS will only be loaded once --}}
@@ -139,6 +153,16 @@
 
             });
 
+            $('body').delegate('.no-result-add-item','click',function () {
+                var item_name = $('.q-item-name').val();
+            });
+
+
+            $('.item_code{{$r_id}}').each(function () {
+                $(this).one('mouseenter mouseleave',function () {
+                    runSelect2{{$r_id}}($(this));
+                });
+            });
 
         });
 
@@ -156,11 +180,21 @@
                     url: url,
                     dataType: 'json',
                     quietMillis: 250,
+                    closeOnSelect: false,
+                    success: function (data) {
+                        if(data.data.length > 0) {
+                            console.log(data.data[0].id);
+                        }else {
+                            console.log(0);
+                        }
+                    },
                     data: function (params) {
+                        if(params.term) {
+                            $('.q-item-name').val(params.term);
+                        }
                         return {
                             q: params.term, // search term
-                            page: params.page,
-                           /* department_id:department_id*/
+                            page: params.page
                         };
                     },
                     processResults: function (data, params) {
@@ -176,9 +210,21 @@
                             }),
                             more: data.current_page < data.last_page
                         };
-                    },
+                    }
                     //cache: true
                 },
+                "language": {
+                    "noResults": function(){
+                        return 'No Results Found <button class="btn btn-danger no-result-add-item">Create New</button>';
+                    }
+                },
+                escapeMarkup: function (markup) {
+                    return markup;
+                },
+
+            }).on('change',function () {
+                var id = $(this).val();
+                alert(id);
             });
 
         }
