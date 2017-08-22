@@ -34,7 +34,7 @@ class OpenItem extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function customerTitle()
+    public function customer()
     {
         return $this->belongsTo('App\Models\Customers', 'customer_id');
     }

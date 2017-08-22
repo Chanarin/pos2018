@@ -55,7 +55,7 @@ class OpenItemCrudController extends CrudController
             'name' => 'user_id',
             'entity' => 'userTitle',
             'attribute' => 'name',
-            'model' => "App\Models\User",
+            'model' => "App\User",
         ]);
 
         $this->crud->addColumn([
