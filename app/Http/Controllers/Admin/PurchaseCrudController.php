@@ -27,8 +27,46 @@ class PurchaseCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
+        $this->crud->addColumn([
+            'name' => 'purchase_number',
+            'label' => 'Purchase Number',
+        ]);
 
-        $this->crud->setFromDb();
+        $this->crud->addColumn([
+            'name' => '_date_',
+            'label' => 'Open Date',
+        ]);
+
+        $this->crud->addColumn([
+            'label' => 'Customer Purchase',
+            'type' => 'select',
+            'name' => 'customer_id',
+            'entity' => 'customerTitle',
+            'attribute' => 'name',
+            'model' => "App\Models\Customer",
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'ref',
+            'label' => 'Reference',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'description',
+            'label' => 'Description',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'created_at',
+            'label' => 'Created At',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'data',
+            'type' => 'view',
+            'view' => 'pos.purchase.form'
+        ]);
+//        $this->crud->setFromDb();
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -76,12 +114,12 @@ class PurchaseCrudController extends CrudController
         // Please note the drawbacks of this though:
         // - 1-n and n-n columns are not searchable
         // - date and datetime columns won't be sortable anymore
-        // $this->crud->enableAjaxTable();
+         $this->crud->enableAjaxTable();
 
         // ------ DATATABLE EXPORT BUTTONS
         // Show export to PDF, CSV, XLS and Print buttons on the table view.
         // Does not work well with AJAX datatables.
-        // $this->crud->enableExportButtons();
+         $this->crud->enableExportButtons();
 
         // ------ ADVANCED QUERIES
         // $this->crud->addClause('active');

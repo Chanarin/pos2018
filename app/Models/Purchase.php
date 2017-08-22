@@ -15,11 +15,11 @@ class Purchase extends Model
     |--------------------------------------------------------------------------
     */
 
-    //protected $table = 'purchases';
-    //protected $primaryKey = 'id';
-    // public $timestamps = false;
+    protected $table = 'purchase';
+    protected $primaryKey = 'id';
+     public $timestamps = false;
     // protected $guarded = ['id'];
-    // protected $fillable = [];
+     protected $fillable = ['purchase_number','_date_','customer_id','ref','description'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -34,7 +34,10 @@ class Purchase extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function customerTitle()
+    {
+        return $this->belongsTo('App\Models\Customer', 'customer_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

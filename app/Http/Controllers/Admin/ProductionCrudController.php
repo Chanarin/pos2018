@@ -27,8 +27,41 @@ class ProductionCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
+        $this->crud->addColumn([
+            'name' => 'production_number',
+            'label' => 'Production Number',
+        ]);
 
-        $this->crud->setFromDb();
+        $this->crud->addColumn([
+            'name' => '_date_',
+            'label' => 'Production Date',
+        ]);
+
+        $this->crud->addColumn([
+            'label' => 'Customer Production',
+            'type' => 'select',
+            'name' => 'customer_id',
+            'entity' => 'customerTitle',
+            'attribute' => 'name',
+            'model' => "App\Models\Customer",
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'ref',
+            'label' => 'Reference',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'description',
+            'label' => 'Description',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'data',
+            'type' => 'view',
+            'view' => 'pos.production.form'
+        ]);
+//        $this->crud->setFromDb();
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');

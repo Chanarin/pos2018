@@ -3,13 +3,48 @@
 namespace App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-
+use Illuminate\Http\Request;
+use App\Models\Customer;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\CustomerRequest as StoreRequest;
 use App\Http\Requests\CustomerRequest as UpdateRequest;
 
 class CustomerCrudController extends CrudController
 {
+    public function index2(Request $request)
+    {
+        $search_term = $request->input('q');
+        $page = $request->input('page');
+
+        if ($search_term)
+        {
+            $results = Customer::where('name', 'LIKE', '%'.$search_term.'%')->paginate(10);
+        }
+        else
+        {
+            $results = Customer::paginate(10);
+        }
+
+        return $results;
+    }
+
+    public function show2($id)
+    {
+        return Customer::find($id);
+    }
+
+    public function getPhones() {
+        $term = $this->request->input('term');
+        $options = Customer::where('phone', 'like', '%'.$term.'%')->get();
+        return $options->pluck('phone', 'phone');
+    }
+
+    public function getName() {
+        $term = $this->request->input('term');
+        $options = Customer::where('name', 'like', '%'.$term.'%')->get();
+        return $options->pluck('name', 'name');
+    }
+
     public function setup()
     {
 
@@ -27,8 +62,104 @@ class CustomerCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
+        $this->crud->addColumn([
+            'name' => 'name',
+            'label' => 'Name',
+        ]);
 
-        $this->crud->setFromDb();
+        $this->crud->addColumn([
+            'name' => 'gender',
+            'label' => 'Gender',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'phone',
+            'label' => 'Phone',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'description',
+            'label' => 'Description',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'created_at',
+            'label' => 'Created At',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'name',
+            'label' => 'Name',
+        ]);
+
+        $this->crud->addField([
+            // select_from_array
+            'name' => 'gender',
+            'label' => "Gender",
+            'type' => 'select2_from_array',
+            'options' => ['Male' => 'Male', 'Female' => 'Female'],
+            'allows_null' => false,
+            // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
+        ]);
+
+        $this->crud->addField([
+            'name' => 'phone',
+            'label' => 'Phone',
+            'type' => 'text',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'description',
+            'label' => 'Description',
+            'type' => 'textarea',
+        ]);
+
+        $this->crud->addFilter([ // select2_ajax filter
+            'name' => 'name',
+            'type' => 'select2_ajax',
+            'label'=> 'Name',
+            'placeholder' => 'Pick a Name'
+        ],
+            url('admin/ajax-customer-name'), // the ajax route
+            function($value) { // if the filter is active
+                $this->crud->addClause('where', 'name', $value);
+            });
+
+        $this->crud->addFilter([ // select2_ajax filter
+            'name' => 'phone',
+            'type' => 'select2_ajax',
+            'label'=> 'Phone',
+            'placeholder' => 'Pick a Phone'
+        ],
+            url('admin/ajax-customer-phone'), // the ajax route
+            function($value) { // if the filter is active
+                $this->crud->addClause('where', 'phone', $value);
+            });
+
+        $this->crud->addFilter([ // dropdown filter
+            'name' => 'gender',
+            'type' => 'dropdown',
+            'label'=> 'Gender'
+        ], [
+            'Male' => 'Male',
+            'Female' => 'Female'
+        ], function($value) { // if the filter is active
+            $this->crud->addClause('where', 'gender', $value);
+        });
+
+        $this->crud->addFilter([ // daterange filter
+            'type' => 'date_range',
+            'name' => 'created_at',
+            'label'=> 'Created At'
+        ],
+            false,
+            function($value) { // if the filter is active, apply these constraints
+                $dates = json_decode($value);
+                $this->crud->addClause('where', 'created_at', '>=', $dates->from);
+                $this->crud->addClause('where', 'created_at', '<=', $dates->to);
+            });
+
+//        $this->crud->setFromDb();
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -81,7 +212,7 @@ class CustomerCrudController extends CrudController
         // ------ DATATABLE EXPORT BUTTONS
         // Show export to PDF, CSV, XLS and Print buttons on the table view.
         // Does not work well with AJAX datatables.
-        // $this->crud->enableExportButtons();
+         $this->crud->enableExportButtons();
 
         // ------ ADVANCED QUERIES
         // $this->crud->addClause('active');

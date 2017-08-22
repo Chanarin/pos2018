@@ -7,9 +7,16 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\OpenItemRequest as StoreRequest;
 use App\Http\Requests\OpenItemRequest as UpdateRequest;
+use App\User;
 
 class OpenItemCrudController extends CrudController
 {
+    public function getUser() {
+        $term = $this->request->input('term');
+        $options = User::where('name', 'like', '%'.$term.'%')->get();
+        return $options->pluck('name', 'id');
+    }
+
     public function setup()
     {
 
@@ -27,8 +34,42 @@ class OpenItemCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
+        $this->crud->addColumn([
+            'name' => 'open_number',
+            'label' => 'Open Number',
+        ]);
 
-        $this->crud->setFromDb();
+        $this->crud->addColumn([
+            'name' => '_date_',
+            'label' => 'Open Date',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'description',
+            'label' => 'description',
+        ]);
+
+        $this->crud->addColumn([
+            'label' => 'User',
+            'type' => 'select',
+            'name' => 'user_id',
+            'entity' => 'userTitle',
+            'attribute' => 'name',
+            'model' => "App\Models\User",
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'created_at',
+            'label' => 'Created At',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'data',
+            'type' => 'view',
+            'view' => 'pos.open_item.form'
+        ]);
+
+//        $this->crud->setFromDb();
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -76,12 +117,12 @@ class OpenItemCrudController extends CrudController
         // Please note the drawbacks of this though:
         // - 1-n and n-n columns are not searchable
         // - date and datetime columns won't be sortable anymore
-        // $this->crud->enableAjaxTable();
+         $this->crud->enableAjaxTable();
 
         // ------ DATATABLE EXPORT BUTTONS
         // Show export to PDF, CSV, XLS and Print buttons on the table view.
         // Does not work well with AJAX datatables.
-        // $this->crud->enableExportButtons();
+         $this->crud->enableExportButtons();
 
         // ------ ADVANCED QUERIES
         // $this->crud->addClause('active');
