@@ -183,6 +183,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Orangehill\Iseed\IseedServiceProvider::class,
 
     ],
 

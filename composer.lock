@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e8b41f3faf0cf7bacaf3fdaf437c7745",
+    "content-hash": "fe3d982d1b744a5b02eb45cf1a2a3c1a",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -48,16 +48,16 @@
         },
         {
             "name": "backpack/base",
-            "version": "0.7.22",
+            "version": "0.7.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/Base.git",
-                "reference": "eca3f25caf10e35c3741055522041ad6bec68f60"
+                "reference": "da74c656107a875e36dcc705dad336c368db0213"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/Base/zipball/eca3f25caf10e35c3741055522041ad6bec68f60",
-                "reference": "eca3f25caf10e35c3741055522041ad6bec68f60",
+                "url": "https://api.github.com/repos/Laravel-Backpack/Base/zipball/da74c656107a875e36dcc705dad336c368db0213",
+                "reference": "da74c656107a875e36dcc705dad336c368db0213",
                 "shasum": ""
             },
             "require": {
@@ -103,20 +103,20 @@
                 "backpack",
                 "base"
             ],
-            "time": "2017-08-11T05:04:18+00:00"
+            "time": "2017-08-22T12:56:50+00:00"
         },
         {
             "name": "backpack/crud",
-            "version": "3.2.16",
+            "version": "3.2.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Backpack/CRUD.git",
-                "reference": "a1e67c526311640437bdc4f840a8c9288eddc1ec"
+                "reference": "8d66276ecedb7044d201381631771c425d20f798"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/a1e67c526311640437bdc4f840a8c9288eddc1ec",
-                "reference": "a1e67c526311640437bdc4f840a8c9288eddc1ec",
+                "url": "https://api.github.com/repos/Laravel-Backpack/CRUD/zipball/8d66276ecedb7044d201381631771c425d20f798",
+                "reference": "8d66276ecedb7044d201381631771c425d20f798",
                 "shasum": ""
             },
             "require": {
@@ -167,7 +167,7 @@
                 "read",
                 "update"
             ],
-            "time": "2017-08-21T09:41:12+00:00"
+            "time": "2017-08-22T14:54:03+00:00"
         },
         {
             "name": "backpack/pagemanager",
@@ -2121,6 +2121,58 @@
                 "php"
             ],
             "time": "2017-07-28T14:45:09+00:00"
+        },
+        {
+            "name": "orangehill/iseed",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/orangehill/iseed.git",
+                "reference": "4d635d2d5a33e2135b25a12e26beda059b990e8b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/orangehill/iseed/zipball/4d635d2d5a33e2135b25a12e26beda059b990e8b",
+                "reference": "4d635d2d5a33e2135b25a12e26beda059b990e8b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.3.8",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "illuminate/filesystem": "5.x",
+                "laravel/framework": "^5.3.8",
+                "mockery/mockery": "dev-master",
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Orangehill\\Iseed": "src/"
+                },
+                "classmap": [
+                    "src/Orangehill/Iseed/Exceptions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Tihomir Opacic",
+                    "email": "tihomir.opacic@orangehilldev.com"
+                }
+            ],
+            "description": "Generate a new Laravel database seed file based on data from the existing database table.",
+            "keywords": [
+                "artisan",
+                "generators",
+                "laravel",
+                "seed"
+            ],
+            "time": "2017-07-13T09:57:05+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -5396,6 +5448,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
+        "orangehill/iseed": 20,
         "laracasts/generators": 20
     },
     "prefer-stable": false,

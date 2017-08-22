@@ -14,7 +14,8 @@
         "intervention/image": "^2.4",
         "intervention/imagecache": "^2.3",
         "laravel/framework": "5.4.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "orangehill/iseed": "dev-master"
     },
     "require-dev": {
         "backpack/generators": "^1.1",
