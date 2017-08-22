@@ -58,7 +58,7 @@ class ItemCrudController extends CrudController
         $this->crud->addField([    // WYSIWYG
             'name' => 'item_form',
             'type' => 'view',
-            'view' => 'post.item.form'
+            'view' => 'pos.item.form'
         ]);
 
         $this->crud->enableAjaxTable();
