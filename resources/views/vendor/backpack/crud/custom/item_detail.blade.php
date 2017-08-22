@@ -26,16 +26,20 @@
 
         <tbody class="table-striped">
             @for($i_loop = 1;$i_loop <= $field['max_rows'] ;$i_loop++)
+                @php
+                    $x1 = rand(11111, 99999) .  time() . rand(1000, 5000);
+                @endphp
             <tr class="array-row" data-id="uid{{$r_id}}_{{$i_loop}}" style="@if($i_loop > 6) display: none !important; @endif ">
                 @php $colspan = 2; @endphp
                 @foreach( $field['columns'] as  $k => $prop)
+
                     <td  style="@if($prop['show'] == false) display: none !important; @else  @php $colspan++; @endphp  @endif ;  @if($prop['width'] > 0) width:{{$prop['width']}}px ; @endif ">
                         @if($k == 'item_code')
-                            <select  data-url="{{ url('/api/item') }}" data-multiple="false"   data-placeholder="" style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}" >
+                            <select name="_data_[{{$x1}}][{{$k}}]"  data-url="{{ url('/api/item') }}" data-multiple="false"   data-placeholder="" style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}" >
                                 <option value=""></option>
                             </select>
                         @else
-                            <input style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}" type="text">
+                            <input name="_data_[{{$x1}}][{{$k}}]" style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}" type="text">
                         @endif
                     </td>
                 @endforeach
@@ -66,16 +70,19 @@
                         </tr>
                         <tbody class="table-striped-sub">
                             @for($i_loop_sub = 1; $i_loop_sub <= $field['max_rows_sub']; $i_loop_sub++)
+                                @php
+                                    $x2 = rand(11111, 99999) .  time() . rand(1000, 5000);
+                                @endphp
                             <tr class="array-row"  style="@if($i_loop_sub > 5) display: none !important; @endif ">
                                 @php $colspan = 2; @endphp
                                 @foreach( $field['columns'] as  $k => $prop)
                                     <td  style="@if($prop['show'] == false) display: none !important; @else  @php $colspan++; @endphp  @endif">
                                         @if($k == 'item_code')
-                                            <select  data-url="{{ url('/api/item') }}" data-multiple="false"   data-placeholder="" style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}" >
+                                            <select  name="_data_[{{$x1}}][detail][{{$x2}}][{{$k}}]"  data-url="{{ url('/api/item') }}" data-multiple="false"   data-placeholder="" style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}" >
                                                 <option value=""></option>
                                             </select>
                                         @else
-                                            <input style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}" type="text">
+                                            <input  name="_data_[{{$x1}}][detail][{{$x2}}][{{$k}}]"  style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}" type="text">
                                         @endif
                                     </td>
 
