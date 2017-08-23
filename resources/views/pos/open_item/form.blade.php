@@ -50,7 +50,7 @@
                 'value' => isset($crud->entry->image)?$crud->entry->image:null,
                 'type' => 'item_detail',
                 'columns' => [
-                    'item_id' => ['label' => 'Item ID','show' => false,'width' => -1],
+                    'item_id' => ['label' => 'Item ID','show' => true,'width' => -1],
                     'item_code' => ['label' => 'Code','show' => true,'width' => 150],
                     'title' => ['label' => 'Title','show' => true,'width' => 150],
                     'description' => ['label' => 'Description','show' => false,'width' => -1],
