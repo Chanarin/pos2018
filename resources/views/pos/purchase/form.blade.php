@@ -91,7 +91,7 @@
                     'discount' => ['label' => 'Cost','show' => false,'width' => -1],
                     'note' => ['label' => 'Note','show' => false,'width' => -1],
                 ],
-                'showOneTime' => 0
+                'showOneTime' => 1
                  ];
         @endphp
         @include('vendor.backpack.crud.custom.item_detail', compact('crud', 'entry', 'field'))
