@@ -31,11 +31,13 @@ class IDP
 
                 $item_code = isset($row['item_code']) ? $row['item_code'] : '';
 
-                if($item_code > 0){
+     /*           if($item_code > 0){
                     $item_id = $item_code;
                 }else {
                     $item_id = isset($row['item_id']) ? $row['item_id'] : 0;
-                }
+                }*/
+
+                $item_id = isset($row['item_id']) ? $row['item_id'] : 0;
 
                 $title = isset($row['title']) ? $row['title'] : '';
                 $description = isset($row['description']) ? $row['description'] : '';
@@ -204,7 +206,7 @@ class ItemDetailP
         }
 
         $md = new ItemDetail();
-
+        $md->ref_id = $this->ref_id;
         $md->item_id = $this->item_id;
         $md->item_code = $this->item_code;
         $md->title = $this->title;

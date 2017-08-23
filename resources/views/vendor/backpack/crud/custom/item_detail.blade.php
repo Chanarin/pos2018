@@ -17,7 +17,7 @@
                     {{ $prop['label'] }}
                 </th>
             @endforeach
-            <th class="text-center" colspan="2" style="width: 10px !important;">
+            <th class="text-center" colspan="2" style="width: 200px !important;">
             {{--    <button class="btn btn-sm btn-success add{{$r_id}}" type="button"><span class="sr-only">Add</span><i class="fa fa-plus" role="presentation" aria-hidden="true"></i></button>
             --}}
             </th>
@@ -34,8 +34,8 @@
                 @foreach( $field['columns'] as  $k => $prop)
 
                     <td  style="@if($prop['show'] == false) display: none !important; @else  @php $colspan++; @endphp  @endif ;  @if($prop['width'] > 0) width:{{$prop['width']}}px ; @endif ">
-                        @if($k == 'item_code')
-                            <select name="_data_[{{$x1}}][{{$k}}]"  data-url="{{ url('/api/item') }}" data-multiple="false"   data-placeholder="" style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}" >
+                        @if($k == 'item_id')
+                            <select name="_data_[{{$x1}}][{{$k}}]"  data-url="{{ url('/api/item') }}" data-multiple="false"   data-placeholder="" style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}} item_id-main-id" >
                                 <option value=""></option>
                             </select>
                         @else
@@ -43,8 +43,11 @@
                         @endif
                     </td>
                 @endforeach
-                <td  style="width: 10px !important;">
-                    <button data-show="1" class="btn btn-sm btn-info show-sub{{$r_id}}" type="button"><span class="sr-only">Show Sub</span><i class="fa fa-street-view" role="presentation" aria-hidden="true"></i></button>
+                <td  style="width: 100px !important;">
+
+
+                    <button class="btn btn-sm btn-info show-big-item{{$r_id}}" type="button"  data-toggle="modal" data-target="#show-item-big"><span class="sr-only">Show Sub</span><i class="fa fa-plus-circle" role="presentation" aria-hidden="true"></i></button>
+                    <button data-show="1" class="btn btn-sm btn-success show-sub{{$r_id}}" type="button"><span class="sr-only">Show Sub</span><i class="fa fa-arrow-down" role="presentation" aria-hidden="true"></i></button>
                 </td>
                 <td  style="width: 10px !important;">
                     <button class="btn btn-sm btn-danger del{{$r_id}}" type="button"><span class="sr-only">Delete</span><i class="fa fa-trash" role="presentation" aria-hidden="true"></i></button>
@@ -77,7 +80,7 @@
                                 @php $colspan = 2; @endphp
                                 @foreach( $field['columns'] as  $k => $prop)
                                     <td  style="@if($prop['show'] == false) display: none !important; @else  @php $colspan++; @endphp  @endif">
-                                        @if($k == 'item_code')
+                                        @if($k == 'item_id')
                                             <select  name="_data_[{{$x1}}][detail][{{$x2}}][{{$k}}]"  data-url="{{ url('/api/item') }}" data-multiple="false"   data-placeholder="" style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}" >
                                                 <option value=""></option>
                                             </select>
@@ -109,6 +112,57 @@
 
 
 <input type="hidden" class="q-item-name">
+
+
+{{--//=============================================================================
+//=============================================================================--}}
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel"  id="show-item-big" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">Search Item</h4>
+            </div>
+            <div class="modal-body">
+
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title"></h3>
+
+                                <div class="box-tools">
+                                    <div class="input-group input-group-sm" style="width: 150px;">
+                                        <input type="text" name="table_search" class="form-control pull-right search-item-to-show-txt" placeholder="Search">
+
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-default search-item-to-show"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body table-responsive no-padding load-search-item-list">
+
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{{--//=============================================================================
+//=============================================================================--}}
+
+
 {{-- ########################################## --}}
 {{-- Extra CSS and JS for this particular field --}}
 {{-- If a field type is shown multiple times on a form, the CSS and JS will only be loaded once --}}
@@ -132,8 +186,55 @@
 <!-- include field specific select2 js-->
 @push('crud_fields_scripts')
     <script>
+        var page = 1;
+
+        var delay = (function(){
+            var timer = 0;
+            return function(callback, ms){
+                clearTimeout (timer);
+                timer = setTimeout(callback, ms);
+            };
+        })();
+
+        function loadItemSearch(p) {
+            var q = $('.search-item-to-show-txt').val();
+            $('.load-search-item-list').html('');
+            $('.load-search-item-list').load('{{ url('api/item-search') }}',{page:p,q:q});
+        }
 
         jQuery(document).ready(function() {
+
+            $('body').delegate('.my-pagination ul li a','click',function (e) {
+                e.preventDefault();
+                page = $(this).data('page');
+                loadItemSearch(page);
+            });
+
+
+            $('.search-item-to-show-txt').on('keyup',function (e) {
+                delay(function(){
+                    loadItemSearch(1);
+                }, 1000 );
+            });
+
+            $('.search-item-to-show').on('click',function (e) {
+                e.preventDefault();
+                loadItemSearch(1);
+            });
+
+            $('#show-item-big').on('shown.bs.modal', function () {
+                loadItemSearch(1);
+            });
+
+            $('#show-item-big').on('hidden.bs.modal', function (e) {
+
+                $('.ch-select-item:checked').each(function () {
+                    var item_id = $(this).val();
+                    console.log(item_id);
+                });
+            });
+
+
             $('body').delegate('.add{{$r_id}}','click',function () {
 
             });
@@ -165,7 +266,7 @@
             });
 
 
-            $('.item_code{{$r_id}}').each(function () {
+            $('.item_id{{$r_id}}').each(function () {
                 $(this).one('mouseenter mouseleave',function () {
                     runSelect2{{$r_id}}($(this));
                 });
@@ -190,9 +291,9 @@
                     closeOnSelect: false,
                     success: function (data) {
                         if(data.data.length > 0) {
-                            console.log(data.data[0].id);
+                            //console.log(data.data[0].id);
                         }else {
-                            console.log(0);
+                            //console.log(0);
                         }
                     },
                     data: function (params) {
@@ -229,9 +330,11 @@
                     return markup;
                 },
 
-            }).on('change',function () {
+            }).on('change',function (e) {
                 var id = $(this).val();
-                //alert(id);
+                var tr = $(this).parent().parent();
+                tr.find('.item_id{{$r_id}}').val(id);
+                tr.find('.item_id{{$r_id}}').prop('value',id);
             });
 
         }

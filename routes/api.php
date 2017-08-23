@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/item','Api\ItemController@index');
 Route::get('/item/{id}','Api\ItemController@show');
+Route::any('/item-search','Api\ItemController@showSearchResult');
