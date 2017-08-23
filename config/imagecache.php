@@ -37,6 +37,7 @@ return array(
         public_path('uploads/gallery'),
         public_path('images'),
         public_path('images/items'),
+        public_path('images/item_categories'),
     ),
 
     /*

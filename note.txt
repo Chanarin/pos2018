@@ -7,3 +7,4 @@ php artisan db:seed --class=UsersTableSeeder
 php artisan clear-compiled
 composer dump-autoload
 php artisan optimize
+

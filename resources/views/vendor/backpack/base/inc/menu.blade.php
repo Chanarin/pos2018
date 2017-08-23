@@ -42,7 +42,7 @@
         </li>
 
         <li class=" hidden-xs hidden-sm" style="background-color: #13803a;">
-            <a href="{{ url('/admin/checklist') }}">
+            <a href="{{ url('/admin/print-invoice') }}">
                 <i class="fa fa-check-square"> Checklist</i>
 
             </a>
