@@ -71,7 +71,7 @@
     <div class="form-group col-md-12">
         @php
             $field = [
-                'max_rows' => 20,
+                'max_rows' => 5,
                 'max_rows_sub' => 5,
                 'level' => 1,
                 'label' => "Item Detail",
@@ -79,7 +79,7 @@
                 'value' => isset($crud->entry->image)?$crud->entry->image:null,
                 'type' => 'item_detail',
                 'columns' => [
-                    'item_id' => ['label' => 'Item ID','show' => true,'width' => -1],
+                    'item_id' => ['label' => 'Item ID','show' => true,'width' => 150],
                     'item_code' => ['label' => 'Code','show' => true,'width' => 150],
                     'title' => ['label' => 'Title','show' => true,'width' => 150],
                     'description' => ['label' => 'Description','show' => false,'width' => -1],

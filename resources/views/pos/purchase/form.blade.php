@@ -30,19 +30,20 @@
     </div>
     <div class="form-group col-md-6">
         @php
-        $field = [
-            // 1-n relationship
-            'label' => "Customer Purchase", // Table column heading
-            'type' => "select2_from_ajax",
-            'name' => 'customer_id', // the column that contains the ID of that connected entity
-            'entity' => 'customer', // the method that defines the relationship in your Model
-            'attribute' => "name", // foreign key attribute that is shown to user
-            'model' => "App\Models\Customer", // foreign key model
-            'data_source' => url("admin/api/customer"), // url to controller search function (with /{id} should return model)
-            'placeholder' => "Select a customer", // placeholder for the select
-            'showOneTime' => 1,
-            'value' => isset($crud->entry->customer_id)?$crud->entry->customer_id:null,
-        ];
+            $field = [
+                // 1-n relationship
+                'label' => 'Customer Purchase', // Table column heading
+                'type' => 'select2_from_ajax',
+                'name' => 'customer_id', // the column that contains the ID of that connected entity
+                'entity' => 'customer', // the method that defines the relationship in your Model
+                'attribute' => "name", // foreign key attribute that is shown to user
+                'model' => "App\Models\Customer", // foreign key model
+                'data_source' => url("admin/api/customer"), // url to controller search function (with /{id} should return model)
+                'placeholder' => "Select a customer", // placeholder for the select
+                'minimum_input_length' => 0, // minimum characters to type before querying results
+                'showOneTime' => 1,
+                'value' => isset($crud->entry->customer_id)?$crud->entry->customer_id:null,
+            ];
         @endphp
         @include('vendor.backpack.crud.custom.select2_from_ajax2',compact('crud', 'entry', 'field'))
     </div>
@@ -71,7 +72,7 @@
     <div class="form-group col-md-12">
         @php
             $field = [
-                'max_rows' => 20,
+                'max_rows' => 5,
                 'max_rows_sub' => 5,
                 'level' => 1,
                 'label' => "Item Detail",
@@ -79,7 +80,7 @@
                 'value' => isset($crud->entry->image)?$crud->entry->image:null,
                 'type' => 'item_detail',
                 'columns' => [
-                    'item_id' => ['label' => 'Item ID','show' => true,'width' => -1],
+                    'item_id' => ['label' => 'Item ID','show' => true,'width' => 150],
                     'item_code' => ['label' => 'Code','show' => true,'width' => 150],
                     'title' => ['label' => 'Title','show' => true,'width' => 150],
                     'description' => ['label' => 'Description','show' => false,'width' => -1],
