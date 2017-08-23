@@ -40,8 +40,6 @@
             'model' => "App\Models\Customer", // foreign key model
             'data_source' => url("admin/api/customer"), // url to controller search function (with /{id} should return model)
             'placeholder' => "Select a customer", // placeholder for the select
-            'minimum_input_length' => 0, // minimum characters to type before querying results
-            'default' => 2,
             'showOneTime' => 1,
             'value' => isset($crud->entry->customer_id)?$crud->entry->customer_id:null,
         ];
@@ -54,7 +52,6 @@
             'name' => 'ref',
             'type' => 'text',
             'label' => 'Purchase Reference',
-            'default' => 888,
             'value' => isset($crud->entry->ref)?$crud->entry->ref:null,
         ];
         @endphp
