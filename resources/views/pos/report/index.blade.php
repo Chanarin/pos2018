@@ -3,6 +3,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('vendor/adminlte') }}/plugins/timepicker/bootstrap-timepicker.min.css">
     <link rel="stylesheet" href="{{ asset('vendor/adminlte') }}/plugins/datepicker/datepicker3.css">
+
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte') }}/plugins/iCheck/all.css">
+
     <style>
         html,
         body {
@@ -30,7 +33,8 @@
             top: 0px;
             width: 200px;
             bottom: 0px;
-            background: #BDC3C7;
+            background: #FFFFFF;
+            border-right: 1px solid darkgrey;
         }
 
         #B {
@@ -102,7 +106,7 @@
     <br>
     <div class="col-md-12 col-sm-12 col-xs-12" style="color: #ffffff;">
         <div class="col-md-2 " style="text-align: left;">
-            <button style="background-color: red; color: white; border-color: rgba(204,0,0,0.81);" onclick="document.location.href='{{url('/admin/dashboard')}}';" type="button"><i class="fa fa-fw fa-angle-double-left"></i> Back</button>
+            <span onclick="document.location.href='{{url('/admin/dashboard')}}';"><i class="fa fa-fw fa-angle-double-left"></i> Back</span>
         </div>
         <div class="col-md-4 col-sm-6 col-xs-6" style="text-align: right !important;">
             <div class="form-group col-md-12 col-sm-12 col-xs-12">
@@ -112,7 +116,7 @@
                     <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text" class="form-control pull-right" id="datepicker">
+                    <input type="text" class="form-control pull-right" id="from-date">
                 </div>
             </div>
         </div>
@@ -123,45 +127,45 @@
                     <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text" class="form-control pull-right" id="datepicker">
+                    <input type="text" class="form-control pull-right" id="to-date">
                 </div>
             </div>
         </div>
         <div class="col-md-2 ">
         </div>
     </div>
-    <div class="col-md-12 col-sm-12 col-xs-12" style="text-align: center">
-        <button type="button" style="background-color: #FF00FF; color: #FFFFFF; border-color: #CC66FF;"><i class="fa fa-fw fa-search"></i> VIEW</button>&nbsp;&nbsp;&nbsp;<button type="button" class="" onclick="printContent('report-print')" style="background-color: #4CAF50; color: #FFFFFF; border-color: #8BC34A; "><i class="fa fa-fw fa-print"></i> PRINT</button>&nbsp;&nbsp;&nbsp;<button type="button" style="background-color: #FF9800; color: #FFFFFF; border-color: #FB8C00; "><i class="fa fa-fw fa-file-pdf-o"></i> PDF</button>&nbsp;&nbsp;&nbsp;<button type="button" style="background-color: #5E35B1; color: #FFFFFF; border-color: #7E57C2; "><i class="fa fa-fw fa-file-excel-o"></i> EXCEL</button>
-    </div>
 @endsection
 @section('content')
     <div id="A" style="margin-bottom: 0px !important;">
         <div>
-            <section class="sidebar" style="height: 100%; margin-top: 120px;">
-                <h4> &nbsp;&nbsp;<b>Open Item</b></h4>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="list" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;List<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="detail" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;Detail<br>
-
-                <h4> &nbsp;&nbsp;<b>Purchase Item</b></h4>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="list" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;List<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="detail" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;Detail<br>
-
-                <h4> &nbsp;&nbsp;<b>Production Item</b></h4>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="list" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;List<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="detail" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;Detail<br>
-
-                <h4> &nbsp;&nbsp;<b>Sale Item</b></h4>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="list" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;List<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="detail" style="font-size: 14px;">&nbsp;&nbsp;&nbsp;Detail<br>
-
+            <section class="sidebar" style="height: 100%; margin-top: 120px; padding-left: 15px;">
+                <h4><b>Open Item</b></h4>
+                    <input data-url="/api/report/open-item/list" type="radio" name="r1" class="minimal report-option" checked> List<br>
+                    <input data-url="/api/report/open-item/detail" type="radio" name="r1" class="minimal report-option"> Detail<br>
+                <h4><b>Purchase Item</b></h4>
+                    <input data-url="/api/report/purchase-item/list" type="radio" name="r1" class="minimal report-option" checked> List<br>
+                    <input data-url="/api/report/purchase-item/detail" type="radio" name="r1" class="minimal report-option"> Detail<br>
+                <h4><b>Production Item</b></h4>
+                    <input data-url="/api/report/production-item/list" type="radio" name="r1" class="minimal report-option" checked> List<br>
+                    <input data-url="/api/report/production-item/detail" type="radio" name="r1" class="minimal report-option"> Detail<br>
+                <h4><b>Sale Item</b></h4>
+                    <input data-url="/api/report/sale-item/list" type="radio" name="r1" class="minimal report-option" checked> List<br>
+                    <input data-url="/api/report/sale-item/detail" type="radio" name="r1" class="minimal report-option"> Detail<br>
             </section>
         </div>
     </div>
     <input id="toggle" type="checkbox">
     <label for="toggle"><i style="color: #337AB7" class="fa fa-navicon fa-2x"></i></label>
     <div id="B" style="height: auto; margin-top: 120px;">
+        <div class="col-md-12 col-sm-12 col-xs-12" style="text-align: right">
+            <span><i class="fa fa-fw fa-search"></i> VIEW</span>&nbsp;&nbsp;
+            <span onclick="printContent('report-print')"><i class="fa fa-fw fa-print"></i> PRINT</span>&nbsp;&nbsp;
+            <span><i class="fa fa-fw fa-file-pdf-o"></i> PDF</span>&nbsp;&nbsp;
+            <span><i class="fa fa-fw fa-file-excel-o"></i> EXCEL</span>
+        </div>
         <div id="report-print">
             <div class="col-md-12 table-responsive">
+                {{--========================list report===================--}}
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 10px; margin-top: 10px;">
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 " style="text-align: center;">
                         <img src="{{asset('/pos/img/logo.jpg')}}" width="90" height="90" alt="">
@@ -177,25 +181,33 @@
 
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <table class="table table-bordered" style="width: 100%;">
-                        <tr style="font-size: 14px;">
-                            <th style="width: 20px">#</th>
-                            <th>open number</th>
-                            <th>Date</th>
-                            <th>description</th>
-                            <th style="width: 20px"></th>
-                        </tr>
-                        <tr style="font-size: 12px;">
-                            <td>1.</td>
-                            <td>OP00001</td>
-                            <td>09/09/2017</td>
-                            <td>lkdsjflafjlasdjf</td>
-                            <td><button type="button" data-toggle="modal" data-target="#popUpItemDetail"><i class="fa fa-search">
-                                    </i>
-                                </button>
-                            </td>
-                        </tr>
+                        <thead>
+                            <tr style="font-size: 14px;">
+                                <th style="width: 20px">#</th>
+                                <th>open number</th>
+                                <th>Date</th>
+                                <th>description</th>
+                                <th style="width: 20px"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="font-size: 12px;">
+                                <td>1.</td>
+                                <td>OP00001</td>
+                                <td>09/09/2017</td>
+                                <td>lkdsjflafjlasdjf</td>
+                                <td><button type="button" data-toggle="modal" data-target="#popUpItemDetail"><i class="fa fa-search">
+                                        </i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+
                     </table>
                 </div>
+                {{--===========end list report=============--}}
+
+
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div>
                         <table style="width: 100%; margin-bottom: 10px; margin-top: 10px;">
@@ -335,13 +347,34 @@
     </div>
 @endsection
 @section('graph_script')
+    <script src="{{ asset('vendor/adminlte') }}/plugins/iCheck/icheck.min.js"></script>
+
     <script src="{{ asset('vendor/adminlte') }}/dist/js/demo.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/plugins/select2/select2.full.min.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/plugins/datepicker/bootstrap-datepicker.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/plugins/timepicker/bootstrap-timepicker.min.js"></script>
     <script>
-        $('#datepicker').datepicker({
-            autoclose: true
+        $(function(){
+            $('#from-date,#to-date').datepicker({
+                autoclose: true
+            });
+
+            //iCheck for checkbox and radio inputs
+            $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                checkboxClass: 'icheckbox_minimal-blue',
+                radioClass: 'iradio_minimal-blue'
+            });
+            //Red color scheme for iCheck
+            $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+                checkboxClass: 'icheckbox_minimal-red',
+                radioClass: 'iradio_minimal-red'
+            });
+            //Flat red color scheme for iCheck
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
         });
+
     </script>
 @endsection

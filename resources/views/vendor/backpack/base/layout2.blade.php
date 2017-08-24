@@ -46,55 +46,27 @@
     </script>
 </head>
 <body class="hold-transition {{ config('backpack.base.skin') }} sidebar-mini">
+        <style>
+            .main-header .navbar {
+                -webkit-transition: margin-left .3s ease-in-out;
+                -o-transition: margin-left .3s ease-in-out;
+                transition: margin-left .3s ease-in-out;
+                margin-bottom: 0;
+                margin-left: 0px !important;
+                border: none;
+                min-height: 50px;
+                border-radius: 0;
+            }
 
-    <!-- Site wrapper -->
-    <div>
-<style>
-    .main-header .navbar {
-        -webkit-transition: margin-left .3s ease-in-out;
-        -o-transition: margin-left .3s ease-in-out;
-        transition: margin-left .3s ease-in-out;
-        margin-bottom: 0;
-        margin-left: 0px !important;
-        border: none;
-        min-height: 50px;
-        border-radius: 0;
-    }
-
-</style>
+        </style>
+        {{--00796B--}}
       <header class="main-header">
-        {{--<!-- Logo -->--}}
-        {{--<a href="{{ url('') }}" class="logo">--}}
-          {{--<!-- mini logo for sidebar mini 50x50 pixels -->--}}
-          {{--<span class="logo-mini">{!! config('backpack.base.logo_mini') !!}</span>--}}
-          {{--<!-- logo for regular state and mobile devices -->--}}
-          {{--<span class="logo-lg">{!! config('backpack.base.logo_lg') !!}</span>--}}
-        {{--</a>--}}
-        <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top" role="navigation">
-          {{--<!-- Sidebar toggle button-->--}}
-          {{--<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">--}}
-            {{--<span class="sr-only">{{ trans('backpack::base.toggle_navigation') }}</span>--}}
-            {{--<span class="icon-bar"></span>--}}
-            {{--<span class="icon-bar"></span>--}}
-            {{--<span class="icon-bar"></span>--}}
-          {{--</a>--}}
-            <div class="row" style="background-color: #00796B !important; height: 120px;">
-                @section('hearder-report')
-                @show
-            </div>
-        </nav>
-
-
+          <div class="row" style="background-color: #3c8dbc !important; height: 60px;">
+              @section('hearder-report')
+              @show
+          </div>
       </header>
-
-      <!-- =============================================== -->
-
-      <!-- =============================================== -->
-
-      <!-- Content Wrapper. Contains page content -->
       <div>
-        <!-- Content Header (Page header) -->
          @yield('header')
 
         <!-- Main content -->
@@ -105,13 +77,7 @@
         </section>
         <!-- /.content -->
       </div>
-      <!-- /.content-wrapper -->
-    </div>
-    <!-- ./wrapper -->
-
-
     @yield('before_scripts')
-
     <!-- jQuery 2.2.0 -->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script>window.jQuery || document.write('<script src="{{ asset('vendor/adminlte') }}/plugins/jQuery/jQuery-2.2.0.min.js"><\/script>')</script>
@@ -124,15 +90,8 @@
 
     @section('graph_script')
     @show
-
-
     @include('backpack::inc.alerts')
 
     @yield('after_scripts')
-
-
-    <!-- JavaScripts -->
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
-
 </body>
 </html>

@@ -20,3 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/item','Api\ItemController@index');
 Route::get('/item/{id}','Api\ItemController@show');
 Route::any('/item-search','Api\ItemController@showSearchResult');
+
+Route::get('/report/open-item/list','Api\ReportController@openItemList');
+Route::get('/report/open-item/detail','Api\ReportController@openItemDetail');
+
+Route::get('/report/purchase-item/list','Api\ReportController@purchaseItemList');
+Route::get('/report/purchase-item/detail','Api\ReportController@purchaseItemDetail');
+
+Route::get('/report/production-item/list','Api\ReportController@productionItemList');
+Route::get('/report/production-item/detail','Api\ReportController@productionItemDetail');

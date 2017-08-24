@@ -15,40 +15,40 @@
 <div class="navbar-custom-menu">
     <ul class="nav navbar-nav">
 
-        <li class=" hidden-xs hidden-sm" style="background-color: #108042;">
+        <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/sale') }}">
                 <i class="fa fa-th-large"> POS</i>
 
             </a>
         </li>
-        <li class=" hidden-xs hidden-sm" style="background-color: #328005;">
+        <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/customers') }}">
                 <i class="fa  fa-user"> Customer</i>
 
             </a>
         </li>
 
-        <li class=" hidden-xs hidden-sm" style="background-color: #328005;">
+        <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/purchase') }}" >
                 <i class="fa fa-cart-arrow-down"> Purchase</i>
 
             </a>
         </li>
-        <li class=" hidden-xs hidden-sm" style="background-color: #328005;">
+        <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/open-items') }}">
                 <i class="fa fa-book"> Open Item</i>
 
             </a>
         </li>
 
-        <li class=" hidden-xs hidden-sm" style="background-color: #13803a;">
+        <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/print-invoice') }}">
                 <i class="fa fa-check-square"> Checklist</i>
 
             </a>
         </li>
 
-        <li class=" hidden-xs hidden-sm" style="background-color: #14806c;">
+        <li class=" hidden-xs hidden-sm">
             <a href="{{url('/admin/register')}}">
                 <i class="fa fa-th-large"> Register</i>
 
@@ -57,7 +57,7 @@
         <!-- ========================================================= -->
         <!-- ========== Top menu right items (ordered left) ========== -->
         <!-- ========================================================= -->
-        <li class="dropdown hidden-xs " style="background-color: #137d80;">
+        <li class="dropdown hidden-xs ">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-language"> English</i>
             </a>

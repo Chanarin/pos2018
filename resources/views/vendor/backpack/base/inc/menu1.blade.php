@@ -16,37 +16,37 @@
 <div class="navbar-custom-menu">
     <ul class="nav navbar-nav">
 
-        {{--<li class=" hidden-xs" style="background-color: #4a8009;">--}}
+        {{--<li class=" hidden-xs hidden-sm" style="background-color: #4a8009;">--}}
             {{--<a href="{{ url('/admin/dashboard') }}">--}}
                 {{--<i class="fa fa-dashboard"> Dashboard</i>--}}
 
             {{--</a>--}}
         {{--</li>--}}
-        <li class=" hidden-xs" style="background-color: #328005;">
+        <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/customers') }}" >
                 <i class="fa  fa-user"> Customer</i>
 
             </a>
         </li>
-        <li class=" hidden-xs" style="background-color: #328005;">
+        <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/purchase') }}">
                 <i class="fa fa-cart-arrow-down"> Purchase</i>
 
             </a>
         </li>
-        <li class=" hidden-xs" style="background-color: #13803a;">
+        <li class=" hidden-xs hidden-sm">
             <a href="#" >
                 <i class="fa fa-th-large"> Profit</i>
 
             </a>
         </li>
-        <li class=" hidden-xs" style="background-color: #0d8014;">
+        <li class=" hidden-xs hidden-sm">
             <a href="#" >
                 <i class="fa fa-print"> List Sale</i>
 
             </a>
         </li>
-        <li class=" hidden-xs" style="background-color: #24803e;">
+        <li class=" hidden-xs hidden-sm">
             <a href="#" >
                 <i class="fa fa-th-large"> Today Sale</i>
 
@@ -55,7 +55,7 @@
       <!-- ========================================================= -->
       <!-- ========== Top menu right items (ordered left) ========== -->
       <!-- ========================================================= -->
-        <li class="dropdown hidden-xs" style="background-color: #137d80;">
+        <li class="dropdown hidden-xs hidden-sm">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-language"> English</i>
             </a>
