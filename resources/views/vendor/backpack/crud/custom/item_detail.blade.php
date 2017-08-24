@@ -205,9 +205,44 @@
             var id = [];
             ob.each(function () {
                 var item_id = $(this).val();
-                if(item_id>0) id.push(item_id);
+                if(item_id>0) {
+                    id.push(item_id);
+                }
+
             });
             return id;
+        }
+
+
+        function addRowItemWithData(data,ob) {
+            var c_c = 0;
+
+            ob.each(function () {
+
+                var item_id = $(this).val();
+                var tr = $(this).parent().parent();
+                var item_code = tr.find('.item_code{{$r_id}}').val();
+                var title = tr.find('.title{{$r_id}}').val();
+
+                if(item_id > 0){
+
+                }else if(item_code == '' && title == ''){
+                    $(this).html('<option selected value="'+data.id+'">'+data.title+'</option>');
+                    runSelect2{{$r_id}}($(this));
+                    tr.find('.item_code{{$r_id}}').val(data.item_code);
+                    tr.find('.title{{$r_id}}').val(data.title);
+                    tr.find('.unit{{$r_id}}').val(data.unit);
+                    c_c++;
+                    return false;
+                }
+
+            });
+
+            if(c_c == 0)
+            {
+                dd('no');
+            }
+
         }
 
         function loadItemSearch(p,arrItemID) {
@@ -217,6 +252,26 @@
         }
 
         jQuery(document).ready(function() {
+
+            $('body').delegate('.modal-add-item-main','click',function (e) {
+                var id = $(this).data('id');
+                var d = $(this);
+                $.ajax({
+                    type: "GET",
+                    url: "{{url('api/item')}}/" + id,
+                    //data: "{}",
+                    dataType: "json",
+                    success: function (data) {
+
+                        addRowItemWithData(data,$('.item_id-main-id'));
+
+                        d.parent().parent().remove();
+                    },
+                    error: function (result) {
+                        dd("Error");
+                    }
+                });
+            });
 
             $('body').delegate('.my-pagination ul li a','click',function (e) {
                 e.preventDefault();
@@ -356,7 +411,6 @@
                 tr.find('.item_id{{$r_id}}').val(id);
 
                 $.ajax({
-
                     type: "GET",
                     url: "{{url('api/item')}}/" + id,
                     //data: "{}",

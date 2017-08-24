@@ -17,11 +17,11 @@ class ItemController extends Controller
         {
             $results = Item::where('title', 'LIKE', '%'.$search_term.'%')
                 ->orWhere('item_code', 'LIKE', '%'.$search_term.'%')
-                ->paginate(10);
+                ->paginate(50);
         }
         else
         {
-            $results = Item::paginate(10);
+            $results = Item::paginate(50);
         }
 
         return $results;

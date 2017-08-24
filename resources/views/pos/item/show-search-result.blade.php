@@ -20,11 +20,11 @@
                 @endphp
                 <tr>
                     <td>
-                       <input data-id="{{$row->id}}" value="{{$row->id}}" type="checkbox" class="ch-select-item" id="ch-select-item-{{ $row->id }}">
+                        <button data-id="{{$row->id}}" class="btn btn-sm btn-info modal-add-item-main" type="button"><span class="sr-only">add</span><i class="fa fa-plus" role="presentation" aria-hidden="true"></i></button>
                     </td>
-                    <td><label for="ch-select-item-{{ $row->id }}">{{ isset($row->category->title)?$row->category->title:'' }}</label></td>
-                    <td><label for="ch-select-item-{{ $row->id }}">{{ $row->item_code }}</label></td>
-                    <td><label for="ch-select-item-{{ $row->id }}">{{ $row->title }}</label></td>
+                    <td>{{ isset($row->category->title)?$row->category->title:'' }}</td>
+                    <td>{{ $row->item_code }}</td>
+                    <td>{{ $row->title }}</td>
                    <td> @if($img != null) <img src="{{url('/img/cache/small/'. \App\Helpers\Glb::get_basename($img))}}" height="50"> @endif </td>
                 </tr>
             @endforeach
