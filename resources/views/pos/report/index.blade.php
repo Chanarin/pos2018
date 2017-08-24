@@ -6,92 +6,6 @@
 
     <link rel="stylesheet" href="{{ asset('vendor/adminlte') }}/plugins/iCheck/all.css">
 
-    <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            border: 0;
-        }
-
-        a {
-            display: inline-block;
-            padding: 1em;
-            text-decoration: none;
-            color: #fff;
-            background: rgba(0, 0, 0, 0.5);
-            /*border-radius: 0 0px 0px 0;*/
-        }
-
-        #A,
-        #B {
-            position: absolute;
-            transition: all 500ms;
-        }
-
-        #A {
-            top: 0px;
-            width: 200px;
-            bottom: 0px;
-            background: #FFFFFF;
-            border-right: 1px solid darkgrey;
-        }
-
-        #B {
-            top: 0px;
-            left: 200px;
-            right: 0;
-            bottom: 0px;
-            background: #ffffff;
-        }
-
-        #toggle {
-            display: none;
-        }
-
-        label {
-            position: relative;
-            left: 200px;
-            /*Set the left position to the same as the sidebar */
-
-            top: 17px;
-            /*margin: 1px;*/
-            z-index: 2;
-            transition: all 500ms;
-            padding: 2px 2px 2px 2px;
-            background: #ffff;
-        }
-        @media (max-width: 1024px) {
-            label {
-                position: relative;
-                left: 200px;
-                top: -1px !important;
-                z-index: 2;
-                transition: all 500ms;
-                padding: 2px 2px 2px 2px;
-                background: #ffff;
-            }
-        }
-
-        #toggle:checked ~ #A,
-        #toggle:checked ~ #B {
-            left: -200px;
-        }
-        /*move label to follow sidebar animation*/
-
-        #toggle:checked,
-        #toggle:checked ~ label {
-            left: 0;
-            background: #FFF;
-        }
-        #toggle:checked ~ #B {
-            left: 0px;
-            background: #FFF;
-        }
-        #toggle ~ #A {
-            left: 0;
-        }
-    </style>
 @endsection
 @section('hearder-report')
     <script>
@@ -104,59 +18,10 @@
         }
     </script>
     <br>
-    <div class="col-md-12 col-sm-12 col-xs-12" style="color: #ffffff;">
-        <div class="col-md-2 " style="text-align: left;">
-            <span onclick="document.location.href='{{url('/admin/dashboard')}}';"><i class="fa fa-fw fa-angle-double-left"></i> Back</span>
-        </div>
-        <div class="col-md-4 col-sm-6 col-xs-6" style="text-align: right !important;">
-            <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                <div class="col-md-4 col-sm-4 col-xs-4 control-label">FROM : </div>
 
-                <div class="col-md-8 col-sm-8 col-xs-8 input-group date">
-                    <div class="input-group-addon">
-                        <i class="fa fa-calendar"></i>
-                    </div>
-                    <input type="text" class="form-control pull-right" id="from-date">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-6 col-xs-6" style="text-align: left !important;">
-            <div class="form-group col-md-12 col-xs-12" style="text-align: left !important;">
-                <div class="col-md-4 col-sm-4 col-xs-4 control-label"> TO : </div>
-                <div class="col-md-8 col-sm-8 col-xs-8 input-group date" style="text-align: left !important;">
-                    <div class="input-group-addon">
-                        <i class="fa fa-calendar"></i>
-                    </div>
-                    <input type="text" class="form-control pull-right" id="to-date">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2 ">
-        </div>
-    </div>
 @endsection
 @section('content')
-    <div id="A" style="margin-bottom: 0px !important;">
-        <div>
-            <section class="sidebar" style="height: 100%; margin-top: 120px; padding-left: 15px;">
-                <h4><b>Open Item</b></h4>
-                    <input data-url="/api/report/open-item/list" type="radio" name="r1" class="minimal report-option" checked> List<br>
-                    <input data-url="/api/report/open-item/detail" type="radio" name="r1" class="minimal report-option"> Detail<br>
-                <h4><b>Purchase Item</b></h4>
-                    <input data-url="/api/report/purchase-item/list" type="radio" name="r1" class="minimal report-option" checked> List<br>
-                    <input data-url="/api/report/purchase-item/detail" type="radio" name="r1" class="minimal report-option"> Detail<br>
-                <h4><b>Production Item</b></h4>
-                    <input data-url="/api/report/production-item/list" type="radio" name="r1" class="minimal report-option" checked> List<br>
-                    <input data-url="/api/report/production-item/detail" type="radio" name="r1" class="minimal report-option"> Detail<br>
-                <h4><b>Sale Item</b></h4>
-                    <input data-url="/api/report/sale-item/list" type="radio" name="r1" class="minimal report-option" checked> List<br>
-                    <input data-url="/api/report/sale-item/detail" type="radio" name="r1" class="minimal report-option"> Detail<br>
-            </section>
-        </div>
-    </div>
-    <input id="toggle" type="checkbox">
-    <label for="toggle"><i style="color: #337AB7" class="fa fa-navicon fa-2x"></i></label>
-    <div id="B" style="height: auto; margin-top: 120px;">
+    <div>
         <div class="col-md-12 col-sm-12 col-xs-12" style="text-align: right">
             <span><i class="fa fa-fw fa-search"></i> VIEW</span>&nbsp;&nbsp;
             <span onclick="printContent('report-print')"><i class="fa fa-fw fa-print"></i> PRINT</span>&nbsp;&nbsp;
