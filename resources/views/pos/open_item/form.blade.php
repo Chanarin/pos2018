@@ -16,7 +16,7 @@
         $field = [
             'name' => '_date_',
             'type' => 'date_picker',
-            'label' => 'Purchase Date',
+            'label' => 'Open Date',
             'showOneTime' => 1,
             'value' => isset($crud->entry->_date_)?$crud->entry->_date_:null,
             'date_picker_options' => [
