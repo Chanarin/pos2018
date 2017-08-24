@@ -123,7 +123,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="gridSystemModalLabel">Search Item</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="min-height: 400px;">
 
                 <!-- /.row -->
                 <div class="row">
@@ -186,6 +186,10 @@
 <!-- include field specific select2 js-->
 @push('crud_fields_scripts')
     <script>
+        function dd(o) {
+            console.log(o);
+        }
+
         var page = 1;
 
         var delay = (function(){
@@ -196,10 +200,20 @@
             };
         })();
 
-        function loadItemSearch(p) {
+        //$('.item_id-main-id')
+        function getAllItemId(ob) {
+            var id = [];
+            ob.each(function () {
+                var item_id = $(this).val();
+                if(item_id>0) id.push(item_id);
+            });
+            return id;
+        }
+
+        function loadItemSearch(p,arrItemID) {
             var q = $('.search-item-to-show-txt').val();
             $('.load-search-item-list').html('');
-            $('.load-search-item-list').load('{{ url('api/item-search') }}',{page:p,q:q});
+            $('.load-search-item-list').load('{{ url('api/item-search') }}',{page:p,q:q,arr_item_id:arrItemID});
         }
 
         jQuery(document).ready(function() {
@@ -207,23 +221,27 @@
             $('body').delegate('.my-pagination ul li a','click',function (e) {
                 e.preventDefault();
                 page = $(this).data('page');
-                loadItemSearch(page);
+                var arrItemID = getAllItemId($('.item_id-main-id'));
+                loadItemSearch(page,arrItemID);
             });
 
 
             $('.search-item-to-show-txt').on('keyup',function (e) {
                 delay(function(){
-                    loadItemSearch(1);
+                    var arrItemID = getAllItemId($('.item_id-main-id'));
+                    loadItemSearch(1,arrItemID);
                 }, 1000 );
             });
 
             $('.search-item-to-show').on('click',function (e) {
                 e.preventDefault();
-                loadItemSearch(1);
+                var arrItemID = getAllItemId($('.item_id-main-id'));
+                loadItemSearch(1,arrItemID);
             });
 
             $('#show-item-big').on('shown.bs.modal', function () {
-                loadItemSearch(1);
+                var arrItemID = getAllItemId($('.item_id-main-id'));
+                loadItemSearch(1,arrItemID);
             });
 
             $('#show-item-big').on('hidden.bs.modal', function (e) {
@@ -313,7 +331,8 @@
                                 //console.log(item);
                                 return {
                                     text: item.title,
-                                    id: item.id
+                                    id: item.id,
+                                    xx:1111
                                 }
                             }),
                             more: data.current_page < data.last_page
@@ -331,10 +350,28 @@
                 },
 
             }).on('change',function (e) {
+
                 var id = $(this).val();
                 var tr = $(this).parent().parent();
                 tr.find('.item_id{{$r_id}}').val(id);
-                tr.find('.item_id{{$r_id}}').prop('value',id);
+
+                $.ajax({
+
+                    type: "GET",
+                    url: "{{url('api/item')}}/" + id,
+                    //data: "{}",
+                    dataType: "json",
+                    success: function (data) {
+                        dd(data);
+                        tr.find('.item_code{{$r_id}}').val(data.item_code);
+                        tr.find('.title{{$r_id}}').val(data.title);
+                        tr.find('.unit{{$r_id}}').val(data.unit);
+                    },
+                    error: function (result) {
+                        dd("Error");
+                    }
+                });
+
             });
 
         }

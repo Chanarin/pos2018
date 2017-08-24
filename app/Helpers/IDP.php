@@ -26,36 +26,43 @@ class IDP
     public function saveAllDetail()
     {
         if (count($this->data) > 0) {
-            foreach ($this->data as $row) {
+            if(is_array($this->data)) {
+                foreach ($this->data as $row) {
 
 
-                $item_code = isset($row['item_code']) ? $row['item_code'] : '';
+                    $item_code = isset($row['item_code']) ? $row['item_code'] : '';
 
-     /*           if($item_code > 0){
-                    $item_id = $item_code;
-                }else {
+                    /*           if($item_code > 0){
+                                   $item_id = $item_code;
+                               }else {
+                                   $item_id = isset($row['item_id']) ? $row['item_id'] : 0;
+                               }*/
+
                     $item_id = isset($row['item_id']) ? $row['item_id'] : 0;
-                }*/
 
-                $item_id = isset($row['item_id']) ? $row['item_id'] : 0;
+                    $title = isset($row['title']) ? $row['title'] : '';
+                    $description = isset($row['description']) ? $row['description'] : '';
+                    $unit = isset($row['unit']) ? $row['unit'] : '';
 
-                $title = isset($row['title']) ? $row['title'] : '';
-                $description = isset($row['description']) ? $row['description'] : '';
-                $unit = isset($row['unit']) ? $row['unit'] : '';
+                    $qty = isset($row['qty']) ? $row['qty'] : 0;
+                    $cost = isset($row['cost']) ? $row['cost'] : 0;
+                    $price = isset($row['price']) ? $row['price'] : 0;
+                    $discount = isset($row['discount']) ? $row['discount'] : 0;
 
-                $qty = isset($row['qty']) ? $row['qty'] : 0;
-                $cost = isset($row['cost']) ? $row['cost'] : 0;
-                $price = isset($row['price']) ? $row['price'] : 0;
-                $discount = isset($row['discount']) ? $row['discount'] : 0;
+                    $note = isset($row['note']) ? $row['note'] : '';
 
-                $note = isset($row['note']) ? $row['note'] : '';
+                    $item_detail = isset($row['detail']) ? $row['detail'] : [];
 
-                $item_detail = isset($row['detail']) ? $row['detail'] : [];
 
-                $itemDetailP = new ItemDetailP($this->type, $item_id, $this->ref_id,
-                    $item_id, $item_code,
-                    $title, $unit, $qty,
-                    $cost, $price, $discount, $note, $item_detail);
+                    $itemDetailP = new ItemDetailP($this->type, $item_id, $this->ref_id,
+                        $item_id, $item_code,
+                        $title, $unit, $qty,
+                        $cost, $price, $discount, $note, $item_detail);
+
+
+
+                }
+
 
             }
         }
@@ -107,6 +114,7 @@ class ItemDetailP
         $this->deleted_at = $deleted_at;
 
         $this->_init_();
+
     }
 
     private function _init_()
@@ -119,6 +127,7 @@ class ItemDetailP
                 $this->type == _POS_::purchase
             )) {
             $this->createItem();
+
             $this->saveDetail();
         }
 
@@ -182,7 +191,9 @@ class ItemDetailP
             $m->price = $this->price;
             $m->discount = $this->discount;
             $m->note = $this->note;
-            $m->item_detail = $this->item_detail;
+            $m->item_detail = json_encode($this->item_detail);
+
+
 
             return $m->save() ? $m : null;
         } else {

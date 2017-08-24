@@ -36,19 +36,39 @@ class ItemController extends Controller
     {
         $search_term = $request->input('q');
         $page = $request->input('page');
+        $arr_item_id = $request->input('arr_item_id');
 
         $results = [];
 
         if ($search_term)
         {
-            $results = Item::where('title', 'LIKE', '%'.$search_term.'%')
-                ->orWhere('item_code', 'LIKE', '%'.$search_term.'%')
-                ->orWhere('description', 'LIKE', '%'.$search_term.'%')
-                ->paginate(3);
+            if(count($arr_item_id)>0) {
+
+                $results = Item::whereNotIn('id', $arr_item_id)
+                    ->where(function($q) use ($search_term) {
+                        $q->where('item_code', 'LIKE', '%' . $search_term . '%')
+                            ->orWhere('title', 'LIKE', '%' . $search_term . '%')
+                            ->orWhere('description', 'LIKE', '%' . $search_term . '%');
+                    })
+                    ->paginate(10);
+
+
+            }else{
+
+                $results = Item::where('title', 'LIKE', '%' . $search_term . '%')
+                    ->orWhere('item_code', 'LIKE', '%' . $search_term . '%')
+                    ->orWhere('description', 'LIKE', '%' . $search_term . '%')
+                    ->paginate(10);
+
+            }
         }
         else
         {
-            $results = Item::paginate(3);
+            if(count($arr_item_id)>0) {
+                $results = Item::whereNotIn('id', $arr_item_id)->paginate(10);
+            }else{
+                $results = Item::paginate(10);
+            }
         }
 
         return view('pos.item.show-search-result',['rows' => $results]);
