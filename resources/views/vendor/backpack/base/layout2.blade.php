@@ -30,6 +30,11 @@
     <!-- BackPack Base CSS -->
     <link rel="stylesheet" href="{{ asset('vendor/backpack/backpack.base.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte') }}/plugins/iCheck/all.css">
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte') }}/plugins/timepicker/bootstrap-timepicker.min.css">
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte') }}/plugins/datepicker/datepicker3.css">
+
+
 @yield('after_styles')
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -119,6 +124,11 @@
 <script src="{{ asset('vendor/adminlte') }}/plugins/fastclick/fastclick.js"></script>
 <script src="{{ asset('vendor/adminlte') }}/dist/js/app.min.js"></script>
 
+<script src="{{ asset('vendor/adminlte') }}/plugins/iCheck/icheck.min.js"></script>
+<script src="{{ asset('vendor/adminlte') }}/dist/js/demo.js"></script>
+<script src="{{ asset('vendor/adminlte') }}/plugins/select2/select2.full.min.js"></script>
+<script src="{{ asset('vendor/adminlte') }}/plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="{{ asset('vendor/adminlte') }}/plugins/timepicker/bootstrap-timepicker.min.js"></script>
 <!-- page script -->
 <script type="text/javascript">
     /* Store sidebar state */
@@ -167,7 +177,21 @@
 @include('backpack::inc.alerts')
 
 @yield('after_scripts')
+<script>
+    $(function(){
+        $('#from-date,#to-date').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true
+        });
 
+        //iCheck for checkbox and radio inputs
+        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue',
+            radioClass: 'iradio_minimal-blue'
+        });
+    });
+
+</script>
 <!-- JavaScripts -->
 {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>
