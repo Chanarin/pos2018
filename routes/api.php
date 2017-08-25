@@ -13,6 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::middleware('cors')->get('/xyz',function (){
+   $arr = [
+       ['id' =>1,'name' => 'dara'],
+       ['id' =>2,'name' => 'nana'],
+       ['id' =>3,'name' => 'nary'],
+   ];
+   return response()->json($arr);
+});
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
