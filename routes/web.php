@@ -4,8 +4,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('admin/view-report', function () {
-    return view('pos.report.index');
+    return view('pos.report.table.index');
 });
+
+
 Route::get('admin/sale', function () {
     return view('pos.sale.index');
 });

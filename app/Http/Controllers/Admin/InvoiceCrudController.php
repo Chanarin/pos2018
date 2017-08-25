@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\_POS_;
+use App\Helpers\IDP;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
@@ -27,8 +29,53 @@ class InvoiceCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
+        $this->crud->addColumn([
+            'name' => 'invoice_number',
+            'label' => 'Invoice Number',
+        ]);
 
-        $this->crud->setFromDb();
+        $this->crud->addColumn([
+            'name' => '_date_',
+            'label' => 'Open Date',
+        ]);
+
+        $this->crud->addColumn([
+            'label' => 'Customer Purchase',
+            'type' => 'select',
+            'name' => 'customer_id',
+            'entity' => 'customer',
+            'attribute' => 'name',
+            'model' => "App\Models\Customer",
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'deposit',
+            'label' => 'Deposit',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'description',
+            'label' => 'Description',
+        ]);
+        $this->crud->addColumn([
+            'name' => 'status',
+            'label' => 'Status',
+        ]);
+        $this->crud->addColumn([
+            'name' => 'complete_date',
+            'label' => 'Complete Date',
+        ]);
+        $this->crud->addColumn([
+            'name' => 'complete_price',
+            'label' => 'Complete Price',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'data',
+            'type' => 'view',
+            'view' => 'pos.invoice.form'
+        ]);
+//        $this->crud->setFromDb();
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -76,12 +123,12 @@ class InvoiceCrudController extends CrudController
         // Please note the drawbacks of this though:
         // - 1-n and n-n columns are not searchable
         // - date and datetime columns won't be sortable anymore
-        // $this->crud->enableAjaxTable();
+         $this->crud->enableAjaxTable();
 
         // ------ DATATABLE EXPORT BUTTONS
         // Show export to PDF, CSV, XLS and Print buttons on the table view.
         // Does not work well with AJAX datatables.
-        // $this->crud->enableExportButtons();
+         $this->crud->enableExportButtons();
 
         // ------ ADVANCED QUERIES
         // $this->crud->addClause('active');
@@ -105,6 +152,9 @@ class InvoiceCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+        $iDP = new IDP($request->_data_,_POS_::invoice,$this->crud->entry->id);
+        $iDP->saveAllDetail();
+
         return $redirect_location;
     }
 

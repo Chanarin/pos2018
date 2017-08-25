@@ -10,6 +10,7 @@ use App\Http\Requests\ReportRequest as UpdateRequest;
 
 class ReportCrudController extends CrudController
 {
+
     public function setup()
     {
 

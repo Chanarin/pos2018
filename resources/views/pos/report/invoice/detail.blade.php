@@ -4,7 +4,7 @@
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="text-align: center;">
         <span style="font-size: 24px;"><b>POS SHOP REPORT</b></span><br>
-        <span style="font-size: 18px;"><b>PRODUCTION ITEM DETAIL</b></span>
+        <span style="font-size: 18px;"><b>PURCHASE ITEM DETAIL</b></span>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 
@@ -15,17 +15,22 @@
         <div>
             <table style="width: 100%; margin-bottom: 10px; margin-top: 10px;">
                 <tbody style="font-size: 14px;">
-                <tr style="text-align:center;">
-                    <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Production Number</b></span> : {{$row->production_number}}</td>
-                    <td style="vertical-align:middle;text-align:left;"><span><b>Production Date</b></span> : {{$row->_date_}}</td>
-                </tr>
-                <tr style="text-align:center;">
-                    <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Customer Name</b></span> : {{$row->customer_id}}</td>
-                    <td style="vertical-align:middle;text-align:left;"><span><b>Reference</b></span> : {{$row->ref}}</td>
-                </tr>
-                <tr style="text-align:center;">
-                    <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Description</b></span> : {{$row->description}}</td>
-                </tr>
+                    <tr style="text-align:center;">
+                        <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Invoice Number</b></span> : {{$row->invoice_number}}</td>
+                        <td style="vertical-align:middle;text-align:left;"><span><b>Invoice Date</b></span> : {{$row->_date_}}</td>
+                    </tr>
+                    <tr style="text-align:center;">
+                        <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Customer Name</b></span> : {{$row->customer_id}}</td>
+                        <td style="vertical-align:middle;text-align:left;"><span><b>Deposit</b></span> : {{$row->deposit}}</td>
+                    </tr>
+                    <tr style="text-align:center;">
+                        <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Complete Date</b></span> : {{$row->complete_date}}</td>
+                        <td style="vertical-align:middle;text-align:left;"><span><b>Complete Price</b></span> : {{$row->complete_price}}</td>
+                    </tr>
+                    <tr style="text-align:center;">
+                        <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Status</b></span> : {{$row->status}}</td>
+                        <td style="vertical-align:middle;text-align:left;"><span><b>Description</b></span> : {{$row->description}}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
