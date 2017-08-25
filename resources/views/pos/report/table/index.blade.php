@@ -21,6 +21,7 @@
                     <div id="report-print">
                         <div class="col-md-12 table-responsive report-item-list report-item-detail">
                             {{--========================list report===================--}}
+                            <div style="min-height: 450px;"></div>
                             {{--===========end list report=============--}}
                         </div>
                     </div>
