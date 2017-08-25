@@ -26,6 +26,9 @@
 
         @include('pos.item.item-rows',compact('crud', 'entry', 'field'))
 
+        <tbody class="table-striped tbody-main-for-use"></tbody>
+
+
     </table>
 
 
@@ -111,8 +114,6 @@
             console.log(o);
         }
 
-        var page = 1;
-
         var delay = (function(){
             var timer = 0;
             return function(callback, ms){
@@ -120,6 +121,12 @@
                 timer = setTimeout(callback, ms);
             };
         })();
+
+    </script>
+    <script>
+
+
+        var page = 1;
 
         //$('.item_id-main-id')
         function getAllItemId(ob) {
@@ -129,40 +136,48 @@
                 if(item_id>0) {
                     id.push(item_id);
                 }
-
             });
             return id;
         }
 
-
         function addRowItemWithData(data,ob) {
-            var c_c = 0;
+                var c_c = 0;
 
-            ob.each(function () {
+                ob.each(function () {
+                    if($(this).data('mainid') != 'uid-xxxx-uid-xxxx') {
+                        var item_id = $(this).val();
+                        var tr = $(this).parent().parent();
+                        var item_code = tr.find('.item_code{{$r_id}}').val();
+                        var title = tr.find('.title{{$r_id}}').val();
 
-                var item_id = $(this).val();
-                var tr = $(this).parent().parent();
-                var item_code = tr.find('.item_code{{$r_id}}').val();
-                var title = tr.find('.title{{$r_id}}').val();
+                        if (item_id > 0) {
 
-                if(item_id > 0){
+                        } else if (item_code == '' && title == '') {
+                            $(this).html('<option selected value="' + data.id + '">' + data.title + '</option>');
+                            runSelect2{{$r_id}}($(this));
+                            tr.find('.item_code{{$r_id}}').val(data.item_code);
+                            tr.find('.title{{$r_id}}').val(data.title);
+                            tr.find('.unit{{$r_id}}').val(data.unit);
+                            c_c++;
 
-                }else if(item_code == '' && title == ''){
-                    $(this).html('<option selected value="'+data.id+'">'+data.title+'</option>');
-                    runSelect2{{$r_id}}($(this));
-                    tr.find('.item_code{{$r_id}}').val(data.item_code);
-                    tr.find('.title{{$r_id}}').val(data.title);
-                    tr.find('.unit{{$r_id}}').val(data.unit);
-                    c_c++;
-                    return false;
+                            var subid = $(this).data('subid');
+                            var mainid = $(this).data('mainid');
+                            if ($('#' + subid).is(":last-child")) {
+                                for (i = 1; i <= 5; i++) {
+                                    addRowMain();
+                                }
+                            }
+
+                            return false;
+                        }
+                    }
+
+                });
+
+                if (c_c == 0) {
+                    dd('no');
                 }
 
-            });
-
-            if(c_c == 0)
-            {
-                dd('no');
-            }
 
         }
 
@@ -201,7 +216,6 @@
                 loadItemSearch(page,arrItemID);
             });
 
-
             $('.search-item-to-show-txt').on('keyup',function (e) {
                 delay(function(){
                     var arrItemID = getAllItemId($('.item_id-main-id'));
@@ -228,45 +242,20 @@
                 });
             });
 
-
             $('body').delegate('.add{{$r_id}}','click',function () {
 
             });
 
-            $('body').delegate('.show-sub{{$r_id}}','click',function () {
-                var tr = $(this).parent().parent();
-                var uid_main = tr.data('id');
-                if($(this).data('show') > 0) {
-                    $('#' + uid_main).show(1000);
-                    $(this).data('show',-1);
-                }else {
-                    $('#' + uid_main).hide(1000);
-                    $(this).data('show',1);
-                }
-            });
-
-            $('body').delegate('.del{{$r_id}}','click',function () {
-
-            });
-
-            //================================
-            //================================
-            $('body').delegate('.add-sub{{$r_id}}','click',function () {
-
-            });
-
-            $('body').delegate('.no-result-add-item','click',function () {
-                var item_name = $('.q-item-name').val();
-            });
-
-
-            $('.item_id{{$r_id}}').each(function () {
-                $(this).one('mouseenter mouseleave',function () {
-                    runSelect2{{$r_id}}($(this));
-                });
-            });
 
         });
+
+
+    </script>
+    <script>
+        String.prototype.replaceAll = function(search, replacement) {
+            var target = this;
+            return target.replace(new RegExp(search, 'g'), replacement);
+        };
 
         function runSelect2{{$r_id}}(obj) {
             var placeholder = obj.data('placeholder');
@@ -326,6 +315,8 @@
                 },
 
             }).on('change',function (e) {
+                var subid = $(this).data('subid');
+                var mainid = $(this).data('mainid');
 
                 var id = $(this).val();
                 var tr = $(this).parent().parent();
@@ -341,6 +332,15 @@
                         tr.find('.item_code{{$r_id}}').val(data.item_code);
                         tr.find('.title{{$r_id}}').val(data.title);
                         tr.find('.unit{{$r_id}}').val(data.unit);
+
+
+                        if($('#'+subid).is(":last-child"))
+                        {
+                            for(i=1;i<=5;i++) {
+                                addRowMain();
+                            }
+                        }
+
                     },
                     error: function (result) {
                         dd("Error");
@@ -351,6 +351,106 @@
 
         }
 
+        /*        String.prototype.replaceAll = function(search, replacement) {
+                    var target = this;
+                    return target.split(search).join(replacement);
+                };*/
+        function getUniqIDRan() {
+            var uid = Math.floor(new Date().valueOf() * Math.random());
+            uid += '8' + Math.floor(new Date().valueOf() * Math.random());
+            return uid;
+        }
+
+        function addRowMain() {
+            var uid = getUniqIDRan();
+            var row_main = $('.table-origin-body').html()
+                .replaceAll('xxxx-uid-xxxx',uid)
+                .replaceAll('xx_name_xx','name');
+
+            var row = $(row_main);
+            runSelect2{{$r_id}}(row.find('.item_id-main-id'));
+            runSelect2{{$r_id}}(row.find('.item_id-sub'));
+            $('.tbody-main-for-use').append(row);
+        }
+
+        function addRowSub(subid) {
+            var uid = $('#'+subid).data('id');
+            var uid2 = getUniqIDRan();
+            var row_sub = $('.tbody-original-row-sub').first().html()
+                .replaceAll('xxxx-uid-xxxx',uid)
+                .replaceAll('yyyy-uid-yyyy',uid2)
+                .replaceAll('xx_name_xx','name');
+
+            var row = $(row_sub);
+            runSelect2{{$r_id}}(row.find('.item_id-sub'));
+            $('#'+subid).find('.tbody-original-row-sub').append(row);
+        }
+        
+        jQuery(document).ready(function () {
+            for(i=1;i<=5;i++) {
+                addRowMain();
+            }
+
+            $('.tbody-main-for-use').delegate('.delete-row-main-item','click',function (e) {
+                e.preventDefault();
+                var subid = $(this).data('subid');
+                var mainid = $(this).data('mainid');
+
+                var c = $('#'+mainid).find('.item_code-main').val();
+                var t = $('#'+mainid).find('.title-main').val();
+
+                if($('.delete-row-main-item').length >2){
+
+                    if($('#'+subid).is(":last-child") && (c == '' || t == '')) {
+
+                    }else {
+                        $('#'+mainid).hide("slow", function(){ $(this).remove(); });
+                        $('#'+subid).remove();
+                    }
+
+                }else {
+                    addRowMain();
+                }
+            });
+
+
+            $('.tbody-main-for-use').delegate('.main-add-sub-item','click',function (e) {
+                e.preventDefault();
+                var subid = $(this).data('subid');
+                var mainid = $(this).data('mainid');
+
+                if($(this).data('show') > 0) {
+                    $('#' + subid).show(1000);
+
+                    if($(this).data('add5') == 1){
+                        for(ii=0;ii<=2;ii++) {
+                            addRowSub(subid);
+                        }
+                        $(this).data('add5',-1);
+                    }
+
+                    $(this).data('show',-1);
+                }else {
+                    $('#' + subid).hide(1000);
+                    $(this).data('show',1);
+                }
+
+            });
+
+
+            $('.tbody-main-for-use').delegate('.item_code-main,.title-main','keyup',function (e) {
+                var subid = $(this).data('subid');
+                var mainid = $(this).data('mainid');
+                if($('#'+subid).is(":last-child"))
+                {
+                    for(i=1;i<=5;i++) {
+                        addRowMain();
+                    }
+                }
+
+            });
+
+        });
     </script>
 @endpush
 {{-- End of Extra CSS and JS --}}
