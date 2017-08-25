@@ -12,29 +12,29 @@
     </div>
 </div>
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <table class="table table-bordered" style="width: 100%;">
-            <thead>
-            <tr style="font-size: 14px;">
-                <th style="width: 20px">#</th>
-                <th>open number</th>
-                <th>Date</th>
-                <th>description</th>
-                <th style="width: 20px"></th>
+    <table class="table table-bordered" style="width: 100%;">
+        <thead>
+        <tr style="font-size: 14px;">
+            <th style="width: 20px">#</th>
+            <th>open number</th>
+            <th>Date</th>
+            <th>description</th>
+            <th style="width: 20px"></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($rows as $row)
+            <tr style="font-size: 12px;">
+                <td>{{$k++}}.</td>
+                <td>{{$row->open_number}}</td>
+                <td>{{$row->_date_}}</td>
+                <td>{{$row->description}}</td>
+                <td><button type="button" data-toggle="modal" data-target="#popUpItemDetail"><i class="fa fa-search">
+                        </i>
+                    </button>
+                </td>
             </tr>
-            </thead>
-            <tbody>
-            @foreach($rows as $row)
-                <tr style="font-size: 12px;">
-                    <td>1.</td>
-                    <td>OP00001</td>
-                    <td>09/09/2017</td>
-                    <td>lkdsjflafjlasdjf</td>
-                    <td><button type="button" data-toggle="modal" data-target="#popUpItemDetail"><i class="fa fa-search">
-                            </i>
-                        </button>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-    </div>
+        @endforeach
+        </tbody>
+    </table>
+</div>

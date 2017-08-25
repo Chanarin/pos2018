@@ -4,39 +4,28 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     {{-- Encrypted CSRF token for Laravel, in order for Ajax requests to work --}}
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-
     <title>
         {{ isset($title) ? $title.' :: '.config('backpack.base.project_name').' Admin' : config('backpack.base.project_name').' Admin' }}
     </title>
-
     @yield('before_styles')
-
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/dist/css/skins/_all-skins.min.css">
-
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/plugins/pace/pace.min.css">
     <link rel="stylesheet" href="{{ asset('vendor/backpack/pnotify/pnotify.custom.min.css') }}">
-
     <!-- BackPack Base CSS -->
     <link rel="stylesheet" href="{{ asset('vendor/backpack/backpack.base.css') }}">
-
     <link rel="stylesheet" href="{{ asset('vendor/adminlte') }}/plugins/iCheck/all.css">
     <link rel="stylesheet" href="{{ asset('vendor/adminlte') }}/plugins/timepicker/bootstrap-timepicker.min.css">
     <link rel="stylesheet" href="{{ asset('vendor/adminlte') }}/plugins/datepicker/datepicker3.css">
-
-
 @yield('after_styles')
-
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -56,7 +45,6 @@
 </script>
 <!-- Site wrapper -->
 <div class="wrapper">
-
     <header class="main-header">
         <!-- Logo -->
         <a href="{{ url('') }}" class="logo">
@@ -74,32 +62,23 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-
             @include('backpack::inc.menu2')
         </nav>
     </header>
-
     <!-- =============================================== -->
-
 @include('backpack::inc.sidebar2')
-
 <!-- =============================================== -->
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
     @yield('header')
-
     <!-- Main content -->
         <section class="content">
-
             @yield('content')
-
         </section>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-
     <footer class="main-footer">
         @if (config('backpack.base.show_powered_by'))
             <div class="pull-right hidden-xs">
@@ -110,10 +89,7 @@
     </footer>
 </div>
 <!-- ./wrapper -->
-
-
 @yield('before_scripts')
-
 <!-- jQuery 2.2.0 -->
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 <script>window.jQuery || document.write('<script src="{{ asset('vendor/adminlte') }}/plugins/jQuery/jQuery-2.2.0.min.js"><\/script>')</script>
@@ -149,7 +125,6 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-
     // Set active state on menu element
     var current_url = "{{ Request::fullUrl() }}";
     var full_url = current_url+location.search;
@@ -164,7 +139,6 @@
             function() { return $(this).attr('href').startsWith(current_url) || current_url.startsWith($(this).attr('href')); }
         );
     }
-
     $curentPageLink.parents('li').addClass('active');
             {{-- Enable deep link to tab --}}
     var activeTab = $('[href="' + location.hash.replace("#", "#tab_") + '"]');
@@ -173,24 +147,43 @@
         location.hash = e.target.hash.replace("#tab_", "#");
     });
 </script>
-
 @include('backpack::inc.alerts')
-
 @yield('after_scripts')
 <script>
+//    ====================report =====================
     $(function(){
         $('#from-date,#to-date').datepicker({
             format: 'yyyy-mm-dd',
             autoclose: true
         });
-
         //iCheck for checkbox and radio inputs
         $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
             checkboxClass: 'icheckbox_minimal-blue',
             radioClass: 'iradio_minimal-blue'
         });
+        $('#search-report-by-date').on('click', function (e) {
+            e.preventDefault();
+            var report_url = $("input[name='name-report-option']:checked").data('url');
+            var from_date = $('#from-date').val();
+            var to_date = $('#to-date').val();
+            $.ajax({
+                url: '{{url('/api/report/open-item/list')}}',
+                type: 'GET',
+                dataType: 'html',
+                data: {
+                    from_date: from_date,
+                    to_date: to_date
+                },
+                success: function (d) {
+                    $('.report-item-list').html(d);
+                },
+                error: function () {
+//                        alert('error');
+                }
+            });
+        })
     });
-
+//    ====================end report =====================
 </script>
 <!-- JavaScripts -->
 {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
