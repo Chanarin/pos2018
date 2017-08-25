@@ -161,13 +161,14 @@
             checkboxClass: 'icheckbox_minimal-blue',
             radioClass: 'iradio_minimal-blue'
         });
+
         $('#search-report-by-date').on('click', function (e) {
             e.preventDefault();
             var report_url = $("input[name='name-report-option']:checked").data('url');
             var from_date = $('#from-date').val();
             var to_date = $('#to-date').val();
             $.ajax({
-                url: '{{url('/api/report/open-item/list')}}',
+                url: report_url,
                 type: 'GET',
                 dataType: 'html',
                 data: {
