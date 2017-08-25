@@ -1,23 +1,15 @@
 @extends('backpack::layout2')
 
 @section('header')
-    <script>
-        function printContent(el) {
-            var restorepage = document.body.innerHTML;
-            var printcontent = document.getElementById(el).innerHTML;
-            document.body.innerHTML = printcontent;
-            window.print();
-            document.body.innerHTML = restorepage;
-        }
-    </script>
+
     <section class="content-header">
         <a href="#" class="btn btn-xs btn-default" id="search-report-by-date">
             <i class="fa fa-fw fa-search"></i> VIEW
         </a>
         <ol class="breadcrumb">
             <li><a href="#" class="btn btn-xs btn-default" onclick="printContent('report-print')"><i class="fa fa-fw fa-print"></i> PRINT</a></li>
-            <li><a href="#" class="btn btn-xs btn-default"><i class="fa fa-fw fa-file-pdf-o"></i> PDF</a></li>
-            <li><a href="#" class="btn btn-xs btn-default"><i class="fa fa-fw fa-file-excel-o"></i> EXCEL</a></li>
+            <li><a href="#" class="btn btn-xs btn-default" id="cmd" ><i class="fa fa-fw fa-file-pdf-o"></i> PDF</a></li>
+            <li><a href="#" class="btn btn-xs btn-default" id="btnExport"><i class="fa fa-fw fa-file-excel-o"></i> EXCEL</a></li>
         </ol>
     </section>
 @endsection

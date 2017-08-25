@@ -149,8 +149,17 @@
 </script>
 @include('backpack::inc.alerts')
 @yield('after_scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
 <script>
-//    ====================report =====================
+    //    ====================get print file====================
+    function printContent(el) {
+        var restorepage = document.body.innerHTML;
+        var printcontent = document.getElementById(el).innerHTML;
+        document.body.innerHTML = printcontent;
+        window.print();
+        document.body.innerHTML = restorepage;
+    }
+//    ====================get report data=====================
     $(function(){
         $('#from-date,#to-date').datepicker({
             format: 'yyyy-mm-dd',
@@ -184,7 +193,38 @@
             });
         })
     });
-//    ====================end report =====================
+//    ====================get pdf file====================
+    $(function () {
+
+        var specialElementHandlers = {
+            '#editor': function (element,renderer) {
+                return true;
+            }
+        };
+        $('#cmd').click(function () {
+            var doc = new jsPDF();
+            doc.fromHTML($('#report-print').html(), 15, 15, {
+                'width': 1070,'elementHandlers': specialElementHandlers
+            });
+            doc.save('report.pdf');
+        });
+    });
+//    ====================get excel file====================
+    $(document).ready(function() {
+        $("#btnExport").click(function(e) {
+            e.preventDefault();
+
+            //getting data from our table
+            var data_type = 'data:application/vnd.ms-excel';
+            var table_div = document.getElementById('report-print');
+            var table_html = table_div.outerHTML.replace(/ /g, '%20');
+
+            var a = document.createElement('a');
+            a.href = data_type + ', ' + table_html;
+            a.download = 'exported_table_' + Math.floor((Math.random() * 9999999) + 1000000) + '.xls';
+            a.click();
+        });
+    });
 </script>
 <!-- JavaScripts -->
 {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
