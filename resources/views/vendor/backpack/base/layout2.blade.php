@@ -56,12 +56,12 @@
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
             <!-- Sidebar toggle button-->
-            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                <span class="sr-only">{{ trans('backpack::base.toggle_navigation') }}</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
+            {{--<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">--}}
+                {{--<span class="sr-only">{{ trans('backpack::base.toggle_navigation') }}</span>--}}
+                {{--<span class="icon-bar"></span>--}}
+                {{--<span class="icon-bar"></span>--}}
+                {{--<span class="icon-bar"></span>--}}
+            {{--</a>--}}
             @include('backpack::inc.menu2')
         </nav>
     </header>
@@ -79,14 +79,14 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <footer class="main-footer">
-        @if (config('backpack.base.show_powered_by'))
-            <div class="pull-right hidden-xs">
-                {{ trans('backpack::base.powered_by') }} <a target="_blank" href="http://backpackforlaravel.com?ref=panel_footer_link">Backpack for Laravel</a>
-            </div>
-        @endif
-        {{ trans('backpack::base.handcrafted_by') }} <a target="_blank" href="{{ config('backpack.base.developer_link') }}">{{ config('backpack.base.developer_name') }}</a>.
-    </footer>
+    {{--<footer class="main-footer">--}}
+        {{--@if (config('backpack.base.show_powered_by'))--}}
+            {{--<div class="pull-right hidden-xs">--}}
+                {{--{{ trans('backpack::base.powered_by') }} <a target="_blank" href="http://backpackforlaravel.com?ref=panel_footer_link">Backpack for Laravel</a>--}}
+            {{--</div>--}}
+        {{--@endif--}}
+        {{--{{ trans('backpack::base.handcrafted_by') }} <a target="_blank" href="{{ config('backpack.base.developer_link') }}">{{ config('backpack.base.developer_name') }}</a>.--}}
+    {{--</footer>--}}
 </div>
 <!-- ./wrapper -->
 @yield('before_scripts')

@@ -16,11 +16,15 @@
             <table style="width: 100%; margin-bottom: 10px; margin-top: 10px;">
                 <tbody style="font-size: 14px;">
                 <tr style="text-align:center;">
-                    <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Number</b></span> : OP00001</td>
-                    <td style="vertical-align:middle;text-align:left;"><span><b>Production Date</b></span> : 09/09/2017</td>
+                    <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Production Number</b></span> : {{$row->production_number}}</td>
+                    <td style="vertical-align:middle;text-align:left;"><span><b>Production Date</b></span> : {{$row->_date_}}</td>
                 </tr>
                 <tr style="text-align:center;">
-                    <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Description</b></span> : lskdjflasdfjlsafjdlasflsajflksa</td>
+                    <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Customer Name</b></span> : {{$row->customer_id}}</td>
+                    <td style="vertical-align:middle;text-align:left;"><span><b>Reference</b></span> : {{$row->ref}}</td>
+                </tr>
+                <tr style="text-align:center;">
+                    <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Description</b></span> : {{$row->description}}</td>
                 </tr>
                 </tbody>
             </table>

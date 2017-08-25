@@ -29,3 +29,6 @@ Route::get('/report/purchase-item/detail','Api\ReportController@purchaseItemDeta
 
 Route::get('/report/production-item/list','Api\ReportController@productionItemList');
 Route::get('/report/production-item/detail','Api\ReportController@productionItemDetail');
+
+Route::get('/report/invoice/list','Api\ReportController@invoiceList');
+Route::get('/report/invoice/detail','Api\ReportController@invoiceDetail');

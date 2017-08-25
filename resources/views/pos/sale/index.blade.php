@@ -27,8 +27,7 @@
         <div id="container">
             {{--99--}}
             <div id="left-panel" style="height: 100%;">
-                {{--<img class="profile-user-img img-responsive img-circle" src="{{ asset('vendor/adminlte') }}/dist/img/user4-128x128.jpg" alt="User profile picture">--}}
-                {{--<h3 class="profile-username text-center">Sale Management</h3>--}}
+
                 <div id="left-top" style="height: 15%;">
                     <div class="col-md-12" style="padding-left:0;">
                         <div class="form-group">
@@ -107,6 +106,7 @@
                     </div>
                     <div style="clear:both;"></div>
                 </div>
+
                 <div class="col-md-12 col-sm-12 panel-height" style="position: relative; height: 60%">
                     <div class="tbl-header">
                         <table class="table table-action">
@@ -123,7 +123,7 @@
                         </table>
                     </div>
                     <div class="table-show-pro">
-                        <table style="width:70%;">
+                        <table style="width:100%;">
                             <tr>
                                 <td style="width:10%;">P0001</td>
                                 <td style="width:30%;" class="name-style-order">Name Item 1</td>
@@ -131,9 +131,6 @@
                                 <td style="width:20%;"><span>$</span> 200</td>
                                 <td style="width:20%;"><span>$</span> 200</td>
                                 <td style="width: 10%">
-                                    {{--<a class="btn btn-social-icon btn-facebook">--}}
-                                    {{--<i class="fa  fa-plus"></i>--}}
-                                    {{--</a>--}}
                                     <a class="btn btn-xs btn-default" style="font-size: 18px; color: rgba(160,8,22,0.84);">
                                         <i class="fa fa-fw fa-trash"></i>
                                     </a>
@@ -146,9 +143,6 @@
                                 <td style="width:20%;"><span>$</span> 200</td>
                                 <td style="width:20%;"><span>$</span> 200</td>
                                 <td style="width: 10%">
-                                    {{--<a class="btn btn-social-icon btn-facebook">--}}
-                                    {{--<i class="fa  fa-plus"></i>--}}
-                                    {{--</a>--}}
                                     <a class="btn btn-xs btn-default" style="font-size: 18px; color: rgba(160,8,22,0.84);">
                                         <i class="fa fa-fw fa-trash"></i>
                                     </a>
@@ -157,7 +151,7 @@
                         </table>
                     </div>
                 </div>
-                {{--175--}}
+
                 <div id="left-bottom" style="height: 25%; position: relative;">
                     <div class="col-md-12 col-sm-12 checkout_amount">
                         <table id="totalTable" style="width:100%; float:right; padding:5px; color:#000; background: #FFF;">
@@ -240,136 +234,89 @@
                     </div>
                 </div>
             </div>
+
             <div id="right-section">
-                {{--<div class="col-md-12">--}}
-                {{--<div class="input-group margin">--}}
-                {{--<div class="input-group-btn">--}}
-                {{--<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">All Category &nbsp;&nbsp; <span class="fa fa-caret-down"></span>--}}
-                {{--</button>--}}
-                {{--<ul class="dropdown-menu">--}}
-                {{--<li><a href="#">Rings</a></li>--}}
-                {{--<li><a href="#">Bracelets</a></li>--}}
-                {{--<li><a href="#">Necklaces</a></li>--}}
-                {{--<li><a href="#">Earrings</a></li>--}}
-                {{--<li><a href="#">Brooches</a></li>--}}
-                {{--<li><a href="#">Pendents</a></li>--}}
-                {{--<li><a href="#">Anklets</a></li>--}}
-                {{--<li><a href="#">Belly Chain</a></li>--}}
-                {{--</ul>--}}
-                {{--</div>--}}
-                {{--<input type="text" class="form-control" placeholder="Search product by category/name/code" style="background-color: #ffffff; color: #000000;">--}}
-                {{--<span class="input-group-btn">--}}
-                {{--<button type="button" class="btn btn-warning btn-flat"><i class="fa fa-fw fa-search"></i></button>--}}
-                {{--</span>--}}
-                {{--</div>--}}
-                {{--</div>--}}
                 <div class="col-md-12 cat-items-style">
-                <div class="col-md-12 cat-items-style">
-                    <div id="slider-2" class="slider">
+                    <div id="slider-2" class="slider slide-shadow">
                         <div class="slider-wrapper">
+
+
                             <div class="slide">
-                                <div class="cat-padding-around">
-                                    <div class="info-box bg-aqua">
-                                        <div class="bg-size">
                                         <span>
-                                            <i><img width="50" height="50" src="{{asset('pos/img/item1.jpg')}}"></i>
+                                            <i><img  width="60" height="60" src="{{asset('pos/img/item1.jpg')}}"></i>
                                         </span>
-                                            <br>
-                                            <span class="fon-size"><b>ចិញ្ចៀន</b></span>
-                                        </div>
-                                    </div>
-                                </div>
+                                        <br>
+                                        <span class="fon-size"><b>ចិញ្ចៀន</b></span>
+
+                            </div>
+
+                            <div class="slide">
+                                        <span>
+                                            <i><img  width="60" height="60" src="{{asset('pos/img/item1.jpg')}}"></i>
+                                        </span>
+                                        <br>
+                                        <span class="fon-size"><b>កងដៃ</b></span>
+
                             </div>
                             <div class="slide">
-                                <div class="cat-padding-around">
-                                    <div class="info-box bg-green">
-                                        <div class="bg-size">
-                                <span>
-                                    <i><img width="50" height="50" src="{{asset('pos/img/item1.jpg')}}"></i>
-                                </span>
-                                            <br>
-                                            <span class="fon-size"><b>កងដៃ</b></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="slide">
-                                <div class="cat-padding-around">
-                                    <div class="info-box bg-aqua">
-                                        <div class="bg-size">
-                                <span>
-                                    <i><img width="50" height="50" src="{{asset('pos/img/item1.jpg')}}"></i>
-                                </span>
+
+                                            <span>
+                                                <i><img width="60" height="60" src="{{asset('pos/img/item1.jpg')}}"></i>
+                                            </span>
                                             <br>
                                             <span class="fon-size"><b>ខ្សែក</b></span>
-                                        </div>
-                                    </div>
-                                </div>
+
+
                             </div>
                             <div class="slide">
-                                <div class="cat-padding-around">
-                                    <div class="info-box bg-red">
-                                        <div class="bg-size">
-                                <span>
-                                    <i><img width="50" height="50" src="{{asset('pos/img/item1.jpg')}}"></i>
-                                </span>
+
+                                        <span>
+                                            <i><img width="60" height="60" src="{{asset('pos/img/item1.jpg')}}"></i>
+                                        </span>
                                             <br>
                                             <span class="fon-size"><b>ក្រវិល</b></span>
-                                        </div>
-                                    </div>
-                                </div>
+
+
                             </div>
                             <div class="slide">
-                                <div class="cat-padding-around">
-                                    <div class="info-box bg-green">
-                                        <div class="bg-size">
+
                                 <span>
-                                    <i><img width="50" height="50" src="{{asset('pos/img/item1.jpg')}}"></i>
+                                    <i><img width="60" height="60" src="{{asset('pos/img/item1.jpg')}}"></i>
                                 </span>
                                             <br>
                                             <span class="fon-size"><b>ដង្កៀប</b></span>
-                                        </div>
-                                    </div>
-                                </div>
+
+
                             </div>
                             <div class="slide">
-                                <div class="cat-padding-around">
-                                    <div class="info-box bg-gray">
-                                        <div class="bg-size">
+
                                 <span>
-                                    <i><img width="50" height="50" src="{{asset('pos/img/item1.jpg')}}"></i>
+                                    <i><img width="60" height="60" src="{{asset('pos/img/item1.jpg')}}"></i>
                                 </span>
                                             <br>
                                             <span class="fon-size"><b>បន្តោង</b></span>
-                                        </div>
-                                    </div>
-                                </div>
+
+
                             </div>
                             <div class="slide">
-                                <div class="cat-padding-around">
-                                    <div class="info-box bg-green">
-                                        <div class="bg-size">
+
                                         <span>
-                                            <i><img width="50" height="50" src="{{asset('pos/img/item1.jpg')}}"></i>
+                                            <i><img width="60" height="60" src="{{asset('pos/img/item1.jpg')}}"></i>
                                         </span>
                                             <br>
                                             <span class="fon-size"><b>ខ្សែជើង</b></span>
-                                        </div>
-                                    </div>
-                                </div>
+
+
                             </div>
                             <div class="slide">
-                                <div class="cat-padding-around">
-                                    <div class="info-box bg-blue">
-                                        <div class="bg-size">
+
                                         <span>
-                                            <i><img width="50" height="50" src="{{asset('pos/img/item1.jpg')}}"></i>
+                                            <i><img width="60" height="60" src="{{asset('pos/img/item1.jpg')}}"></i>
                                         </span>
                                             <br>
                                             <span class="fon-size"><b>ខ្សែចង្កេះ</b></span>
-                                        </div>
-                                    </div>
-                                </div>
+
+
                             </div>
 
 
@@ -403,122 +350,169 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12">
-
-                </div>
                 {{--====================end items==================--}}
             </div>
         </div>
     </div>
-    <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModal" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true" style="margin-top: -10px;"><i class="fa fa-2x">×</i>
-                    </button><div class="bootbox-body">Are you sure?</div></div><div class="modal-footer">
-                    <button data-bb-handler="cancel" type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
-                    <button data-bb-handler="confirm" type="button" class="btn btn-primary">OK</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="discountModal" tabindex="-1" role="dialog" aria-labelledby="discountModal" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-2x">×</i></button>
-                    <h4 class="modal-title" id="dsModalLabel">Edit Order Discount</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="order_discount_input">Order Discount</label>
-                        <input type="text" name="order_discount_input" placeholder="$ 0.00 " value="" class="form-control kb-pad" id="order_discount_input">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="updateOrderDiscount" class="btn btn-primary">Update</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="viewCustomerModal" tabindex="-1" role="dialog" aria-labelledby="viewCustomerModal" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        <i class="fa fa-2x">×</i>
-                    </button>
-                    <button type="button" class="btn btn-primary btn-xs no-print pull-right " onclick="window.print()">
-                        <i class="fa fa-print"></i>&nbsp;Print			</button>
-                    <h4 class="modal-title" id="myModalLabel">Mengeang</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered" style="margin-bottom:0;">
-                            <tbody>
-                            <tr>
-                                <td><strong>Name</strong></td>
-                                <td>Mengeang</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Customer Group</strong></td>
-                                <td>General</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Phone</strong></td>
-                                <td>012 222 333</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Note</strong></td>
-                                <td>40Eo, st.70B </td>
-                            </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="modal-footer no-print">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                        <a href="#" target="_blank" class="btn btn-primary">Customers Report</a>
-                        <a href="#" data-toggle="modal" data-target="#editCustomerModal" class="btn btn-primary">Edit Customer</a>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="editCustomerModal" tabindex="-1" role="dialog" aria-labelledby="editCustomerModal" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-2x">×</i>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Edit Customer</h4>
-                </div>
-                <form action="#" data-toggle="validator" role="form" enctype="multipart/form-data" method="post" accept-charset="utf-8" novalidate="novalidate" class="bv-form">
-
-                    <button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
-                    <input type="hidden" name="token" value="" style="display:none;">
+        {{--================modal pop up =============--}}
+        <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModal" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
                     <div class="modal-body">
-                        <p>Please fill in the information below. The field labels marked with * are required input fields.</p>
-                        <div class="form-group has-feedback">
+                        <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true" style="margin-top: -10px;"><i class="fa fa-2x">×</i>
+                        </button><div class="bootbox-body">Are you sure?</div></div><div class="modal-footer">
+                        <button data-bb-handler="cancel" type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
+                        <button data-bb-handler="confirm" type="button" class="btn btn-primary">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="discountModal" tabindex="-1" role="dialog" aria-labelledby="discountModal" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-2x">×</i></button>
+                        <h4 class="modal-title" id="dsModalLabel">Edit Order Discount</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="order_discount_input">Order Discount</label>
+                            <input type="text" name="order_discount_input" placeholder="$ 0.00 " value="" class="form-control kb-pad" id="order_discount_input">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="updateOrderDiscount" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="viewCustomerModal" tabindex="-1" role="dialog" aria-labelledby="viewCustomerModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="fa fa-2x">×</i>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-xs no-print pull-right " onclick="window.print()">
+                            <i class="fa fa-print"></i>&nbsp;Print			</button>
+                        <h4 class="modal-title" id="myModalLabel">Mengeang</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered" style="margin-bottom:0;">
+                                <tbody>
+                                <tr>
+                                    <td><strong>Name</strong></td>
+                                    <td>Mengeang</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Customer Group</strong></td>
+                                    <td>General</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Phone</strong></td>
+                                    <td>012 222 333</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Note</strong></td>
+                                    <td>40Eo, st.70B </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer no-print">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                            <a href="#" target="_blank" class="btn btn-primary">Customers Report</a>
+                            <a href="#" data-toggle="modal" data-target="#editCustomerModal" class="btn btn-primary">Edit Customer</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="editCustomerModal" tabindex="-1" role="dialog" aria-labelledby="editCustomerModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-2x">×</i>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Edit Customer</h4>
+                    </div>
+                    <form action="#" data-toggle="validator" role="form" enctype="multipart/form-data" method="post" accept-charset="utf-8" novalidate="novalidate" class="bv-form">
+
+                        <button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+                        <input type="hidden" name="token" value="" style="display:none;">
+                        <div class="modal-body">
+                            <p>Please fill in the information below. The field labels marked with * are required input fields.</p>
+                            <div class="form-group has-feedback">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group person has-feedback">
+                                            <label for="name">Name *</label>
+                                            <input type="text" name="name" value="Mengeang" class="form-control tip" id="name" required="required">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="phone">Gender *</label>
+                                            <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                                <option value="" selected="selected">Select Gender</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phone">Phone *</label>
+                                            <input type="tel" name="phone" class="form-control" id="phone" value="012 222 333">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group has-feedback">
+                                            <label for="address">Note</label>
+                                            <textarea name="sale_note" cols="40" rows="10" id="sale_note"
+                                                      class="form-control kb-text skip" style="height: 181px;" placeholder="Customer Note"
+                                                      maxlength="250">
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" name="edit_customer" value="Edit Customer" class="btn btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="addCustomerModal" tabindex="-1" role="dialog" aria-labelledby="addCustomerModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-2x">×</i>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Add Customer</h4>
+                    </div>
+                    <form action="#" data-toggle="validator" role="form" id="add-customer-form" enctype="multipart/form-data" method="post" class="bv-form">
+                        <div class="modal-body">
+                            <p>Please fill in the information below. The field labels marked with * are required input fields.</p>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group person has-feedback">
                                         <label for="name">Name *</label>
-                                        <input type="text" name="name" value="Mengeang" class="form-control tip" id="name" required="required">
+                                        <input type="text" name="name" value="" class="form-control tip" id="name">
                                     </div>
-
+                                    <div class="form-group has-feedback">
+                                        <label for="phone">Phone *</label>
+                                        <input type="text" name="phone" value="" class="form-control" id="phone">
+                                    </div>
                                     <div class="form-group">
-                                        <label for="phone">Gender *</label>
+                                        <label class="control-label" for="price_group">Gender</label>
                                         <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option value="" selected="selected">Select Gender</option>
                                             <option value="male">Male</option>
                                             <option value="female">Female</option>
                                         </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="phone">Phone *</label>
-                                        <input type="tel" name="phone" class="form-control" id="phone" value="012 222 333">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -532,248 +526,197 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="modal-footer">
+                            <input type="submit" name="add_customer" value="Add Customer" class="btn btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="addProductManual" tabindex="-1" role="dialog" aria-labelledby="addProductManual" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-2x">×</i></span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="mModalLabel">Add Product Manually</h4>
+                    </div>
+                    <div class="modal-body" id="pr_popover_content">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="mcode" class="col-sm-4 control-label">Product Code *</label>
+
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control kb-text" id="mcode">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="mname" class="col-sm-4 control-label">Product Name *</label>
+
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control kb-text" id="mname">
+                                </div>
+                            </div>
+                            {{--<div class="form-group">--}}
+                            {{--<label for="mtax" class="col-sm-4 control-label">Product Tax *</label>--}}
+
+                            {{--<div class="col-sm-8">--}}
+                            {{--<select class="form-control">--}}
+                            {{--<option selected="selected">No Tax</option>--}}
+                            {{--<option>VAT @10%</option>--}}
+                            {{--<option>GST @6%</option>--}}
+                            {{--<option>VAT @20%</option>--}}
+                            {{--<option>TAX @10%</option>--}}
+                            {{--</select>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            <div class="form-group">
+                                <label for="mquantity" class="col-sm-4 control-label">Quantity *</label>
+
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control kb-pad" id="mquantity">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="mdiscount" class="col-sm-4 control-label">Product Discount</label>
+
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control kb-pad" id="mdiscount">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="mprice" class="col-sm-4 control-label">Unit Price *</label>
+
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control kb-pad" id="mprice">
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-striped">
+                                <tbody><tr>
+                                    <th style="width:25%;">Net Unit Price</th>
+                                    <th style="width:25%;"><span id="mnet_price">0.00</span></th>
+                                    <th style="width:25%;">Product Tax</th>
+                                    <th style="width:25%;"><span id="mpro_tax">0.00</span></th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </form>
                     </div>
                     <div class="modal-footer">
-                        <input type="submit" name="edit_customer" value="Edit Customer" class="btn btn-primary">
+                        <button type="button" class="btn btn-primary" id="addItemManually">Submit</button>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="modal fade" id="addCustomerModal" tabindex="-1" role="dialog" aria-labelledby="addCustomerModal" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-2x">×</i>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Add Customer</h4>
-                </div>
-                <form action="#" data-toggle="validator" role="form" id="add-customer-form" enctype="multipart/form-data" method="post" class="bv-form">
-                    <div class="modal-body">
-                        <p>Please fill in the information below. The field labels marked with * are required input fields.</p>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group person has-feedback">
-                                    <label for="name">Name *</label>
-                                    <input type="text" name="name" value="" class="form-control tip" id="name">
-                                </div>
-                                <div class="form-group has-feedback">
-                                    <label for="phone">Phone *</label>
-                                    <input type="text" name="phone" value="" class="form-control" id="phone">
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" for="price_group">Gender</label>
-                                    <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                        <option value="" selected="selected">Select Gender</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                    </select>
-                                </div>
+        <div class="modal fade" id="searchProductFilter" tabindex="-1" role="dialog" aria-labelledby="searchProductFilter" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">
+                               <i class="fa fa-2x">×</i></span><span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title" id="prModalLabel">Search Filter</h4>
+                    </div>
+                    <div class="modal-body scroll_F ps-container" id="pr_popover_content" style="height:300px;overflow:hidden;">
+                        <form class="form-horizontal" role="form" id="s_seModal">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <td style="padding:0;margin:0;border:1px;">
+                                        <input type="text" style="width:184px;border-right:none" class="form-control ui-autocomplete-input" id="fcode" autocomplete="off"></td>
+                                    <td style="padding:0;margin:0;border:1px;">
+                                        <input type="text" style="width:239px;border-right:none" class="form-control ui-autocomplete-input" id="fdescription" autocomplete="off"></td>
+                                    <td style="padding:0;margin:0;border:1px;">
+                                        <input type="text" style="width:145px;" class="form-control ui-autocomplete-input" id="ffloor" autocomplete="off"></td>
+                                </tr>
+                                </thead>
+                            </table>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th style="width:45px;"></th>
+                                    <th>Code</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>Floor</th>
+                                </tr>
+                                </thead>
+                                <tbody class="floor">
+
+                                </tbody>
+                            </table>
+                        </form>
+                        <div class="ps-scrollbar-x-rail" style="width: 0px; display: none; left: 0px; bottom: 3px;">
+                            <div class="ps-scrollbar-x" style="left: -30px; width: 0px;">
+
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group has-feedback">
-                                    <label for="address">Note</label>
-                                    <textarea name="sale_note" cols="40" rows="10" id="sale_note"
-                                              class="form-control kb-text skip" style="height: 181px;" placeholder="Customer Note"
-                                              maxlength="250">
-                                    </textarea>
-                                </div>
+                        </div>
+                        <div class="ps-scrollbar-y-rail" style="top: 0px; height: 270px; display: none; right: 3px;">
+                            <div class="ps-scrollbar-y" style="top: 0px; height: 0px;">
+
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="submit" name="add_customer" value="Add Customer" class="btn btn-primary">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="addProductManual" tabindex="-1" role="dialog" aria-labelledby="addProductManual" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-2x">×</i></span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="mModalLabel">Add Product Manually</h4>
-                </div>
-                <div class="modal-body" id="pr_popover_content">
-                    <form class="form-horizontal" role="form">
-                        <div class="form-group">
-                            <label for="mcode" class="col-sm-4 control-label">Product Code *</label>
-
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control kb-text" id="mcode">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="mname" class="col-sm-4 control-label">Product Name *</label>
-
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control kb-text" id="mname">
-                            </div>
-                        </div>
-                        {{--<div class="form-group">--}}
-                        {{--<label for="mtax" class="col-sm-4 control-label">Product Tax *</label>--}}
-
-                        {{--<div class="col-sm-8">--}}
-                        {{--<select class="form-control">--}}
-                        {{--<option selected="selected">No Tax</option>--}}
-                        {{--<option>VAT @10%</option>--}}
-                        {{--<option>GST @6%</option>--}}
-                        {{--<option>VAT @20%</option>--}}
-                        {{--<option>TAX @10%</option>--}}
-                        {{--</select>--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-                        <div class="form-group">
-                            <label for="mquantity" class="col-sm-4 control-label">Quantity *</label>
-
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control kb-pad" id="mquantity">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="mdiscount" class="col-sm-4 control-label">Product Discount</label>
-
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control kb-pad" id="mdiscount">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="mprice" class="col-sm-4 control-label">Unit Price *</label>
-
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control kb-pad" id="mprice">
-                            </div>
-                        </div>
-                        <table class="table table-bordered table-striped">
-                            <tbody><tr>
-                                <th style="width:25%;">Net Unit Price</th>
-                                <th style="width:25%;"><span id="mnet_price">0.00</span></th>
-                                <th style="width:25%;">Product Tax</th>
-                                <th style="width:25%;"><span id="mpro_tax">0.00</span></th>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="addItemManually">Submit</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="searchProductFilter" tabindex="-1" role="dialog" aria-labelledby="searchProductFilter" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">
-                           <i class="fa fa-2x">×</i></span><span class="sr-only">Close</span>
-                    </button>
-                    <h4 class="modal-title" id="prModalLabel">Search Filter</h4>
-                </div>
-                <div class="modal-body scroll_F ps-container" id="pr_popover_content" style="height:300px;overflow:hidden;">
-                    <form class="form-horizontal" role="form" id="s_seModal">
-                        <table>
-                            <thead>
-                            <tr>
-                                <td style="padding:0;margin:0;border:1px;">
-                                    <input type="text" style="width:184px;border-right:none" class="form-control ui-autocomplete-input" id="fcode" autocomplete="off"></td>
-                                <td style="padding:0;margin:0;border:1px;">
-                                    <input type="text" style="width:239px;border-right:none" class="form-control ui-autocomplete-input" id="fdescription" autocomplete="off"></td>
-                                <td style="padding:0;margin:0;border:1px;">
-                                    <input type="text" style="width:145px;" class="form-control ui-autocomplete-input" id="ffloor" autocomplete="off"></td>
-                            </tr>
-                            </thead>
-                        </table>
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th style="width:45px;"></th>
-                                <th>Code</th>
-                                <th>Description</th>
-                                <th>Status</th>
-                                <th>Floor</th>
-                            </tr>
-                            </thead>
-                            <tbody class="floor">
-
-                            </tbody>
-                        </table>
-                    </form>
-                    <div class="ps-scrollbar-x-rail" style="width: 0px; display: none; left: 0px; bottom: 3px;">
-                        <div class="ps-scrollbar-x" style="left: -30px; width: 0px;">
-
-                        </div>
-                    </div>
-                    <div class="ps-scrollbar-y-rail" style="top: 0px; height: 270px; display: none; right: 3px;">
-                        <div class="ps-scrollbar-y" style="top: 0px; height: 0px;">
-
-                        </div>
+                        <button type="button" class="btn btn-primary" id="addSearch">Submit</button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="addSearch">Submit</button>
+            </div>
+        </div>
+        <div class="modal fade" id="searchProductFilterDetail" tabindex="-1" role="dialog" aria-labelledby="searchProductFilterDetail" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-2x">×</i></span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="prModalLabel">Search Filter</h4>
+                    </div>
+                    <div class="modal-body scroll_F ps-container" id="pr_popover_content" style="height:400px;overflow:hidden;">
+                        <form class="form-horizontal" role="form" id="s_seModal">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <td style="border:1px;width:5%"><input type="text" class="form-control" id="chk" disabled=""></td>
+                                    <td style="padding:0;margin:0;border:1px;width:20%"><input type="text" class="form-control ui-autocomplete-input" id="Pcode" autocomplete="off"></td>
+                                    <td style="padding:0;margin:0;border:1px;width:25%"><input type="text" class="form-control ui-autocomplete-input" id="Pname" autocomplete="off"></td>
+                                    <!--<td style="padding:0;margin:0;border:1px;"><input type="text" style="width:113px;border-right:none" class="form-control" id="Pdescription" /></td>-->
+                                    <td style="padding:0;margin:0;border:1px;width:20%"><input type="text" class="form-control ui-autocomplete-input" id="Pcategory" autocomplete="off"></td>
+                                    <td style="padding:0;margin:0;border:1px;width:10%"><input type="text" class="form-control ui-autocomplete-input" id="Pprice" autocomplete="off"></td>
+                                    <td style="padding:0;margin:0;border:1px;width:20%"><input type="text" class="form-control" id="dd" disabled=""></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th style="width:5%;">
+                                        <center>
+                                            <input class="checkbox checkth input-xs" type="checkbox" name="check">
+                                        </center>
+                                    </th>
+                                    <th style="width:20%">Product Code</th>
+                                    <th style="width:25%">Product Name</th>
+                                    <!--<th style="width:104px">Description</th>-->
+                                    <th style="width:20%">Category</th>
+                                    <th style="width:10%">Price</th>
+                                    <!--<th style="width:200px">strap</th>-->
+                                    <th style="width:20px"><i class="fa fa-chain"></i></th>
+                                </tr>
+                                </thead>
+                                <tbody class="test">
+
+                                </tbody>
+                            </table>
+                        </form>
+                        <div class="ps-scrollbar-x-rail" style="width: 0px; display: none; left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" style="left: -30px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 370px; display: none; right: 3px;"><div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div></div></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="addItem">Submit</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal fade" id="searchProductFilterDetail" tabindex="-1" role="dialog" aria-labelledby="searchProductFilterDetail" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-2x">×</i></span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="prModalLabel">Search Filter</h4>
-                </div>
-                <div class="modal-body scroll_F ps-container" id="pr_popover_content" style="height:400px;overflow:hidden;">
-                    <form class="form-horizontal" role="form" id="s_seModal">
-                        <table>
-                            <thead>
-                            <tr>
-                                <td style="border:1px;width:5%"><input type="text" class="form-control" id="chk" disabled=""></td>
-                                <td style="padding:0;margin:0;border:1px;width:20%"><input type="text" class="form-control ui-autocomplete-input" id="Pcode" autocomplete="off"></td>
-                                <td style="padding:0;margin:0;border:1px;width:25%"><input type="text" class="form-control ui-autocomplete-input" id="Pname" autocomplete="off"></td>
-                                <!--<td style="padding:0;margin:0;border:1px;"><input type="text" style="width:113px;border-right:none" class="form-control" id="Pdescription" /></td>-->
-                                <td style="padding:0;margin:0;border:1px;width:20%"><input type="text" class="form-control ui-autocomplete-input" id="Pcategory" autocomplete="off"></td>
-                                <td style="padding:0;margin:0;border:1px;width:10%"><input type="text" class="form-control ui-autocomplete-input" id="Pprice" autocomplete="off"></td>
-                                <td style="padding:0;margin:0;border:1px;width:20%"><input type="text" class="form-control" id="dd" disabled=""></td>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
-                        <table class="table table-bordered table-striped table-hover">
-                            <thead>
-                            <tr>
-                                <th style="width:5%;">
-                                    <center>
-                                        <input class="checkbox checkth input-xs" type="checkbox" name="check">
-                                    </center>
-                                </th>
-                                <th style="width:20%">Product Code</th>
-                                <th style="width:25%">Product Name</th>
-                                <!--<th style="width:104px">Description</th>-->
-                                <th style="width:20%">Category</th>
-                                <th style="width:10%">Price</th>
-                                <!--<th style="width:200px">strap</th>-->
-                                <th style="width:20px"><i class="fa fa-chain"></i></th>
-                            </tr>
-                            </thead>
-                            <tbody class="test">
-
-                            </tbody>
-                        </table>
-                    </form>
-                    <div class="ps-scrollbar-x-rail" style="width: 0px; display: none; left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" style="left: -30px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 370px; display: none; right: 3px;"><div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div></div></div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="addItem">Submit</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{--==========================================end fade in ============================--}}
-    {{--================payment pop up =============--}}
-    <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+        <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -986,7 +929,8 @@
             </div>
         </div>
     </div>
-    {{--============end item pop up===========--}}
+        {{--============end modal pop up==============--}}
+    </div>
 @endsection
 @section('graph_script')
     <script src="{{ asset('vendor/adminlte') }}/dist/js/demo.js"></script>
@@ -1011,7 +955,7 @@
                         resizeTimer,
                         steps = 1,
                         current_step = 1,
-                        items_per_step = 4;
+                        items_per_step = 6;
 
                     function initialize() {
 
@@ -1057,7 +1001,7 @@
                     }
 
                     function create_nav() {
-                        slider_nav = $('<ul></ul>');
+                        slider_nav = $('');
                         slider_nav.addClass('slider-nav');
                         create_nav_links();
                         el.append(slider_nav);

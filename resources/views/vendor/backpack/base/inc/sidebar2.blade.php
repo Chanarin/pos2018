@@ -32,7 +32,7 @@
         </p>
 
         <a href="#">
-          <span><b>Sale Item</b></span>
+          <span><b>Sale Invoice</b></span>
         </a>
         <p>
           <input data-url="/api/report/sale-item/list" type="radio" name="name-report-option" class="minimal report-option"> List<br>
