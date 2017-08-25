@@ -16,15 +16,20 @@
             <table style="width: 100%; margin-bottom: 10px; margin-top: 10px;">
                 <tbody style="font-size: 14px;">
                     <tr style="text-align:center;">
-                        <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Number</b></span> : {{$row->purchase_number}}</td>
-                        <td style="vertical-align:middle;text-align:left;"><span><b>Open Date</b></span> : {{$row->_date_}}</td>
+                        <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Invoice Number</b></span> : {{$row->invoice_number}}</td>
+                        <td style="vertical-align:middle;text-align:left;"><span><b>Invoice Date</b></span> : {{$row->_date_}}</td>
                     </tr>
                     <tr style="text-align:center;">
                         <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Customer Name</b></span> : {{$row->customer_id}}</td>
-                        <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Reference</b></span> : {{$row->ref}}</td>
+                        <td style="vertical-align:middle;text-align:left;"><span><b>Deposit</b></span> : {{$row->deposit}}</td>
                     </tr>
                     <tr style="text-align:center;">
-                        <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Description</b></span> : {{$row->description}}</td>
+                        <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Complete Date</b></span> : {{$row->complete_date}}</td>
+                        <td style="vertical-align:middle;text-align:left;"><span><b>Complete Price</b></span> : {{$row->complete_price}}</td>
+                    </tr>
+                    <tr style="text-align:center;">
+                        <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Status</b></span> : {{$row->status}}</td>
+                        <td style="vertical-align:middle;text-align:left;"><span><b>Description</b></span> : {{$row->description}}</td>
                     </tr>
                 </tbody>
             </table>

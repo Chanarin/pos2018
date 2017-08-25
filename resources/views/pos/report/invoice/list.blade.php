@@ -16,11 +16,14 @@
         <thead>
         <tr style="font-size: 14px;">
             <th style="width: 20px">#</th>
-            <th>purchase number</th>
-            <th>Date</th>
+            <th>Invoice Number</th>
+            <th>Invoice Date</th>
             <th>Customer Name</th>
-            <th>Reference</th>
-            <th>description</th>
+            <th>Deposit</th>
+            <th>Complete Date</th>
+            <th>Complete Price</th>
+            <th>Description</th>
+            <th>Status</th>
             <th style="width: 20px"></th>
         </tr>
         </thead>
@@ -28,11 +31,14 @@
         @foreach($rows as $row)
             <tr style="font-size: 12px;">
                 <td>{{$k++}}.</td>
-                <td>{{$row->purchase_number}}</td>
+                <td>{{$row->invoice_number}}</td>
                 <td>{{$row->_date_}}</td>
                 <td>{{$row->customer_id}}</td>
-                <td>{{$row->ref}}</td>
+                <td>{{$row->deposit}}</td>
+                <td>{{$row->complete_date}}</td>
+                <td>{{$row->complete_price}}</td>
                 <td>{{$row->description}}</td>
+                <td>{{$row->status}}</td>
                 <td><button type="button" data-toggle="modal" data-target="#popUpItemDetail"><i class="fa fa-search">
                         </i>
                     </button>

@@ -21,7 +21,7 @@
                     </tr>
                     <tr style="text-align:center;">
                         <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Customer Name</b></span> : {{$row->customer_id}}</td>
-                        <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Reference</b></span> : {{$row->ref}}</td>
+                        <td style="vertical-align:middle;text-align:left;"><span><b>Reference</b></span> : {{$row->ref}}</td>
                     </tr>
                     <tr style="text-align:center;">
                         <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Description</b></span> : {{$row->description}}</td>

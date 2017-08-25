@@ -35,10 +35,10 @@
           <span><b>Sale Invoice</b></span>
         </a>
         <p>
-          <input data-url="/api/report/sale-item/list" type="radio" name="name-report-option" class="minimal report-option"> List<br>
+          <input data-url="/api/report/invoice/list" type="radio" name="name-report-option" class="minimal report-option"> List<br>
         </p>
         <p>
-          <input data-url="/api/report/sale-item/detail" type="radio" name="name-report-option" class="minimal report-option"> Detail<br>
+          <input data-url="/api/report/invoice/detail" type="radio" name="name-report-option" class="minimal report-option"> Detail<br>
         </p>
       </section>
     </aside>

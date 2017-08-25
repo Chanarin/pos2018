@@ -16,9 +16,9 @@
         <thead>
         <tr style="font-size: 14px;">
             <th style="width: 20px">#</th>
-            <th>open number</th>
+            <th>Open Number</th>
             <th>Date</th>
-            <th>description</th>
+            <th>Description</th>
             <th style="width: 20px"></th>
         </tr>
         </thead>

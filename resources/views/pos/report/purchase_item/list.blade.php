@@ -16,11 +16,11 @@
         <thead>
         <tr style="font-size: 14px;">
             <th style="width: 20px">#</th>
-            <th>purchase number</th>
+            <th>Purchase Number</th>
             <th>Date</th>
             <th>Customer Name</th>
             <th>Reference</th>
-            <th>description</th>
+            <th>Description</th>
             <th style="width: 20px"></th>
         </tr>
         </thead>
