@@ -8,8 +8,8 @@
         </a>
         <ol class="breadcrumb">
             <li><a href="#" class="btn btn-xs btn-default" onclick="printContent('report-print')"><i class="fa fa-fw fa-print"></i> PRINT</a></li>
-            <li><a href="#" class="btn btn-xs btn-default" id="cmd" ><i class="fa fa-fw fa-file-pdf-o"></i> PDF</a></li>
-            <li><a href="#" class="btn btn-xs btn-default" id="btnExport"><i class="fa fa-fw fa-file-excel-o"></i> EXCEL</a></li>
+            {{--<li><a href="#" class="btn btn-xs btn-default" id="cmd" ><i class="fa fa-fw fa-file-pdf-o"></i> PDF</a></li>--}}
+            {{--<li><a href="#" class="btn btn-xs btn-default" id="btnExport"><i class="fa fa-fw fa-file-excel-o"></i> EXCEL</a></li>--}}
         </ol>
     </section>
 @endsection
@@ -18,12 +18,10 @@
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-body">
-                    <div id="report-print">
-                        <div class="col-md-12 table-responsive report-item-list report-item-detail">
-                            {{--========================list report===================--}}
-                            <div style="min-height: 450px;"></div>
-                            {{--===========end list report=============--}}
-                        </div>
+                    <div class="col-md-12 table-responsive report-item-list report-item-detail">
+                        {{--========================list report===================--}}
+                        <div style="min-height: 450px;"></div>
+                        {{--===========end list report=============--}}
                     </div>
                 </div>
             </div>

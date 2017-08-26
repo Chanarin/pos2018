@@ -40,6 +40,7 @@
         <p>
           <input data-url="/api/report/invoice/detail" type="radio" name="name-report-option" class="minimal report-option"> Detail<br>
         </p>
+
       </section>
     </aside>
 @endif
