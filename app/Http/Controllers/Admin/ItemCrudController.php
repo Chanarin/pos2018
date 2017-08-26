@@ -69,7 +69,7 @@ class ItemCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
-        //dd($request->_data_);
+        dd($request->_data_);
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
