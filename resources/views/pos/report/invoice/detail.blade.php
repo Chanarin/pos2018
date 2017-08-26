@@ -49,32 +49,59 @@
                 <th class="text-center">Qty</th>
                 <th class="text-center">Price</th>
                 <th class="text-center">Discount</th>
+                <th class="text-center">Amount</th>
             </tr>
             </thead>
-            <tbody style=" font-size: 12px;">
+            <tbody style="border-bottom:2px solid black; font-size: 12px;">
             @php
                 $key = 1;
                 $invoice_details = \App\Models\InvoiceDetail::where('ref_id','=',$row->id)->get();
+                $grand_total = 0;
+                $sub_total = 0;
+                $total_discount = 0;
             @endphp
             @foreach($invoice_details as $invoice_detail)
 
                 @php
                     $item_field = \App\Models\Item::find($invoice_detail->item_id);
+                    $amount = (($invoice_detail->qty)*($invoice_detail->price))-($invoice_detail->discount);
+                    $grand_total+= $amount;
+                    $sub_total+= ($invoice_detail->price);
+                    $total_discount+= ($invoice_detail->discount);
                 @endphp
                 <tr class="item">
                     <td class="text-left">{{$key++}}</td>
                     <td class="text-left">{{$invoice_detail->item_code}}</td>
-                    <td class="text-center">{{$item_field->title}}</td>
-                    <td class="text-center">{{$item_field->unit}}</td>
-                    <td class="text-center">{{$invoice_detail->qty}}</td>
-                    <td class="text-center">$ {{$invoice_detail->price}}</td>
-                    <td class="text-center">$ {{$invoice_detail->discount}}</td>
+                    <td class="text-left">{{$item_field->title}}</td>
+                    <td class="text-left">{{$item_field->unit}}</td>
+                    <td class="text-right">{{number_format($invoice_detail->qty)}}</td>
+                    <td class="text-right">$ {{number_format($invoice_detail->price)}}</td>
+                    <td class="text-right">$ {{number_format($invoice_detail->discount)}}</td>
+                    <td class="text-right">$ {{number_format($amount)}}</td>
 
                 </tr>
             @endforeach
             </tbody>
             <tfoot>
             </tfoot>
+        </table>
+        <table style="width: 100%; margin-top: 5px;">
+            <tr>
+                <td style="text-align:left;">សរុប</td>
+                <td style="text-align:right;">Sub Total (USD) :</td>
+                <td style="text-align:right;">$ {{number_format($sub_total)}}</td>
+            </tr>
+            <tr>
+                <td style="text-align:left;">បញ្ចុះតំលៃ</td>
+                <td style="text-align:right;width:35%;">Discount (USD) :</td>
+                <td style="text-align:right;">$ {{number_format($total_discount)}}</td>
+            </tr>
+            <tr>
+                <td style="text-align:left;">សរុបចុងក្រោយ</td>
+                <td style="text-align:right;width:40%;">Grand Total (USD) :</td>
+                <td style="text-align:right;">$ {{number_format($grand_total)}}</td>
+            </tr>
+
         </table>
     </div>
 @endforeach

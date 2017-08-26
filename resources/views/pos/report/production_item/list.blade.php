@@ -99,9 +99,9 @@
                             <tr class="item">
                                 <td class="text-left">{{$key++}}</td>
                                 <td class="text-left">{{$production_detail->item_code}}</td>
-                                <td class="text-center">{{$item_field->title}}</td>
-                                <td class="text-center">{{$item_field->unit}}</td>
-                                <td class="text-center">{{$production_detail->qty}}</td>
+                                <td class="text-left">{{$item_field->title}}</td>
+                                <td class="text-left">{{$item_field->unit}}</td>
+                                <td class="text-right">{{number_format($production_detail->qty)}}</td>
                             </tr>
                         @endforeach
 
