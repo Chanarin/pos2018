@@ -321,6 +321,7 @@
                 var id = $(this).val();
                 var tr = $(this).parent().parent();
                 tr.find('.item_id{{$r_id}}').val(id);
+                var d = $(this);
 
                 $.ajax({
                     type: "GET",
@@ -336,8 +337,10 @@
 
                         if($('#'+subid).is(":last-child"))
                         {
-                            for(i=1;i<=5;i++) {
-                                addRowMain();
+                            if(d.hasClass('item_id-main-id')) {
+                                for (i = 1; i <= 5; i++) {
+                                    addRowMain();
+                                }
                             }
                         }
 
@@ -379,7 +382,7 @@
             var row_sub = $('.tbody-original-row-sub').first().html()
                 .replaceAll('xxxx-uid-xxxx',uid)
                 .replaceAll('yyyy-uid-yyyy',uid2)
-                .replaceAll('xx_name_xx','name');
+                .replaceAll('www_name_www','name');
 
             var row = $(row_sub);
             runSelect2{{$r_id}}(row.find('.item_id-sub'));
@@ -414,6 +417,42 @@
             });
 
 
+
+            $('.tbody-main-for-use').delegate('.delete-row-sub-item','click',function (e) {
+                e.preventDefault();
+                var subid = $(this).data('subid');
+                var tr =  $(this).parent().parent();
+
+                var c = tr.find('.item_code-sub').val();
+                var t = tr.find('.title-sub').val();
+
+                if($('#'+subid).find('.delete-row-sub-item').length >2){
+
+                    if(tr.is(":last-child") && (c == '' || t == '')) {
+
+                    }else {
+                        tr.remove();
+                    }
+
+                }else {
+                    addRowSub(subid);
+                }
+            });
+
+
+            $('.tbody-main-for-use').delegate('.plus-row-sub-item','click',function (e) {
+                e.preventDefault();
+                var subid = $(this).data('subid');
+
+                addRowSub(subid);
+                addRowSub(subid);
+                addRowSub(subid);
+                addRowSub(subid);
+
+
+            });
+
+
             $('.tbody-main-for-use').delegate('.main-add-sub-item','click',function (e) {
                 e.preventDefault();
                 var subid = $(this).data('subid');
@@ -423,7 +462,8 @@
                     $('#' + subid).show(1000);
 
                     if($(this).data('add5') == 1){
-                        for(ii=0;ii<=2;ii++) {
+                        $('#'+subid).find('.tbody-original-row-sub').html('');
+                        for(ii=0;ii<=3;ii++) {
                             addRowSub(subid);
                         }
                         $(this).data('add5',-1);

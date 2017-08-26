@@ -54,7 +54,7 @@
                     @endforeach
                     <th class="text-center" style="width: 10px !important;">
                         <button data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"
-                                class="btn btn-sm btn-success add-sub{{$r_id}}" type="button"><span
+                                class="btn btn-sm btn-success add-sub{{$r_id}} plus-row-sub-item" type="button"><span
                                     class="sr-only">Add</span> +
                         </button>
                     </th>
@@ -71,14 +71,14 @@
                             <td style="@if($prop['show'] == false) display: none !important; @else  @php $colspan++; @endphp  @endif">
                                 @if($k == 'item_id')
                                     <select  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"
-                                            xx_name_xx="_data_[xxxx-uid-xxxx][detail][yyyy-uid-yyyy][{{$k}}]"
+                                            www_name_www="_data_[xxxx-uid-xxxx][detail][yyyy-uid-yyyy][{{$k}}]"
                                             data-url="{{ url('/api/item') }}" data-multiple="false" data-placeholder=""
                                             style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}  {{$k}} {{$k}}-sub">
                                         <option value=""></option>
                                     </select>
                                 @else
                                     <input  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"
-                                            xx_name_xx="_data_[xxxx-uid-xxxx][detail][yyyy-uid-yyyy][{{$k}}]"
+                                            www_name_www="_data_[xxxx-uid-xxxx][detail][yyyy-uid-yyyy][{{$k}}]"
                                            style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}  {{$k}} {{$k}}-sub"
                                            type="text">
                                 @endif
@@ -86,7 +86,7 @@
                         @endforeach
                         <td style="width: 10px !important;">
                             <button data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"
-                                    class="btn btn-sm btn-danger del{{$r_id}}" type="button"><span class="sr-only">Delete</span>
+                                    class="btn btn-sm btn-danger del{{$r_id}} delete-row-sub-item" type="button"><span class="sr-only">Delete</span>
                                 -
                             </button>
                         </td>
