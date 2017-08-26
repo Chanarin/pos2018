@@ -232,7 +232,7 @@
             $html = $('#add-class-sidbar-toggle');
 
         function resize() {
-            if ($window.width() < 900) {
+            if ($window.width() < 768) {
                 return $html.addClass('sidebar-toggle');
             }
 
