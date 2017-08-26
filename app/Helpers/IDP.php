@@ -32,12 +32,6 @@ class IDP
 
                     $item_code = isset($row['item_code']) ? $row['item_code'] : '';
 
-                    /*           if($item_code > 0){
-                                   $item_id = $item_code;
-                               }else {
-                                   $item_id = isset($row['item_id']) ? $row['item_id'] : 0;
-                               }*/
-
                     $item_id = isset($row['item_id']) ? $row['item_id'] : 0;
 
                     $title = isset($row['title']) ? $row['title'] : '';
@@ -51,7 +45,30 @@ class IDP
 
                     $note = isset($row['note']) ? $row['note'] : '';
 
-                    $item_detail = isset($row['detail']) ? $row['detail'] : [];
+
+
+                    //=============================================
+                    //=============================================
+                    $_item_detail = isset($row['detail']) ? $row['detail'] : [];
+                    $ssdd = [];
+                    if(count($_item_detail)>0){
+                        foreach ($_item_detail as $rdd){
+                            $item_code_d = isset($rdd['item_code']) ? $rdd['item_code'] : '';
+                            $item_id_d = isset($rdd['item_id']) ? $rdd['item_id'] : 0;
+                            $title_d = isset($rdd['title']) ? $rdd['title'] : '';
+                            if($item_id_d>0 || ($item_code_d != '' || $title_d != ''))
+                            {
+                                $ssdd[] = $rdd;
+                            }
+
+
+                        }
+                    }
+
+                    $item_detail = $ssdd;
+
+                    //=============================================
+                    //=============================================
 
 
                     $itemDetailP = new ItemDetailP($this->type, $item_id, $this->ref_id,
