@@ -11,7 +11,7 @@
     </div>
 </div>
 @foreach($rows as $row)
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border: solid 1px darkgrey; margin-bottom: 10px;">
         <div>
             <table style="width: 100%; margin-bottom: 10px; margin-top: 10px;">
                 <tbody style="font-size: 14px;">
@@ -32,28 +32,35 @@
         </style>
         <table class="table-condensed receipt no_border_btm" style="width:100%;">
             <thead>
-                <tr style="border:1px dotted black !important; font-size:14px;">
-                    <th>No</th>
-                    <th>Code</th>
-                    <th>Image</th>
-                    <th class="text-center">Title</th>
-                    <th style="text-align:center;">Unit</th>
-                    <th style="text-align:center;">Qty</th>
-                    <th style="text-align:right;">Price</th>
-                    <th style="padding-left:10px;padding-right:10px;text-align:right;">Amount </th>
-                </tr>
+            <tr style="border:1px dotted black !important; font-size:14px;">
+                <th>No</th>
+                <th>Code</th>
+                <th class="text-center">Title</th>
+                <th class="text-center">Unit</th>
+                <th class="text-center">Qty</th>
+                <th class="text-center">Cost</th>
+            </tr>
             </thead>
-            <tbody style="border-bottom:2px solid black; font-size: 12px;">
+            <tbody style="font-size: 12px;">
+            @php
+                $key = 1;
+                $open_details = \App\Models\OpenItemDetail::where('ref_id','=',$row->id)->get();
+            @endphp
+            @foreach($open_details as $open_detail)
 
-                    <tr class="item">
-                        <td class="text-left">1</td>
-                        <td class="text-left">P001</td>
-                        <td class="text-left"><img src="{{asset('/pos/img/item1.jpg')}}" width="60" height="50" alt=""></td>
-                        <td class="text-center">Title</td>
-                        <td class="text-center">ជី</td>
-                        <td class="text-center">1</td>
-                        <td class="text-center"  style="text-align:right; width:65px !important">$ 460.00</td><td class="text-right">$ 460.00</td>
-                    </tr>
+                @php
+                    $item_field = \App\Models\Item::find($open_detail->item_id);
+                @endphp
+
+                <tr class="item">
+                    <td class="text-left">{{$key++}}</td>
+                    <td class="text-left">{{$open_detail->item_code}}</td>
+                    <td class="text-center">{{$item_field->title}}</td>
+                    <td class="text-center">{{$item_field->unit}}</td>
+                    <td class="text-center">{{$open_detail->qty}}</td>
+                    <td class="text-center">$ {{$open_detail->cost}}</td>
+                </tr>
+            @endforeach
 
             </tbody>
             <tfoot>
