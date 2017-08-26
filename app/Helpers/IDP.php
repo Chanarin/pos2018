@@ -158,6 +158,7 @@ class ItemDetailP
 
     private function createItem()
     {
+        $rrr = null;
         if (!($this->item_id > 0)) {
             $mi = new Item();
             $mi->item_code = $this->item_code;
@@ -167,11 +168,68 @@ class ItemDetailP
             $mi->unit = $this->unit;
             if ($mi->save()) {
                 $this->item_id = $mi->id;
-                return $mi;
+                $rrr = $mi;
             }
         }
 
-        return null;
+        if($this->item_id > 0)
+        {
+            if(count($this->item_detail) > 0)
+            {
+
+                foreach ($this->item_detail as $row)
+                {
+//                    ===============================
+//                    ===============================
+                    $item_code = isset($row['item_code']) ? $row['item_code'] : '';
+
+                    $item_id = isset($row['item_id']) ? $row['item_id'] : 0;
+
+                    $title = isset($row['title']) ? $row['title'] : '';
+                    $description = isset($row['description']) ? $row['description'] : '';
+                    $unit = isset($row['unit']) ? $row['unit'] : '';
+
+                    $qty = isset($row['qty']) ? $row['qty'] : 0;
+                    $cost = isset($row['cost']) ? $row['cost'] : 0;
+                    $price = isset($row['price']) ? $row['price'] : 0;
+                    $discount = isset($row['discount']) ? $row['discount'] : 0;
+
+                    $note = isset($row['note']) ? $row['note'] : '';
+//                    ===============================
+//                    ===============================
+                    if (!($item_id > 0)) {
+                        $mis = new Item();
+                        $mis->item_code = $item_code;
+                        $mis->title = $title;
+                        //$mi->description = $this->description ;
+                        //$mi->image = $this->image ;
+                        $mis->unit = $unit;
+                        if ($mis->save()) {
+                            $item_id = $mis->id;
+                        }
+                    }
+
+                    if($item_id >0)
+                    {
+                        $mff = new ItemDetail();
+                        $mff->ref_id  = $this->item_id   ;
+                        $mff->item_id  = $item_id   ;
+                        $mff->item_code  = $item_code   ;
+                        $mff->title  = $title   ;
+                        $mff->description  = $description   ;
+                        $mff->unit  = $unit   ;
+                        $mff->qty  = $qty   ;
+                        $mff->cost  = $cost   ;
+                        $mff->note  = $note   ;
+                        $mff->save();
+                    }
+
+
+                }
+            }
+        }
+
+        return $rrr;
     }
 
     private function saveDetail()
@@ -209,8 +267,6 @@ class ItemDetailP
             $m->discount = $this->discount;
             $m->note = $this->note;
             $m->item_detail = json_encode($this->item_detail);
-
-
 
             return $m->save() ? $m : null;
         } else {
