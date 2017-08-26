@@ -5,7 +5,7 @@
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="text-align: center;">
         <span style="font-size: 24px;"><b>POS SHOP REPORT</b></span><br>
-        <span style="font-size: 18px;"><b>PURCHASE ITEM LIST</b></span>
+        <span style="font-size: 18px;"><b>INVOICE LIST</b></span>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 
