@@ -92,7 +92,10 @@
 <!-- ./wrapper -->
 @yield('before_scripts')
 <!-- jQuery 2.2.0 -->
-<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+{{--<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>--}}
+<script src="{{asset('/pos/jquery/jquery-3.2.1.min.js')}}"></script>
+<script src="{{asset('/pos/sweet-alert/')}}/sweetalert-dev.js"></script>
+<link rel="stylesheet" href="{{asset('/pos/sweet-alert/')}}/sweetalert.css">
 <script>window.jQuery || document.write('<script src="{{ asset('vendor/adminlte') }}/plugins/jQuery/jQuery-2.2.0.min.js"><\/script>')</script>
 <!-- Bootstrap 3.3.5 -->
 <script src="{{ asset('vendor/adminlte') }}/bootstrap/js/bootstrap.min.js"></script>
@@ -160,7 +163,7 @@
         window.print();
         document.body.innerHTML = restorepage;
     }
-//    ====================get report data=====================
+//    ==================== report =====================
     $(function(){
         $('#from-date,#to-date').datepicker({
             format: 'yyyy-mm-dd',
@@ -171,7 +174,7 @@
             checkboxClass: 'icheckbox_minimal-blue',
             radioClass: 'iradio_minimal-blue'
         });
-
+//    ====================ajax get report data=====================
         $('#search-report-by-date').on('click', function (e) {
             e.preventDefault();
             var report_url = $("input[name='name-report-option']:checked").data('url');
@@ -186,7 +189,13 @@
                     to_date: to_date
                 },
                 success: function (d) {
-                    $('.report-item-list').html(d);
+                    if (report_url){
+                        $('.report-item-list').html(d);
+                    }else {
+//                        alert('please click the report type !!!');
+                        swal("OOps.., No Data!", "Please, select report type and date first.")
+                    }
+
                 },
                 error: function () {
 //                        alert('error');
