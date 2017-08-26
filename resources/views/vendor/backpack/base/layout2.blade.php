@@ -56,12 +56,13 @@
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
             <!-- Sidebar toggle button-->
-            {{--<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">--}}
-                {{--<span class="sr-only">{{ trans('backpack::base.toggle_navigation') }}</span>--}}
-                {{--<span class="icon-bar"></span>--}}
-                {{--<span class="icon-bar"></span>--}}
-                {{--<span class="icon-bar"></span>--}}
-            {{--</a>--}}
+
+            <a href="#" id="add-class-sidbar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">{{ trans('backpack::base.toggle_navigation') }}</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
             @include('backpack::inc.menu2')
         </nav>
     </header>
@@ -225,6 +226,23 @@
             a.click();
         });
     });
+    //        ===================add class toggle by window media==================
+    (function($) {
+        var $window = $(window),
+            $html = $('#add-class-sidbar-toggle');
+
+        function resize() {
+            if ($window.width() < 900) {
+                return $html.addClass('sidebar-toggle');
+            }
+
+            $html.removeClass('sidebar-toggle');
+        }
+
+        $window
+            .resize(resize)
+            .trigger('resize');
+    })(jQuery);
 </script>
 <!-- JavaScripts -->
 {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
