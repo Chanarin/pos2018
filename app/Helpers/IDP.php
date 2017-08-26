@@ -61,7 +61,6 @@ class IDP
                                 $ssdd[] = $rdd;
                             }
 
-
                         }
                     }
 

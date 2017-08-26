@@ -110,6 +110,31 @@
 <!-- include field specific select2 js-->
 @push('crud_fields_scripts')
     <script>
+        // Numeric only control handler
+        jQuery.fn.ForceNumericOnly =
+            function()
+            {
+                return this.each(function()
+                {
+                    $(this).keydown(function(e)
+                    {
+                        var key = e.charCode || e.keyCode || 0;
+                        // allow backspace, tab, delete, enter, arrows, numbers and keypad numbers ONLY
+                        // home, end, period, and numpad decimal
+                        return (
+                            key == 8 ||
+                            key == 9 ||
+                            key == 13 ||
+                            key == 46 ||
+                            key == 110 ||
+                            key == 190 ||
+                            (key >= 35 && key <= 40) ||
+                            (key >= 48 && key <= 57) ||
+                            (key >= 96 && key <= 105));
+                    });
+                });
+            };
+
         function dd(o) {
             console.log(o);
         }
@@ -374,6 +399,7 @@
             runSelect2{{$r_id}}(row.find('.item_id-main-id'));
             runSelect2{{$r_id}}(row.find('.item_id-sub'));
             $('.tbody-main-for-use').append(row);
+            $('.qty,.price,.discount,.cost').ForceNumericOnly();
         }
 
         function addRowSub(subid) {
@@ -387,6 +413,7 @@
             var row = $(row_sub);
             runSelect2{{$r_id}}(row.find('.item_id-sub'));
             $('#'+subid).find('.tbody-original-row-sub').append(row);
+            $('.qty,.price,.discount,.cost').ForceNumericOnly();
         }
         
         jQuery(document).ready(function () {
@@ -415,7 +442,6 @@
                     addRowMain();
                 }
             });
-
 
 
             $('.tbody-main-for-use').delegate('.delete-row-sub-item','click',function (e) {
@@ -448,7 +474,6 @@
                 addRowSub(subid);
                 addRowSub(subid);
                 addRowSub(subid);
-
 
             });
 
