@@ -1,3 +1,8 @@
+<?php
+$ref_id = isset($crud->entry->id)?$crud->entry->id:0;
+$data_type = isset($field['data_type'])?$field['data_type']:null;
+$dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
+?>
 <div class="row">
     <div class="form-group col-md-6">
         @php
@@ -78,6 +83,7 @@
     <div class="form-group col-md-12">
         @php
         $field = [
+            'dataDetails' => $dataDetails,
             'max_rows' => 5,
             'max_rows_sub' => 5,
             'level' => 1,

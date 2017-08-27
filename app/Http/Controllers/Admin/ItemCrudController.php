@@ -57,9 +57,11 @@ class ItemCrudController extends CrudController
 
         //=============================
         //=============================
+
         $this->crud->addField([    // WYSIWYG
             'name' => 'item_form',
             'type' => 'view',
+            'data_type' => _POS_::items,
             'view' => 'pos.item.form'
         ]);
 
@@ -87,7 +89,8 @@ class ItemCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-
+        $iDP = new IDP($request->_data_,_POS_::items,$this->crud->entry->id);
+        $iDP->saveAllDetail();
 
         return $redirect_location;
     }

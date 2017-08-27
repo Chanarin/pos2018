@@ -25,6 +25,29 @@ class IDP
 
     public function saveAllDetail()
     {
+        $mr = null;
+        switch ($this->type) {
+            case _POS_::checklists:
+                $mr = ChecklistDetail::where('ref_id',$this->ref_id);
+                break;
+            case _POS_::invoice:
+                $mr =  InvoiceDetail::where('ref_id',$this->ref_id);
+                break;
+            case _POS_::open_items:
+                $mr =  OpenItemDetail::where('ref_id',$this->ref_id);
+                break;
+            case _POS_::production:
+                $mr =  ProductionDetail::where('ref_id',$this->ref_id);
+                break;
+            case _POS_::purchase:
+                $mr =  PurchaseDetail::where('ref_id',$this->ref_id);
+                break;
+            default:
+
+        }
+
+        if($mr != null){ $mr->delete();}
+
         if (count($this->data) > 0) {
             if(is_array($this->data)) {
                 foreach ($this->data as $row) {
@@ -83,6 +106,38 @@ class IDP
             }
         }
     }
+
+    public function getAllDetail()
+    {
+        $type = $this->type;
+        $ref_id = $this->ref_id;
+
+        $m = null;
+        switch ($type) {
+            case _POS_::checklists:
+                $m = ChecklistDetail::where('ref_id',$ref_id)->get();
+                break;
+            case _POS_::invoice:
+                $m = InvoiceDetail::where('ref_id',$ref_id)->get();
+                break;
+            case _POS_::open_items:
+                $m = OpenItemDetail::where('ref_id',$ref_id)->get();
+                break;
+            case _POS_::production:
+                $m = ProductionDetail::where('ref_id',$ref_id)->get();
+                break;
+            case _POS_::purchase:
+                $m = PurchaseDetail::where('ref_id',$ref_id)->get();
+                break;
+            case _POS_::items:
+                $m = ItemDetail::where('ref_id',$ref_id)->get();
+                break;
+            default:
+        }
+
+        return $m;
+    }
+
 }
 
 class ItemDetailP

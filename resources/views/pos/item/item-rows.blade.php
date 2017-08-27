@@ -13,9 +13,10 @@
                             data-placeholder="" style="width: 100%; "
                             class="form-control input-sm {{$k}}{{$r_id}} {{$k}} {{$k}}-main item_id-main-id">
                         <option value=""></option>
+                        vvvv-{{$k}}-vvvv
                     </select>
                 @else
-                    <input  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"
+                    <input  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"   vvvv-{{$k}}-vvvv
                             xx_name_xx="_data_[xxxx-uid-xxxx][{{$k}}]" style="width: 100%; "
                            class="form-control input-sm {{$k}}{{$r_id}}  {{$k}} {{$k}}-main" type="text">
                 @endif
@@ -71,13 +72,14 @@
                             <td style="@if($prop['show'] == false) display: none !important; @else  @php $colspan++; @endphp  @endif">
                                 @if($k == 'item_id')
                                     <select  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"
-                                            www_name_www="_data_[xxxx-uid-xxxx][detail][yyyy-uid-yyyy][{{$k}}]"
+                                             www_name_www="_data_[xxxx-uid-xxxx][detail][yyyy-uid-yyyy][{{$k}}]"
                                             data-url="{{ url('/api/item') }}" data-multiple="false" data-placeholder=""
                                             style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}  {{$k}} {{$k}}-sub">
                                         <option value=""></option>
+                                        pppp-{{$k}}-pppp
                                     </select>
                                 @else
-                                    <input  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"
+                                    <input  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"    pppp-{{$k}}-pppp
                                             www_name_www="_data_[xxxx-uid-xxxx][detail][yyyy-uid-yyyy][{{$k}}]"
                                            style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}  {{$k}} {{$k}}-sub"
                                            type="text">

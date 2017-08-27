@@ -1,6 +1,6 @@
-
 @php
     $r_id = rand(11111, 99999) .  time() . rand(1000, 5000);
+    $dataDetails = isset($field['dataDetails'])?$field['dataDetails']:null;
 @endphp
 
 <div class="array-container form-group">
@@ -189,7 +189,7 @@
                             var mainid = $(this).data('mainid');
                             if ($('#' + subid).is(":last-child")) {
                                 for (i = 1; i <= 5; i++) {
-                                    addRowMain();
+                                    addRowMain(null);
                                 }
                             }
 
@@ -202,7 +202,6 @@
                 if (c_c == 0) {
                     dd('no');
                 }
-
 
         }
 
@@ -364,7 +363,7 @@
                         {
                             if(d.hasClass('item_id-main-id')) {
                                 for (i = 1; i <= 5; i++) {
-                                    addRowMain();
+                                    addRowMain(null);
                                 }
                             }
                         }
@@ -389,26 +388,87 @@
             return uid;
         }
 
-        function addRowMain() {
+        function addRowMain(option) {
+            var init = {
+                id: 0,
+                item_id: 0,
+                item_code: '',
+                title: '',
+                description: '',
+                unit: '',
+                qty: 1,
+                cost: 0,
+                price: 0,
+                discount: 0,
+                note: ''
+            };
+
             var uid = getUniqIDRan();
             var row_main = $('.table-origin-body').html()
                 .replaceAll('xxxx-uid-xxxx',uid)
                 .replaceAll('xx_name_xx','name');
+
+            if(option != null)
+            {
+                // Merge object2 into object1
+                $.extend( init, option );
+            }
+
+            for (var key in init) {
+                //dd(key + ' is ' + init[key]);
+                if(key == 'item_id'){
+                    row_main = row_main.replaceAll('vvvv-'+key+'-vvvv',' <option selected="selected" value="'+init[key]+'">'+init['title']+'</option> ');
+                }else {
+                    row_main = row_main.replaceAll('vvvv-'+key+'-vvvv',' value="'+init[key]+'" ');
+                }
+
+            }
 
             var row = $(row_main);
             runSelect2{{$r_id}}(row.find('.item_id-main-id'));
             runSelect2{{$r_id}}(row.find('.item_id-sub'));
             $('.tbody-main-for-use').append(row);
             $('.qty,.price,.discount,.cost').ForceNumericOnly();
+
+            return uid;
         }
 
-        function addRowSub(subid) {
+        function addRowSub(subid,option) {
+            var init = {
+                id: 0,
+                item_id: 0,
+                item_code: '',
+                title: '',
+                description: '',
+                unit: '',
+                qty: 1,
+                cost: 0,
+                price: 0,
+                discount: 0,
+                note: ''
+            };
             var uid = $('#'+subid).data('id');
             var uid2 = getUniqIDRan();
             var row_sub = $('.tbody-original-row-sub').first().html()
                 .replaceAll('xxxx-uid-xxxx',uid)
                 .replaceAll('yyyy-uid-yyyy',uid2)
                 .replaceAll('www_name_www','name');
+
+            if(option != null)
+            {
+                // Merge object2 into object1
+                $.extend( init, option );
+            }
+
+            for (var key in init) {
+                //dd(key + ' is ' + init[key]);
+                if(key == 'item_id'){
+                    row_sub = row_sub.replaceAll('pppp-'+key+'-pppp',' <option selected="selected" value="'+init[key]+'">'+init['title']+'</option> ');
+                }else {
+                    row_sub = row_sub.replaceAll('pppp-'+key+'-pppp',' value="'+init[key]+'" ');
+                }
+
+            }
 
             var row = $(row_sub);
             runSelect2{{$r_id}}(row.find('.item_id-sub'));
@@ -417,9 +477,68 @@
         }
         
         jQuery(document).ready(function () {
-            for(i=1;i<=5;i++) {
-                addRowMain();
-            }
+            var mRowOption = null;
+            var sRowOption = null;
+            var sIdSub = null;
+            @if($dataDetails != null)
+                @if(count($dataDetails) > 0)
+                @forEach($dataDetails as $rii)
+
+                    mRowOption = {
+                            id: '{{$rii->id}}',
+                            item_id: '{{$rii->item_id}}',
+                            item_code: '{{$rii->item_code}}',
+                            title: '{{$rii->title}}',
+                            description: '{{$rii->description}}',
+                            unit: '{{$rii->unit}}',
+                            qty: '{{$rii->qty}}',
+                            cost: '{{$rii->cost}}',
+                            price: '{{$rii->price}}',
+                            discount: '{{$rii->discount}}',
+                            note: '{{$rii->note}}'
+                        };
+
+                    sIdSub = addRowMain(mRowOption);
+
+                    @php
+                      $mItemDetail = \App\Models\ItemDetail::where('ref_id',$rii->ref_id)->get();
+                    @endphp
+
+                            @if(count($mItemDetail)>0)
+                                $('#'+'uid-' + sIdSub + '-sub').find('.tbody-original-row-sub').html('');
+                                @forEach($mItemDetail as $rrr)
+
+                                    sRowOption = {
+                                        id: '{{$rrr->id}}',
+                                        item_id: '{{$rrr->item_id}}',
+                                        item_code: '{{$rrr->item_code}}',
+                                        title: '{{$rrr->title}}',
+                                        description: '{{$rrr->description}}',
+                                        unit: '{{$rrr->unit}}',
+                                        qty: '{{$rrr->qty}}',
+                                        cost: '{{$rrr->cost}}',
+                                        price: '{{$rrr->price}}',
+                                        discount: '{{$rrr->discount}}',
+                                        note: '{{$rrr->note}}'
+                                    };
+
+
+                                    addRowSub('uid-' + sIdSub + '-sub',sRowOption);
+                                    sRowOption = null;
+
+                                @endforeach
+                            @endif
+
+                @endforeach
+                addRowMain(null);
+                @endif
+            @endif
+
+            @if($dataDetails == null || count($dataDetails) == 0)
+                for(i=1;i<=5;i++) {
+                    addRowMain(null);
+                }
+            @endif
 
             $('.tbody-main-for-use').delegate('.delete-row-main-item','click',function (e) {
                 e.preventDefault();
@@ -439,7 +558,7 @@
                     }
 
                 }else {
-                    addRowMain();
+                    addRowMain(null);
                 }
             });
 
@@ -461,7 +580,7 @@
                     }
 
                 }else {
-                    addRowSub(subid);
+                    addRowSub(subid,null);
                 }
             });
 
@@ -470,10 +589,11 @@
                 e.preventDefault();
                 var subid = $(this).data('subid');
 
-                addRowSub(subid);
-                addRowSub(subid);
-                addRowSub(subid);
-                addRowSub(subid);
+                addRowSub(subid,null);
+                addRowSub(subid,null);
+                addRowSub(subid,null);
+                addRowSub(subid,null);
+                addRowSub(subid,null);
 
             });
 
@@ -487,10 +607,15 @@
                     $('#' + subid).show(1000);
 
                     if($(this).data('add5') == 1){
-                        $('#'+subid).find('.tbody-original-row-sub').html('');
-                        for(ii=0;ii<=3;ii++) {
-                            addRowSub(subid);
-                        }
+                        @if($dataDetails == null || count($dataDetails) == 0)
+                            $('#'+subid).find('.tbody-original-row-sub').html('');
+                            for(ii=0;ii<=3;ii++) {
+                                addRowSub(subid,null);
+                            }
+                        @else
+                            addRowSub(subid,null);
+                        @endif
+
                         $(this).data('add5',-1);
                     }
 
@@ -509,7 +634,7 @@
                 if($('#'+subid).is(":last-child"))
                 {
                     for(i=1;i<=5;i++) {
-                        addRowMain();
+                        addRowMain(null);
                     }
                 }
 
