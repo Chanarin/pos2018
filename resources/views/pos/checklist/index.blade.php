@@ -34,7 +34,7 @@
             <div class=" pull-right text-right">
 
                 <button class="btn btn-xs btn-default no-print pull-left" onclick="printContent('print-checklist')">
-                    <i class="fa fa-print"></i>&nbsp;Print
+                    <i class="fa fa-print"></i>&nbsp;PRINT
                 </button>
             </div>
         </div>

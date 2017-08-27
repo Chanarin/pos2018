@@ -66,6 +66,7 @@ class PurchaseCrudController extends CrudController
         $this->crud->addField([
             'name' => 'data',
             'type' => 'view',
+            'data_type' => _POS_::purchase,
             'view' => 'pos.purchase.form'
         ]);
 //        $this->crud->setFromDb();
@@ -157,6 +158,9 @@ class PurchaseCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+        $iDP = new IDP($request->_data_,_POS_::purchase,$this->crud->entry->id);
+        $iDP->saveAllDetail();
+
         return $redirect_location;
     }
 }

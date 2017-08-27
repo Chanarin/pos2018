@@ -61,6 +61,7 @@ class ProductionCrudController extends CrudController
         $this->crud->addField([
             'name' => 'data',
             'type' => 'view',
+            'data_type' => _POS_::production,
             'view' => 'pos.production.form'
         ]);
 //        $this->crud->setFromDb();
@@ -151,6 +152,9 @@ class ProductionCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+        $iDP = new IDP($request->_data_,_POS_::production,$this->crud->entry->id);
+        $iDP->saveAllDetail();
+
         return $redirect_location;
     }
 }
