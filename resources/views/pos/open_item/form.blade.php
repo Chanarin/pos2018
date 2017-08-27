@@ -42,6 +42,7 @@
     <div class="form-group col-md-12">
         @php
             $field = [
+                'dataDetails' => $dataDetails,
                 'max_rows' => 5,
                 'max_rows_sub' => 5,
                 'level' => 1,
