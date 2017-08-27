@@ -31,7 +31,8 @@
     <link rel="stylesheet" href="{{ asset('vendor/backpack/backpack.base.css') }}">
 
     @yield('after_styles')
-
+    @section('graph_style')
+    @show
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -111,7 +112,8 @@
 
     <!-- jQuery 2.2.0 -->
     {{--<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>--}}
-    <script src="{{asset('/pos/jquery/jquery-3.2.1.min.js')}}"></script>
+
+    <script src="{{asset('/pos/jquery/jquery-2.2.0.min.js')}}"></script>
     <script>window.jQuery || document.write('<script src="{{ asset('vendor/adminlte') }}/plugins/jQuery/jQuery-2.2.0.min.js"><\/script>')</script>
     <!-- Bootstrap 3.3.5 -->
     <script src="{{ asset('vendor/adminlte') }}/bootstrap/js/bootstrap.min.js"></script>
@@ -119,7 +121,8 @@
     <script src="{{ asset('vendor/adminlte') }}/plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/plugins/fastclick/fastclick.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/dist/js/app.min.js"></script>
-
+    @section('graph_script')
+    @show
     <!-- page script -->
     <script type="text/javascript">
         /* Store sidebar state */
