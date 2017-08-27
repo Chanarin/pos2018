@@ -16,15 +16,15 @@
         <table class="table table-bordered" style="width: 100%;">
             <thead>
             <tr style="font-size: 14px;">
-                <th style="width: 20px">#</th>
-                <th>Invoice Number</th>
-                <th>Invoice Date</th>
-                <th>Customer Name</th>
-                <th>Deposit</th>
-                <th>Complete Date</th>
-                <th>Complete Price</th>
-                <th>Discount</th>
-                <th>Amount</th>
+                <th class="text-center" style="width: 20px">#</th>
+                <th class="text-center">Invoice Number</th>
+                <th class="text-center">Invoice Date</th>
+                <th class="text-center">Customer Name</th>
+                <th class="text-center">Deposit</th>
+                <th class="text-center">Complete Date</th>
+                <th class="text-center">Complete Price</th>
+                <th class="text-center">Discount</th>
+                <th class="text-center">Amount</th>
                 <th style="width: 20px"></th>
             </tr>
             </thead>

@@ -16,10 +16,10 @@
         <table class="table table-bordered" style="width: 100%;">
             <thead>
             <tr style="font-size: 14px;">
-                <th style="width: 20px">#</th>
-                <th>Open Number</th>
-                <th>Date</th>
-                <th>Description</th>
+                <th class="text-center" style="width: 20px">#</th>
+                <th class="text-center">Open Number</th>
+                <th class="text-center">Date</th>
+                <th class="text-center">Description</th>
                 <th style="width: 20px"></th>
             </tr>
             </thead>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Item;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
@@ -10,6 +11,12 @@ use App\Http\Requests\ChecklistRequest as UpdateRequest;
 
 class ChecklistCrudController extends CrudController
 {
+    public function viewChecklist(){
+        $key = 1;
+        $checklists = Item::get();
+        return view('pos.checklist.index',['checklist'=>$checklists,'key'=>$key]);
+    }
+
     public function setup()
     {
 
@@ -27,8 +34,22 @@ class ChecklistCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
+        $this->crud->addColumn([
+            'name' => 'checklist_number',
+            'label' => 'Checklist Number',
+        ]);
 
-        $this->crud->setFromDb();
+        $this->crud->addColumn([
+            'name' => '_date_',
+            'label' => 'Checklist Date',
+        ]);
+
+        $this->crud->addField([
+            'name' => 'data',
+            'type' => 'view',
+            'view' => 'pos.checklist.form'
+        ]);
+//        $this->crud->setFromDb();
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');

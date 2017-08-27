@@ -51,11 +51,11 @@
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                         <br>
-                        <div style="text-align: left;">
+                        <div style="text-align: right;">
                             {{--/Invoice No--}}
-                            <span style="font-size: 14px;"><b>លេខវិកយបត្រ :</b> CL/1708/00005</span><br><br>
+                            <span style="font-size: 14px;"><b>Number : ____________________</b></span><br><br>
                             {{--​/Date--}}
-                            <span style="font-size: 14px;"><b>ថ្ងៃទី :</b> 14/08/2017 08:32</span>
+                            <span style="font-size: 14px;"><b>ថ្ងៃទី : ____________________</b></span>
                         </div>
                     </div>
                 </div>
@@ -63,66 +63,50 @@
                     <td style="height:5px;" colspan="2"></td>
                 </tr>
                 <table class="table table-bordered">
+                    <thead>
                     <tr>
-                        <th style="width: 10px">#</th>
-                        <th>Image</th>
-                        <th>Code</th>
-                        <th>Name</th>
-                        <th>Unit</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                        <th>Total</th>
-                        <th style="width: 120px">Note</th>
-                        <th style="width: 10px">Tick</th>
+                        <th class="text-center" style="width: 10px">#</th>
+                        <th class="text-center" style="width: 70px;">Image</th>
+                        <th class="text-center">Code</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Unit</th>
+                        <th class="text-center">Qty</th>
+                        <th class="text-center">Count</th>
+                        <th class="text-center" style="width: 140px">Note</th>
+                        <th class="text-center" style="width: 10px">Tick</th>
                     </tr>
-                    <tr>
-                        <td>2.</td>
-                        <td> <img src="{{asset('pos/img/item1.jpg')}}" width="50" height="50"></td>
-                        <td>P00001</td>
-                        <td>product name one </td>
-                        <td>ជី</td>
-                        <td>2</td>
-                        <td>$ 100</td>
-                        <td>$ 200</td>
-                        <td></td>
-                        <td style="text-align: center;"><input type="checkbox"></td>
-                    </tr>
-                    <tr>
-                        <td>3.</td>
-                        <td> <img src="{{asset('pos/img/item1.jpg')}}" width="50" height="50"></td>
-                        <td>P00001</td>
-                        <td>product name one </td>
-                        <td>ជី</td>
-                        <td>2</td>
-                        <td>$ 100</td>
-                        <td>$ 200</td>
-                        <td></td>
-                        <td style="text-align: center;"><input type="checkbox"></td>
-                    </tr>
-                    <tr>
-                        <td>4.</td>
-                        <td> <img src="{{asset('pos/img/item1.jpg')}}" width="50" height="50"></td>
-                        <td>P00001</td>
-                        <td>product name one </td>
-                        <td>ជី</td>
-                        <td>2</td>
-                        <td>$ 100</td>
-                        <td>$ 200</td>
-                        <td></td>
-                        <td style="text-align: center;"><input type="checkbox"></td>
-                    </tr>
-                    <tr>
-                        <td>5.</td>
-                        <td> <img src="{{asset('pos/img/item1.jpg')}}" width="50" height="50"></td>
-                        <td>P00001</td>
-                        <td>product name one </td>
-                        <td>ជី</td>
-                        <td>2</td>
-                        <td>$ 100</td>
-                        <td>$ 200</td>
-                        <td></td>
-                        <td style="text-align: center;"><input type="checkbox"></td>
-                    </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($checklist as $row)
+                            @php
+                                $transaction = \App\Models\ItemTransaction::where('item_id','=',$row->id)->sum('qty');
+                            @endphp
+                            <tr>
+                                <td class="text-left">{{$key++}}.</td>
+                                <td class="text-center">
+                                    @php
+                                        $img = json_decode($row->image);
+
+                                    @endphp
+                                    @if(count($img)>0)
+
+                                    <img src="{{asset("/".$img[0])}}" width="50" height="50">
+                                    @endif
+                                </td>
+                                <td class="text-left">{{$row->item_code}}</td>
+                                <td class="text-left">{{$row->title}} </td>
+                                <td class="text-left">{{$row->unit}}</td>
+                                <td class="text-right">{{$transaction}}</td>
+                                <td class="text-left"></td>
+                                <td class="text-left"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+
+
+
+
                 </table>
             </table>
         </div>
