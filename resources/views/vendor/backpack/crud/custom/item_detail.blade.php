@@ -187,6 +187,7 @@
                             tr.find('.item_code{{$r_id}}').val(data.item_code);
                             tr.find('.title{{$r_id}}').val(data.title);
                             tr.find('.unit{{$r_id}}').val(data.unit);
+                            tr.find('.price{{$r_id}}').val(data.price);
                             c_c++;
 
                             var subid = $(this).data('subid');
@@ -361,6 +362,7 @@
                         tr.find('.item_code{{$r_id}}').val(data.item_code);
                         tr.find('.title{{$r_id}}').val(data.title);
                         tr.find('.unit{{$r_id}}').val(data.unit);
+                        tr.find('.price{{$r_id}}').val(data.price);
 
 
                         if($('#'+subid).is(":last-child"))

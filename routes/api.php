@@ -13,14 +13,36 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('cors')->get('/xyz',function (){
+Route::middleware('cors')->get('/xyz',function (Request $request){
+    //return $request->all();
    $arr = [
        ['id' =>1,'name' => 'dara'],
+       ['id' =>2,'name' => 'nana'],
+       ['id' =>3,'name' => 'nary'],
+       ['id' =>2,'name' => 'nana'],
+       ['id' =>3,'name' => 'nary'],
+       ['id' =>2,'name' => 'nana'],
+       ['id' =>3,'name' => 'nary'],
        ['id' =>2,'name' => 'nana'],
        ['id' =>3,'name' => 'nary'],
    ];
    return response()->json($arr);
 });
+
+
+Route::middleware('cors')->post('/xyz',function (Request $request){
+
+    return $request->all();
+   $arr = [
+       ['id' =>$request->id,'name' => $request->name],
+       ['id' =>2,'name' => 'xx'],
+       ['id' =>3,'name' => 'xx'],
+   ];
+   return response()->json($arr);
+});
+
+
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
