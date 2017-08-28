@@ -52,9 +52,6 @@ class IDP
 
         }
 
-
-
-
         if ($mr != null) {
             $mr->delete();
             $mtran = ItemTransaction::where('ref_id', $this->ref_id)
@@ -110,8 +107,6 @@ class IDP
 
 
                 }
-
-
             }
         }
     }
