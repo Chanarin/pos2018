@@ -48,6 +48,18 @@ class IDP
             case _POS_::purchase:
                 $mr = PurchaseDetail::where('ref_id', $this->ref_id);
                 break;
+            case _POS_::items:
+                $itemDeetaill =  ItemDetail::where('ref_id', $this->ref_id)->get();
+                if(count($itemDeetaill)>0){
+                    foreach ($itemDeetaill as $roww){
+                        $itt = ItemTransaction::find($roww->item_id);
+                        if($itt != null){}else{
+                            ItemDetail::where('item_id',$roww->item_id)->delete();
+                        }
+                    }
+                }
+                break;
+
             default:
 
         }
