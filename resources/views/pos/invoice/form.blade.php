@@ -121,6 +121,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
         @php
             $field = [
                 'dataDetails' => $dataDetails,
+                'data_type' => \App\Helpers\_POS_::invoice ,
                 'max_rows' => 5,
                 'max_rows_sub' => 5,
                 'level' => 1,

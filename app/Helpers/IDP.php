@@ -52,7 +52,6 @@ class IDP
             if(is_array($this->data)) {
                 foreach ($this->data as $row) {
 
-
                     $item_code = isset($row['item_code']) ? $row['item_code'] : '';
 
                     $item_id = isset($row['item_id']) ? $row['item_id'] : 0;
@@ -107,7 +106,7 @@ class IDP
         }
     }
 
-    public function getAllDetail()
+    public function getAllDetail() // 012 49 50 80
     {
         $type = $this->type;
         $ref_id = $this->ref_id;
@@ -226,7 +225,8 @@ class ItemDetailP
             }
         }
 
-        if($this->item_id > 0)
+
+        if($this->item_id > 0 && $this->type == _POS_::items)
         {
             if(count($this->item_detail) > 0)
             {
@@ -290,6 +290,61 @@ class ItemDetailP
     {
         if ($this->item_id > 0 && $this->ref_id > 0) {
 
+            //=================================================
+            //=================================================
+            //========= Add Item Detail =======================
+            $item_ref_detail = [];
+            $ixix = 0;
+            if(count($this->item_detail)>0){
+                foreach ($this->item_detail as $rrdd)
+                {
+                    $d_item_code = isset($rrdd['item_code']) ? $rrdd['item_code'] : '';
+
+                    $d_item_id = isset($rrdd['item_id']) ? $rrdd['item_id'] : 0;
+
+                    $d_title = isset($rrdd['title']) ? $rrdd['title'] : '';
+                    $d_description = isset($rrdd['description']) ? $rrdd['description'] : '';
+                    $d_unit = isset($rrdd['unit']) ? $rrdd['unit'] : '';
+
+                    $d_qty = isset($rrdd['qty']) ? $rrdd['qty'] : 0;
+                    $d_cost = isset($rrdd['cost']) ? $rrdd['cost'] : 0;
+                    $d_price = isset($rrdd['price']) ? $rrdd['price'] : 0;
+                    $d_discount = isset($rrdd['discount']) ? $rrdd['discount'] : 0;
+
+                    $d_note = isset($rrdd['note']) ? $rrdd['note'] : '';
+
+                    $item_ref_detail[$ixix] = [
+                        'item_code' => $d_item_code    ,
+                        'title' => $d_title    ,
+                        'description' => $d_description    ,
+                        'unit' => $d_unit    ,
+                        'qty' => $d_qty    ,
+                        'cost' => $d_cost    ,
+                        'note' => $d_note
+                    ];
+                    if($d_item_id>0)
+                    {
+                        $item_ref_detail[$ixix]['item_id'] = $d_item_id;
+                    }else{
+                        $mITT = new Item();
+                        $mITT->item_code   = $d_item_code    ;
+                        $mITT->title   = $d_title    ;
+                        $mITT->description   = $d_description    ;
+                        $mITT->unit   = $d_unit    ;
+
+                        if($mITT->save())
+                        {
+                            $item_ref_detail[$ixix]['item_id'] = $mITT->id;
+                        }
+
+                    }
+
+                    $ixix++;
+                }
+            }
+            //=================================================
+            //=================================================
+
             $m = null;
 
             switch ($this->type) {
@@ -320,7 +375,7 @@ class ItemDetailP
             $m->price = $this->price;
             $m->discount = $this->discount;
             $m->note = $this->note;
-            $m->item_detail = json_encode($this->item_detail);
+            $m->item_detail = json_encode($item_ref_detail);//$this->item_detail
 
             return $m->save() ? $m : null;
         } else {
@@ -343,17 +398,20 @@ class ItemDetailP
             }
         }
 
-        $md = new ItemDetail();
-        $md->ref_id = $this->ref_id;
-        $md->item_id = $this->item_id;
-        $md->item_code = $this->item_code;
-        $md->title = $this->title;
+        if(_POS_::items == $this->type) {
+            $md = new ItemDetail();
+            $md->ref_id = $this->ref_id;
+            $md->item_id = $this->item_id;
+            $md->item_code = $this->item_code;
+            $md->title = $this->title;
 //        $md->description  =  $this->description ;
-        $md->unit = $this->unit;
-        $md->qty = $this->qty;
-        $md->cost = $this->cost;
-        $md->note = $this->note;
-        return $md->save() ? $md : null;
+            $md->unit = $this->unit;
+            $md->qty = $this->qty;
+            $md->cost = $this->cost;
+            $md->note = $this->note;
+            return $md->save() ? $md : null;
+        }
+
     }
 
 }

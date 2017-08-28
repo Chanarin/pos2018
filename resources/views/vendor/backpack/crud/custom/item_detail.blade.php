@@ -2,6 +2,9 @@
     $r_id = rand(11111, 99999) .  time() . rand(1000, 5000);
     $dataDetails = isset($field['dataDetails'])?$field['dataDetails']:null;
 @endphp
+@php
+    $data_type  = isset($field['data_type'])?$field['data_type']:'';
+@endphp
 
 <div class="array-container form-group">
 
@@ -389,6 +392,7 @@
         }
 
         function addRowMain(option) {
+
             var init = {
                 id: 0,
                 item_id: 0,
@@ -434,6 +438,9 @@
         }
 
         function addRowSub(subid,option) {
+            @if(\App\Helpers\_POS_::items == $data_type)
+                return false;
+                    @endif
             var init = {
                 id: 0,
                 item_id: 0,
@@ -501,7 +508,10 @@
                     sIdSub = addRowMain(mRowOption);
 
                     @php
-                      $mItemDetail = \App\Models\ItemDetail::where('ref_id',$rii->ref_id)->get();
+                      //$mItemDetail = \App\Models\ItemDetail::where('ref_id',$rii->ref_id)->get();
+
+                        $mItemDetail = json_decode($rii->item_detail);
+                    //dd($mItemDetail);
                     @endphp
 
                             @if(count($mItemDetail)>0)
@@ -509,16 +519,16 @@
                                 @forEach($mItemDetail as $rrr)
 
                                     sRowOption = {
-                                        id: '{{$rrr->id}}',
+                                        id: '{{isset($rrr->id)?$rrr->id:0}}',
                                         item_id: '{{$rrr->item_id}}',
                                         item_code: '{{$rrr->item_code}}',
                                         title: '{{$rrr->title}}',
                                         description: '{{$rrr->description}}',
                                         unit: '{{$rrr->unit}}',
                                         qty: '{{$rrr->qty}}',
-                                        cost: '{{$rrr->cost}}',
-                                        price: '{{$rrr->price}}',
-                                        discount: '{{$rrr->discount}}',
+                                        cost: '{{isset($rrr->cost)?$rrr->cost:0}}',
+                                        price: '{{isset($rrr->price)?$rrr->price:0}}',
+                                        discount: '{{isset($rrr->discount)?$rrr->discount:0}}',
                                         note: '{{$rrr->note}}'
                                     };
 

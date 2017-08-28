@@ -1,3 +1,6 @@
+@php
+   $data_type  = isset($field['data_type'])?$field['data_type']:'';
+@endphp
 <tbody class="table-origin-body" style="display: none;">
 @for($i_loop = 1;$i_loop <= 1 ;$i_loop++)
     @php
@@ -22,16 +25,18 @@
                 @endif
             </td>
         @endforeach
-        <td style="width: 100px !important;">
+        <td  @if(\App\Helpers\_POS_::items != $data_type) style="width: 100px !important;" @else style="width: 10px !important;"  @endif>
             <button data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"
                     class="btn btn-sm btn-info show-big-item{{$r_id}}" type="button" data-toggle="modal"
                     data-target="#show-item-big"><span class="sr-only">Show Sub</span><i class="fa fa-plus-circle"
                                                                                          role="presentation"
                                                                                          aria-hidden="true"></i>
             </button>
+            @if(\App\Helpers\_POS_::items != $data_type)
             <button data-show="1" data-add5="1" data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"
                     class="btn btn-sm btn-success show-sub{{$r_id}} main-add-sub-item" type="button">
                 <span class="sr-only">Show Sub</span><i class="fa fa-arrow-down" role="presentation" aria-hidden="true"></i></button>
+            @endif
         </td>
         <td style="width: 10px !important;">
             <button data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"
@@ -43,6 +48,7 @@
     ======== Sub Item ===================================--}}
     <tr id="uid-xxxx-uid-xxxx-sub" style="display: none;" data-id="xxxx-uid-xxxx">
         <td style="padding-left: 10px;" colspan="{{ $colspan }}">
+            @if(\App\Helpers\_POS_::items != $data_type)
             <table class="table table-responsive" style="border: 1px solid rgba(204,204,204,0.72);">
                 <tr>
                     @foreach( $field['columns'] as $k => $prop )
@@ -96,6 +102,7 @@
                 @endfor
                 </tbody>
             </table>
+                @endif
         </td>
     </tr>
     {{--=====================================================
