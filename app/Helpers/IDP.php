@@ -2,12 +2,18 @@
 
 namespace App\Helpers;
 
+use App\Models\Checklist;
 use App\Models\ChecklistDetail;
+use App\Models\Invoice;
 use App\Models\InvoiceDetail;
 use App\Models\Item;
 use App\Models\ItemDetail;
+use App\Models\ItemTransaction;
+use App\Models\OpenItem;
 use App\Models\OpenItemDetail;
+use App\Models\Production;
 use App\Models\ProductionDetail;
+use App\Models\Purchase;
 use App\Models\PurchaseDetail;
 
 class IDP
@@ -28,28 +34,35 @@ class IDP
         $mr = null;
         switch ($this->type) {
             case _POS_::checklists:
-                $mr = ChecklistDetail::where('ref_id',$this->ref_id);
+                $mr = ChecklistDetail::where('ref_id', $this->ref_id);
                 break;
             case _POS_::invoice:
-                $mr =  InvoiceDetail::where('ref_id',$this->ref_id);
+                $mr = InvoiceDetail::where('ref_id', $this->ref_id);
                 break;
             case _POS_::open_items:
-                $mr =  OpenItemDetail::where('ref_id',$this->ref_id);
+                $mr = OpenItemDetail::where('ref_id', $this->ref_id);
                 break;
             case _POS_::production:
-                $mr =  ProductionDetail::where('ref_id',$this->ref_id);
+                $mr = ProductionDetail::where('ref_id', $this->ref_id);
                 break;
             case _POS_::purchase:
-                $mr =  PurchaseDetail::where('ref_id',$this->ref_id);
+                $mr = PurchaseDetail::where('ref_id', $this->ref_id);
                 break;
             default:
 
         }
 
-        if($mr != null){ $mr->delete();}
+
+
+
+        if ($mr != null) {
+            $mr->delete();
+            $mtran = ItemTransaction::where('ref_id', $this->ref_id)
+                ->where('ref_type', $this->type)->delete();
+        }
 
         if (count($this->data) > 0) {
-            if(is_array($this->data)) {
+            if (is_array($this->data)) {
                 foreach ($this->data as $row) {
 
                     $item_code = isset($row['item_code']) ? $row['item_code'] : '';
@@ -68,18 +81,16 @@ class IDP
                     $note = isset($row['note']) ? $row['note'] : '';
 
 
-
                     //=============================================
                     //=============================================
                     $_item_detail = isset($row['detail']) ? $row['detail'] : [];
                     $ssdd = [];
-                    if(count($_item_detail)>0){
-                        foreach ($_item_detail as $rdd){
+                    if (count($_item_detail) > 0) {
+                        foreach ($_item_detail as $rdd) {
                             $item_code_d = isset($rdd['item_code']) ? $rdd['item_code'] : '';
                             $item_id_d = isset($rdd['item_id']) ? $rdd['item_id'] : 0;
                             $title_d = isset($rdd['title']) ? $rdd['title'] : '';
-                            if($item_id_d>0 || ($item_code_d != '' || $title_d != ''))
-                            {
+                            if ($item_id_d > 0 || ($item_code_d != '' || $title_d != '')) {
                                 $ssdd[] = $rdd;
                             }
 
@@ -98,7 +109,6 @@ class IDP
                         $cost, $price, $discount, $note, $item_detail);
 
 
-
                 }
 
 
@@ -114,22 +124,22 @@ class IDP
         $m = null;
         switch ($type) {
             case _POS_::checklists:
-                $m = ChecklistDetail::where('ref_id',$ref_id)->get();
+                $m = ChecklistDetail::where('ref_id', $ref_id)->get();
                 break;
             case _POS_::invoice:
-                $m = InvoiceDetail::where('ref_id',$ref_id)->get();
+                $m = InvoiceDetail::where('ref_id', $ref_id)->get();
                 break;
             case _POS_::open_items:
-                $m = OpenItemDetail::where('ref_id',$ref_id)->get();
+                $m = OpenItemDetail::where('ref_id', $ref_id)->get();
                 break;
             case _POS_::production:
-                $m = ProductionDetail::where('ref_id',$ref_id)->get();
+                $m = ProductionDetail::where('ref_id', $ref_id)->get();
                 break;
             case _POS_::purchase:
-                $m = PurchaseDetail::where('ref_id',$ref_id)->get();
+                $m = PurchaseDetail::where('ref_id', $ref_id)->get();
                 break;
             case _POS_::items:
-                $m = ItemDetail::where('ref_id',$ref_id)->get();
+                $m = ItemDetail::where('ref_id', $ref_id)->get();
                 break;
             default:
         }
@@ -203,7 +213,7 @@ class ItemDetailP
 
 
         if ($this->type == _POS_::items) {
-            if($this->title != null && $this->title != '') {
+            if ($this->title != null && $this->title != '') {
                 $this->createItemDetail();
             }
         }
@@ -226,13 +236,10 @@ class ItemDetailP
         }
 
 
-        if($this->item_id > 0 && $this->type == _POS_::items)
-        {
-            if(count($this->item_detail) > 0)
-            {
+        if ($this->item_id > 0 && $this->type == _POS_::items) {
+            if (count($this->item_detail) > 0) {
 
-                foreach ($this->item_detail as $row)
-                {
+                foreach ($this->item_detail as $row) {
 //                    ===============================
 //                    ===============================
                     $item_code = isset($row['item_code']) ? $row['item_code'] : '';
@@ -263,18 +270,17 @@ class ItemDetailP
                         }
                     }
 
-                    if($item_id >0)
-                    {
+                    if ($item_id > 0) {
                         $mff = new ItemDetail();
-                        $mff->ref_id  = $this->item_id   ;
-                        $mff->item_id  = $item_id   ;
-                        $mff->item_code  = $item_code   ;
-                        $mff->title  = $title   ;
-                        $mff->description  = $description   ;
-                        $mff->unit  = $unit   ;
-                        $mff->qty  = $qty   ;
-                        $mff->cost  = $cost   ;
-                        $mff->note  = $note   ;
+                        $mff->ref_id = $this->item_id;
+                        $mff->item_id = $item_id;
+                        $mff->item_code = $item_code;
+                        $mff->title = $title;
+                        $mff->description = $description;
+                        $mff->unit = $unit;
+                        $mff->qty = $qty;
+                        $mff->cost = $cost;
+                        $mff->note = $note;
                         $mff->save();
                     }
 
@@ -295,9 +301,8 @@ class ItemDetailP
             //========= Add Item Detail =======================
             $item_ref_detail = [];
             $ixix = 0;
-            if(count($this->item_detail)>0){
-                foreach ($this->item_detail as $rrdd)
-                {
+            if (count($this->item_detail) > 0) {
+                foreach ($this->item_detail as $rrdd) {
                     $d_item_code = isset($rrdd['item_code']) ? $rrdd['item_code'] : '';
 
                     $d_item_id = isset($rrdd['item_id']) ? $rrdd['item_id'] : 0;
@@ -314,26 +319,24 @@ class ItemDetailP
                     $d_note = isset($rrdd['note']) ? $rrdd['note'] : '';
 
                     $item_ref_detail[$ixix] = [
-                        'item_code' => $d_item_code    ,
-                        'title' => $d_title    ,
-                        'description' => $d_description    ,
-                        'unit' => $d_unit    ,
-                        'qty' => $d_qty    ,
-                        'cost' => $d_cost    ,
+                        'item_code' => $d_item_code,
+                        'title' => $d_title,
+                        'description' => $d_description,
+                        'unit' => $d_unit,
+                        'qty' => $d_qty,
+                        'cost' => $d_cost,
                         'note' => $d_note
                     ];
-                    if($d_item_id>0)
-                    {
+                    if ($d_item_id > 0) {
                         $item_ref_detail[$ixix]['item_id'] = $d_item_id;
-                    }else{
+                    } else {
                         $mITT = new Item();
-                        $mITT->item_code   = $d_item_code    ;
-                        $mITT->title   = $d_title    ;
-                        $mITT->description   = $d_description    ;
-                        $mITT->unit   = $d_unit    ;
+                        $mITT->item_code = $d_item_code;
+                        $mITT->title = $d_title;
+                        $mITT->description = $d_description;
+                        $mITT->unit = $d_unit;
 
-                        if($mITT->save())
-                        {
+                        if ($mITT->save()) {
                             $item_ref_detail[$ixix]['item_id'] = $mITT->id;
                         }
 
@@ -377,7 +380,54 @@ class ItemDetailP
             $m->note = $this->note;
             $m->item_detail = json_encode($item_ref_detail);//$this->item_detail
 
-            return $m->save() ? $m : null;
+
+            if ($m->save()) {
+                $iitrain = new ItemTransaction();
+
+                $iitrain->ref_id = $this->ref_id;
+                $iitrain->ref_type = $this->type;
+                $iitrain->item_id = $this->item_id;
+                $iitrain->unit = $this->unit;
+
+                $iitrain->cost = $this->cost;
+                $iitrain->price = $this->price;
+                $iitrain->discount = $this->discount;
+
+
+                switch ($this->type) {
+                    case _POS_::checklists:
+                        $mm = Checklist::find($this->ref_id);
+                        $iitrain->qty = $this->qty;
+                        $iitrain->tran_date = $mm->_date_;
+                        break;
+                    case _POS_::invoice:
+                        $mm = Invoice::find($this->ref_id);
+                        $iitrain->qty = -$this->qty;
+                        $iitrain->tran_date = $mm->_date_;
+                        break;
+                    case _POS_::open_items:
+                        $mm = OpenItem::find($this->ref_id);
+                        $iitrain->qty = $this->qty;
+                        $iitrain->tran_date = $mm->_date_;
+                        break;
+                    case _POS_::production:
+                        $mm = Production::find($this->ref_id);
+                        $iitrain->qty = $this->qty;
+                        $iitrain->tran_date = $mm->_date_;
+                        break;
+                    case _POS_::purchase:
+                        $mm = Purchase::find($this->ref_id);
+                        $iitrain->qty = $this->qty;
+                        $iitrain->tran_date = $mm->_date_;
+                        break;
+                    default:
+
+                }
+
+                $iitrain->save();
+
+                return $m;
+            }
         } else {
             return null;
         }
@@ -398,7 +448,7 @@ class ItemDetailP
             }
         }
 
-        if(_POS_::items == $this->type) {
+        if (_POS_::items == $this->type) {
             $md = new ItemDetail();
             $md->ref_id = $this->ref_id;
             $md->item_id = $this->item_id;
