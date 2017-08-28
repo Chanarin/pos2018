@@ -1,6 +1,7 @@
 @php
     $r_id = rand(11111, 99999) .  time() . rand(1000, 5000);
     $dataDetails = isset($field['dataDetails'])?$field['dataDetails']:null;
+    //dd($dataDetails);
 @endphp
 @php
     $data_type  = isset($field['data_type'])?$field['data_type']:'';
