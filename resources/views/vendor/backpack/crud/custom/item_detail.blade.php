@@ -492,13 +492,18 @@
                 @if(count($dataDetails) > 0)
                 @forEach($dataDetails as $rii)
 
+                    //item_id
+                    @php
+                       $iiteem = \App\Models\Item::find($rii->item_id);
+                    @endphp
+
                     mRowOption = {
                             id: '{{$rii->id}}',
                             item_id: '{{$rii->item_id}}',
                             item_code: '{{$rii->item_code}}',
-                            title: '{{$rii->title}}',
+                            title: '{{$iiteem!=null?$iiteem->title:''}}',
                             description: '{{$rii->description}}',
-                            unit: '{{$rii->unit}}',
+                            unit: '{{$iiteem!=null?$iiteem->unit:''}}',
                             qty: '{{$rii->qty}}',
                             cost: '{{$rii->cost}}',
                             price: '{{$rii->price}}',
