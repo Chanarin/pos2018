@@ -30,6 +30,7 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin']
     CRUD::resource('production', 'ProductionCrudController');
     CRUD::resource('purchase', 'PurchaseCrudController');
     CRUD::resource('report', 'ReportCrudController');
+    CRUD::resource('unit', 'UnitCrudController');
 
     Route::get('api/customer', 'CustomerCrudController@index2');
     Route::get('api/customer/{id}', 'CustomerCrudController@show2');
