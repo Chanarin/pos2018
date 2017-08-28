@@ -379,7 +379,13 @@ class ItemDetailP
 
             $m->ref_id = $this->ref_id;
             $m->item_id = $this->item_id;
+
             $m->item_code = $this->item_code;
+
+            $m->title = isset($this->title)?$this->title:'';
+            $m->unit = isset($this->unit)?$this->unit:'';
+
+
             $m->qty = $this->qty;
             $m->cost = $this->cost;
             $m->price = $this->price;

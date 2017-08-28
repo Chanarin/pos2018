@@ -496,16 +496,16 @@
 
                     //item_id
                     @php
-                       $iiteem = \App\Models\Item::find($rii->item_id);
+                       //$iiteem = \App\Models\Item::find($rii->item_id);
                     @endphp
 
                     mRowOption = {
                             id: '{{$rii->id}}',
                             item_id: '{{$rii->item_id}}',
                             item_code: '{{$rii->item_code}}',
-                            title: '{{$iiteem!=null?$iiteem->title:''}}',
+                            title: '{{$rii!=null?$rii->title:''}}',
                             description: '{{$rii->description}}',
-                            unit: '{{$iiteem!=null?$iiteem->unit:''}}',
+                            unit: '{{$rii!=null?$rii->unit:''}}',
                             qty: '{{$rii->qty}}',
                             cost: '{{$rii->cost}}',
                             price: '{{$rii->price}}',
