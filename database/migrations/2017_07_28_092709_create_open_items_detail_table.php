@@ -19,6 +19,8 @@ class CreateOpenItemsDetailTable extends Migration
             $table->integer('ref_id')->index()->nullable(); // open id
             $table->integer('item_id')->index()->nullable();
             $table->string('item_code')->nullable();
+            $table->string('title')->index()->nullable();
+            $table->string('unit')->nullable();
             $table->double('qty')->nullable();
             $table->double('cost')->nullable();
             $table->double('price')->nullable();
