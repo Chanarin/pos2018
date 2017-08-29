@@ -23,8 +23,8 @@
     <!-- BackPack Base CSS -->
     <link rel="stylesheet" href="{{ asset('vendor/backpack/backpack.base.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/adminlte') }}/plugins/iCheck/all.css">
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte') }}/plugins/timepicker/bootstrap-timepicker.min.css">
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte') }}/plugins/datepicker/datepicker3.css">
+
+    <link rel="stylesheet" href="{{asset('vendor/adminlte/plugins/daterangepicker/daterangepicker.css')}}">
 @yield('after_styles')
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -107,8 +107,12 @@
 <script src="{{ asset('vendor/adminlte') }}/plugins/iCheck/icheck.min.js"></script>
 <script src="{{ asset('vendor/adminlte') }}/dist/js/demo.js"></script>
 <script src="{{ asset('vendor/adminlte') }}/plugins/select2/select2.full.min.js"></script>
-<script src="{{ asset('vendor/adminlte') }}/plugins/datepicker/bootstrap-datepicker.js"></script>
-<script src="{{ asset('vendor/adminlte') }}/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+
+<script src="{{asset('vendor/adminlte/plugins/daterangepicker/daterangepicker.js')}}"></script>
+<script src="{{asset('vendor/adminlte/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
+
 <!-- page script -->
 <script type="text/javascript">
     /* Store sidebar state */
@@ -163,49 +167,89 @@
         window.print();
         document.body.innerHTML = restorepage;
     }
-//    ==================== report =====================
-    $(function(){
-        $('#from-date,#to-date').datepicker({
-            format: 'yyyy-mm-dd',
-            autoclose: true
+//    ====================select date rang===============
+    $(function () {
+        var start = moment().subtract(29, 'days');
+        var end = moment();
+        function cb(start, end) {
+            $('#reservation span').html(start.format('YYYY/MM/DD') + ' - ' + end.format('YYYY/MM/DD'));
+            $('#from-date').val(start.format('YYYY/MM/DD'));
+            $('#to-date').val(end.format('YYYY/MM/DD'));
+        }
+        $('#reservation').daterangepicker({
+            startDate: start,
+            endDate: end,
+            locale: {
+                format: 'YYYY/MM/DD'
+            },
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'This Year': [moment().startOf('year'), moment().endOf('year')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        }, cb).on('apply.daterangepicker', function (ev, picker) {
+            var st = (picker.startDate.format('YYYY/MM/DD'));
+            var ed = (picker.endDate.format('YYYY/MM/DD'));
+            $('#from-date').val(st);
+            $('#to-date').val(ed);
         });
-        //iCheck for checkbox and radio inputs
+        cb(start, end);
+
+//    ==================== report =====================
+
+    //iCheck for checkbox and radio inputs
         $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
             checkboxClass: 'icheckbox_minimal-blue',
             radioClass: 'iradio_minimal-blue'
         });
-//    ====================ajax get report data=====================
+//    ====================ajax get report data pagination and search=====================
         $('#search-report-by-date').on('click', function (e) {
             e.preventDefault();
-            var report_url = $("input[name='name-report-option']:checked").data('url');
+            var report_url = $('.report-option:checked').data('url');
             var from_date = $('#from-date').val();
             var to_date = $('#to-date').val();
-            $.ajax({
-                url: report_url,
-                type: 'GET',
-                dataType: 'html',
-                data: {
-                    from_date: from_date,
-                    to_date: to_date
-                },
-                success: function (d) {
-                    if (report_url){
+            var q = $('#q').val();
+            if (report_url) {
+                $.ajax({
+                    url: report_url,
+                    type: 'GET',
+                    dataType: 'html',
+                    data: {
+                        from_date: from_date,
+                        to_date: to_date,
+                        q:q
+                    },
+                    success: function (d) {
                         $('.report-item-list').html(d);
-                    }else {
-//                        alert('please click the report type !!!');
-                        swal("OOps.., No Data!", "Please, select report type and date first.")
+                    },
+                    error: function (d) {
+                        alert('error');
                     }
-
-                },
-                error: function () {
-//                        alert('error');
-                }
+                });
+            } else {
+                swal("OOps.., No Data!", "Please, select report type and date first.")
+            }
+        });
+        $('body').delegate('.my-paginate ul li a', 'click', function (e) {
+                e.preventDefault();
+                var report_url = $(this).prop('href');
+                $.ajax({
+                    url: report_url,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function (d) {
+                        $('.report-item-list').html(d);
+                    },
+                    error: function (d) {
+                        alert('error');
+                    }
+                });
             });
-        })
-    });
 //    ====================get pdf file====================
-    $(function () {
-
         var specialElementHandlers = {
             '#editor': function (element,renderer) {
                 return true;

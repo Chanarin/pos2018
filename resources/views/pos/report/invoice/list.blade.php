@@ -1,4 +1,4 @@
-{{--http://127.0.0.1:8000/api/report/open-item/list?from_date=2-8-9&to_date=2-3-4--}}
+@if(count($rows) > 0)
 <div id="report-print">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 10px; margin-top: 10px;">
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 " style="text-align: center;">
@@ -177,6 +177,10 @@
         </div>
     </div>
 @endforeach
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my-paginate" align="center">
     {!! $rows->links() !!}
 </div>
+@else
+    <h2 align="center">Not Record Found</h2>
+
+@endif

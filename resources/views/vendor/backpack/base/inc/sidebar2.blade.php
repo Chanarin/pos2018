@@ -1,48 +1,108 @@
 @if (Auth::check())
-    <aside class="main-sidebar">
-      <section class="sidebar" style="padding-left: 15px;">
-        <a href="#">
-          <span><b>Open Item</b></span>
-        </a>
-        <p>
-          <input data-url="/api/report/open-item/list" type="radio" name="name-report-option" class="minimal report-option"> List<br>
-        </p>
-        <p>
-          <input data-url="/api/report/open-item/detail" type="radio" name="name-report-option" class="minimal report-option"> Detail<br>
-        </p>
+  <!-- Left side column. contains the sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu">
+        <li class="header">Select Report Type</li>
+         <li class="treeview">
+          <a href="#">
+            <i class="fa fa-fw fa-check-square"></i>
+            <span>Open Item</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+              <a href="#">
+                <input data-url="{{url('/api/report/open-item/list')}}" type="radio" name="name-report-option" class="minimal report-option">
+                <span>List</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <input data-url="{{url('/api/report/open-item/detail')}}" type="radio" name="name-report-option" class="minimal report-option">
+                <span>Detail</span>
+              </a>
+            </li>
+          </ul>
+        </li>
 
-        <a href="#">
-          <span><b>Purchase Item</b></span>
-        </a>
-        <p>
-          <input data-url="/api/report/purchase-item/list" type="radio" name="name-report-option" class="minimal report-option"> List<br>
-        </p>
-        <p>
-          <input data-url="/api/report/purchase-item/detail" type="radio" name="name-report-option" class="minimal report-option"> Detail<br>
-        </p>
 
-        <a href="#">
-          <span><b>Production Item</b></span>
-        </a>
-        <p>
-          <input data-url="/api/report/production-item/list" type="radio" name="name-report-option" class="minimal report-option"> List<br>
-        </p>
-        <p>
-          <input data-url="/api/report/production-item/detail" type="radio" name="name-report-option" class="minimal report-option"> Detail<br>
-        </p>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-fw fa-check-square"></i>
+            <span>Purchase Item</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+              <a href="#">
+                <input data-url="{{url('/api/report/purchase-item/list')}}" type="radio" name="name-report-option" class="minimal report-option">
+                <span>List</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <input data-url="{{url('/api/report/purchase-item/detail')}}" type="radio" name="name-report-option" class="minimal report-option">
+                <span>Detail</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-fw fa-check-square"></i>
+            <span>Production Item</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+              <a href="#">
+                <input data-url="{{url('/api/report/production-item/list')}}" type="radio" name="name-report-option" class="minimal report-option">
+                <span>List</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <input data-url="{{url('/api/report/production-item/detail')}}" type="radio" name="name-report-option" class="minimal report-option">
+                <span>Detail</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-fw fa-check-square"></i>
+            <span>Sale Invoice</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+              <a href="#">
+                <input data-url="{{url('/api/report/invoice/list')}}" type="radio" name="name-report-option" class="minimal report-option">
+                <span>List</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <input data-url="{{url('/api/report/invoice/detail')}}" type="radio" name="name-report-option" class="minimal report-option">
+                <span>Detail</span>
+              </a>
+            </li>
+          </ul>
+        </li>
 
-        <a href="#">
-          <span><b>Sale Invoice</b></span>
-        </a>
-        <p>
-          <input data-url="/api/report/invoice/list" type="radio" name="name-report-option" class="minimal report-option"> List<br>
-        </p>
-        <p>
-          <input data-url="/api/report/invoice/detail" type="radio" name="name-report-option" class="minimal report-option"> Detail<br>
-        </p>
-
-      </section>
-    </aside>
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
 @endif
-
-

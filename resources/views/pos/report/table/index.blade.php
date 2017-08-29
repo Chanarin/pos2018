@@ -3,14 +3,40 @@
 @section('header')
 
     <section class="content-header">
-        <a href="#" class="btn btn-xs btn-default" id="search-report-by-date">
-            <i class="fa fa-fw fa-search"></i> VIEW
-        </a>
-        <ol class="breadcrumb">
-            <li><a href="#" class="btn btn-xs btn-default" onclick="printContent('report-print')"><i class="fa fa-fw fa-print"></i> PRINT</a></li>
-            {{--<li><a href="#" class="btn btn-xs btn-default" id="cmd" ><i class="fa fa-fw fa-file-pdf-o"></i> PDF</a></li>--}}
-            {{--<li><a href="#" class="btn btn-xs btn-default" id="btnExport"><i class="fa fa-fw fa-file-excel-o"></i> EXCEL</a></li>--}}
-        </ol>
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <div class="col-md-10" >
+                    <!-- Date range -->
+                    <div class="col-md-4 input-group-sm">
+                        <input type="text" id="q" class="form-control pull-right" placeholder="search here...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+
+                            <div class="input-group input-group-sm">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right" id="reservation">
+                                <input type="hidden" id="from-date">
+                                <input type="hidden" id="to-date">
+                                <span class="input-group-btn">
+                                  <button type="button" class="btn btn-info btn-flat" id="search-report-by-date">Search</button>
+                                </span>
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+
+                </div>
+                <li><a href="#" class="btn btn-xs btn-default" onclick="printContent('report-print')"><i class="fa fa-fw fa-print"></i> PRINT</a></li>
+                {{--<li><a href="#" class="btn btn-xs btn-default" id="cmd" ><i class="fa fa-fw fa-file-pdf-o"></i> PDF</a></li>--}}
+                {{--<li><a href="#" class="btn btn-xs btn-default" id="btnExport"><i class="fa fa-fw fa-file-excel-o"></i> EXCEL</a></li>--}}
+            </ol>
+        </div>
+
     </section>
 @endsection
 @section('content')
