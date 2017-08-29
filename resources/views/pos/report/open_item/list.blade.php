@@ -30,7 +30,7 @@
                     <td>{{$row->open_number}}</td>
                     <td>{{$row->_date_}}</td>
                     <td>{{$row->description}}</td>
-                    <td><button type="button" data-toggle="modal" data-target="#popUpItemDetail{{$row->id}}"><i class="fa fa-search">
+                    <td><button type="button" data-toggle="modal" data-target="#popUpItemDetail{{$row->id}}"><i class="fa fa-eye">
                             </i>
                         </button>
                     </td>

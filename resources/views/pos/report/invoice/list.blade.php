@@ -55,7 +55,7 @@
                     <td>$ {{number_format($row->complete_price)}}</td>
                     <td>$ {{number_format($total_discount)}}</td>
                     <td>$ {{number_format($grand_total)}}</td>
-                    <td><button type="button" data-toggle="modal" data-target="#popUpItemDetail{{$row->id}}"><i class="fa fa-search">
+                    <td><button type="button" data-toggle="modal" data-target="#popUpItemDetail{{$row->id}}"><i class="fa fa-eye">
                             </i>
                         </button>
                     </td>
