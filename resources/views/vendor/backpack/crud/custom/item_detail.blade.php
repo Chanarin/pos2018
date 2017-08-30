@@ -18,7 +18,7 @@
 
                 @endphp
                 <th style="font-weight: 600!important; @if($prop['show'] == false) display: none !important;  @endif ; @if($prop['width'] > 0) width:{{$prop['width']}}px ; @endif " >
-                    {{ $prop['label'] }}
+                    {{ _t($prop['label']) }}
                 </th>
             @endforeach
             <th class="text-center" colspan="2" style="width: 200px !important;">
