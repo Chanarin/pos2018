@@ -1,6 +1,6 @@
 <?php
 
-function _t($txt)
+function _t($txt,$lang = 'km')
 {
-    return $txt;
+    return \App\Helpers\Glb::translate($txt,$lang);
 }

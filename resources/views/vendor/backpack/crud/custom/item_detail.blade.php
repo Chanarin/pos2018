@@ -477,9 +477,9 @@
             var uu = '';
             for (var key in init) {
                 //dd(key + ' is ' + init[key]);
-                if(key == 'item_id'){
-                    row_sub = row_sub.replaceAll('pppp-'+key+'-pppp',' <option selected="selected" value="'+init[key]+'">'+init['title']+'</option> ');
-                else if(key == 'unit'){
+                if(key == 'item_id') {
+                    row_sub = row_sub.replaceAll('pppp-' + key + '-pppp', ' <option selected="selected" value="' + init[key] + '">' + init['title'] + '</option> ');
+                }else if(key == 'unit'){
                     uu = init[key];
                 }else {
                     row_sub = row_sub.replaceAll('pppp-'+key+'-pppp',' value="'+init[key]+'" ');

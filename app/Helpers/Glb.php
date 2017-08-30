@@ -1,6 +1,7 @@
 <?php
 namespace App\Helpers;
 
+use App\Language;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
@@ -41,6 +42,34 @@ class Glb
         }
 
         return null;
+    }
+
+    static function translate($txt,$lang = 'km')
+    {
+        if(session()->exists('sess_lang'))
+        {
+            $lang = session('sess_lang');
+        }
+        $arr_lang = ['en','km'];
+        $l = in_array($lang,$arr_lang)?$lang:'km';
+        $t = str_replace(' ','_',   preg_replace('/\s+/', ' ',  strtolower(trim($txt))));
+        $m = Language::where('key',$t)->first();
+        if($m != null)
+        {
+            if(isset($m->{$l}))
+            {
+                if($m->{$l} != null && $m->{$l} != '')
+                {
+                    return $m->{$l};
+                }
+            }
+        }else{
+            $m = new Language();
+            $m->key = $t;
+            $m->save();
+        }
+        return $txt;
+        //return __('go711.'.$t);
     }
 
 }
