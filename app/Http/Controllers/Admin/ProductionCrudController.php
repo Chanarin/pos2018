@@ -22,7 +22,7 @@ class ProductionCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\Production');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/production');
-        $this->crud->setEntityNameStrings('Production', 'Productions');
+        $this->crud->setEntityNameStrings(_t('Production'), _t('Productions'));
 
         /*
         |--------------------------------------------------------------------------
@@ -31,16 +31,16 @@ class ProductionCrudController extends CrudController
         */
         $this->crud->addColumn([
             'name' => 'production_number',
-            'label' => 'Production Number',
+            'label' => _t('Production Number'),
         ]);
 
         $this->crud->addColumn([
             'name' => '_date_',
-            'label' => 'Production Date',
+            'label' => _t('Production Date'),
         ]);
 
         $this->crud->addColumn([
-            'label' => 'Customer Production',
+            'label' => _t('Customer Production'),
             'type' => 'select',
             'name' => 'customer_id',
             'entity' => 'customer',
@@ -50,12 +50,12 @@ class ProductionCrudController extends CrudController
 
         $this->crud->addColumn([
             'name' => 'ref',
-            'label' => 'Reference',
+            'label' => _t('Reference'),
         ]);
 
         $this->crud->addColumn([
             'name' => 'description',
-            'label' => 'Description',
+            'label' => _t('Description'),
         ]);
 
         $this->crud->addField([

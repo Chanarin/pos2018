@@ -22,7 +22,7 @@ class InvoiceCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\Invoice');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/invoice');
-        $this->crud->setEntityNameStrings('invoice', 'invoices');
+        $this->crud->setEntityNameStrings(_t('invoice'), _t('invoices'));
 
         /*
         |--------------------------------------------------------------------------
@@ -31,7 +31,7 @@ class InvoiceCrudController extends CrudController
         */
         $this->crud->addColumn([
             'name' => 'invoice_number',
-            'label' => 'Invoice Number',
+            'label' => _t('Invoice Number'),
         ]);
 
         $this->crud->addColumn([
@@ -40,7 +40,7 @@ class InvoiceCrudController extends CrudController
         ]);
 
         $this->crud->addColumn([
-            'label' => 'Customer Purchase',
+            'label' => _t('Customer Purchase'),
             'type' => 'select',
             'name' => 'customer_id',
             'entity' => 'customer',
@@ -50,24 +50,24 @@ class InvoiceCrudController extends CrudController
 
         $this->crud->addColumn([
             'name' => 'deposit',
-            'label' => 'Deposit',
+            'label' => _t('Deposit'),
         ]);
 
         $this->crud->addColumn([
             'name' => 'description',
-            'label' => 'Description',
+            'label' => _t('Description'),
         ]);
         $this->crud->addColumn([
             'name' => 'status',
-            'label' => 'Status',
+            'label' => _t('Status'),
         ]);
         $this->crud->addColumn([
             'name' => 'complete_date',
-            'label' => 'Complete Date',
+            'label' => _t('Complete Date'),
         ]);
         $this->crud->addColumn([
             'name' => 'complete_price',
-            'label' => 'Complete Price',
+            'label' => _t('Complete Price'),
         ]);
 
         $this->crud->addField([

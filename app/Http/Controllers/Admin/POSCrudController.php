@@ -20,7 +20,7 @@ class POSCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\POS');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/pos');
-        $this->crud->setEntityNameStrings('pos', 'p_o_s');
+        $this->crud->setEntityNameStrings(_t('POS'), _t('POS'));
 
         /*
         |--------------------------------------------------------------------------

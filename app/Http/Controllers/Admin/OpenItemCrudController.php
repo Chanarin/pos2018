@@ -29,7 +29,7 @@ class OpenItemCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\OpenItem');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/openitem');
-        $this->crud->setEntityNameStrings('Open Item', 'Open Items');
+        $this->crud->setEntityNameStrings(_t('Open Item'), _t('Open Items'));
 
         /*
         |--------------------------------------------------------------------------
@@ -38,21 +38,21 @@ class OpenItemCrudController extends CrudController
         */
         $this->crud->addColumn([
             'name' => 'open_number',
-            'label' => 'Open Number',
+            'label' => _t('Open Number'),
         ]);
 
         $this->crud->addColumn([
             'name' => '_date_',
-            'label' => 'Open Date',
+            'label' => _t('Open Date'),
         ]);
 
         $this->crud->addColumn([
             'name' => 'description',
-            'label' => 'description',
+            'label' => _t('description'),
         ]);
 
         $this->crud->addColumn([
-            'label' => 'User',
+            'label' => _t('User'),
             'type' => 'select',
             'name' => 'user_id',
             'entity' => 'userTitle',
@@ -62,7 +62,7 @@ class OpenItemCrudController extends CrudController
 
         $this->crud->addColumn([
             'name' => 'created_at',
-            'label' => 'Created At',
+            'label' => _t('Created At'),
         ]);
 
         $this->crud->addField([

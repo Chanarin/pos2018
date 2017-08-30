@@ -22,7 +22,7 @@ class ItemCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\Item');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/item');
-        $this->crud->setEntityNameStrings('Item', 'Items');
+        $this->crud->setEntityNameStrings(_t('Item'), _t('Items'));
 
         /*
         |--------------------------------------------------------------------------
@@ -30,7 +30,7 @@ class ItemCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->addColumn([
-            'label' => 'Category',
+            'label' => _t('Category'),
             'type' => 'select',
             'name' => 'category_id',
             'entity' => 'category',
@@ -40,12 +40,12 @@ class ItemCrudController extends CrudController
 
         $this->crud->addColumn([
             'name' => 'title',
-            'label' => 'Title',
+            'label' => _t('Title'),
         ]);
 
         $this->crud->addColumn([
             'name' => 'image',
-            'label' => 'image',
+            'label' => _t('image'),
             'type' => 'image2m',
             'attributes' => [
                 'als' =>'Image',

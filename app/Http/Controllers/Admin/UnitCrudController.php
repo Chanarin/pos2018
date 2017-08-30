@@ -20,7 +20,7 @@ class UnitCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\Unit');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/unit');
-        $this->crud->setEntityNameStrings('unit', 'units');
+        $this->crud->setEntityNameStrings(_t('unit'), _t('units'));
 
         /*
         |--------------------------------------------------------------------------
@@ -29,17 +29,17 @@ class UnitCrudController extends CrudController
         */
         $this->crud->addColumn([
             'name' => 'name',
-            'label' => 'Name',
+            'label' => _t('Name'),
         ]);
 
         $this->crud->addColumn([
             'name' => 'unit',
-            'label' => 'Unit',
+            'label' => _t('Unit'),
         ]);
 
         $this->crud->addColumn([
             'name' => 'note',
-            'label' => 'Note',
+            'label' => _t('Note'),
         ]);
 
         $this->crud->addField([

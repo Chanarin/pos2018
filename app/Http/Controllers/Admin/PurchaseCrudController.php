@@ -22,7 +22,7 @@ class PurchaseCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\Purchase');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/purchase');
-        $this->crud->setEntityNameStrings('Purchase', 'Purchases');
+        $this->crud->setEntityNameStrings(_t('Purchase'), _t('Purchases'));
 
         /*
         |--------------------------------------------------------------------------
@@ -31,16 +31,16 @@ class PurchaseCrudController extends CrudController
         */
         $this->crud->addColumn([
             'name' => 'purchase_number',
-            'label' => 'Purchase Number',
+            'label' => _t('Purchase Number'),
         ]);
 
         $this->crud->addColumn([
             'name' => '_date_',
-            'label' => 'Open Date',
+            'label' => _t('Open Date'),
         ]);
 
         $this->crud->addColumn([
-            'label' => 'Customer Purchase',
+            'label' =>_t( 'Customer Purchase'),
             'type' => 'select',
             'name' => 'customer_id',
             'entity' => 'customer',
@@ -50,17 +50,17 @@ class PurchaseCrudController extends CrudController
 
         $this->crud->addColumn([
             'name' => 'ref',
-            'label' => 'Reference',
+            'label' =>_t( 'Reference'),
         ]);
 
         $this->crud->addColumn([
             'name' => 'description',
-            'label' => 'Description',
+            'label' => _t('Description'),
         ]);
 
         $this->crud->addColumn([
             'name' => 'created_at',
-            'label' => 'Created At',
+            'label' =>_t( 'Created At'),
         ]);
 
         $this->crud->addField([

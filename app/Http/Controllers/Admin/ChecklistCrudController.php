@@ -27,7 +27,7 @@ class ChecklistCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\Checklist');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/checklist');
-        $this->crud->setEntityNameStrings('checklist', 'checklists');
+        $this->crud->setEntityNameStrings(_t('checklist'), _t('checklists'));
 
         /*
         |--------------------------------------------------------------------------
@@ -36,12 +36,12 @@ class ChecklistCrudController extends CrudController
         */
         $this->crud->addColumn([
             'name' => 'checklist_number',
-            'label' => 'Checklist Number',
+            'label' => _t('Checklist Number'),
         ]);
 
         $this->crud->addColumn([
             'name' => '_date_',
-            'label' => 'Checklist Date',
+            'label' => _t('Checklist Date'),
         ]);
 
         $this->crud->addField([

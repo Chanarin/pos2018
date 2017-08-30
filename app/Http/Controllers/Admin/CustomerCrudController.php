@@ -55,7 +55,7 @@ class CustomerCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\Customer');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/customer');
-        $this->crud->setEntityNameStrings('Customer', 'Customers');
+        $this->crud->setEntityNameStrings(_t('Customer'), _t('Customers'));
 
         /*
         |--------------------------------------------------------------------------
@@ -64,38 +64,38 @@ class CustomerCrudController extends CrudController
         */
         $this->crud->addColumn([
             'name' => 'name',
-            'label' => 'Name',
+            'label' => _t('Name'),
         ]);
 
         $this->crud->addColumn([
             'name' => 'gender',
-            'label' => 'Gender',
+            'label' => _t('Gender'),
         ]);
 
         $this->crud->addColumn([
             'name' => 'phone',
-            'label' => 'Phone',
+            'label' => _t('Phone'),
         ]);
 
         $this->crud->addColumn([
             'name' => 'description',
-            'label' => 'Description',
+            'label' => _t('Description'),
         ]);
 
         $this->crud->addColumn([
             'name' => 'created_at',
-            'label' => 'Created At',
+            'label' => _t('Created At'),
         ]);
 
         $this->crud->addField([
             'name' => 'name',
-            'label' => 'Name',
+            'label' => _t('Name'),
         ]);
 
         $this->crud->addField([
             // select_from_array
             'name' => 'gender',
-            'label' => "Gender",
+            'label' => _t("Gender"),
             'type' => 'select2_from_array',
             'options' => ['Male' => 'Male', 'Female' => 'Female'],
             'allows_null' => false,
@@ -104,20 +104,20 @@ class CustomerCrudController extends CrudController
 
         $this->crud->addField([
             'name' => 'phone',
-            'label' => 'Phone',
+            'label' => _t('Phone'),
             'type' => 'text',
         ]);
 
         $this->crud->addField([
             'name' => 'description',
-            'label' => 'Description',
+            'label' => _t('Description'),
             'type' => 'textarea',
         ]);
 
         $this->crud->addFilter([ // select2_ajax filter
             'name' => 'name',
             'type' => 'select2_ajax',
-            'label'=> 'Name',
+            'label'=> _t('Name'),
             'placeholder' => 'Pick a Name'
         ],
             url('admin/ajax-customer-name'), // the ajax route
@@ -128,7 +128,7 @@ class CustomerCrudController extends CrudController
         $this->crud->addFilter([ // select2_ajax filter
             'name' => 'phone',
             'type' => 'select2_ajax',
-            'label'=> 'Phone',
+            'label'=> _t('Phone'),
             'placeholder' => 'Pick a Phone'
         ],
             url('admin/ajax-customer-phone'), // the ajax route
@@ -139,7 +139,7 @@ class CustomerCrudController extends CrudController
         $this->crud->addFilter([ // dropdown filter
             'name' => 'gender',
             'type' => 'dropdown',
-            'label'=> 'Gender'
+            'label'=> _t('Gender')
         ], [
             'Male' => 'Male',
             'Female' => 'Female'

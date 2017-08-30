@@ -21,7 +21,7 @@ class ReportCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\Report');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/report');
-        $this->crud->setEntityNameStrings('report', 'reports');
+        $this->crud->setEntityNameStrings(_t('report'), _t('reports'));
 
         /*
         |--------------------------------------------------------------------------
