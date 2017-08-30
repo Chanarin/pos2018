@@ -9,7 +9,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-        <li class="active">{{_t('dashboard')}}'</li>
+        <li class="active">{{_t('dashboard')}}</li>
       </ol>
     </section>
 @endsection
@@ -168,7 +168,7 @@
                             <!-- AREA CHART -->
                             <div class="box box-primary">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">{{_t(Area Chart'')}}</h3>
+                                    <h3 class="box-title">{{_t('Area Chart')}}</h3>
 
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>

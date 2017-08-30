@@ -24,31 +24,31 @@
         {{--</li>--}}
         <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/customers') }}" >
-                <i class="fa  fa-user"> Customer</i>
+                <i class="fa  fa-user"> {{_t('Customer')}}</i>
 
             </a>
         </li>
         <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/purchase') }}">
-                <i class="fa fa-cart-arrow-down"> Purchase</i>
+                <i class="fa fa-cart-arrow-down"> {{_t('Purchase')}}</i>
 
             </a>
         </li>
         <li class=" hidden-xs hidden-sm">
             <a href="#" >
-                <i class="fa fa-th-large"> Profit</i>
+                <i class="fa fa-th-large"> {{_t('Profit')}}</i>
 
             </a>
         </li>
         <li class=" hidden-xs hidden-sm">
             <a href="#" >
-                <i class="fa fa-print"> List Sale</i>
+                <i class="fa fa-print"> {{_t('List Sale')}}</i>
 
             </a>
         </li>
         <li class=" hidden-xs hidden-sm">
             <a href="#" >
-                <i class="fa fa-th-large"> Today Sale</i>
+                <i class="fa fa-th-large"> {{_t('Today Sale')}}</i>
 
             </a>
         </li>
@@ -57,7 +57,7 @@
       <!-- ========================================================= -->
         <li class="dropdown hidden-xs hidden-sm">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-language"> English</i>
+                <i class="fa fa-language"> ខ្មែរ</i>
             </a>
             <ul class="dropdown-menu" style=" height: 50px; !important;">
                 <li>
@@ -81,12 +81,12 @@
       <!-- <li><a href="{{ url('/') }}"><i class="fa fa-home"></i> <span>Home</span></a></li> -->
 
         @if (Auth::guest())
-            <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/login') }}">{{ trans('backpack::base.login') }}</a></li>
+            <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/login') }}">{{_t('login')}}</a></li>
             @if (config('backpack.base.registration_open'))
-            <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/register') }}">{{ trans('backpack::base.register') }}</a></li>
+            <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/register') }}">{{_t('register')}}</a></li>
             @endif
         @else
-            <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/logout') }}"><i class="fa fa-btn fa-sign-out"></i> {{ trans('backpack::base.logout') }}</a></li>
+            <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/logout') }}"><i class="fa fa-btn fa-sign-out"></i> {{_t('logout')}}</a></li>
         @endif
 
        <!-- ========== End of top menu right items ========== -->
