@@ -5,11 +5,11 @@
     <section class="sidebar">
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
-        <li class="header">Select Report Type</li>
+        <li class="header"><h4>{{_t('Select Report Type')}}</h4></li>
          <li class="treeview">
           <a href="#">
             <i class="fa fa-fw fa-check-square"></i>
-            <span>Open Item</span>
+            <span>{{_t('Open Item')}}</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -18,13 +18,13 @@
             <li>
               <a href="#">
                 <input data-url="{{url('/api/report/open-item/list')}}" type="radio" name="name-report-option" class="minimal report-option">
-                <span>List</span>
+                <span>{{_t('List')}}</span>
               </a>
             </li>
             <li>
               <a href="#">
                 <input data-url="{{url('/api/report/open-item/detail')}}" type="radio" name="name-report-option" class="minimal report-option">
-                <span>Detail</span>
+                <span>{{_t('Detail')}}</span>
               </a>
             </li>
           </ul>
@@ -34,7 +34,7 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-fw fa-check-square"></i>
-            <span>Purchase Item</span>
+            <span>{{_t('Purchase Item')}}</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -43,13 +43,13 @@
             <li>
               <a href="#">
                 <input data-url="{{url('/api/report/purchase-item/list')}}" type="radio" name="name-report-option" class="minimal report-option">
-                <span>List</span>
+                <span>{{_t('List')}}</span>
               </a>
             </li>
             <li>
               <a href="#">
                 <input data-url="{{url('/api/report/purchase-item/detail')}}" type="radio" name="name-report-option" class="minimal report-option">
-                <span>Detail</span>
+                <span>{{_t('Detail')}}</span>
               </a>
             </li>
           </ul>
@@ -57,7 +57,7 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-fw fa-check-square"></i>
-            <span>Production Item</span>
+            <span>{{_t('Production Item')}}</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -66,13 +66,13 @@
             <li>
               <a href="#">
                 <input data-url="{{url('/api/report/production-item/list')}}" type="radio" name="name-report-option" class="minimal report-option">
-                <span>List</span>
+                <span>{{_t('List')}}</span>
               </a>
             </li>
             <li>
               <a href="#">
                 <input data-url="{{url('/api/report/production-item/detail')}}" type="radio" name="name-report-option" class="minimal report-option">
-                <span>Detail</span>
+                <span>{{_t('Detail')}}</span>
               </a>
             </li>
           </ul>
@@ -80,7 +80,7 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-fw fa-check-square"></i>
-            <span>Sale Invoice</span>
+            <span>{{_t('Sale Invoice')}}</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -89,13 +89,13 @@
             <li>
               <a href="#">
                 <input data-url="{{url('/api/report/invoice/list')}}" type="radio" name="name-report-option" class="minimal report-option">
-                <span>List</span>
+                <span>{{_t('List')}}</span>
               </a>
             </li>
             <li>
               <a href="#">
                 <input data-url="{{url('/api/report/invoice/detail')}}" type="radio" name="name-report-option" class="minimal report-option">
-                <span>Detail</span>
+                <span>{{_t('Detail')}}</span>
               </a>
             </li>
           </ul>

@@ -9,7 +9,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-        <li class="active">{{ trans('backpack::base.dashboard') }}</li>
+        <li class="active">{{_t('dashboard')}}'</li>
       </ol>
     </section>
 @endsection
@@ -18,7 +18,7 @@
         <div class="col-md-12">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <div class="box-title">{{ trans('backpack::base.login_status') }}</div>
+                    <div class="box-title">{{_t('login_status')}}</div>
                 </div>
                 <!-- Main content -->
                 <style>
@@ -44,72 +44,119 @@
                 </style>
                 <section class="content">
                     <div class="row">
-                        <div class="col-md-2 col-sm-4 col-xs-12">
-                            <div class="info-box bg-aqua">
-                                <div class="bg-size">
+                        <a href="{{url('/admin/sale')}}">
+                            <div class="col-md-2 col-sm-4 col-xs-12">
+                                <div class="info-box bg-aqua">
+                                    <div class="bg-size">
                                     <span>
                                         <i><img width="60" height="60" src="{{asset('pos/icon/sale.png')}}"></i>
                                     </span>
-                                    <br>
-                                    <span class="fon-size" style=""><b>Sale</b></span>
+                                        <br>
+                                        <span class="fon-size" style=""><b>{{_t('POS')}}</b></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-2 col-sm-4 col-xs-12">
-                            <div class="info-box bg-green">
-                                <div class="bg-size">
-                                    <span>
-                                        <i><img width="60" height="60" src="{{asset('pos/icon/purchase.png')}}"></i>
-                                    </span>
-                                    <br>
-                                    <span class="fon-size"><b>Purchase</b></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-sm-4 col-xs-12">
-                            <div class="info-box bg-red">
-                                <div class="bg-size">
-                                    <span>
-                                        <i><img width="60" height="60" src="{{asset('pos/icon/stock-in.png')}}"></i>
-                                    </span>
-                                    <br>
-                                    <span class="fon-size"><b>Open Stock</b></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-sm-4 col-xs-12">
-                            <div class="info-box bg-red">
-                                <div class="bg-size">
+                        </a>
+                        <a href="{{url('/admin/invoice')}}">
+                            <div class="col-md-2 col-sm-4 col-xs-12">
+                                <div class="info-box bg-red">
+                                    <div class="bg-size">
                                     <span>
                                         <i><img width="60" height="60" src="{{asset('pos/icon/check.png')}}"></i>
                                     </span>
-                                    <br>
-                                    <span class="fon-size"><b>Check List</b></span>
+                                        <br>
+                                        <span class="fon-size"><b>{{_t('Invoice')}}</b></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-2 col-sm-4 col-xs-12">
-                            <div class="info-box bg-red">
-                                <div class="bg-size">
+
+                        </a>
+                        <a href="{{url('/admin/customer')}}">
+                            <div class="col-md-2 col-sm-4 col-xs-12">
+                                <div class="info-box bg-red">
+                                    <div class="bg-size">
                                     <span>
                                         <i><img width="60" height="60" src="{{asset('pos/icon/customer.png')}}"></i>
                                     </span>
-                                    <br>
-                                    <span class="fon-size"><b>Customer</b></span>
+                                        <br>
+                                        <span class="fon-size"><b>{{_t('Customer')}}</b></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-2 col-sm-4 col-xs-12">
-                            <div class="info-box bg-yellow">
-                                <div class="bg-size">
+                        </a>
+
+                        <a href="{{url('/admin/view-report')}}">
+                            <div class="col-md-2 col-sm-4 col-xs-12">
+                                <div class="info-box bg-yellow">
+                                    <div class="bg-size">
                                     <span>
                                         <i><img width="60" height="60" src="{{asset('pos/icon/report.png')}}"></i>
                                     </span>
-                                    <br>
-                                    <span class="fon-size"><b>Report</b></span>
+                                        <br>
+                                        <span class="fon-size"><b>{{_t('Report')}}</b></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
+
+                        <a href="{{url('/admin/openitem')}}">
+                            <div class="col-md-2 col-sm-4 col-xs-12">
+                                <div class="info-box bg-red">
+                                    <div class="bg-size">
+                                    <span>
+                                        <i><img width="60" height="60" src="{{asset('pos/icon/stock-in.png')}}"></i>
+                                    </span>
+                                        <br>
+                                        <span class="fon-size"><b>{{_t('Open Stock')}}</b></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+
+                        <a href="{{url('/admin/purchase')}}">
+                            <div class="col-md-2 col-sm-4 col-xs-12">
+                                <div class="info-box bg-green">
+                                    <div class="bg-size">
+                                    <span>
+                                        <i><img width="60" height="60" src="{{asset('pos/icon/purchase.png')}}"></i>
+                                    </span>
+                                        <br>
+                                        <span class="fon-size"><b>{{_t('Purchase')}}</b></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="{{url('/admin/production')}}">
+                            <div class="col-md-2 col-sm-4 col-xs-12">
+                                <div class="info-box bg-green">
+                                    <div class="bg-size">
+                                    <span>
+                                        <i><img width="60" height="60" src="{{asset('pos/icon/purchase.png')}}"></i>
+                                    </span>
+                                        <br>
+                                        <span class="fon-size"><b>{{_t('Production')}}</b></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="{{url('/admin/checklist')}}">
+                            <div class="col-md-2 col-sm-4 col-xs-12">
+                                <div class="info-box bg-red">
+                                    <div class="bg-size">
+                                    <span>
+                                        <i><img width="60" height="60" src="{{asset('pos/icon/check.png')}}"></i>
+                                    </span>
+                                        <br>
+                                        <span class="fon-size"><b>{{_t('Check List')}}</b></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </a>
+
                     </div>
                 </section>
 
@@ -121,7 +168,7 @@
                             <!-- AREA CHART -->
                             <div class="box box-primary">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Area Chart</h3>
+                                    <h3 class="box-title">{{_t(Area Chart'')}}</h3>
 
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
