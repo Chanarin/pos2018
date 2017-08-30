@@ -2,7 +2,7 @@
     <div class="form-group col-md-6">
         @php
             $field = [
-                'label' => 'Parent',
+                'label' => _t('Parent'),
                 'type' => 'select',
                 'name' => 'parent_id',
                 'value' => isset($crud->entry->parent_id)?$crud->entry->parent_id:null,
@@ -19,7 +19,7 @@
             $field = [
                 'name' => 'title',
                 'value' => isset($crud->entry->title)?$crud->entry->title:null,
-                'label' => 'Title',
+                'label' => _t('Title'),
                 'type' => 'text'
                 ];
         @endphp
@@ -31,7 +31,7 @@
             $field = [
                 'name' => 'description',
                 'value' => isset($crud->entry->description)?$crud->entry->description:null,
-                'label' => 'Description',
+                'label' => _t('Description'),
                 'type' => 'textarea'
                 ];
         @endphp
@@ -41,7 +41,7 @@
         @php
             $field = [ // image
                 'default' => asset('No_Image_Available.jpg'),
-                'label' => "Image",
+                'label' =>_t( "Image"),
                 'name' => "image",
                 'value' => isset($crud->entry->image)?$crud->entry->image:null,
                 'type' => 'image2m',
@@ -58,7 +58,7 @@
             $field = [
                    'name' => 'status',
                    'value' => isset($crud->entry->status)?$crud->entry->status:null,
-                   'label' => 'Status',
+                   'label' => _t('Status'),
                    'type' => 'enum'
                    ];
         @endphp

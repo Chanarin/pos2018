@@ -7,7 +7,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
     <div class="form-group col-md-6">
         @php
         $field = [   // date_picker
-            'name' => 'open_number',
+            'name' => _t('open_number'),
             'type' => 'text',
             'label' => 'Open Number',
             'value' => isset($crud->entry->open_number)?$crud->entry->open_number:null,
@@ -21,7 +21,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
         $field = [
             'name' => '_date_',
             'type' => 'date_picker',
-            'label' => 'Open Date',
+            'label' => _t('Open Date'),
             'showOneTime' => 1,
             'value' => isset($crud->entry->_date_)?$crud->entry->_date_:null,
             'date_picker_options' => [
@@ -38,7 +38,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
             $field = [
                 'name' => 'description',
                 'value' => isset($crud->entry->description)?$crud->entry->description:null,
-                'label' => 'Description',
+                'label' => _t('Description'),
                 'type' => 'textarea'
                 ];
         @endphp
@@ -52,7 +52,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
                 'max_rows' => 5,
                 'max_rows_sub' => 5,
                 'level' => 1,
-                'label' => "Item Detail",
+                'label' => _t("Item Detail"),
                 'name' => "item_detail",
                 'value' => isset($crud->entry->image)?$crud->entry->image:null,
                 'type' => 'item_detail',

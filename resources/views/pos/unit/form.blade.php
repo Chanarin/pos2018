@@ -4,7 +4,7 @@
             $field = [
                 'name' => 'name',
                 'value' => isset($crud->entry->name)?$crud->entry->name:null,
-                'label' => 'Name',
+                'label' => _t('Name'),
                 'type' => 'text'
                 ];
         @endphp
@@ -15,7 +15,7 @@
             $field = [
                 'name' => 'unit',
                 'value' => isset($crud->entry->unit)?$crud->entry->unit:null,
-                'label' => 'Unit',
+                'label' => _t('Unit'),
                 'type' => 'text'
                 ];
         @endphp
@@ -26,7 +26,7 @@
             $field = [
                 'name' => 'note',
                 'value' => isset($crud->entry->note)?$crud->entry->note:null,
-                'label' => 'Note',
+                'label' => _t('Note'),
                 'type' => 'textarea'
                 ];
         @endphp

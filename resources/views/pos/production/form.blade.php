@@ -9,7 +9,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
         $field = [   // date_picker
             'name' => 'production_number',
             'type' => 'text',
-            'label' => 'Production Number',
+            'label' => _t('Production Number'),
             'value' => isset($crud->entry->production_number)?$crud->entry->production_number:null,
         ];
         @endphp
@@ -20,7 +20,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
         $field = [
             'name' => '_date_',
             'type' => 'date_picker',
-            'label' => 'Production Date',
+            'label' => _t('Production Date'),
             'value' => isset($crud->entry->_date_)?$crud->entry->_date_:null,
             'showOneTime' => 1,
             'date_picker_options' => [
@@ -36,7 +36,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
         @php
         $field = [
             // 1-n relationship
-            'label' => 'Customer Production', // Table column heading
+            'label' => _t('Customer Production'), // Table column heading
             'type' => 'select2_from_ajax',
             'name' => 'customer_id', // the column that contains the ID of that connected entity
             'entity' => 'customer', // the method that defines the relationship in your Model
@@ -56,7 +56,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
         $field = [
             'name' => 'ref',
             'type' => 'text',
-            'label' => 'Production Reference',
+            'label' => _t('Production Reference'),
             'value' => isset($crud->entry->ref)?$crud->entry->ref:null,
         ];
         @endphp
@@ -67,7 +67,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
             $field = [
                 'name' => 'description',
                 'value' => isset($crud->entry->description)?$crud->entry->description:null,
-                'label' => 'Description',
+                'label' => _t('Description'),
                 'type' => 'textarea'
                 ];
         @endphp
@@ -81,7 +81,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
                 'max_rows' => 5,
                 'max_rows_sub' => 5,
                 'level' => 1,
-                'label' => "Item Detail",
+                'label' => _t("Item Detail"),
                 'name' => "item_detail",
                 'value' => isset($crud->entry->image)?$crud->entry->image:null,
                 'type' => 'item_detail',

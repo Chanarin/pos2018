@@ -7,7 +7,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
     <div class="form-group col-md-6">
         @php
         $field = [
-            'label' => 'Category',
+            'label' => _t('Category'),
             'type' => 'select',
             'name' => 'category_id',
             'value' => isset($crud->entry->category_id)?$crud->entry->category_id:null,
@@ -22,7 +22,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
     <div class="form-group col-md-6">
         @php
         $field = [
-            'name' => 'item_code',
+            'name' => _t('item_code'),
             'value' => isset($crud->entry->item_code)?$crud->entry->item_code:null,
             'label' => 'Code',
             'type' => 'text'
@@ -35,7 +35,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
         $field = [
             'name' => 'title',
             'value' => isset($crud->entry->title)?$crud->entry->title:null,
-            'label' => 'Title',
+            'label' => _t('Title'),
             'type' => 'text'
             ];
         @endphp
@@ -46,7 +46,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
         $field = [
             'name' => 'unit',
             'value' => isset($crud->entry->unit)?$crud->entry->unit:null,
-            'label' => 'Unit',
+            'label' => _t('Unit'),
             'type' => 'text'
             ];
         @endphp
@@ -58,7 +58,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
         $field = [
             'name' => 'description',
             'value' => isset($crud->entry->description)?$crud->entry->description:null,
-            'label' => 'Description',
+            'label' => _t('Description'),
             'type' => 'textarea'
             ];
         @endphp
@@ -68,7 +68,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
         @php
         $field = [ // image
             'default' => asset('No_Image_Available.jpg'),
-            'label' => "Image",
+            'label' => _t("Image"),
             'name' => "image",
             'value' => isset($crud->entry->image)?$crud->entry->image:null,
             'type' => 'image2m',
@@ -88,7 +88,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
             'max_rows' => 5,
             'max_rows_sub' => 5,
             'level' => 1,
-            'label' => "Item Detail",
+            'label' => _t("Item Detail"),
             'name' => "item_detail",
             'value' => isset($crud->entry->image)?$crud->entry->image:null,
             'type' => 'item_detail',

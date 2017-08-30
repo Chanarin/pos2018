@@ -9,7 +9,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
         $field = [   // date_picker
             'name' => 'invoice_number',
             'type' => 'text',
-            'label' => 'Invoice Number',
+            'label' =>_t( 'Invoice Number'),
             'value' => isset($crud->entry->invoice_number)?$crud->entry->invoice_number:null,
             // optional:
         ];
@@ -21,7 +21,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
         $field = [
             'name' => '_date_',
             'type' => 'date_picker',
-            'label' => 'Invoice Date',
+            'label' => _t('Invoice Date'),
             'showOneTime' => 1,
             'value' => isset($crud->entry->_date_)?$crud->entry->_date_:null,
             'date_picker_options' => [
@@ -37,7 +37,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
         @php
             $field = [
                 // 1-n relationship
-                'label' => 'Customer Invoice', // Table column heading
+                'label' => _t('Customer Invoice'), // Table column heading
                 'type' => 'select2_from_ajax',
                 'name' => 'customer_id', // the column that contains the ID of that connected entity
                 'entity' => 'customer', // the method that defines the relationship in your Model
@@ -57,7 +57,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
             $field = [
                 'name' => 'deposit',
                 'type' => 'text',
-                'label' => 'Deposit',
+                'label' => _t('Deposit'),
                 'value' => isset($crud->entry->deposit)?$crud->entry->deposit:null,
                 // optional:
             ];
@@ -69,7 +69,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
             $field = [
                 'name' => 'complete_date',
                 'type' => 'date_picker',
-                'label' => 'Complete Date',
+                'label' => _t('Complete Date'),
                 'showOneTime' => 0,
                 'value' => isset($crud->entry->complete_date)?$crud->entry->complete_date:null,
                 'date_picker_options' => [
@@ -86,7 +86,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
             $field = [
                 'name' => 'complete_price',
                 'type' => 'text',
-                'label' => 'Complete Price',
+                'label' => _t('Complete Price'),
                 'value' => isset($crud->entry->complete_price)?$crud->entry->complete_price:null,
                 // optional:
             ];
@@ -99,7 +99,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
             $field = [
                 'name' => 'description',
                 'value' => isset($crud->entry->description)?$crud->entry->description:null,
-                'label' => 'Description',
+                'label' => _t('Description'),
                 'type' => 'textarea'
                 ];
         @endphp
@@ -110,7 +110,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
             $field = [
                    'name' => 'status',
                    'value' => isset($crud->entry->status)?$crud->entry->status:null,
-                   'label' => 'Status',
+                   'label' => _t('Status'),
                    'type' => 'enum'
                    ];
         @endphp
@@ -125,7 +125,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
                 'max_rows' => 5,
                 'max_rows_sub' => 5,
                 'level' => 1,
-                'label' => "Item Detail",
+                'label' => _t("Item Detail"),
                 'name' => "item_detail",
                 'value' => isset($crud->entry->image)?$crud->entry->image:null,
                 'type' => 'item_detail',

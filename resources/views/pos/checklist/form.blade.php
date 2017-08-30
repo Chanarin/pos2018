@@ -13,7 +13,7 @@
         $field = [   // date_picker
             'name' => 'checklist_number',
             'type' => 'text',
-            'label' => 'Checklist Number',
+            'label' => _t('Checklist Number'),
             'value' => isset($crud->entry->checklist_number)?$crud->entry->checklist_number:null,
             // optional:
         ];
@@ -25,7 +25,7 @@
         $field = [
             'name' => '_date_',
             'type' => 'date_picker',
-            'label' => 'Checklist Date',
+            'label' => _t('Checklist Date'),
             'showOneTime' => 1,
             'value' => isset($crud->entry->_date_)?$crud->entry->_date_:null,
             'date_picker_options' => [
