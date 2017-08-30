@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 class ItemController extends Controller
 {
+
     public function index(Request $request)
     {
         $search_term = $request->input('q');
@@ -26,6 +27,7 @@ class ItemController extends Controller
 
         return $results;
     }
+
 
     public function show($id)
     {

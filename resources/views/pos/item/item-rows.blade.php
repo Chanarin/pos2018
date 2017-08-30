@@ -1,5 +1,6 @@
 @php
    $data_type  = isset($field['data_type'])?$field['data_type']:'';
+    $mu = \App\Models\Unit::all();
 @endphp
 <tbody class="table-origin-body" style="display: none;">
 @for($i_loop = 1;$i_loop <= 1 ;$i_loop++)
@@ -17,6 +18,18 @@
                             class="form-control input-sm {{$k}}{{$r_id}} {{$k}} {{$k}}-main item_id-main-id">
                         <option value=""></option>
                         vvvv-{{$k}}-vvvv
+                    </select>
+                @elseif($k == 'unit')
+                    <select data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"
+                            xx_name_xx="_data_[xxxx-uid-xxxx][{{$k}}]" data-url="{{ url('/api/unit') }}" data-multiple="false"
+                            data-placeholder="" style="width: 100%; "
+                            class="form-control input-sm {{$k}}{{$r_id}} {{$k}} {{$k}}-main unit-main-id">
+                        <option value=""></option>
+                        @if(count($mu)>0)
+                            @foreach($mu as $ru)
+                                <option vvvv-{{$k}}-vvvv value="{{$ru->id}}">{{$ru->name}}</option>
+                            @endforeach
+                        @endif
                     </select>
                 @else
                     <input  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"   vvvv-{{$k}}-vvvv
@@ -84,7 +97,18 @@
                                         <option value=""></option>
                                         pppp-{{$k}}-pppp
                                     </select>
-                                @else
+                                @elseif($k == 'unit')
+                                    <select  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"
+                                             www_name_www="_data_[xxxx-uid-xxxx][detail][yyyy-uid-yyyy][{{$k}}]"
+                                             data-url="{{ url('/api/unit') }}" data-multiple="false" data-placeholder=""
+                                             style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}  {{$k}} {{$k}}-sub">
+                                        <option value=""></option>
+                                        @if(count($mu)>0)
+                                            @foreach($mu as $ru)
+                                                <option  vvvv-{{$k}}-vvvv value="{{$ru->id}}">{{$ru->name}}</option>
+                                            @endforeach
+                                        @endif
+                                    @else
                                     <input  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"    pppp-{{$k}}-pppp
                                             www_name_www="_data_[xxxx-uid-xxxx][detail][yyyy-uid-yyyy][{{$k}}]"
                                            style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}  {{$k}} {{$k}}-sub"

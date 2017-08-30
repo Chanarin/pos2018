@@ -421,10 +421,13 @@
                 $.extend( init, option );
             }
 
+            var uu = '';
             for (var key in init) {
                 //dd(key + ' is ' + init[key]);
-                if(key == 'item_id'){
-                    row_main = row_main.replaceAll('vvvv-'+key+'-vvvv',' <option selected="selected" value="'+init[key]+'">'+init['title']+'</option> ');
+                if(key == 'item_id') {
+                    row_main = row_main.replaceAll('vvvv-' + key + '-vvvv', ' <option selected="selected" value="' + init[key] + '">' + init['title'] + '</option> ');
+                }else if(key == 'unit'){
+                    uu = init[key];
                 }else {
                     row_main = row_main.replaceAll('vvvv-'+key+'-vvvv',' value="'+init[key]+'" ');
                 }
@@ -434,6 +437,7 @@
             var row = $(row_main);
             runSelect2{{$r_id}}(row.find('.item_id-main-id'));
             runSelect2{{$r_id}}(row.find('.item_id-sub'));
+            row.find('.unit').val(uu);
             $('.tbody-main-for-use').append(row);
             $('.qty,.price,.discount,.cost').ForceNumericOnly();
 
@@ -470,10 +474,13 @@
                 $.extend( init, option );
             }
 
+            var uu = '';
             for (var key in init) {
                 //dd(key + ' is ' + init[key]);
                 if(key == 'item_id'){
                     row_sub = row_sub.replaceAll('pppp-'+key+'-pppp',' <option selected="selected" value="'+init[key]+'">'+init['title']+'</option> ');
+                else if(key == 'unit'){
+                    uu = init[key];
                 }else {
                     row_sub = row_sub.replaceAll('pppp-'+key+'-pppp',' value="'+init[key]+'" ');
                 }
@@ -482,6 +489,7 @@
 
             var row = $(row_sub);
             runSelect2{{$r_id}}(row.find('.item_id-sub'));
+                row.find('.unit').val(uu);
             $('#'+subid).find('.tbody-original-row-sub').append(row);
             $('.qty,.price,.discount,.cost').ForceNumericOnly();
         }

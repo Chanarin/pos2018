@@ -50,6 +50,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/item','Api\ItemController@index');
 Route::get('/item/{id}','Api\ItemController@show');
+
+Route::get('/unit','Api\UnitController@index');
+Route::get('/unit/{id}','Api\UnitController@show');
+
+
 Route::any('/item-search','Api\ItemController@showSearchResult');
 
 Route::get('/report/open-item/list','Api\ReportController@openItemList');
