@@ -9,7 +9,8 @@
     @php
         //$x1 = rand(11111, 99999) .  time() . rand(1000, 5000);
     @endphp
-    <tr id="uid-xxxx-uid-xxxx" class="array-row" data-id="uid-xxxx-uid-xxxx" style="@if($i_loop > 6) display: none !important; @endif ">
+    <tr id="uid-xxxx-uid-xxxx" class="array-row row-tr-main" data-id="uid-xxxx-uid-xxxx"   data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"
+        style="@if($i_loop > 6) display: none !important; @endif ">
         @php $colspan = 2; @endphp
         @foreach( $field['columns'] as  $k => $prop)
             <td style="@if($prop['show'] == false) display: none !important; @else  @php $colspan++; @endphp  @endif   @if($prop['width'] > 0) width:{{$prop['width']}}px ; @endif ">
@@ -68,7 +69,7 @@
     </tr>
     {{--=====================================================
     ======== Sub Item ===================================--}}
-    <tr id="uid-xxxx-uid-xxxx-sub" style="display: none;" data-id="xxxx-uid-xxxx">
+    <tr id="uid-xxxx-uid-xxxx-sub" style="display: none;" data-id="xxxx-uid-xxxx"  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx">
         <td style="padding-left: 10px;" colspan="{{ $colspan }}">
             @if(\App\Helpers\_POS_::items != $data_type)
             <table class="table table-responsive" style="border: 1px solid rgba(204,204,204,0.72);">

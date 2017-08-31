@@ -504,6 +504,78 @@
             $('.qty,.price,.discount,.cost').ForceNumericOnly();
         }
         
+        
+        function c() {
+            $('.row-tr-main').each(function () {
+                var subid = $(this).data('subid');
+                var mainid = $(this).data('mainid');
+
+                var rm = $('#'+mainid);
+                var rs = $('#'+subid+ ' tr');
+
+                var t_amount = 0;
+                rs.each(function () {
+                    var d = $(this);
+                    var s_num_qty = 1;// d.find('.num_qty').val()-0;
+                    s_num_qty = s_num_qty>0?s_num_qty:1;
+                    var s_qty = d.find('.qty').val()-0;
+                    s_qty = s_qty>0?s_qty:1;
+                    var s_cost = d.find('.cost').val()-0;
+                    var s_price = d.find('.price').val()-0;
+                    var s_discount = d.find('.discount').val()-0;
+
+                    var c_amt = 0;
+
+                    @if(\App\Helpers\_POS_::invoice == $data_type)
+
+                        c_amt = s_num_qty*s_qty*s_price - s_discount;
+
+                        dd(c_amt);
+
+                    @else
+
+                        c_amt = s_num_qty*s_qty*s_cost - s_discount;
+
+                    @endif
+
+                    d.find('.amount').val(c_amt);
+                    t_amount += c_amt;
+                });
+
+
+                    var m_num_qty = 1;// rm.find('.num_qty').val() - 0;
+                    m_num_qty = m_num_qty > 0 ? m_num_qty : 1;
+                    var m_qty = rm.find('.qty').val() - 0;
+                    m_qty = m_qty > 0 ? m_qty : 1;
+
+                    var m_discount = rm.find('.discount').val() - 0;
+
+                if(t_amount>0) {
+                    rm.find('.amount').val((t_amount - m_discount));
+                    var n_p = t_amount / (m_num_qty * m_qty);
+
+                    @if(\App\Helpers\_POS_::invoice == $data_type)
+                    rm.find('.price').val(n_p);
+                    @else
+                    rm.find('.cost').val(n_p);
+                    @endif
+
+                }else {
+                    @if(\App\Helpers\_POS_::invoice == $data_type)
+
+                    var m_price = rm.find('.price').val();
+                    rm.find('.amount').val((m_num_qty*m_qty*m_price - m_discount));
+
+                    @else
+                    var m_cost = rm.find('.cost').val();
+                    rm.find('.amount').val((m_num_qty*m_qty*m_cost - m_discount));
+
+                    @endif
+                }
+
+            });
+        }
+        
         jQuery(document).ready(function () {
             var mRowOption = null;
             var sRowOption = null;
@@ -675,6 +747,14 @@
                         addRowMain(null);
                     }
                 }
+
+            });
+
+            $('.tbody-main-for-use').delegate('.num_qty,.qty,.cost,.price,.discount','keyup',function (e) {
+
+                dd('ok');
+
+                c();
 
             });
 
