@@ -81,6 +81,7 @@ class IDP
                     $title = isset($row['title']) ? $row['title'] : '';
                     $description = isset($row['description']) ? $row['description'] : '';
                     $unit = isset($row['unit']) ? $row['unit'] : '';
+                    $num_qty = isset($row['num_qty']) ? $row['num_qty'] : 1;
 
                     $qty = isset($row['qty']) ? $row['qty'] : 0;
                     $cost = isset($row['cost']) ? $row['cost'] : 0;
@@ -114,7 +115,7 @@ class IDP
 
                     $itemDetailP = new ItemDetailP($this->type, $item_id, $this->ref_id,
                         $item_id, $item_code,
-                        $title, $unit, $qty,
+                        $title, $unit,$num_qty, $qty,
                         $cost, $price, $discount, $note, $item_detail);
 
 
@@ -170,6 +171,7 @@ class ItemDetailP
     public $note;
     public $item_detail;
     public $unit;
+    public $num_qty;
     public $title;
 
     public $created_at;
@@ -178,12 +180,13 @@ class ItemDetailP
 
     public function __construct($type = null, $id = null, $ref_id = null,
                                 $item_id = null, $item_code = null,
-                                $title = null, $unit = null, $qty = 0,
+                                $title = null, $unit = null,$num_qty = 1 , $qty = 0,
                                 $cost = 0, $price = 0, $discount = 0, $note = null,
                                 $item_detail = null, $created_at = null,
                                 $updated_at = null, $deleted_at = null)
     {
         $this->unit = $unit;
+        $this->num_qty = $num_qty;
         $this->title = $title;
         $this->type = $type;
         $this->id = $id;
@@ -317,6 +320,7 @@ class ItemDetailP
                     $d_title = isset($rrdd['title']) ? $rrdd['title'] : '';
                     $d_description = isset($rrdd['description']) ? $rrdd['description'] : '';
                     $d_unit = isset($rrdd['unit']) ? $rrdd['unit'] : '';
+                    $d_num_qty = isset($rrdd['num_qty']) ? $rrdd['num_qty'] : '';
 
                     $d_qty = isset($rrdd['qty']) ? $rrdd['qty'] : 0;
                     $d_cost = isset($rrdd['cost']) ? $rrdd['cost'] : 0;
@@ -330,6 +334,7 @@ class ItemDetailP
                         'title' => $d_title,
                         'description' => $d_description,
                         'unit' => $d_unit,
+                        'num_qty'=>$d_num_qty,
                         'qty' => $d_qty,
                         'cost' => $d_cost,
                         'note' => $d_note
@@ -384,6 +389,7 @@ class ItemDetailP
 
             $m->title = isset($this->title)?$this->title:'';
             $m->unit = isset($this->unit)?$this->unit:'';
+            $m->num_qty = isset($this->num_qty)?$this->num_qty:1;
 
 
             $m->qty = $this->qty;
@@ -401,6 +407,7 @@ class ItemDetailP
                 $iitrain->ref_type = $this->type;
                 $iitrain->item_id = $this->item_id;
                 $iitrain->unit = $this->unit;
+                $iitrain->num_qty = $this->num_qty;
 
                 $iitrain->cost = $this->cost;
                 $iitrain->price = $this->price;

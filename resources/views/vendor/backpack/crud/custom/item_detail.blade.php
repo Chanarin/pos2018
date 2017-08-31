@@ -20,6 +20,9 @@
                 <th style="font-weight: 600!important; @if($prop['show'] == false) display: none !important;  @endif ; @if($prop['width'] > 0) width:{{$prop['width']}}px ; @endif " >
                     {{ _t($prop['label']) }}
                 </th>
+                @if($k == 'unit')
+                    <th style="width: 80px;">{{_t('Num QTY')}}</th>
+                @endif
             @endforeach
             <th class="text-center" colspan="2" style="width: 200px !important;">
             {{--    <button class="btn btn-sm btn-success add{{$r_id}}" type="button"><span class="sr-only">Add</span><i class="fa fa-plus" role="presentation" aria-hidden="true"></i></button>
@@ -187,6 +190,7 @@
                             tr.find('.item_code{{$r_id}}').val(data.item_code);
                             tr.find('.title{{$r_id}}').val(data.title);
                             tr.find('.unit{{$r_id}}').val(data.unit);
+                            tr.find('.num_qty{{$r_id}}').val(data.num_qty);
                             tr.find('.price{{$r_id}}').val(data.price);
                             c_c++;
 
@@ -362,6 +366,7 @@
                         tr.find('.item_code{{$r_id}}').val(data.item_code);
                         tr.find('.title{{$r_id}}').val(data.title);
                         tr.find('.unit{{$r_id}}').val(data.unit);
+                        tr.find('.num_qty{{$r_id}}').val(data.num_qty);
                         tr.find('.price{{$r_id}}').val(data.price);
 
 
@@ -403,6 +408,7 @@
                 title: '',
                 description: '',
                 unit: '',
+                num_qty: '1',
                 qty: '',
                 cost: 0,
                 price: 0,
@@ -455,6 +461,7 @@
                 title: '',
                 description: '',
                 unit: '',
+                num_qty: '1',
                 qty: '',
                 cost: 0,
                 price: 0,
@@ -514,6 +521,7 @@
                             title: '{{$rii!=null?$rii->title:''}}',
                             description: '{{$rii->description}}',
                             unit: '{{$rii!=null?$rii->unit:''}}',
+                            num_qty: '{{$rii!=null?$rii->num_qty:''}}',
                             qty: '{{$rii->qty}}',
                             cost: '{{$rii->cost}}',
                             price: '{{$rii->price}}',
@@ -541,6 +549,7 @@
                                         title: '{{$rrr->title}}',
                                         description: '{{$rrr->description}}',
                                         unit: '{{$rrr->unit}}',
+                                        num_qty: '{{$rrr->num_qty}}',
                                         qty: '{{$rrr->qty}}',
                                         cost: '{{isset($rrr->cost)?$rrr->cost:0}}',
                                         price: '{{isset($rrr->price)?$rrr->price:0}}',

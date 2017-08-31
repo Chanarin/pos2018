@@ -1,6 +1,8 @@
 @php
    $data_type  = isset($field['data_type'])?$field['data_type']:'';
-    $mu = \App\Models\Unit::all();
+   $mu = \App\Models\Unit::all();
+
+   $num_qty =  ['name'=>'num_qty','label' => 'Num.QTY','show' => true,'width' => 80];
 @endphp
 <tbody class="table-origin-body" style="display: none;">
 @for($i_loop = 1;$i_loop <= 1 ;$i_loop++)
@@ -27,7 +29,7 @@
                         <option value=""></option>
                         @if(count($mu)>0)
                             @foreach($mu as $ru)
-                                <option vvvv-{{$k}}-vvvv value="{{$ru->id}}">{{$ru->name}}</option>
+                                <option vvvv-{{$k}}-vvvv value="{{$ru->id}}"> {{$ru->name}} &nbsp;&nbsp;&nbsp;&nbsp;</option>
                             @endforeach
                         @endif
                     </select>
@@ -37,6 +39,13 @@
                            class="form-control input-sm {{$k}}{{$r_id}}  {{$k}} {{$k}}-main" type="text">
                 @endif
             </td>
+            @if($k == 'unit')
+                <td>
+                <input  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"   vvvv-{{$num_qty['name']}}-vvvv
+                        xx_name_xx="_data_[xxxx-uid-xxxx][{{$num_qty['name']}}]" style="width: 100%; "
+                        class="form-control input-sm {{$num_qty['name']}}{{$r_id}}  {{$num_qty['name']}} {{$num_qty['name']}}-main" type="text">
+                </td>
+            @endif
         @endforeach
         <td  @if(\App\Helpers\_POS_::items != $data_type) style="width: 100px !important;" @else style="width: 10px !important;"  @endif>
             <button data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"
@@ -71,6 +80,9 @@
                         <th style="font-weight: 600!important; @if($prop['show'] == false) display: none !important;  @endif    ; @if($prop['width'] > 0) width:{{$prop['width']}}px ; @endif ">
                             {{ _t($prop['label']) }}
                         </th>
+                        @if($k == 'unit')
+                            <th style="width: 80px;">{{_t('Num Qty')}}</th>
+                        @endif
                     @endforeach
                     <th class="text-center" style="width: 10px !important;">
                         <button data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"
@@ -88,7 +100,7 @@
                     <tr class="array-row table-origin-body-tr-sub" style="@if($i_loop_sub > 5) display: none !important; @endif ">
                         @php $colspan = 2; @endphp
                         @foreach( $field['columns'] as  $k => $prop)
-                            <td style="@if($prop['show'] == false) display: none !important; @else  @php $colspan++; @endphp  @endif">
+                            <td nowrap style="white-space:nowrap;@if($prop['show'] == false) display: none !important; @else  @php $colspan++; @endphp  @endif">
                                 @if($k == 'item_id')
                                     <select  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"
                                              www_name_www="_data_[xxxx-uid-xxxx][detail][yyyy-uid-yyyy][{{$k}}]"
@@ -105,16 +117,25 @@
                                         <option value=""></option>
                                         @if(count($mu)>0)
                                             @foreach($mu as $ru)
-                                                <option  vvvv-{{$k}}-vvvv value="{{$ru->id}}">{{$ru->name}}</option>
+                                                <option  vvvv-{{$k}}-vvvv value="{{$ru->id}}"> {{$ru->name}} &nbsp;&nbsp;&nbsp;&nbsp;</option>
                                             @endforeach
                                         @endif
-                                    @else
+                                    </select>
+                                @else
                                     <input  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"    pppp-{{$k}}-pppp
                                             www_name_www="_data_[xxxx-uid-xxxx][detail][yyyy-uid-yyyy][{{$k}}]"
                                            style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}  {{$k}} {{$k}}-sub"
                                            type="text">
                                 @endif
                             </td>
+                            @if($k == 'unit')
+                            <td>
+                                <input  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"    pppp-{{$num_qty['name']}}-pppp
+                                        www_name_www="_data_[xxxx-uid-xxxx][detail][yyyy-uid-yyyy][{{$num_qty['name']}}]"
+                                        style="width: 100%; " class="form-control input-sm {{$num_qty['name']}}{{$r_id}}  {{$num_qty['name']}} {{$num_qty['name']}}-sub"
+                                        type="text">
+                            </td>
+                            @endif
                         @endforeach
                         <td style="width: 10px !important;">
                             <button data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"

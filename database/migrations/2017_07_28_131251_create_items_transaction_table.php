@@ -19,6 +19,7 @@ class CreateItemsTransactionTable extends Migration
             $table->string('ref_type')->index()->nullable();
             $table->integer('item_id')->index()->nullable();
             $table->string('unit')->index()->nullable();
+            $table->double('num_qty')->index()->nullable();
             $table->double('qty')->index()->nullable();
             $table->double('cost')->index()->nullable();//ថ្លៃដើម
             $table->double('price')->index()->nullable();
