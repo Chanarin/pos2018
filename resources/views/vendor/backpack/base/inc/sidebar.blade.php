@@ -10,7 +10,17 @@
           </div>
           <div class="pull-left info">
             <p>{{ Auth::user()->name }}</p>
-            <a href="#"><i class="fa fa-circle text-success"></i>{{_t('Online')}}</a>
+
+              <a href="#"><i class="fa fa-circle text-success"></i>{{_t('Online')}}</a>
+
+              <a href="{{url('/lang/km')}}">
+                <i><img src="{{asset('/pos/img/km.svg')}}" width="40" height="25"></i>
+              </a>
+
+              <a href="{{url('/lang/en')}}">
+                <i>​<img src="{{asset('/pos/img/en.svg')}}" width="40" height="25"></i>
+              </a>
+
           </div>
         </div>
         <!-- sidebar menu: : style can be found in sidebar.less -->

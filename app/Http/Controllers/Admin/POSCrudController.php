@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Item;
+use App\Models\ItemCategory;
+use App\Models\POS;
+use Illuminate\Http\Request;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
@@ -10,6 +14,25 @@ use App\Http\Requests\POSRequest as UpdateRequest;
 
 class POSCrudController extends CrudController
 {
+    public function posSale(){
+
+        $categories = ItemCategory::where('status','=','ACTIVE')->get();
+
+       return view('pos.sale.index',['categories'=>$categories]);
+    }
+
+    public function menuItem(Request $request){
+        $category_id = $request->category_id - 0;
+        $q = $request->q;
+        $items = POS::itemByMenu($request);
+        $items->appends([
+            'category_id'=>$category_id,
+            'q'=>$q
+        ]);
+
+        return view('pos.sale.item',['items' => $items]);
+    }
+
     public function setup()
     {
 

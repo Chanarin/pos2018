@@ -57,29 +57,8 @@
         <!-- ========================================================= -->
         <!-- ========== Top menu right items (ordered left) ========== -->
         <!-- ========================================================= -->
-        <li class="dropdown hidden-xs ">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-language"> ខ្មែរ</i>
-            </a>
-            <ul class="dropdown-menu" style=" height: 50px; !important;">
-                <li>
-                    <!-- inner menu: contains the actual data -->
-                    <ul class="menu" style="    width: 100%; height: 40px !important;">
-                        <li><!-- start message -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-th-large"> ខ្មែរ</i>
-                            </a>
-                        </li>
-                        <!-- end message -->
-                        <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-th-large">​ English</i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
+
+
     <!-- <li><a href="{{ url('/') }}"><i class="fa fa-home"></i> <span>Home</span></a></li> -->
 
         @if (Auth::guest())

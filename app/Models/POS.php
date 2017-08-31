@@ -15,7 +15,7 @@ class POS extends Model
     |--------------------------------------------------------------------------
     */
 
-    //protected $table = 'p_o_ss';
+//    protected $table = 'p_o_ss';
     //protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
@@ -23,6 +23,22 @@ class POS extends Model
     // protected $hidden = [];
     // protected $dates = [];
 
+    static function itemByMenu($request,$limit=10)
+    {
+        $q = $request->q;
+        $category_id = $request->category_id - 0;
+        $m = Item::where('category_id', $category_id);
+
+        if ($q != null && $q != ''){
+            $m->where(function ($query) use($q){
+                $query->where('item_code','like',"%{$q}%")
+                    ->orWhere('title','like',"%{$q}%")
+                ;
+            });
+        }
+
+        return $m->orderBy('id','ASC')->paginate($limit);
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

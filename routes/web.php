@@ -1,5 +1,12 @@
 <?php
 
+Route::get('/lang/{l}', function ($l) {
+    $arr_lang = ['en','km'];
+    $la = in_array($l,$arr_lang)?$l:'km';
+    session(['sess_lang' => $la]);
+    return redirect()->back();
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -7,10 +14,6 @@ Route::get('admin/view-report', function () {
     return view('pos.report.table.index');
 });
 
-
-Route::get('admin/sale', function () {
-    return view('pos.sale.index');
-});
 Route::get('admin/print-invoice', function () {
     return view('pos.invoice.index');
 });
@@ -27,6 +30,10 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin']
     CRUD::resource('item', 'ItemCrudController');
     CRUD::resource('openitem', 'OpenItemCrudController');
     CRUD::resource('pos', 'POSCrudController');
+
+    Route::get('/sale','POSCrudController@posSale');
+    Route::get('/menu-item','POSCrudController@menuItem');
+
     CRUD::resource('production', 'ProductionCrudController');
     CRUD::resource('purchase', 'PurchaseCrudController');
     CRUD::resource('report', 'ReportCrudController');

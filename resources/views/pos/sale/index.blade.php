@@ -234,92 +234,39 @@
                     </div>
                 </div>
             </div>
+            <style>
 
+            </style>
             <div id="right-section">
                 <div class="col-md-12 cat-items-style">
                     <div id="slider-2" class="slider slide-shadow">
                         <div class="slider-wrapper">
-
-
-                            <div class="slide">
+                            @foreach($categories as $category)
+                                <div class="slide" style="padding-right: 5px; padding-left: 5px;">
+                                    <a href="#" data-id="{{ $category->id }}" class="item-by-category active">
                                         <span>
-                                            <i><img  width="60" height="60" src="{{asset('pos/img/item1.jpg')}}"></i>
-                                        </span>
-                                        <br>
-                                        <span class="fon-size"><b>ចិញ្ចៀន</b></span>
-
-                            </div>
-
-                            <div class="slide">
-                                        <span>
-                                            <i><img  width="60" height="60" src="{{asset('pos/img/item1.jpg')}}"></i>
-                                        </span>
-                                        <br>
-                                        <span class="fon-size"><b>កងដៃ</b></span>
-
-                            </div>
-                            <div class="slide">
-
-                                            <span>
-                                                <i><img width="60" height="60" src="{{asset('pos/img/item1.jpg')}}"></i>
-                                            </span>
-                                            <br>
-                                            <span class="fon-size"><b>ខ្សែក</b></span>
-
-
-                            </div>
-                            <div class="slide">
-
-                                        <span>
-                                            <i><img width="60" height="60" src="{{asset('pos/img/item1.jpg')}}"></i>
+                                        <i>
+                                         @php
+                                             $img = json_decode($category->image);
+                                         @endphp
+                                            @if(count($img)>0)
+                                                <img src="{{asset("/".$img[0])}}" width="60" height="60">
+                                            @endif
+                                        </i>
                                         </span>
                                             <br>
-                                            <span class="fon-size"><b>ក្រវិល</b></span>
+                                        <span class="fon-size"><b>{{$category->title}}</b></span>
+                                    </a>
+                                </div>
+                            @endforeach
+                            {{--<div class="slide">--}}
+                                        {{--<span>--}}
+                                            {{--<i><img  width="60" height="60" src="{{asset('pos/img/item1.jpg')}}"></i>--}}
+                                        {{--</span>--}}
+                                        {{--<br>--}}
+                                        {{--<span class="fon-size"><b>កងដៃ</b></span>--}}
 
-
-                            </div>
-                            <div class="slide">
-
-                                <span>
-                                    <i><img width="60" height="60" src="{{asset('pos/img/item1.jpg')}}"></i>
-                                </span>
-                                            <br>
-                                            <span class="fon-size"><b>ដង្កៀប</b></span>
-
-
-                            </div>
-                            <div class="slide">
-
-                                <span>
-                                    <i><img width="60" height="60" src="{{asset('pos/img/item1.jpg')}}"></i>
-                                </span>
-                                            <br>
-                                            <span class="fon-size"><b>បន្តោង</b></span>
-
-
-                            </div>
-                            <div class="slide">
-
-                                        <span>
-                                            <i><img width="60" height="60" src="{{asset('pos/img/item1.jpg')}}"></i>
-                                        </span>
-                                            <br>
-                                            <span class="fon-size"><b>ខ្សែជើង</b></span>
-
-
-                            </div>
-                            <div class="slide">
-
-                                        <span>
-                                            <i><img width="60" height="60" src="{{asset('pos/img/item1.jpg')}}"></i>
-                                        </span>
-                                            <br>
-                                            <span class="fon-size"><b>ខ្សែចង្កេះ</b></span>
-
-
-                            </div>
-
-
+                            {{--</div>--}}
                         </div>
                         <a href="#" class="slider-button--prev">
                             <i class="fa fa-fw fa-chevron-left"></i>
@@ -330,25 +277,17 @@
                     </div>
                 </div>
                 {{--====================items==================--}}
-                <div class="col-md-12 items-style">
-                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 top-item-style">
-                        <div class="padding-around">
+                <div class="col-md-12 items-style menu-item-by-category">
+
+                    {{--<div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 top-item-style">--}}
+                        {{--<div class="padding-around">--}}
                             {{--<i class="fa fa-fw fa-plus-circle add-pro"></i>--}}
-                            <img class=" open-button img-padding" width="120" height="120" src="{{asset('/pos/img/item1.jpg')}}" alt="...">
-                            <div class="name-style  open-button" >item name one</div>
-                            <div class="id-style  open-button"><b><span>$</span> 1000</b></div>
-                            <div class="id-style  open-button"><b><span>ID:</span> P00001</b></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 top-item-style">
-                        <div class="padding-around">
-                            {{--<i class="fa fa-fw fa-plus-circle add-pro"></i>--}}
-                            <img class=" open-button img-padding" width="120" height="120" src="{{asset('/pos/img/item1.jpg')}}" alt="...">
-                            <div class="name-style  open-button2" >item name two</div>
-                            <div class="id-style  open-button2"><b><span>$</span> 1000</b></div>
-                            <div class="id-style  open-button2"><b><span>ID:</span> P00001</b></div>
-                        </div>
-                    </div>
+                            {{--<img class=" open-button img-padding" width="120" height="120" src="{{asset('/pos/img/item1.jpg')}}" alt="...">--}}
+                            {{--<div class="name-style  open-button" >item name one</div>--}}
+                            {{--<div class="id-style  open-button"><b><span>$</span> 1000</b></div>--}}
+                            {{--<div class="id-style  open-button"><b><span>ID:</span> P00001</b></div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </div>
                 {{--====================end items==================--}}
             </div>
@@ -1254,6 +1193,93 @@
                 timer: false
             });
         });
+
+
+        $(function () {
+
+            $('.item-by-category').on('click', function (e) {
+                e.preventDefault();
+                var category_id = $(this).data('id') - 0;
+                var q = $('#q').val();
+                $.ajax({
+                    url: '{{url('/admin/menu-item')}}',
+                    type: 'GET',
+                    dataType: 'html',
+                    data: {
+                        category_id: category_id,
+                        q:q
+                    },
+                    success: function (d) {
+                        $('.menu-item-by-category').html(d);
+                    },
+                    error: function () {
+                        swal("OOps.., Error!", "Please, try again.")
+                    }
+                });
+            });
+            $('.item-by-category:first').trigger('click');
+        });
+        $('body').delegate('.my-paginate ul li a', 'click', function (e) {
+            e.preventDefault();
+            var report_url = $(this).prop('href');
+            $.ajax({
+                url: report_url,
+                type: 'GET',
+                dataType: 'html',
+                data: {
+
+                },
+                success: function (d) {
+                    $('.menu-item-by-category').html(d);
+                },
+                error: function (d) {
+                    swal("OOps.., Error!", "Please, try again.")
+                }
+            });
+        });
+
+
+//
+//        $('#search-report-by-date').on('click', function (e) {
+//            e.preventDefault();
+//            var report_url = $('.report-option:checked').data('url');
+//
+//            var q = $('#q').val();
+//            if (report_url) {
+//                $.ajax({
+//                    url: report_url,
+//                    type: 'GET',
+//                    dataType: 'html',
+//                    data: {
+//
+//                        q:q
+//                    },
+//                    success: function (d) {
+//                        $('.report-item-list').html(d);
+//                    },
+//                    error: function (d) {
+//                        alert('error');
+//                    }
+//                });
+//            } else {
+//                swal("OOps.., No Data!", "Please, select report type and date first.")
+//            }
+//        });
+//        $('body').delegate('.my-paginate ul li a', 'click', function (e) {
+//            e.preventDefault();
+//            var report_url = $(this).prop('href');
+//            $.ajax({
+//                url: report_url,
+//                type: 'GET',
+//                dataType: 'html',
+//                success: function (d) {
+//                    $('.report-item-list').html(d);
+//                },
+//                error: function (d) {
+//                    alert('error');
+//                }
+//            });
+//        });
     </script>
     {{--============script pop up item ============--}}
 @endsection

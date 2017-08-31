@@ -3,14 +3,21 @@
         <!-- =================================================== -->
         <!-- ========== Top menu items (ordered left) ========== -->
         <!-- =================================================== -->
-
          <li>
              <a href="{{ url('/admin/dashboard') }}"  style="font-size: 20px;">
                  <i class="fa fa-home"></i></a>
          </li>
-
+        <li>
+            <a href="{{url('/lang/km')}}">
+                <i><img src="{{asset('/pos/img/km.svg')}}" width="30" height="17"></i>
+            </a>
+        </li>
+        <li>
+            <a href="{{url('/lang/en')}}">
+                <i>​<img src="{{asset('/pos/img/en.svg')}}" width="30" height="17"></i>
+            </a>
+        </li>
         <!-- ========== End of top menu left items ========== -->
-
     </ul>
 </div>
 <div class="navbar-custom-menu">
@@ -55,29 +62,6 @@
       <!-- ========================================================= -->
       <!-- ========== Top menu right items (ordered left) ========== -->
       <!-- ========================================================= -->
-        <li class="dropdown hidden-xs hidden-sm">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-language"> ខ្មែរ</i>
-            </a>
-            <ul class="dropdown-menu" style=" height: 50px; !important;">
-                <li>
-                    <!-- inner menu: contains the actual data -->
-                    <ul class="menu" style="    width: 100%; height: 40px !important;">
-                        <li><!-- start message -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-th-large"> ខ្មែរ</i>
-                            </a>
-                        </li>
-                        <!-- end message -->
-                        <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-th-large">​ English</i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
       <!-- <li><a href="{{ url('/') }}"><i class="fa fa-home"></i> <span>Home</span></a></li> -->
 
         @if (Auth::guest())
