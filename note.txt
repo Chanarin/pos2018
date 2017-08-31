@@ -12,3 +12,6 @@ php artisan migrate:refresh
 
 ===========store data in file and auto save in database
 php artisan iseed languages
+======get data from file to database
+php artisan migrate:refresh
+php artisan db:seed
