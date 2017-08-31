@@ -10,3 +10,5 @@ php artisan optimize
 
 php artisan migrate:refresh
 
+
+php artisan iseed languages

@@ -452,8 +452,11 @@
 
         function addRowSub(subid,option) {
             @if(\App\Helpers\_POS_::items == $data_type)
+
                 return false;
-                    @endif
+
+            @endif
+
             var init = {
                 id: 0,
                 item_id: 0,
