@@ -10,5 +10,5 @@ php artisan optimize
 
 php artisan migrate:refresh
 
-
+===========store data in file and auto save in database
 php artisan iseed languages
