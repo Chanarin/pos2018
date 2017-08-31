@@ -302,9 +302,7 @@ class LanguagesTableSeeder extends Seeder
                 'id' => 32,
                 'key' => 'user',
                 'en' => 'User',
-                'km' => 'អ្នក​ប្រើ
-អ្នក​ប្រើ
-អ្នក​ប្រើ',
+                'km' => 'អ្នក​ប្រើ',
                 'created_at' => '2017-08-31 01:42:54',
                 'updated_at' => '2017-08-31 01:42:54',
             ),

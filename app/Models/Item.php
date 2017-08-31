@@ -20,7 +20,7 @@ class Item extends Model
     protected $table = 'items';
     protected $primaryKey = 'id';
     public $timestamps = true;
-    protected $fillable = ['category_id','item_code','title','description','image','unit'];
+    protected $fillable = ['category_id','item_code','title','description','image','unit','price'];
 
     protected $appends = [
         'price'

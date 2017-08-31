@@ -52,8 +52,18 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
         @endphp
         @include('vendor.backpack.crud.fields.text', compact('crud', 'entry', 'field'))
     </div>
-
-    <div class="form-group col-md-12">
+    <div class="form-group col-md-6">
+        @php
+            $field = [
+                'name' => 'price',
+                'value' => isset($crud->entry->price)?$crud->entry->price:null,
+                'label' => _t('Price'),
+                'type' => 'text'
+                ];
+        @endphp
+        @include('vendor.backpack.crud.fields.text', compact('crud', 'entry', 'field'))
+    </div>
+    <div class="form-group col-md-6">
         @php
         $field = [
             'name' => 'description',
