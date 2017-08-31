@@ -97,7 +97,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
                 'item_code' => ['label' => 'Code','show' => true,'width' => 150],
                 'title' => ['label' => 'Title','show' => true,'width' => 150],
                 'description' => ['label' => 'Description','show' => false,'width' => -1],
-                'unit' => ['label' => 'Unit','show' => true,'width' => -1],
+                'unit' => ['label' => 'Unit','show' => true,'width' => 90],
                 'qty' => ['label' => 'Qty','show' => true,'width' => -1],
                 'cost' => ['label' => 'Cost','show' => false,'width' => -1],
                 'price' => ['label' => 'Price','show' => false,'width' => -1],
