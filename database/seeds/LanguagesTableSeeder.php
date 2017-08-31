@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Database\Seeder;
 
 class LanguagesTableSeeder extends Seeder
@@ -785,6 +784,15 @@ class LanguagesTableSeeder extends Seeder
                 'km' => 'វិក័យប័ត្រអតិថិជន',
                 'created_at' => '2017-08-31 08:38:56',
                 'updated_at' => '2017-08-31 08:38:56',
+            ),
+            85 => 
+            array (
+                'id' => 87,
+                'key' => 'amount',
+                'en' => 'Amount',
+                'km' => 'សរុប',
+                'created_at' => '2017-08-31 14:08:13',
+                'updated_at' => '2017-08-31 14:08:13',
             ),
         ));
         

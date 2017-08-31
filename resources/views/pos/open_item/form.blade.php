@@ -67,7 +67,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
                     'price' => ['label' => 'Price','show' => false,'width' => -1],
                     'discount' => ['label' => 'Discount','show' => false,'width' => -1],
                 'amount' => ['label' => 'Amount','show' => true,'width' => -1],
-                    'note' => ['label' => 'Note','show' => false,'width' => -1],
+                    'note' => ['label' => 'Note','show' => true,'width' => -1],
                 ],
                 'showOneTime' => 1
                  ];
