@@ -539,7 +539,9 @@
                     @endif
 
                     d.find('.amount').val(c_amt);
-                    t_amount += c_amt;
+                    if(c_amt > 0) {
+                        t_amount += c_amt;
+                    }
                 });
 
 
@@ -549,7 +551,7 @@
                     m_qty = m_qty > 0 ? m_qty : 1;
 
                     var m_discount = rm.find('.discount').val() - 0;
-
+dd(t_amount);
                 if(t_amount>0) {
                     rm.find('.amount').val((t_amount - m_discount));
                     var n_p = t_amount / (m_num_qty * m_qty);
@@ -752,11 +754,11 @@
 
             $('.tbody-main-for-use').delegate('.num_qty,.qty,.cost,.price,.discount','keyup',function (e) {
 
-                dd('ok');
-
                 c();
 
             });
+
+            c();
 
         });
     </script>
