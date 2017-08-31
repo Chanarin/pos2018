@@ -195,7 +195,7 @@ class LanguagesTableSeeder extends Seeder
                 'id' => 20,
                 'key' => 'online',
                 'en' => 'Online',
-                'km' => 'លើបណ្តាញ',
+                'km' => 'Online',
                 'created_at' => '2017-08-31 01:42:48',
                 'updated_at' => '2017-08-31 01:42:48',
             ),
