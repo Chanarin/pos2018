@@ -22,21 +22,21 @@ class Item extends Model
     public $timestamps = true;
     protected $fillable = ['category_id','item_code','title','description','image','unit','price'];
 
-    protected $appends = [
-        'price'
-    ];
-
-    public function getPriceAttribute()
-    {
-        $mi = InvoiceDetail::where('item_id',$this->id)
-                ->orderBy('id','DESC')->limit(1)->first();
-        if($mi != null){
-            return $mi->price;
-        }else{
-            return 0;
-        }
-
-    }
+//    protected $appends = [
+//        'price'
+//    ];
+//
+//    public function getPriceAttribute()
+//    {
+//        $mi = InvoiceDetail::where('item_id',$this->id)
+//                ->orderBy('id','DESC')->limit(1)->first();
+//        if($mi != null){
+//            return $mi->price;
+//        }else{
+//            return 0;
+//        }
+//
+//    }
 
     public function category()
     {
