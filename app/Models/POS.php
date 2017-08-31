@@ -28,7 +28,8 @@ class POS extends Model
         $q = $request->q;
         $category_id = $request->category_id - 0;
         $m = Item::where('category_id', $category_id)
-            ->where('price','!=',0);
+            ->where('price','!=',null)
+            ;
 
         if ($q != null && $q != ''){
             $m->where(function ($query) use($q){

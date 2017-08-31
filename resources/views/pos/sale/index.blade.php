@@ -250,7 +250,7 @@
                                              $img = json_decode($category->image);
                                          @endphp
                                             @if(count($img)>0)
-                                                <img src="{{asset("/".$img[0])}}" width="60" height="60">
+                                                <img src="{{url('img/cache/original/'.\App\Helpers\Glb::get_basename($img[0]))}}" width="60" height="60">
                                             @endif
                                         </i>
                                         </span>
