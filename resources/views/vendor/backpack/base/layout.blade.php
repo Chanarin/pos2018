@@ -31,6 +31,14 @@
     <link rel="stylesheet" href="{{ asset('vendor/backpack/backpack.base.css') }}">
 
     @yield('after_styles')
+    <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed|Hanuman" rel="stylesheet">
+    <style>
+       /* @import url('https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed|Hanuman');*/
+        body{
+            font-family: 'Encode Sans Semi Condensed', sans-serif;
+            font-family: 'Hanuman', serif;
+        }
+    </style>
     @section('graph_style')
     @show
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
