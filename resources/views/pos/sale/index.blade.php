@@ -4,21 +4,21 @@
     <link rel="stylesheet" href="{{ asset('pos') }}/css/style.css">
     <link rel="stylesheet" href="{{ asset('vendor/adminlte') }}/plugins/select2/select2.min.css">
     <style>
-        body {
-            background: #FFF;
-            color: #333;
-            font-weight: normal;
-            width: 100%;
-            min-width: 970px;
-            max-width: 100%;
-            position: relative;
-        }
-        html, body, form {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-        }
+        /*body {*/
+            /*background: #FFF;*/
+            /*color: #333;*/
+            /*font-weight: normal;*/
+            /*width: 100%;*/
+            /*min-width: 970px;*/
+            /*max-width: 100%;*/
+            /*position: relative;*/
+        /*}*/
+        /*html, body, form {*/
+            /*margin: 0;*/
+            /*padding: 0;*/
+            /*width: 100%;*/
+            /*height: 100%;*/
+        /*}*/
     </style>
 @endsection
 
@@ -26,9 +26,9 @@
     <div class="cover-add" id="overlay">
         <div id="container">
             {{--99--}}
-            <div id="left-panel" style="height: 100%;">
+            <div id="left-panel">
 
-                <div id="left-top" style="height: 15%;">
+                <div id="left-top">
                     <div class="col-md-12" style="padding-left:0;">
                         <div class="form-group">
                             <div class="input-group">
@@ -107,12 +107,12 @@
                     <div style="clear:both;"></div>
                 </div>
 
-                <div class="col-md-12 col-sm-12 panel-height" style="position: relative; height: 60%">
+                <div class="col-md-12 col-sm-12 panel-height" style="position: relative; ">
                     <div class="tbl-header">
                         <table class="table table-action">
                             <thead style="width:100%;">
                             <tr>
-                                <th style="width:15%;">#Code</th>
+                                <th style="width:15%;">Code</th>
                                 <th style="width:30%;">Name</th>
                                 <th style="width:10%;">Qty</th>
                                 <th style="width:20%;">Price</th>
@@ -127,7 +127,7 @@
                             <tr>
                                 <td style="width:10%;">P0001</td>
                                 <td style="width:30%;" class="name-style-order">Name Item 1</td>
-                                <td style="width:10%;"><input type="text" value="" placeholder=" 0 " style="width: 100%;"></td>
+                                <td style="width:10%;"><input type="number" value="" placeholder=" 0 " style="width: 100%;"></td>
                                 <td style="width:20%;"><span>$</span> 200</td>
                                 <td style="width:20%;"><span>$</span> 200</td>
                                 <td style="width: 10%">
@@ -139,7 +139,7 @@
                             <tr>
                                 <td style="width:10%;">P0001</td>
                                 <td style="width:30%;" class="name-style-order">Name Item 1</td>
-                                <td style="width:10%;"><input type="text" value="" placeholder=" 0 " style="width: 100%;"></td>
+                                <td style="width:10%;"><input type="number" value="" placeholder=" 0 " style="width: 100%;"></td>
                                 <td style="width:20%;"><span>$</span> 200</td>
                                 <td style="width:20%;"><span>$</span> 200</td>
                                 <td style="width: 10%">
@@ -148,11 +148,13 @@
                                     </a>
                                 </td>
                             </tr>
+
+
                         </table>
                     </div>
                 </div>
 
-                <div id="left-bottom" style="height: 25%; position: relative;">
+                <div id="left-bottom" style=" position: relative;">
                     <div class="col-md-12 col-sm-12 checkout_amount">
                         <table id="totalTable" style="width:100%; float:right; padding:5px; color:#000; background: #FFF;">
                             <tbody>
@@ -234,9 +236,7 @@
                     </div>
                 </div>
             </div>
-            <style>
 
-            </style>
             <div id="right-section">
                 <div class="col-md-12 cat-items-style">
                     <div id="slider-2" class="slider slide-shadow">

@@ -1,8 +1,8 @@
 /*=============layout sale======*/
 #container{
-    /*border: solid red;*/
+
     margin-top: 5px;
-    height: 100%;
+    /*height: 100%;*/
     overflow: hidden;
 }
 #container::after{
@@ -12,20 +12,20 @@
 #left-panel{
     width: 33.9%;
     border-right: solid 1px #858585;
-    height:100%;
+    /*height:100%;*/
     background-color: #ffffff;
     float: left;
 }
 #right-section{
     width: 66%;
     /*height: 900px;*/
-    height: 100%;
+    /*height: 100%;*/
     background-color: #ffffff;
     float: right;
 }
 /*============import style==========*/
 .content {
-    min-height: 250px;
+    /*min-height: 250px;*/
     padding: 1px;
     margin-right: auto;
     margin-left: auto;
@@ -88,16 +88,37 @@
     /*height: 688px;*/
     background-color: #FFFFFF;
 }
+
+/*@media screen and (min-height: 768px) {*/
+    /*.table-show-pro{*/
+        /*width:100%;*/
+        /*overflow:auto;*/
+        /*height:378px;*/
+        /*text-align: center;*/
+        /*border-bottom: #ffffff;*/
+
+    /*}*/
+/*}*/
 .table-show-pro{
     width:100%;
     overflow:auto;
-    height:578px;
-    max-height:578px;
-    min-height: 400px;
+    height:400px;
     text-align: center;
     border-bottom: #ffffff;
 
 }
+@media screen and (min-height: 1024px) {
+    .table-show-pro{
+        width:100%;
+        overflow:auto;
+        height:500px;
+        text-align: center;
+        border-bottom: #ffffff;
+
+    }
+}
+
+
 table,tr,td{
     padding-bottom: 5px !important;
     padding-top: 5px !important;
