@@ -32,7 +32,7 @@
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{_t('Dashboard')}}</span></a></li>
 
 
-          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/pos') }}"><i class="fa fa-fw fa-desktop"></i> <span>{{_t('POS')}}</span></a></li>
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/sale') }}"><i class="fa fa-fw fa-desktop"></i> <span>{{_t('POS')}}</span></a></li>
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/invoice') }}"><i class="fa fa-fw fa-file-excel-o"></i> <span>{{_t('Invoice')}}</span></a></li>
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/customer') }}"><i class="fa  fa-user"></i> <span>{{_t('Customer')}}</span></a></li>
 

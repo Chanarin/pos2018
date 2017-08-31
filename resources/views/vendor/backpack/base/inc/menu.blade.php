@@ -27,6 +27,12 @@
 
             </a>
         </li>
+        <li class=" hidden-xs hidden-sm">
+            <a href="{{ url('/admin/openitem') }}">
+                <i class="fa fa-book"> {{_t('Open Item')}}</i>
+
+            </a>
+        </li>
 
         <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/purchase') }}" >
@@ -34,9 +40,10 @@
 
             </a>
         </li>
+
         <li class=" hidden-xs hidden-sm">
-            <a href="{{ url('/admin/open-items') }}">
-                <i class="fa fa-book"> {{_t('Open Item')}}</i>
+            <a href="{{ url('/admin/production') }}" >
+                <i class="fa fa-gavel"> {{_t('Production')}}</i>
 
             </a>
         </li>
