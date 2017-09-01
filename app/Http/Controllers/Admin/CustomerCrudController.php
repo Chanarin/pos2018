@@ -8,6 +8,7 @@ use App\Models\Customer;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\CustomerRequest as StoreRequest;
 use App\Http\Requests\CustomerRequest as UpdateRequest;
+use Illuminate\Support\Facades\Validator;
 
 class CustomerCrudController extends CrudController
 {
@@ -232,6 +233,13 @@ class CustomerCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:1|max:255'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('admin/customer');
+        }
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
@@ -241,6 +249,13 @@ class CustomerCrudController extends CrudController
 
     public function update(UpdateRequest $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:1|max:255'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('admin/customer');
+        }
         // your additional operations before save here
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here

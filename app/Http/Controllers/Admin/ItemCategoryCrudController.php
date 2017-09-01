@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\ItemCategoryRequest as StoreRequest;
 use App\Http\Requests\ItemCategoryRequest as UpdateRequest;
+use Illuminate\Support\Facades\Validator;
 
 class ItemCategoryCrudController extends CrudController
 {
@@ -167,6 +168,13 @@ class ItemCategoryCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('admin/itemcategory');
+        }
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
@@ -176,6 +184,13 @@ class ItemCategoryCrudController extends CrudController
 
     public function update(UpdateRequest $request)
     {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('admin/itemcategory');
+        }
         // your additional operations before save here
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here

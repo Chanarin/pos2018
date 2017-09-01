@@ -10,6 +10,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\OpenItemRequest as StoreRequest;
 use App\Http\Requests\OpenItemRequest as UpdateRequest;
 use App\User;
+use Illuminate\Support\Facades\Validator;
 
 class OpenItemCrudController extends CrudController
 {
@@ -145,6 +146,14 @@ class OpenItemCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
+        $validator = Validator::make($request->all(), [
+            'open_number' => 'required',
+            '_date_' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('admin/openitem');
+        }
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
@@ -157,6 +166,15 @@ class OpenItemCrudController extends CrudController
 
     public function update(UpdateRequest $request)
     {
+        $validator = Validator::make($request->all(), [
+            'open_number' => 'required',
+            '_date_' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('admin/openitem');
+        }
+
         // your additional operations before save here
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here

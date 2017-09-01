@@ -9,6 +9,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\ProductionRequest as StoreRequest;
 use App\Http\Requests\ProductionRequest as UpdateRequest;
+use Illuminate\Support\Facades\Validator;
 
 class ProductionCrudController extends CrudController
 {
@@ -137,6 +138,18 @@ class ProductionCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
+        $validator = Validator::make($request->all(), [
+            'production_number' => 'required',
+            '_date_' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('admin/production');
+        }
+
+        if ($validator->fails()) {
+            return redirect('admin/purchase');
+        }
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
@@ -148,6 +161,14 @@ class ProductionCrudController extends CrudController
 
     public function update(UpdateRequest $request)
     {
+        $validator = Validator::make($request->all(), [
+            'production_number' => 'required',
+            '_date_' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('admin/production');
+        }
         // your additional operations before save here
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here

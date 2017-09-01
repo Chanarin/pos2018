@@ -9,6 +9,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\InvoiceRequest as StoreRequest;
 use App\Http\Requests\InvoiceRequest as UpdateRequest;
+use Illuminate\Support\Facades\Validator;
 
 class InvoiceCrudController extends CrudController
 {
@@ -149,6 +150,15 @@ class InvoiceCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
+        $validator = Validator::make($request->all(), [
+            'invoice_number' => 'required',
+            '_date_' => 'required',
+            'customer_id' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('admin/invoice');
+        }
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
@@ -161,6 +171,16 @@ class InvoiceCrudController extends CrudController
 
     public function update(UpdateRequest $request)
     {
+        $validator = Validator::make($request->all(), [
+            'invoice_number' => 'required',
+            '_date_' => 'required',
+            'customer_id' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('admin/invoice');
+        }
+
         // your additional operations before save here
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
