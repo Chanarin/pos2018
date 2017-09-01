@@ -4,12 +4,12 @@
 <section class="content-header">
     <h1>
         <span class="text-capitalize">{{ $crud->entity_name_plural }}</span>
-        <small>{{ _t('all') }} <span>{{ $crud->entity_name_plural }}</span> {{ _t('in_the_database') }}.</small>
+        <small>{{_t('all') }} <span>{{ $crud->entity_name_plural }}</span> {{_t('in_the_database') }}.</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{ url(config('backpack.base.route_prefix'), 'dashboard') }}">{{ _t('admin') }}</a></li>
+        <li><a href="{{ url(config('backpack.base.route_prefix'), 'dashboard') }}">{{_t('admin') }}</a></li>
         <li><a href="{{ url($crud->route) }}" class="text-capitalize">{{ $crud->entity_name_plural }}</a></li>
-        <li class="active">{{ _t('reorder') }}</li>
+        <li class="active">{{_t('reorder') }}</li>
     </ol>
 </section>
 @endsection
@@ -55,19 +55,19 @@ function tree_element($entry, $key, $all_entries, $crud)
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
     @if ($crud->hasAccess('list'))
-        <a href="{{ url($crud->route) }}"><i class="fa fa-angle-double-left"></i> {{ _t('back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a><br><br>
+        <a href="{{ url($crud->route) }}"><i class="fa fa-angle-double-left"></i> {{_t('back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a><br><br>
     @endif
 
         <!-- Default box -->
         <div class="box">
 
             <div class="box-header with-border">
-                <h3 class="box-title">{{ _t('reorder').' '.$crud->entity_name_plural }}</h3>
+                <h3 class="box-title">{{_t('reorder').' '.$crud->entity_name_plural }}</h3>
             </div>
 
             <div class="box-body">
 
-                <p>{{ _t('reorder_text') }}</p>
+                <p>{{_t('reorder_text') }}</p>
 
                 <ol class="sortable">
                 <?php
@@ -81,7 +81,7 @@ function tree_element($entry, $key, $all_entries, $crud)
                 ?>
                 </ol>
 
-                <button id="toArray" class="btn btn-success ladda-button" data-style="zoom-in"><span class="ladda-label"><i class="fa fa-save"></i> {{ _t('save') }}</span></button>
+                <button id="toArray" class="btn btn-success ladda-button" data-style="zoom-in"><span class="ladda-label"><i class="fa fa-save"></i> {{_t('save') }}</span></button>
 
             </div><!-- /.box-body -->
         </div><!-- /.box -->
@@ -144,16 +144,16 @@ function tree_element($entry, $key, $all_entries, $crud)
         .done(function() {
             //console.log("success");
             new PNotify({
-                        title: "{{ _t('reorder_success_title') }}",
-                        text: "{{ _t('reorder_success_message') }}",
+                        title: "{{_t('reorder_success_title') }}",
+                        text: "{{_t('reorder_success_message') }}",
                         type: "success"
                     });
           })
         .fail(function() {
             //console.log("error");
             new PNotify({
-                        title: "{{ _t('reorder_error_title') }}",
-                        text: "{{ _t('reorder_error_message') }}",
+                        title: "{{_t('reorder_error_title') }}",
+                        text: "{{_t('reorder_error_message') }}",
                         type: "danger"
                     });
           })

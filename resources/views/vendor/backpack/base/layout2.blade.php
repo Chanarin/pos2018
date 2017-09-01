@@ -239,7 +239,7 @@
                     }
                 });
             } else {
-                swal("OOps.., No Data!", "Please, select report type and date first.")
+                swal("អូរ.., មិនមានទិន្នន័យ!", "សូមលោកអ្នក​ ធ្វើការជ្រើសរើសប្រភេទនៃរបាយការណ័<<report>> និងថ្ងៃខែជាមុនសិន.")
             }
         });
         $('body').delegate('.my-paginate ul li a', 'click', function (e) {

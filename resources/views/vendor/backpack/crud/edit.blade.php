@@ -3,12 +3,12 @@
 @section('header')
 	<section class="content-header">
 	  <h1>
-	    {{ _t('edit') }} <span>{{ $crud->entity_name }}</span>
+	    {{_t('edit') }} <span>{{ $crud->entity_name }}</span>
 	  </h1>
 	  <ol class="breadcrumb">
-	    <li><a href="{{ url(config('backpack.base.route_prefix'),'dashboard') }}">{{ _t('admin') }}</a></li>
+	    <li><a href="{{ url(config('backpack.base.route_prefix'),'dashboard') }}">{{_t('admin') }}</a></li>
 	    <li><a href="{{ url($crud->route) }}" class="text-capitalize">{{ $crud->entity_name_plural }}</a></li>
-	    <li class="active">{{ _t('edit') }}</li>
+	    <li class="active">{{_t('edit') }}</li>
 	  </ol>
 	</section>
 @endsection
@@ -19,7 +19,7 @@
 	<div class="col-md-12">
 		<!-- Default box -->
 		@if ($crud->hasAccess('list'))
-			<a href="{{ url($crud->route) }}"><i class="fa fa-angle-double-left"></i> {{ _t('back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a><br><br>
+			<a href="{{ url($crud->route) }}"><i class="fa fa-angle-double-left"></i> {{_t('back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a><br><br>
 		@endif
 
 		@include('crud::inc.grouped_errors')
@@ -39,9 +39,9 @@
 					  	@endforeach
 					  </ul>
 					</div>
-					<h3 class="box-title" style="line-height: 30px;">{{ _t('edit') }}</h3>
+					<h3 class="box-title" style="line-height: 30px;">{{_t('edit') }}</h3>
 				@else
-					<h3 class="box-title">{{ _t('edit') }}</h3>
+					<h3 class="box-title">{{_t('edit') }}</h3>
 				@endif
 		    </div>
 		    <div class="box-body row">
