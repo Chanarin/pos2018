@@ -22,9 +22,9 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
     <div class="form-group col-md-6">
         @php
         $field = [
-            'name' => _t('item_code'),
+            'name' => 'item_code',
             'value' => isset($crud->entry->item_code)?$crud->entry->item_code:null,
-            'label' => 'Code',
+            'label' => _t('Code'),
             'type' => 'text'
             ];
         @endphp

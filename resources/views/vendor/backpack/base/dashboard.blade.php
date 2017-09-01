@@ -26,7 +26,7 @@
                         text-align: center; padding: 5px;
                     }
                     .fon-size{
-                        font-size: 26px;
+                        font-size: 22px;
 
                     }
                     .col-md-12, .col-md-2,.col-sm-4, .col-xs-6{

@@ -4,12 +4,12 @@
 	<section class="content-header">
 	  <h1>
 	    <span class="text-capitalize">{{ $crud->entity_name_plural }}</span>
-	    <small>{{ trans('backpack::crud.all') }} <span>{{ $crud->entity_name_plural }}</span> {{ trans('backpack::crud.in_the_database') }}.</small>
+	    <small>{{_('all')}} <span>{{ $crud->entity_name_plural }}</span> {{_('in_the_database')}}.</small>
 	  </h1>
 	  <ol class="breadcrumb">
-	    <li><a href="{{ url(config('backpack.base.route_prefix'), 'dashboard') }}">{{ trans('backpack::crud.admin') }}</a></li>
+	    <li><a href="{{ url(config('backpack.base.route_prefix'), 'dashboard') }}">{{_('admin')}}</a></li>
 	    <li><a href="{{ url($crud->route) }}" class="text-capitalize">{{ $crud->entity_name_plural }}</a></li>
-	    <li class="active">{{ trans('backpack::crud.list') }}</li>
+	    <li class="active">{{_('list')}}</li>
 	  </ol>
 	</section>
 @endsection
@@ -48,7 +48,7 @@
                 @endforeach
 
                 @if ( $crud->buttons->where('stack', 'line')->count() )
-                  <th>{{ trans('backpack::crud.actions') }}</th>
+                  <th>{{_('actions')}}</th>
                 @endif
               </tr>
             </thead>
@@ -103,7 +103,7 @@
                 @endforeach
 
                 @if ( $crud->buttons->where('stack', 'line')->count() )
-                  <th>{{ trans('backpack::crud.actions') }}</th>
+                  <th>{{_t('actions')}}</th>
                 @endif
               </tr>
             </tfoot>
@@ -182,34 +182,34 @@
         /* Disable initial sort */
         "aaSorting": [],
         "language": {
-              "emptyTable":     "{{ trans('backpack::crud.emptyTable') }}",
-              "info":           "{{ trans('backpack::crud.info') }}",
-              "infoEmpty":      "{{ trans('backpack::crud.infoEmpty') }}",
-              "infoFiltered":   "{{ trans('backpack::crud.infoFiltered') }}",
-              "infoPostFix":    "{{ trans('backpack::crud.infoPostFix') }}",
-              "thousands":      "{{ trans('backpack::crud.thousands') }}",
-              "lengthMenu":     "{{ trans('backpack::crud.lengthMenu') }}",
-              "loadingRecords": "{{ trans('backpack::crud.loadingRecords') }}",
-              "processing":     "{{ trans('backpack::crud.processing') }}",
-              "search":         "{{ trans('backpack::crud.search') }}",
-              "zeroRecords":    "{{ trans('backpack::crud.zeroRecords') }}",
+              "emptyTable":     "{{ _t('emptyTable') }}",
+              "info":           "{{ _t('info') }}",
+              "infoEmpty":      "{{ _t('infoEmpty') }}",
+              "infoFiltered":   "{{ _t('infoFiltered') }}",
+              "infoPostFix":    "{{ _t('infoPostFix') }}",
+              "thousands":      "{{ _t('thousands') }}",
+              "lengthMenu":     "{{ _t('lengthMenu') }}",
+              "loadingRecords": "{{ _t('loadingRecords') }}",
+              "processing":     "{{ _t('processing') }}",
+              "search":         "{{ _t('search') }}",
+              "zeroRecords":    "{{ _t('zeroRecords') }}",
               "paginate": {
-                  "first":      "{{ trans('backpack::crud.paginate.first') }}",
-                  "last":       "{{ trans('backpack::crud.paginate.last') }}",
-                  "next":       "{{ trans('backpack::crud.paginate.next') }}",
-                  "previous":   "{{ trans('backpack::crud.paginate.previous') }}"
+                  "first":      "{{ _t('first') }}",
+                  "last":       "{{ _t('last') }}",
+                  "next":       "{{ _t('next') }}",
+                  "previous":   "{{ _t('previous') }}"
               },
               "aria": {
-                  "sortAscending":  "{{ trans('backpack::crud.aria.sortAscending') }}",
-                  "sortDescending": "{{ trans('backpack::crud.aria.sortDescending') }}"
+                  "sortAscending":  "{{ _t('sortAscending') }}",
+                  "sortDescending": "{{ _t('sortDescending') }}"
               },
               "buttons": {
-                  "copy":   "{{ trans('backpack::crud.export.copy') }}",
-                  "excel":  "{{ trans('backpack::crud.export.excel') }}",
-                  "csv":    "{{ trans('backpack::crud.export.csv') }}",
-                  "pdf":    "{{ trans('backpack::crud.export.pdf') }}",
-                  "print":  "{{ trans('backpack::crud.export.print') }}",
-                  "colvis": "{{ trans('backpack::crud.export.column_visibility') }}"
+                  "copy":   "{{ _t('copy') }}",
+                  "excel":  "{{ _t('excel') }}",
+                  "csv":    "{{ _t('csv') }}",
+                  "pdf":    "{{ _t('pdf') }}",
+                  "print":  "{{ _t('print') }}",
+                  "colvis": "{{ _t('column_visibility') }}"
               },
           },
 
@@ -276,15 +276,15 @@
           var delete_button = $(this);
           var delete_url = $(this).attr('href');
 
-          if (confirm("{{ trans('backpack::crud.delete_confirm') }}") == true) {
+          if (confirm("{{ _t('delete_confirm') }}") == true) {
               $.ajax({
                   url: delete_url,
                   type: 'DELETE',
                   success: function(result) {
                       // Show an alert with the result
                       new PNotify({
-                          title: "{{ trans('backpack::crud.delete_confirmation_title') }}",
-                          text: "{{ trans('backpack::crud.delete_confirmation_message') }}",
+                          title: "{{ _t('delete_confirmation_title') }}",
+                          text: "{{ _t('delete_confirmation_message') }}",
                           type: "success"
                       });
                       // delete the row from the table
@@ -293,16 +293,16 @@
                   error: function(result) {
                       // Show an alert with the result
                       new PNotify({
-                          title: "{{ trans('backpack::crud.delete_confirmation_not_title') }}",
-                          text: "{{ trans('backpack::crud.delete_confirmation_not_message') }}",
+                          title: "{{ _t('delete_confirmation_not_title') }}",
+                          text: "{{ _t('delete_confirmation_not_message') }}",
                           type: "warning"
                       });
                   }
               });
           } else {
               new PNotify({
-                  title: "{{ trans('backpack::crud.delete_confirmation_not_deleted_title') }}",
-                  text: "{{ trans('backpack::crud.delete_confirmation_not_deleted_message') }}",
+                  title: "{{ _t('delete_confirmation_not_deleted_title') }}",
+                  text: "{{ _t('delete_confirmation_not_deleted_message') }}",
                   type: "info"
               });
           }
@@ -355,7 +355,7 @@
                 })
                 .fail(function(data) {
                   // console.log("-- error getting table extra details row with AJAX");
-                  row.child("<div class='table_row_slider'>{{ trans('backpack::crud.details_row_loading_error') }}</div>").show();
+                  row.child("<div class='table_row_slider'>{{ _t('details_row_loading_error') }}</div>").show();
                   tr.addClass('shown');
                   $('div.table_row_slider', row.child()).slideDown();
                 })
