@@ -1,8 +1,8 @@
 /*=============layout sale======*/
 #container{
-    /*border: solid red;*/
+
     margin-top: 5px;
-    height: 100%;
+    /*height: 100%;*/
     overflow: hidden;
 }
 #container::after{
@@ -12,20 +12,20 @@
 #left-panel{
     width: 33.9%;
     border-right: solid 1px #858585;
-    height:100%;
+    /*height:100%;*/
     background-color: #ffffff;
     float: left;
 }
 #right-section{
     width: 66%;
     /*height: 900px;*/
-    height: 100%;
+    /*height: 100%;*/
     background-color: #ffffff;
     float: right;
 }
 /*============import style==========*/
 .content {
-    min-height: 250px;
+    /*min-height: 250px;*/
     padding: 1px;
     margin-right: auto;
     margin-left: auto;
@@ -88,16 +88,48 @@
     /*height: 688px;*/
     background-color: #FFFFFF;
 }
-.table-show-pro{
-    width:100%;
-    overflow:auto;
-    height:578px;
-    max-height:578px;
-    min-height: 400px;
-    text-align: center;
-    border-bottom: #ffffff;
 
+/*15.6" 1920*1080*/
+@media screen and (min-width: 1920px), screen and (min-height: 1080px) {
+    .table-show-pro{
+        width:100%;
+        overflow:auto;
+        height:696px !important;
+        text-align: center;
+        border-bottom: #ffffff;
+    }
 }
+@media screen and (min-width: 1920px), screen and (min-height: 1050px) {
+    .table-show-pro{
+        width:100%;
+        overflow:auto;
+        /*height:665px !important;*/
+        text-align: center;
+        border-bottom: #ffffff;
+    }
+}
+
+/*14" 1366*800*/
+@media screen and (min-width: 1366px), screen and (min-height: 800px) {
+    .table-show-pro{
+        width:100%;
+        overflow:auto;
+        height:416px;
+        text-align: center;
+        border-bottom: #ffffff;
+    }
+}
+/*!*!*12" 1280*800*!*!*/
+@media screen and (min-width: 1280px), screen and (min-height: 800px) {
+    .table-show-pro{
+        width:100%;
+        overflow:auto;
+        height:416px;
+        text-align: center;
+        border-bottom: #ffffff;
+    }
+}
+
 table,tr,td{
     padding-bottom: 5px !important;
     padding-top: 5px !important;

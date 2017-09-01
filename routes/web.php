@@ -27,12 +27,17 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin']
     CRUD::resource('customer', 'CustomerCrudController');
     CRUD::resource('invoice', 'InvoiceCrudController');
     CRUD::resource('itemcategory', 'ItemCategoryCrudController');
+
+
     CRUD::resource('item', 'ItemCrudController');
     CRUD::resource('openitem', 'OpenItemCrudController');
+
+
     CRUD::resource('pos', 'POSCrudController');
 
     Route::get('/sale','POSCrudController@posSale');
     Route::get('/menu-item','POSCrudController@menuItem');
+    Route::get('/menu-item/{?id}','POSCrudController@menuItemShow');
 
     CRUD::resource('production', 'ProductionCrudController');
     CRUD::resource('purchase', 'PurchaseCrudController');

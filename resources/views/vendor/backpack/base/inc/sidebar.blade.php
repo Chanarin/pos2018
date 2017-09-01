@@ -25,7 +25,7 @@
         </div>
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-          <li class="header">{{ trans('backpack::base.administration') }}</li>
+          <li class="header">{{_t('administration') }}</li>
           <!-- ================================================ -->
           <!-- ==== Recommended place for admin menu items ==== -->
           <!-- ================================================ -->
@@ -130,7 +130,7 @@
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/setting') }}"><i class="fa fa-cog"></i> <span>{{_t('Settings')}}</span></a></li>
 
           <!-- ======================================= -->
-          <li class="header">{{ trans('backpack::base.user') }}</li>
+          <li class="header">{{_t('user') }}</li>
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/logout') }}"><i class="fa fa-sign-out"></i> <span>{{_t('logout')}}</span></a></li>
         </ul>
       </section>

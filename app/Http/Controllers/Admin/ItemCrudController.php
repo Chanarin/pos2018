@@ -39,6 +39,11 @@ class ItemCrudController extends CrudController
         ]);
 
         $this->crud->addColumn([
+            'name' => 'item_code',
+            'label' => _t('Code'),
+        ]);
+
+        $this->crud->addColumn([
             'name' => 'title',
             'label' => _t('Title'),
         ]);
@@ -55,6 +60,10 @@ class ItemCrudController extends CrudController
             'link' => true,
         ]);
 
+        $this->crud->addColumn([
+            'name' => 'price',
+            'label' => _t('Price'),
+        ]);
         //=============================
         //=============================
 

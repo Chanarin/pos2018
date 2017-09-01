@@ -302,9 +302,7 @@ class LanguagesTableSeeder extends Seeder
                 'id' => 32,
                 'key' => 'user',
                 'en' => 'User',
-                'km' => 'អ្នក​ប្រើ
-អ្នក​ប្រើ
-អ្នក​ប្រើ',
+                'km' => 'អ្នក​ប្រើ',
                 'created_at' => '2017-08-31 01:42:54',
                 'updated_at' => '2017-08-31 01:42:54',
             ),
@@ -793,6 +791,403 @@ class LanguagesTableSeeder extends Seeder
                 'km' => 'សរុប',
                 'created_at' => '2017-08-31 14:08:13',
                 'updated_at' => '2017-08-31 14:08:13',
+            ),
+            86 => 
+            array (
+                'id' => 88,
+                'key' => 'administration',
+                'en' => 'Administration',
+                'km' => 'រដ្ឋបាល',
+                'created_at' => '2017-09-01 01:46:51',
+                'updated_at' => '2017-09-01 01:46:51',
+            ),
+            87 => 
+            array (
+                'id' => 89,
+                'key' => 'add',
+                'en' => 'Add',
+                'km' => 'បន្ថែម',
+                'created_at' => '2017-09-01 01:48:34',
+                'updated_at' => '2017-09-01 01:48:34',
+            ),
+            88 => 
+            array (
+                'id' => 90,
+                'key' => 'actions',
+                'en' => 'Actions',
+                'km' => 'សកម្មភាព',
+                'created_at' => '2017-09-01 01:48:34',
+                'updated_at' => '2017-09-01 01:48:34',
+            ),
+            89 => 
+            array (
+                'id' => 91,
+                'key' => 'emptytable',
+                'en' => 'Empty Table',
+                'km' => 'តារាងទទេ',
+                'created_at' => '2017-09-01 01:48:34',
+                'updated_at' => '2017-09-01 01:48:34',
+            ),
+            90 => 
+            array (
+                'id' => 92,
+                'key' => 'info',
+                'en' => 'Info',
+                'km' => 'ពត៌មាន',
+                'created_at' => '2017-09-01 01:48:34',
+                'updated_at' => '2017-09-01 01:48:34',
+            ),
+            91 => 
+            array (
+                'id' => 93,
+                'key' => 'infoempty',
+                'en' => 'Info Empty',
+                'km' => 'ពត៌មាន ទទេ',
+                'created_at' => '2017-09-01 01:48:34',
+                'updated_at' => '2017-09-01 01:48:34',
+            ),
+            92 => 
+            array (
+                'id' => 94,
+                'key' => 'infofiltered',
+                'en' => 'Info Filtered',
+                'km' => 'ព័ត៌មាន ត្រង',
+                'created_at' => '2017-09-01 01:48:34',
+                'updated_at' => '2017-09-01 01:48:34',
+            ),
+            93 => 
+            array (
+                'id' => 95,
+                'key' => 'infopostfix',
+                'en' => 'Info Postfix',
+                'km' => 'ពត៌មាន Postfix',
+                'created_at' => '2017-09-01 01:48:34',
+                'updated_at' => '2017-09-01 01:48:34',
+            ),
+            94 => 
+            array (
+                'id' => 96,
+                'key' => 'thousands',
+                'en' => 'Thousands',
+                'km' => 'ខ្ទង់ពាន់',
+                'created_at' => '2017-09-01 01:48:34',
+                'updated_at' => '2017-09-01 01:48:34',
+            ),
+            95 => 
+            array (
+                'id' => 97,
+                'key' => 'lengthmenu',
+                'en' => 'Length Menu',
+                'km' => 'ប្រវែងម៉ឺនុយ',
+                'created_at' => '2017-09-01 01:48:34',
+                'updated_at' => '2017-09-01 01:48:34',
+            ),
+            96 => 
+            array (
+                'id' => 98,
+                'key' => 'loadingrecords',
+                'en' => 'Loading Records',
+                'km' => 'កំពុងផ្ទុកកំណត់ត្រា',
+                'created_at' => '2017-09-01 01:48:34',
+                'updated_at' => '2017-09-01 01:48:34',
+            ),
+            97 => 
+            array (
+                'id' => 99,
+                'key' => 'processing',
+                'en' => 'Processing',
+                'km' => 'កំពុងដំណើរការ',
+                'created_at' => '2017-09-01 01:48:34',
+                'updated_at' => '2017-09-01 01:48:34',
+            ),
+            98 => 
+            array (
+                'id' => 100,
+                'key' => 'search',
+                'en' => 'Search',
+                'km' => 'ស្វែងរក',
+                'created_at' => '2017-09-01 01:48:34',
+                'updated_at' => '2017-09-01 01:48:34',
+            ),
+            99 => 
+            array (
+                'id' => 101,
+                'key' => 'zerorecords',
+                'en' => 'Zero Records',
+                'km' => 'កំណត់ត្រាសូន្យ',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            100 => 
+            array (
+                'id' => 102,
+                'key' => 'first',
+                'en' => 'First',
+                'km' => 'ដំបូង',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            101 => 
+            array (
+                'id' => 103,
+                'key' => 'last',
+                'en' => 'Last',
+                'km' => 'ចុងក្រោយ',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            102 => 
+            array (
+                'id' => 104,
+                'key' => 'next',
+                'en' => 'Next',
+                'km' => 'បន្ទាប់',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            103 => 
+            array (
+                'id' => 105,
+                'key' => 'previous',
+                'en' => 'Previous',
+                'km' => 'ពីមុន',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            104 => 
+            array (
+                'id' => 106,
+                'key' => 'sortascending',
+                'en' => 'Sort Ascending',
+                'km' => 'តម្រៀបតាមលំដាប់ឡើង',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            105 => 
+            array (
+                'id' => 107,
+                'key' => 'sortdescending',
+                'en' => 'Sort Descending',
+                'km' => 'តម្រៀបតាមលំដាប់ចុះក្រោម',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            106 => 
+            array (
+                'id' => 108,
+                'key' => 'copy',
+                'en' => 'Copy',
+                'km' => 'ចម្លង',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            107 => 
+            array (
+                'id' => 109,
+                'key' => 'excel',
+                'en' => 'Excel',
+                'km' => 'Excel',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            108 => 
+            array (
+                'id' => 110,
+                'key' => 'csv',
+                'en' => 'CSV',
+                'km' => 'CSV',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            109 => 
+            array (
+                'id' => 111,
+                'key' => 'pdf',
+                'en' => 'PDF',
+                'km' => 'PDF',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            110 => 
+            array (
+                'id' => 112,
+                'key' => 'print',
+                'en' => 'Print',
+                'km' => 'បោះពុម្ព',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            111 => 
+            array (
+                'id' => 113,
+                'key' => 'column_visibility',
+                'en' => 'Column Visibility',
+                'km' => 'មើលតាមជួរឈរ',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            112 => 
+            array (
+                'id' => 114,
+                'key' => 'delete_confirm',
+                'en' => 'Delete Confirm',
+                'km' => 'បញ្ជាក់ការលុប',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            113 => 
+            array (
+                'id' => 115,
+                'key' => 'delete_confirmation_title',
+                'en' => ' Delete Confirmation Title',
+                'km' => 'លុបចំណងជើងបញ្ជាក់',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            114 => 
+            array (
+                'id' => 116,
+                'key' => 'delete_confirmation_message',
+                'en' => 'Delete Confirmation Message',
+                'km' => 'លុបសារបញ្ជាក់',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            115 => 
+            array (
+                'id' => 117,
+                'key' => 'delete_confirmation_not_title',
+                'en' => 'Delete Confirmation Not Title',
+                'km' => 'លុបការបញ្ជាក់មិនមានចំណងជើង',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            116 => 
+            array (
+                'id' => 118,
+                'key' => 'delete_confirmation_not_message',
+                'en' => 'Delete Confirmation Not Message',
+                'km' => 'លុបការបញ្ជាក់សារមិនពិត',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            117 => 
+            array (
+                'id' => 119,
+                'key' => 'delete_confirmation_not_deleted_title',
+                'en' => 'Delete Confirmation Not Delete Title',
+                'km' => 'លុបការអះអាងមិនលុបចំណងជើង',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            118 => 
+            array (
+                'id' => 120,
+                'key' => 'delete_confirmation_not_deleted_message',
+                'en' => 'Delete Confirmation Not Delete Message',
+                'km' => 'លុបការអះអាងមិនលុបសារ',
+                'created_at' => '2017-09-01 01:48:35',
+                'updated_at' => '2017-09-01 01:48:35',
+            ),
+            119 => 
+            array (
+                'id' => 121,
+                'key' => 'edit',
+                'en' => 'Edit',
+                'km' => 'កែសម្រួល',
+                'created_at' => '2017-09-01 01:48:36',
+                'updated_at' => '2017-09-01 01:48:36',
+            ),
+            120 => 
+            array (
+                'id' => 122,
+                'key' => 'delete',
+                'en' => 'Delete',
+                'km' => 'លុប',
+                'created_at' => '2017-09-01 01:48:36',
+                'updated_at' => '2017-09-01 01:48:36',
+            ),
+            121 => 
+            array (
+                'id' => 123,
+                'key' => 'admin',
+                'en' => 'Admin',
+                'km' => 'អ្នកគ្រប់គ្រង',
+                'created_at' => '2017-09-01 01:48:39',
+                'updated_at' => '2017-09-01 01:48:39',
+            ),
+            122 => 
+            array (
+                'id' => 124,
+                'key' => 'back_to_all',
+                'en' => 'Back to All',
+                'km' => 'ត្រលប់ទៅ',
+                'created_at' => '2017-09-01 01:48:39',
+                'updated_at' => '2017-09-01 01:48:39',
+            ),
+            123 => 
+            array (
+                'id' => 125,
+                'key' => 'choose_file',
+                'en' => 'Choose File',
+                'km' => 'ជ្រើសរើស​ឯកសារ
+',
+                'created_at' => '2017-09-01 01:48:39',
+                'updated_at' => '2017-09-01 01:48:39',
+            ),
+            124 => 
+            array (
+                'id' => 126,
+                'key' => 'search_here',
+                'en' => 'search here',
+                'km' => 'ស្វែងរកនៅទីនេះ',
+                'created_at' => '2017-09-01 02:04:58',
+                'updated_at' => '2017-09-01 02:04:58',
+            ),
+            125 => 
+            array (
+                'id' => 127,
+                'key' => 'first_page_you_see',
+                'en' => 'First Page You See',
+                'km' => 'ទំព័រទីមួយដែលអ្នកឃើញ',
+                'created_at' => '2017-09-01 02:23:32',
+                'updated_at' => '2017-09-01 02:23:32',
+            ),
+            126 => 
+            array (
+                'id' => 128,
+                'key' => 'logged_in',
+                'en' => 'Logged in',
+                'km' => 'បានចូល',
+                'created_at' => '2017-09-01 02:23:32',
+                'updated_at' => '2017-09-01 02:23:32',
+            ),
+            127 => 
+            array (
+                'id' => 129,
+                'key' => 'add_a_new',
+                'en' => 'Add a new',
+                'km' => 'បន្ថែមថ្មី',
+                'created_at' => '2017-09-01 02:32:31',
+                'updated_at' => '2017-09-01 02:32:31',
+            ),
+            128 => 
+            array (
+                'id' => 130,
+                'key' => 'all',
+                'en' => 'All',
+                'km' => 'រាល់ការ',
+                'created_at' => '2017-09-01 02:34:00',
+                'updated_at' => '2017-09-01 02:34:00',
+            ),
+            129 => 
+            array (
+                'id' => 131,
+                'key' => 'in_the_database',
+                'en' => 'In The Database',
+                'km' => 'នៅក្នុងកន្លែងផ្ទុកទិន្នន័យ',
+                'created_at' => '2017-09-01 02:34:00',
+                'updated_at' => '2017-09-01 02:34:00',
             ),
         ));
         

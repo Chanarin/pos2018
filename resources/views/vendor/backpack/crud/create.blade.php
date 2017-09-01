@@ -3,12 +3,12 @@
 @section('header')
 	<section class="content-header">
 	  <h1>
-	    {{ trans('backpack::crud.add') }} <span>{{ $crud->entity_name }}</span>
+		  {{_t('add')}} <span>{{ $crud->entity_name }}</span>
 	  </h1>
 	  <ol class="breadcrumb">
-	    <li><a href="{{ url(config('backpack.base.route_prefix'), 'dashboard') }}">{{ trans('backpack::crud.admin') }}</a></li>
+	    <li><a href="{{ url(config('backpack.base.route_prefix'), 'dashboard') }}">{{_t('admin')}}</a></li>
 	    <li><a href="{{ url($crud->route) }}" class="text-capitalize">{{ $crud->entity_name_plural }}</a></li>
-	    <li class="active">{{ trans('backpack::crud.add') }}</li>
+	    <li class="active">{{_t('add')}}</li>
 	  </ol>
 	</section>
 @endsection
@@ -19,7 +19,7 @@
 	<div class="col-md-12">
 		<!-- Default box -->
 		@if ($crud->hasAccess('list'))
-			<a href="{{ url($crud->route) }}"><i class="fa fa-angle-double-left"></i> {{ trans('backpack::crud.back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a><br><br>
+			<a href="{{ url($crud->route) }}"><i class="fa fa-angle-double-left"></i> {{_t('back_to_all')}} <span>{{ $crud->entity_name_plural }}</span></a><br><br>
 		@endif
 
 		@include('crud::inc.grouped_errors')
@@ -28,7 +28,7 @@
 		  <div class="box">
 
 		    <div class="box-header with-border">
-		      <h3 class="box-title">{{ trans('backpack::crud.add_a_new') }} {{ $crud->entity_name }}</h3>
+		      <h3 class="box-title">{{_t('add_a_new')}} {{ $crud->entity_name }}</h3>
 		    </div>
 		    <div class="box-body row">
 		      <!-- load the view from the application if it exists, otherwise load the one in the package -->

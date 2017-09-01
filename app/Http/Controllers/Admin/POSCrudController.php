@@ -33,6 +33,12 @@ class POSCrudController extends CrudController
         return view('pos.sale.item',['items' => $items]);
     }
 
+    public function menuItemShow($id){
+
+        return Item::find($id);
+
+    }
+
     public function setup()
     {
 

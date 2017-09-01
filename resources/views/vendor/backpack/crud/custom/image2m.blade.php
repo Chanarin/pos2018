@@ -31,7 +31,7 @@ $f = isset($field['value'])?json_decode($field['value'],true) : [];
             </div>
             <div class="btn-group">
                 <label class="btn btn-primary btn-file">
-                    {{ trans('backpack::crud.choose_file') }} <input type="file" accept="image/*" id="uploadImage"  @include('crud::inc.field_attributes', ['default_class' => 'hide'])>
+                    {{ _t('choose_file') }} <input type="file" accept="image/*" id="uploadImage"  @include('crud::inc.field_attributes', ['default_class' => 'hide'])>
                     <input type="hidden" id="hiddenImage" name="{{ $field['name'] }}[e][{{ $r_id }}]">
                 </label>
                 @if(isset($field['crop']) && $field['crop'])
@@ -80,7 +80,7 @@ $f = isset($field['value'])?json_decode($field['value'],true) : [];
         </div>
         <div class="btn-group">
             <label class="btn btn-primary btn-file">
-                {{ trans('backpack::crud.choose_file') }} <input type="file" accept="image/*" id="uploadImage"  @include('crud::inc.field_attributes', ['default_class' => 'hide'])>
+                {{ _t('choose_file') }} <input type="file" accept="image/*" id="uploadImage"  @include('crud::inc.field_attributes', ['default_class' => 'hide'])>
                 <input type="hidden" id="hiddenImage" name="{{ $field['name'] }}[n][{{ $r_id }}]">
             </label>
             @if(isset($field['crop']) && $field['crop'])

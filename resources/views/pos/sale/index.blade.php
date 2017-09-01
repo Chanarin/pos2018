@@ -3,32 +3,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('pos') }}/css/style.css">
     <link rel="stylesheet" href="{{ asset('vendor/adminlte') }}/plugins/select2/select2.min.css">
-    <style>
-        body {
-            background: #FFF;
-            color: #333;
-            font-weight: normal;
-            width: 100%;
-            min-width: 970px;
-            max-width: 100%;
-            position: relative;
-        }
-        html, body, form {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
 @endsection
 
 @section('content')
     <div class="cover-add" id="overlay">
         <div id="container">
             {{--99--}}
-            <div id="left-panel" style="height: 100%;">
+            <div id="left-panel">
 
-                <div id="left-top" style="height: 15%;">
+                <div id="left-top">
                     <div class="col-md-12" style="padding-left:0;">
                         <div class="form-group">
                             <div class="input-group">
@@ -107,12 +90,12 @@
                     <div style="clear:both;"></div>
                 </div>
 
-                <div class="col-md-12 col-sm-12 panel-height" style="position: relative; height: 60%">
+                <div class="col-md-12 col-sm-12 panel-height" style="position: relative; ">
                     <div class="tbl-header">
                         <table class="table table-action">
                             <thead style="width:100%;">
                             <tr>
-                                <th style="width:15%;">#Code</th>
+                                <th style="width:15%;">Code</th>
                                 <th style="width:30%;">Name</th>
                                 <th style="width:10%;">Qty</th>
                                 <th style="width:20%;">Price</th>
@@ -123,11 +106,12 @@
                         </table>
                     </div>
                     <div class="table-show-pro">
-                        <table style="width:100%;">
+                        <table style="width:100%;" class="show-order-item">
+
                             <tr>
                                 <td style="width:10%;">P0001</td>
                                 <td style="width:30%;" class="name-style-order">Name Item 1</td>
-                                <td style="width:10%;"><input type="text" value="" placeholder=" 0 " style="width: 100%;"></td>
+                                <td style="width:10%;"><input type="number" value="" min="0" placeholder=" 0 " style="width: 100%;"></td>
                                 <td style="width:20%;"><span>$</span> 200</td>
                                 <td style="width:20%;"><span>$</span> 200</td>
                                 <td style="width: 10%">
@@ -136,23 +120,13 @@
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td style="width:10%;">P0001</td>
-                                <td style="width:30%;" class="name-style-order">Name Item 1</td>
-                                <td style="width:10%;"><input type="text" value="" placeholder=" 0 " style="width: 100%;"></td>
-                                <td style="width:20%;"><span>$</span> 200</td>
-                                <td style="width:20%;"><span>$</span> 200</td>
-                                <td style="width: 10%">
-                                    <a class="btn btn-xs btn-default" style="font-size: 18px; color: rgba(160,8,22,0.84);">
-                                        <i class="fa fa-fw fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
+
+
                         </table>
                     </div>
                 </div>
 
-                <div id="left-bottom" style="height: 25%; position: relative;">
+                <div id="left-bottom" style=" position: relative;">
                     <div class="col-md-12 col-sm-12 checkout_amount">
                         <table id="totalTable" style="width:100%; float:right; padding:5px; color:#000; background: #FFF;">
                             <tbody>
@@ -234,9 +208,7 @@
                     </div>
                 </div>
             </div>
-            <style>
 
-            </style>
             <div id="right-section">
                 <div class="col-md-12 cat-items-style">
                     <div id="slider-2" class="slider slide-shadow">
@@ -250,7 +222,7 @@
                                              $img = json_decode($category->image);
                                          @endphp
                                             @if(count($img)>0)
-                                                <img src="{{asset("/".$img[0])}}" width="60" height="60">
+                                                <img src="{{url('img/cache/original/'.\App\Helpers\Glb::get_basename($img[0]))}}" width="60" height="60">
                                             @endif
                                         </i>
                                         </span>
@@ -1194,7 +1166,7 @@
             });
         });
 
-
+        //get item by category
         $(function () {
 
             $('.item-by-category').on('click', function (e) {
@@ -1219,6 +1191,10 @@
             });
             $('.item-by-category:first').trigger('click');
         });
+
+
+
+        //get item pagination by category
         $('body').delegate('.my-paginate ul li a', 'click', function (e) {
             e.preventDefault();
             var report_url = $(this).prop('href');
@@ -1229,6 +1205,7 @@
                 data: {
 
                 },
+
                 success: function (d) {
                     $('.menu-item-by-category').html(d);
                 },
@@ -1237,49 +1214,52 @@
                 }
             });
         });
+        // add item to order list
+        $('body').delegate('.add-order-item','click',function (e) {
 
+            var id = $(this).data('id');
+//            var d = $(this);
+            $.ajax({
+                type: "GET",
+                url: "{{url('admin/menu-item')}}/" + id,
+                //data: "{}",
+                dataType: "json",
+                success: function (data) {
 
-//
-//        $('#search-report-by-date').on('click', function (e) {
-//            e.preventDefault();
-//            var report_url = $('.report-option:checked').data('url');
-//
-//            var q = $('#q').val();
-//            if (report_url) {
-//                $.ajax({
-//                    url: report_url,
-//                    type: 'GET',
-//                    dataType: 'html',
-//                    data: {
-//
-//                        q:q
-//                    },
-//                    success: function (d) {
-//                        $('.report-item-list').html(d);
-//                    },
-//                    error: function (d) {
-//                        alert('error');
-//                    }
-//                });
-//            } else {
-//                swal("OOps.., No Data!", "Please, select report type and date first.")
-//            }
-//        });
-//        $('body').delegate('.my-paginate ul li a', 'click', function (e) {
-//            e.preventDefault();
-//            var report_url = $(this).prop('href');
-//            $.ajax({
-//                url: report_url,
-//                type: 'GET',
-//                dataType: 'html',
-//                success: function (d) {
-//                    $('.report-item-list').html(d);
-//                },
-//                error: function (d) {
-//                    alert('error');
-//                }
-//            });
-//        });
+                    addRowItemOrderWithData(data,$('.show-order-item'));
+
+//                    d.parent().parent().remove();
+                },
+                error: function (result) {
+                    dd("Error");
+                }
+            });
+        });
+
+        function addRowItemOrderWithData(data,ob) {
+
+            ob.each(function () {
+
+                    var item_id = $(this).val();
+                    var tr = $(this).parent().parent();
+                    var item_code = tr.find('.item_code').val();
+                    var title = tr.find('.title').val();
+                        $(this).html('<tr>\n' +
+                            '<td style="width:10%;">P0001</td>' +
+                            '<td style="width:30%;" class="name-style-order">Name Item 1</td>' +
+                            '<td style="width:10%;"><input type="number" value="" min="0" placeholder=" 0 " style="width: 100%;"></td>' +
+                            '<td style="width:20%;"><span>$</span> 200</td>' +
+                            '<td style="width:20%;"><span>$</span> 200</td>' +
+                            '<td style="width: 10%">\n' +
+                            '<a class="btn btn-xs btn-default" style="font-size: 18px; color: rgba(160,8,22,0.84);">' +
+                            '<i class="fa fa-fw fa-trash"></i>' +
+                            '</a>' +
+                            '</td>' +
+                            '</tr>');
+            });
+
+        }
+
     </script>
     {{--============script pop up item ============--}}
 @endsection

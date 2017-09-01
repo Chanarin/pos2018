@@ -8,7 +8,7 @@
                 <div class="col-md-10" >
                     <!-- Date range -->
                     <div class="col-md-4 input-group-sm">
-                        <input type="text" id="q" class="form-control pull-right" placeholder="search here...">
+                        <input type="text" id="q" class="form-control pull-right" placeholder="{{_t('search here')}}...">
                     </div>
                     <div class="col-md-8">
                         <div class="form-group">
@@ -21,7 +21,7 @@
                                 <input type="hidden" id="from-date">
                                 <input type="hidden" id="to-date">
                                 <span class="input-group-btn">
-                                  <button type="button" class="btn btn-info btn-flat" id="search-report-by-date">Search</button>
+                                  <button type="button" class="btn btn-info btn-flat" id="search-report-by-date">{{_t('Search')}}</button>
                                 </span>
                             </div>
                             <!-- /.input group -->
@@ -31,7 +31,7 @@
                 <div class="col-md-2">
 
                 </div>
-                <li><a href="#" class="btn btn-xs btn-default" onclick="printContent('report-print')"><i class="fa fa-fw fa-print"></i> PRINT</a></li>
+                <li><a href="#" class="btn btn-xs btn-default" onclick="printContent('report-print')"><i class="fa fa-fw fa-print"></i> {{_t('PRINT')}}</a></li>
                 {{--<li><a href="#" class="btn btn-xs btn-default" id="cmd" ><i class="fa fa-fw fa-file-pdf-o"></i> PDF</a></li>--}}
                 {{--<li><a href="#" class="btn btn-xs btn-default" id="btnExport"><i class="fa fa-fw fa-file-excel-o"></i> EXCEL</a></li>--}}
             </ol>

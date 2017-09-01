@@ -31,31 +31,31 @@
         {{--</li>--}}
         <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/customers') }}" >
-                <i class="fa  fa-user"> {{_t('Customer')}}</i>
+                <i class="fa  fa-user"></i> <span>{{_t('Customer')}}</span>
 
             </a>
         </li>
         <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/purchase') }}">
-                <i class="fa fa-cart-arrow-down"> {{_t('Purchase')}}</i>
+                <i class="fa fa-cart-arrow-down"></i> <span>{{_t('Purchase')}}</span>
 
             </a>
         </li>
         <li class=" hidden-xs hidden-sm">
             <a href="#" >
-                <i class="fa fa-th-large"> {{_t('Profit')}}</i>
+                <i class="fa fa-th-large"></i> <span>{{_t('Profit')}}</span>
 
             </a>
         </li>
         <li class=" hidden-xs hidden-sm">
             <a href="#" >
-                <i class="fa fa-print"> {{_t('List Sale')}}</i>
+                <i class="fa fa-print"></i> <span>{{_t('List Sale')}}</span>
 
             </a>
         </li>
         <li class=" hidden-xs hidden-sm">
             <a href="#" >
-                <i class="fa fa-th-large"> {{_t('Today Sale')}}</i>
+                <i class="fa fa-th-large"></i> <span>{{_t('Today Sale')}}</span>
 
             </a>
         </li>

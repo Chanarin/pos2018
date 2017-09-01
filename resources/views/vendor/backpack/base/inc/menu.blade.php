@@ -17,47 +17,46 @@
 
         <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/sale') }}">
-                <i class="fa fa-th-large"> {{_t('POS')}}</i>
+                <i class="fa fa-th-large"></i> <span>{{_t('POS')}}</span>
 
             </a>
         </li>
         <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/customers') }}">
-                <i class="fa  fa-user"> {{_t('Customer')}}</i>
+                <i class="fa  fa-user"></i> <span>{{_t('Customer')}}</span>
 
             </a>
         </li>
         <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/openitem') }}">
-                <i class="fa fa-book"> {{_t('Open Item')}}</i>
-
+                <i class="fa fa-book"></i> <span>{{_t('Open Item')}}</span>
             </a>
         </li>
 
         <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/purchase') }}" >
-                <i class="fa fa-cart-arrow-down"> {{_t('Purchase')}}</i>
+                <i class="fa fa-cart-arrow-down"></i> <span>{{_t('Purchase')}}</span>
 
             </a>
         </li>
 
         <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/production') }}" >
-                <i class="fa fa-gavel"> {{_t('Production')}}</i>
+                <i class="fa fa-gavel"></i> <span>{{_t('Production')}}</span>
 
             </a>
         </li>
 
         <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/print-invoice') }}">
-                <i class="fa fa-check-square"> {{_t('Checklist')}}</i>
+                <i class="fa fa-check-square"></i> <span>{{_t('Checklist')}}</span>
 
             </a>
         </li>
 
         <li class=" hidden-xs hidden-sm">
             <a href="{{url('/admin/register')}}">
-                <i class="fa fa-th-large"> {{_t('Register')}}</i>
+                <i class="fa fa-th-large"></i> <span>{{_t('Register')}}</span>
 
             </a>
         </li>
