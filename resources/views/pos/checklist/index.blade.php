@@ -90,7 +90,7 @@
                                     @endphp
                                     @if(count($img)>0)
 
-                                    <img src="{{asset("/".$img[0])}}" width="50" height="50">
+                                    <img src="{{url('img/cache/original/'.\App\Helpers\Glb::get_basename($img[0]))}}" width="50" height="50">
                                     @endif
                                 </td>
                                 <td class="text-left">{{$row->item_code}}</td>
