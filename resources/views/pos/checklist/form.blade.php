@@ -37,10 +37,14 @@
         @endphp
         @include('vendor.backpack.crud.custom.date_picker2',compact('crud', 'entry', 'field'))
     </div>
-    <div class="form-group col-md-12">
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-12">
         <div class="box">
             <div class="box-body">
-                <table class="table-responsive"  width="1024px"  border="0" cellspacing="0" style="margin:auto;">
 
                     <table class="table table-bordered">
                         <thead>
@@ -112,11 +116,9 @@
 
 
                     </table>
-                </table>
             </div>
         </div>
     </div>
-
 </div>
 
 

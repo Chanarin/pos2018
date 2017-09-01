@@ -10,7 +10,7 @@
     $field_language = isset($field['date_picker_options']['language'])?$field['date_picker_options']['language']:\App::getLocale();
 ?>
 
-<div @include('crud::inc.field_wrapper_attributes') >
+<div datadate @include('crud::inc.field_wrapper_attributes') >
     <input type="hidden" name="{{ $field['name'] }}" value="{{ old($field['name']) ? old($field['name']) : (isset($field['value']) ? $field['value'] : (isset($field['default']) ? $field['default'] : '' )) }}">
     <label>{!! $field['label'] !!}</label>
     @include('crud::inc.field_translatable_icon')
@@ -61,7 +61,7 @@
             $('[data-bs-datepicker]').each(function(){
 
                 var $fake = $(this),
-                $field = $fake.parents('.form-group').find('input[type="hidden"]'),
+                $field = $fake.parents('[datadate]').find('input[type="hidden"]'),
                 $customConfig = $.extend({
                     format: 'dd/mm/yyyy'
                 }, $fake.data('bs-datepicker'));
