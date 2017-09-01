@@ -49,12 +49,13 @@ class IDP
                 $mr = PurchaseDetail::where('ref_id', $this->ref_id);
                 break;
             case _POS_::items:
-                $itemDeetaill =  ItemDetail::where('ref_id', $this->ref_id)->get();
-                if(count($itemDeetaill)>0){
-                    foreach ($itemDeetaill as $roww){
+                $itemDeetaill = ItemDetail::where('ref_id', $this->ref_id)->get();
+                if (count($itemDeetaill) > 0) {
+                    foreach ($itemDeetaill as $roww) {
                         $itt = ItemTransaction::find($roww->item_id);
-                        if($itt != null){}else{
-                            ItemDetail::where('item_id',$roww->item_id)->delete();
+                        if ($itt != null) {
+                        } else {
+                            ItemDetail::where('item_id', $roww->item_id)->delete();
                         }
                     }
                 }
@@ -116,7 +117,7 @@ class IDP
 
                     $itemDetailP = new ItemDetailP($this->type, $item_id, $this->ref_id,
                         $item_id, $item_code,
-                        $title, $unit,$num_qty, $qty,$count_qty,
+                        $title, $unit, $num_qty, $qty, $count_qty,
                         $cost, $price, $discount, $note, $item_detail);
 
 
@@ -182,7 +183,7 @@ class ItemDetailP
 
     public function __construct($type = null, $id = null, $ref_id = null,
                                 $item_id = null, $item_code = null,
-                                $title = null, $unit = null,$num_qty = 1 , $qty = 0,$count_qty = 0,
+                                $title = null, $unit = null, $num_qty = 1, $qty = 0, $count_qty = 0,
                                 $cost = 0, $price = 0, $discount = 0, $note = null,
                                 $item_detail = null, $created_at = null,
                                 $updated_at = null, $deleted_at = null)
@@ -236,15 +237,25 @@ class ItemDetailP
     {
         $rrr = null;
         if (!($this->item_id > 0)) {
-            $mi = new Item();
-            $mi->item_code = $this->item_code;
-            $mi->title = $this->title;
-            //$mi->description = $this->description ;
-            //$mi->image = $this->image ;
-            $mi->unit = $this->unit;
-            if ($mi->save()) {
+            //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+            $mi = Item::where('item_code',trim($this->item_code))->first();
+
+            if($mi != null){
                 $this->item_id = $mi->id;
                 $rrr = $mi;
+            }else {
+
+                $mi = new Item();
+                $mi->item_code = $this->item_code;
+                $mi->title = $this->title;
+                //$mi->description = $this->description ;
+                //$mi->image = $this->image ;
+                $mi->unit = $this->unit;
+                if ($mi->save()) {
+                    $this->item_id = $mi->id;
+                    $rrr = $mi;
+                }
             }
         }
 
@@ -272,14 +283,21 @@ class ItemDetailP
 //                    ===============================
 //                    ===============================
                     if (!($item_id > 0)) {
-                        $mis = new Item();
-                        $mis->item_code = $item_code;
-                        $mis->title = $title;
-                        //$mi->description = $this->description ;
-                        //$mi->image = $this->image ;
-                        $mis->unit = $unit;
-                        if ($mis->save()) {
+                        //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                        $mis = Item::where('item_code',trim($item_code))->first();
+
+                        if($mis != null){
                             $item_id = $mis->id;
+                        }else {
+                            $mis = new Item();
+                            $mis->item_code = $item_code;
+                            $mis->title = $title;
+                            //$mi->description = $this->description ;
+                            //$mi->image = $this->image ;
+                            $mis->unit = $unit;
+                            if ($mis->save()) {
+                                $item_id = $mis->id;
+                            }
                         }
                     }
 
@@ -337,7 +355,7 @@ class ItemDetailP
                         'title' => $d_title,
                         'description' => $d_description,
                         'unit' => $d_unit,
-                        'num_qty'=>$d_num_qty,
+                        'num_qty' => $d_num_qty,
                         'qty' => $d_qty,
                         'cost' => $d_cost,
                         'note' => $d_note
@@ -345,14 +363,21 @@ class ItemDetailP
                     if ($d_item_id > 0) {
                         $item_ref_detail[$ixix]['item_id'] = $d_item_id;
                     } else {
-                        $mITT = new Item();
-                        $mITT->item_code = $d_item_code;
-                        $mITT->title = $d_title;
-                        $mITT->description = $d_description;
-                        $mITT->unit = $d_unit;
+                        //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                        $mITT = Item::where('item_code',trim($d_item_code))->first();
 
-                        if ($mITT->save()) {
+                        if($mITT != null){
                             $item_ref_detail[$ixix]['item_id'] = $mITT->id;
+                        }else {
+                            $mITT = new Item();
+                            $mITT->item_code = $d_item_code;
+                            $mITT->title = $d_title;
+                            $mITT->description = $d_description;
+                            $mITT->unit = $d_unit;
+
+                            if ($mITT->save()) {
+                                $item_ref_detail[$ixix]['item_id'] = $mITT->id;
+                            }
                         }
 
                     }
@@ -391,9 +416,9 @@ class ItemDetailP
 
             $m->item_code = $this->item_code;
 
-            $m->title = isset($this->title)?$this->title:'';
-            $m->unit = isset($this->unit)?$this->unit:'';
-            $m->num_qty = isset($this->num_qty)?$this->num_qty:1;
+            $m->title = isset($this->title) ? $this->title : '';
+            $m->unit = isset($this->unit) ? $this->unit : '';
+            $m->num_qty = isset($this->num_qty) ? $this->num_qty : 1;
 
 
             $m->qty = $this->qty;
@@ -460,15 +485,21 @@ class ItemDetailP
     private function createItemDetail()
     {
         if (!($this->item_id > 0)) {
+            //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            $mi = Item::where('item_code',trim($this->item_code))->first();
 
-            $mi = new Item();
-            $mi->item_code = $this->item_code;
-            $mi->title = $this->title;
-            //$mi->description = $this->description ;
-            //$mi->image = $this->image ;
-            $mi->unit = $this->unit;
-            if ($mi->save()) {
+            if($mi != null){
                 $this->item_id = $mi->id;
+            }else {
+                $mi = new Item();
+                $mi->item_code = $this->item_code;
+                $mi->title = $this->title;
+                //$mi->description = $this->description ;
+                //$mi->image = $this->image ;
+                $mi->unit = $this->unit;
+                if ($mi->save()) {
+                    $this->item_id = $mi->id;
+                }
             }
         }
 
