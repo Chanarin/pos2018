@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\_POS_;
+use App\Helpers\IDP;
 use App\Models\Item;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
@@ -126,6 +128,8 @@ class ChecklistCrudController extends CrudController
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+        $iDP = new IDP($request->_data_,_POS_::checklists,$this->crud->entry->id);
+        $iDP->saveAllDetail();
         return $redirect_location;
     }
 
@@ -135,6 +139,8 @@ class ChecklistCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
+        $iDP = new IDP($request->_data_,_POS_::checklists,$this->crud->entry->id);
+        $iDP->saveAllDetail();
         return $redirect_location;
     }
 }

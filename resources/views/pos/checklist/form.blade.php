@@ -63,6 +63,11 @@
                         @endphp
                         @foreach($checklists as $row)
                             @php
+                                $r_id = rand(11111, 99999) .  time() . rand(1000, 5000);
+                                //$dataDetails = isset($field['dataDetails'])?$field['dataDetails']:null;
+                               // dd($dataDetails);
+                            @endphp
+                            @php
                                 $transaction = \App\Models\ItemTransaction::where('item_id','=',$row->id)->sum('qty');
                             @endphp
                             <tr>
@@ -81,8 +86,23 @@
                                 <td class="text-left">{{$row->title}} </td>
                                 <td class="text-left">{{$row->unit}}</td>
                                 <td class="text-right">{{$transaction}}</td>
-                                <td class="text-center"><input type="text" style="width: 78px !important;"></td>
-                                <td class="text-center"><input type="text" style="width: 148px !important;"></td>
+                                <td class="text-center">
+                                    <input name="_data_[{{$r_id}}][item_id]" value="{{ $row->id }}"  type="hidden">
+                                    <input name="_data_[{{$r_id}}][item_code]" value="{{ $row->item_code }}"  type="hidden">
+                                    <input name="_data_[{{$r_id}}][title]" value="{{ $row->title }}"  type="hidden">
+                                    <input name="_data_[{{$r_id}}][unit]" value="{{ $row->unit }}"  type="hidden">
+                                    <input name="_data_[{{$r_id}}][num_qty]" value="0"  type="hidden">
+                                    <input name="_data_[{{$r_id}}][qty]" value="{{$transaction}}"  type="hidden">
+                                    <input name="_data_[{{$r_id}}][cost]" value="0"  type="hidden">
+                                    <input name="_data_[{{$r_id}}][price]" value="0"  type="hidden">
+                                    <input name="_data_[{{$r_id}}][discount]" value="0"  type="hidden">
+                                    <input name="_data_[{{$r_id}}][note]" value=""  type="hidden">
+
+                                    <input type="text" style="width: 78px !important;">
+                                </td>
+                                <td class="text-center">
+                                    <input type="text" style="width: 148px !important;">
+                                </td>
                                 <td class="text-center"><input type="checkbox"></td>
                             </tr>
                         @endforeach
