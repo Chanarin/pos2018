@@ -106,19 +106,8 @@
                         </table>
                     </div>
                     <div class="table-show-pro">
-                        <table style="width:100%;">
-                            <tr>
-                                <td style="width:10%;">P0001</td>
-                                <td style="width:30%;" class="name-style-order">Name Item 1</td>
-                                <td style="width:10%;"><input type="number" value="" min="0" placeholder=" 0 " style="width: 100%;"></td>
-                                <td style="width:20%;"><span>$</span> 200</td>
-                                <td style="width:20%;"><span>$</span> 200</td>
-                                <td style="width: 10%">
-                                    <a class="btn btn-xs btn-default" style="font-size: 18px; color: rgba(160,8,22,0.84);">
-                                        <i class="fa fa-fw fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                        <table style="width:100%;" class="show-order-item">
+
                             <tr>
                                 <td style="width:10%;">P0001</td>
                                 <td style="width:30%;" class="name-style-order">Name Item 1</td>
@@ -1177,7 +1166,7 @@
             });
         });
 
-
+        //get item by category
         $(function () {
 
             $('.item-by-category').on('click', function (e) {
@@ -1202,6 +1191,10 @@
             });
             $('.item-by-category:first').trigger('click');
         });
+
+
+
+        //get item pagination by category
         $('body').delegate('.my-paginate ul li a', 'click', function (e) {
             e.preventDefault();
             var report_url = $(this).prop('href');
@@ -1212,6 +1205,7 @@
                 data: {
 
                 },
+
                 success: function (d) {
                     $('.menu-item-by-category').html(d);
                 },
@@ -1220,49 +1214,52 @@
                 }
             });
         });
+        // add item to order list
+        $('body').delegate('.add-order-item','click',function (e) {
 
+            var id = $(this).data('id');
+//            var d = $(this);
+            $.ajax({
+                type: "GET",
+                url: "{{url('admin/menu-item')}}/" + id,
+                //data: "{}",
+                dataType: "json",
+                success: function (data) {
 
-//
-//        $('#search-report-by-date').on('click', function (e) {
-//            e.preventDefault();
-//            var report_url = $('.report-option:checked').data('url');
-//
-//            var q = $('#q').val();
-//            if (report_url) {
-//                $.ajax({
-//                    url: report_url,
-//                    type: 'GET',
-//                    dataType: 'html',
-//                    data: {
-//
-//                        q:q
-//                    },
-//                    success: function (d) {
-//                        $('.report-item-list').html(d);
-//                    },
-//                    error: function (d) {
-//                        alert('error');
-//                    }
-//                });
-//            } else {
-//                swal("OOps.., No Data!", "Please, select report type and date first.")
-//            }
-//        });
-//        $('body').delegate('.my-paginate ul li a', 'click', function (e) {
-//            e.preventDefault();
-//            var report_url = $(this).prop('href');
-//            $.ajax({
-//                url: report_url,
-//                type: 'GET',
-//                dataType: 'html',
-//                success: function (d) {
-//                    $('.report-item-list').html(d);
-//                },
-//                error: function (d) {
-//                    alert('error');
-//                }
-//            });
-//        });
+                    addRowItemOrderWithData(data,$('.show-order-item'));
+
+//                    d.parent().parent().remove();
+                },
+                error: function (result) {
+                    dd("Error");
+                }
+            });
+        });
+
+        function addRowItemOrderWithData(data,ob) {
+
+            ob.each(function () {
+
+                    var item_id = $(this).val();
+                    var tr = $(this).parent().parent();
+                    var item_code = tr.find('.item_code').val();
+                    var title = tr.find('.title').val();
+                        $(this).html('<tr>\n' +
+                            '<td style="width:10%;">P0001</td>' +
+                            '<td style="width:30%;" class="name-style-order">Name Item 1</td>' +
+                            '<td style="width:10%;"><input type="number" value="" min="0" placeholder=" 0 " style="width: 100%;"></td>' +
+                            '<td style="width:20%;"><span>$</span> 200</td>' +
+                            '<td style="width:20%;"><span>$</span> 200</td>' +
+                            '<td style="width: 10%">\n' +
+                            '<a class="btn btn-xs btn-default" style="font-size: 18px; color: rgba(160,8,22,0.84);">' +
+                            '<i class="fa fa-fw fa-trash"></i>' +
+                            '</a>' +
+                            '</td>' +
+                            '</tr>');
+            });
+
+        }
+
     </script>
     {{--============script pop up item ============--}}
 @endsection

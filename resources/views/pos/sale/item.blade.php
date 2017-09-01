@@ -1,5 +1,5 @@
 @foreach($items as $item)
-    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 top-item-style">
+    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 top-item-style add-order-item" data-id="{{$item->id}}">
         <div class="padding-around">
             @php
                 $img = json_decode($item->image);
