@@ -84,6 +84,7 @@ class IDP
                     $num_qty = isset($row['num_qty']) ? $row['num_qty'] : 1;
 
                     $qty = isset($row['qty']) ? $row['qty'] : 0;
+                    $count_qty = isset($row['count_qty']) ? $row['count_qty'] : 0;
                     $cost = isset($row['cost']) ? $row['cost'] : 0;
                     $price = isset($row['price']) ? $row['price'] : 0;
                     $discount = isset($row['discount']) ? $row['discount'] : 0;
@@ -115,7 +116,7 @@ class IDP
 
                     $itemDetailP = new ItemDetailP($this->type, $item_id, $this->ref_id,
                         $item_id, $item_code,
-                        $title, $unit,$num_qty, $qty,
+                        $title, $unit,$num_qty, $qty,$count_qty,
                         $cost, $price, $discount, $note, $item_detail);
 
 
@@ -165,6 +166,7 @@ class ItemDetailP
     public $item_id;
     public $item_code;
     public $qty;
+    public $count_qty;
     public $cost;
     public $price;
     public $discount;
@@ -180,7 +182,7 @@ class ItemDetailP
 
     public function __construct($type = null, $id = null, $ref_id = null,
                                 $item_id = null, $item_code = null,
-                                $title = null, $unit = null,$num_qty = 1 , $qty = 0,
+                                $title = null, $unit = null,$num_qty = 1 , $qty = 0,$count_qty = 0,
                                 $cost = 0, $price = 0, $discount = 0, $note = null,
                                 $item_detail = null, $created_at = null,
                                 $updated_at = null, $deleted_at = null)
@@ -194,6 +196,7 @@ class ItemDetailP
         $this->item_id = $item_id;
         $this->item_code = $item_code;
         $this->qty = $qty - 0;
+        $this->count_qty = $count_qty - 0;
         $this->cost = $cost - 0;
         $this->price = $price - 0;
         $this->discount = $discount - 0;
@@ -365,6 +368,7 @@ class ItemDetailP
             switch ($this->type) {
                 case _POS_::checklists:
                     $m = new ChecklistDetail();
+                    $m->count_qty = $this->count_qty;
                     break;
                 case _POS_::invoice:
                     $m = new InvoiceDetail();

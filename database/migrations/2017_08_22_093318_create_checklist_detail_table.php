@@ -21,6 +21,7 @@ class CreateChecklistDetailTable extends Migration
             $table->string('unit')->nullable();
             $table->double('num_qty')->nullable();
             $table->double('qty')->nullable();
+            $table->double('count_qty')->nullable();
             $table->double('cost')->nullable();
             $table->double('price')->nullable();
             $table->double('discount')->nullable();

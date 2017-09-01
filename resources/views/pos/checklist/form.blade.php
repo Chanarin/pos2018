@@ -1,3 +1,9 @@
+@php
+    $c_id = isset($crud->entry->id)?$crud->entry->id:0;
+    $m_detail = \App\Models\ChecklistDetail::join('items','checklist_detail.item_id','=','items.id')
+                ->where('checklist_detail.ref_id',$c_id)->get();
+
+@endphp
 <div class="row" >
     <div class="col-md-12">
         <div class=" pull-right text-right">
@@ -51,10 +57,11 @@
                         <tr>
                             <th class="text-center" style="width: 10px">#</th>
                             <th class="text-center" style="width: 70px;">Image</th>
-                            <th class="text-center">Code</th>
+                            <th class="text-center" style="width: 80px !important;">Code</th>
                             <th class="text-center">Name</th>
-                            <th class="text-center">Unit</th>
-                            <th class="text-center">Qty</th>
+                            <th class="text-center" style="width: 80px !important;">Unit</th>
+                            <th class="text-center"  style="width: 80px !important;">Qty</th>
+                            <th class="text-center" style="width: 80px !important;">Num.Qty</th>
                             <th class="text-center" style="width: 80px !important;">Count</th>
                             <th class="text-center" style="width: 150px !important;">Note</th>
                             <th class="text-center" style="width: 10px">Tick</th>
@@ -63,16 +70,23 @@
                         <tbody>
                         @php
                             $key = 1;
-                            $checklists = \App\Models\Item::get();
+                            if(count($m_detail)>0){
+                                $checklists = $m_detail;
+                            }else{
+                                $checklists = \App\Models\Item::get();
+                            }
+
                         @endphp
                         @foreach($checklists as $row)
                             @php
                                 $r_id = rand(11111, 99999) .  time() . rand(1000, 5000);
-                                //$dataDetails = isset($field['dataDetails'])?$field['dataDetails']:null;
-                               // dd($dataDetails);
                             @endphp
                             @php
-                                $transaction = \App\Models\ItemTransaction::where('item_id','=',$row->id)->sum('qty');
+                                if(count($m_detail)>0){
+                                    $transaction = $row->qty;
+                                }else{
+                                    $transaction = \App\Models\ItemTransaction::where('item_id','=',$row->id)->sum('qty');
+                                }
                             @endphp
                             <tr>
                                 <td class="text-left">{{$key++}}.</td>
@@ -82,7 +96,6 @@
 
                                     @endphp
                                     @if(count($img)>0)
-
                                         <img src="{{url('img/cache/original/'.\App\Helpers\Glb::get_basename($img[0]))}}" width="50" height="50">
                                     @endif
                                 </td>
@@ -95,17 +108,18 @@
                                     <input name="_data_[{{$r_id}}][item_code]" value="{{ $row->item_code }}"  type="hidden">
                                     <input name="_data_[{{$r_id}}][title]" value="{{ $row->title }}"  type="hidden">
                                     <input name="_data_[{{$r_id}}][unit]" value="{{ $row->unit }}"  type="hidden">
-                                    <input name="_data_[{{$r_id}}][num_qty]" value="0"  type="hidden">
                                     <input name="_data_[{{$r_id}}][qty]" value="{{$transaction}}"  type="hidden">
                                     <input name="_data_[{{$r_id}}][cost]" value="0"  type="hidden">
                                     <input name="_data_[{{$r_id}}][price]" value="0"  type="hidden">
                                     <input name="_data_[{{$r_id}}][discount]" value="0"  type="hidden">
-                                    <input name="_data_[{{$r_id}}][note]" value=""  type="hidden">
 
-                                    <input type="text" style="width: 78px !important;">
+                                    <input name="_data_[{{$r_id}}][num_qty]" value="{{isset($row->num_qty)?$row->num_qty:''}}" type="text" class="form-control">
                                 </td>
                                 <td class="text-center">
-                                    <input type="text" style="width: 148px !important;">
+                                    <input name="_data_[{{$r_id}}][count_qty]" value="{{isset($row->count_qty)?$row->count_qty:''}}"  type="text" class="form-control">
+                                </td>
+                                <td class="text-center">
+                                    <input name="_data_[{{$r_id}}][note]" value="{{isset($row->note)?$row->note:''}}"  type="text"  class="form-control">
                                 </td>
                                 <td class="text-center"><input type="checkbox"></td>
                             </tr>
