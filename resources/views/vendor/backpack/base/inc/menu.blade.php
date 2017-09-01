@@ -17,7 +17,7 @@
 
         <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/sale') }}">
-                <i class="fa fa-th-large"></i> <span>{{_t('POS')}}</span>
+                <i class="fa fa-fw fa-desktop"></i> <span>{{_t('POS')}}</span>
 
             </a>
         </li>
