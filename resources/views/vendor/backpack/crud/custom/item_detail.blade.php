@@ -551,7 +551,7 @@
                     m_qty = m_qty > 0 ? m_qty : 1;
 
                     var m_discount = rm.find('.discount').val() - 0;
-dd(t_amount);
+//dd(t_amount);
                 if(t_amount>0) {
                     rm.find('.amount').val((t_amount - m_discount));
                     var n_p = t_amount / (m_num_qty * m_qty);

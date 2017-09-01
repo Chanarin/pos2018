@@ -3,23 +3,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('pos') }}/css/style.css">
     <link rel="stylesheet" href="{{ asset('vendor/adminlte') }}/plugins/select2/select2.min.css">
-    <style>
-        /*body {*/
-            /*background: #FFF;*/
-            /*color: #333;*/
-            /*font-weight: normal;*/
-            /*width: 100%;*/
-            /*min-width: 970px;*/
-            /*max-width: 100%;*/
-            /*position: relative;*/
-        /*}*/
-        /*html, body, form {*/
-            /*margin: 0;*/
-            /*padding: 0;*/
-            /*width: 100%;*/
-            /*height: 100%;*/
-        /*}*/
-    </style>
 @endsection
 
 @section('content')
@@ -127,7 +110,7 @@
                             <tr>
                                 <td style="width:10%;">P0001</td>
                                 <td style="width:30%;" class="name-style-order">Name Item 1</td>
-                                <td style="width:10%;"><input type="number" value="" placeholder=" 0 " style="width: 100%;"></td>
+                                <td style="width:10%;"><input type="number" value="" min="0" placeholder=" 0 " style="width: 100%;"></td>
                                 <td style="width:20%;"><span>$</span> 200</td>
                                 <td style="width:20%;"><span>$</span> 200</td>
                                 <td style="width: 10%">
@@ -139,7 +122,7 @@
                             <tr>
                                 <td style="width:10%;">P0001</td>
                                 <td style="width:30%;" class="name-style-order">Name Item 1</td>
-                                <td style="width:10%;"><input type="number" value="" placeholder=" 0 " style="width: 100%;"></td>
+                                <td style="width:10%;"><input type="number" value="" min="0" placeholder=" 0 " style="width: 100%;"></td>
                                 <td style="width:20%;"><span>$</span> 200</td>
                                 <td style="width:20%;"><span>$</span> 200</td>
                                 <td style="width: 10%">

@@ -107,15 +107,37 @@
                 "Alt+insert","Alt+home","Alt+del","Alt+end","Alt+pageup","Alt+pagedown","Alt+left","Alt+up","Alt+right","Alt+down",
                 "Alt+f1","Alt+f2","Alt+f3","Alt+f4","Alt+f5","Alt+f6","Alt+f7","Alt+f8","Alt+f9","Alt+f10","Alt+f11","Alt+f12"
             ];
-
             // the fetching...
             $.each(elements, function(i, e) { // i is element index. e is element as text.
                 var newElement = ( /[\+]+/.test(elements[i]) ) ? elements[i].replace("+","_") : elements[i];
                 // Binding keys
                 $(document).bind('keydown', elements[i], function assets() {
-//                    $('#_'+ newElement).addClass("dirty");
-
+                    //  $('#_'+ newElement).addClass("dirty");
                     console.log(newElement);
+                    //open full screen by click on F11
+                    if (newElement == 'f11'){
+                        if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
+                            if (elem.requestFullScreen) {
+                                elem.requestFullScreen();
+                            } else if (elem.mozRequestFullScreen) {
+                                elem.mozRequestFullScreen();
+                            } else if (elem.webkitRequestFullScreen) {
+                                elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+                            } else if (elem.msRequestFullscreen) {
+                                elem.msRequestFullscreen();
+                            }
+                        } else {
+                            if (document.cancelFullScreen) {
+                                document.cancelFullScreen();
+                            } else if (document.mozCancelFullScreen) {
+                                document.mozCancelFullScreen();
+                            } else if (document.webkitCancelFullScreen) {
+                                document.webkitCancelFullScreen();
+                            } else if (document.msExitFullscreen) {
+                                document.msExitFullscreen();
+                            }
+                        }
+                    }
 
 //                    if (newElement == 'Shift_i'){
 //                        $('#From_Reference').prop('disabled', true);
