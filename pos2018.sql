@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : mysql
+Source Server         : localhost_3306
 Source Server Version : 100121
 Source Host           : localhost:3306
 Source Database       : pos2018
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100121
 File Encoding         : 65001
 
-Date: 2017-09-01 00:46:09
+Date: 2017-09-02 17:16:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,11 +26,12 @@ CREATE TABLE `checklists` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of checklists
 -- ----------------------------
+INSERT INTO `checklists` VALUES ('1', 'Check List One', '2017-08-29', '2017-09-02 06:49:02', '2017-09-02 07:07:08');
 
 -- ----------------------------
 -- Table structure for checklist_detail
@@ -43,8 +44,9 @@ CREATE TABLE `checklist_detail` (
   `item_code` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `unit` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `num_qty` double(255,0) DEFAULT NULL,
+  `num_qty` double DEFAULT NULL,
   `qty` double DEFAULT NULL,
+  `count_qty` double DEFAULT NULL,
   `cost` double DEFAULT NULL,
   `price` double DEFAULT NULL,
   `discount` double DEFAULT NULL,
@@ -57,11 +59,16 @@ CREATE TABLE `checklist_detail` (
   KEY `checklist_detail_ref_id_index` (`ref_id`),
   KEY `checklist_detail_item_id_index` (`item_id`),
   KEY `checklist_detail_title_index` (`title`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of checklist_detail
 -- ----------------------------
+INSERT INTO `checklist_detail` VALUES ('6', '1', '1', 'PT00001', 'Platinum 75%', '5', '2', '2', '2', '0', '0', '0', 'aaa', '[]', '2017-09-02 07:07:08', '2017-09-02 07:07:08', null);
+INSERT INTO `checklist_detail` VALUES ('7', '1', '2', 'D00001', 'Diamond 2li', '2', '100', '200', '122', '0', '0', '0', 'bb', '[]', '2017-09-02 07:07:08', '2017-09-02 07:07:08', null);
+INSERT INTO `checklist_detail` VALUES ('8', '1', '3', 'PT00002', 'Platinum 75%', '4', '3', '4', '3', '0', '0', '0', 'cc', '[]', '2017-09-02 07:07:08', '2017-09-02 07:07:08', null);
+INSERT INTO `checklist_detail` VALUES ('9', '1', '4', 'R00001', 'Ring For Man', '7', '2', '2', '2', '0', '0', '0', 'dd', '[]', '2017-09-02 07:07:08', '2017-09-02 07:07:08', null);
+INSERT INTO `checklist_detail` VALUES ('10', '1', '5', 'R00002', 'Ring Form Women', '7', '3', '4', '3', '0', '0', '0', 'ee', '[]', '2017-09-02 07:07:08', '2017-09-02 07:07:08', null);
 
 -- ----------------------------
 -- Table structure for customers
@@ -157,35 +164,16 @@ CREATE TABLE `items` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `items_title_index` (`title`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of items
 -- ----------------------------
-INSERT INTO `items` VALUES ('2', '1', 'R00001', 'Ring for Man', null, '[\"http:\\/\\/127.0.0.1:8000\\/images\\/items\\/87990_1504196264_4988.png\"]', '4', '10000', '2017-08-31 14:32:47', '2017-08-31 16:17:58', null);
-INSERT INTO `items` VALUES ('3', '9', 'D00001', 'Diamond1.5li', null, '[\"http:\\/\\/127.0.0.1:8000\\/images\\/items\\/46293_1504192693_2671.png\"]', '1', '1000', '2017-08-31 14:32:47', '2017-08-31 16:10:23', null);
-INSERT INTO `items` VALUES ('4', '14', 'CS00001', 'Crystal', null, '[\"http:\\/\\/127.0.0.1:8000\\/images\\/items\\/15370_1504192708_3010.png\"]', '1', '10000', '2017-08-31 14:32:47', '2017-08-31 16:17:00', null);
-INSERT INTO `items` VALUES ('5', '12', 'PT00001', 'Platinum 75%', null, '[\"http:\\/\\/127.0.0.1:8000\\/images\\/items\\/63699_1504192749_1156.png\"]', '3', '1000', '2017-08-31 14:32:47', '2017-08-31 16:33:23', null);
-INSERT INTO `items` VALUES ('6', '4', 'E00001', 'Earring', null, '[\"http:\\/\\/127.0.0.1:8000\\/images\\/items\\/33271_1504192767_1037.png\"]', '4', '1000', '2017-08-31 14:51:15', '2017-08-31 16:33:33', null);
-INSERT INTO `items` VALUES ('7', '9', 'D00003', 'Diamond3li', null, '[\"http:\\/\\/127.0.0.1:8000\\/images\\/items\\/37831_1504192786_4649.png\"]', '1', '1000', '2017-08-31 14:56:44', '2017-08-31 16:33:42', null);
-INSERT INTO `items` VALUES ('8', '1', 'R00002', 'Ring For Man', null, '[\"http:\\/\\/127.0.0.1:8000\\/images\\/items\\/70765_1504194222_4065.png\"]', '4', '1000', '2017-08-31 15:41:06', '2017-08-31 16:33:50', null);
-INSERT INTO `items` VALUES ('9', '1', 'D00002', 'Diamond4li', null, '[\"http:\\/\\/127.0.0.1:8000\\/images\\/items\\/87515_1504194246_3993.png\"]', '1', '1000', '2017-08-31 15:41:06', '2017-08-31 16:34:00', null);
-INSERT INTO `items` VALUES ('10', '1', 'D00004', 'Diamond3li', null, '[\"http:\\/\\/127.0.0.1:8000\\/images\\/items\\/64903_1504194270_2679.png\"]', '1', '1000', '2017-08-31 15:41:07', '2017-08-31 16:34:10', null);
-INSERT INTO `items` VALUES ('11', '1', 'R00003', 'Ring For Man', null, '[\"http:\\/\\/127.0.0.1:8000\\/images\\/items\\/70963_1504194295_1295.png\"]', '4', '1000', '2017-08-31 15:41:07', '2017-08-31 16:34:19', null);
-INSERT INTO `items` VALUES ('12', '1', 'R00004', 'Ring For Man', null, '[\"http:\\/\\/127.0.0.1:8000\\/images\\/items\\/40731_1504194315_2650.png\"]', '4', '1000', '2017-08-31 15:41:07', '2017-08-31 16:34:30', null);
-INSERT INTO `items` VALUES ('13', '1', 'D00005', 'Diamond5li', null, '[\"http:\\/\\/127.0.0.1:8000\\/images\\/items\\/47291_1504194329_1654.png\"]', '1', '1000', '2017-08-31 15:41:07', '2017-08-31 16:34:38', null);
-INSERT INTO `items` VALUES ('14', '1', 'PT00002', 'Platinum70%', null, '[\"images\\/items\\/30264_1504194344_4608.png\"]', '3', '1000', '2017-08-31 15:41:07', '2017-08-31 15:45:44', null);
-INSERT INTO `items` VALUES ('15', '1', 'R00005', 'Ring For Man', null, '[\"images\\/items\\/60590_1504194358_1319.png\"]', '4', '1000', '2017-08-31 15:41:08', '2017-08-31 15:45:58', null);
-INSERT INTO `items` VALUES ('16', '1', 'R00006', 'Ring For Man', null, '[\"images\\/items\\/36402_1504194372_3310.png\"]', '4', '1000', '2017-08-31 15:41:08', '2017-08-31 15:46:12', null);
-INSERT INTO `items` VALUES ('17', '1', 'R00007', 'Ring For Man', null, '[\"images\\/items\\/37500_1504194386_2646.png\"]', '4', '1000', '2017-08-31 15:41:08', '2017-08-31 15:46:26', null);
-INSERT INTO `items` VALUES ('18', '1', 'R00008', 'Ring For Man', null, '[\"images\\/items\\/44524_1504194400_3294.png\"]', '4', '1000', '2017-08-31 15:41:08', '2017-08-31 15:46:40', null);
-INSERT INTO `items` VALUES ('19', '1', 'R00009', 'Ring For Man', null, '[\"images\\/items\\/18643_1504194419_2549.png\"]', '4', '1000', '2017-08-31 15:41:09', '2017-08-31 15:46:59', null);
-INSERT INTO `items` VALUES ('20', '1', 'R000010', 'Ring For Man', null, '[\"images\\/items\\/95295_1504194434_2660.png\"]', '4', '1000', '2017-08-31 15:41:09', '2017-08-31 15:47:14', null);
-INSERT INTO `items` VALUES ('21', '1', 'R000011', 'Ring For Man', null, '[\"images\\/items\\/62957_1504194448_4668.png\"]', '4', '1000', '2017-08-31 15:41:09', '2017-08-31 15:47:28', null);
-INSERT INTO `items` VALUES ('22', '1', 'R000012', 'Ring For Man', null, '[\"images\\/items\\/46415_1504194465_3981.png\"]', '4', '1000', '2017-08-31 15:41:09', '2017-08-31 15:47:45', null);
-INSERT INTO `items` VALUES ('23', '1', 'R000014', 'Ring For Man', null, '[\"images\\/items\\/37745_1504194479_4441.png\"]', '4', '1000', '2017-08-31 15:41:10', '2017-08-31 15:47:59', null);
-INSERT INTO `items` VALUES ('24', '1', 'R000015', 'Ring For Man', null, '[\"images\\/items\\/16706_1504194494_4077.png\"]', '4', '1000', '2017-08-31 15:41:10', '2017-08-31 15:48:14', null);
-INSERT INTO `items` VALUES ('25', '1', 'R000016', 'Ring For Man', null, '[\"images\\/items\\/40894_1504194510_1184.png\"]', '4', '1000', '2017-08-31 15:41:10', '2017-08-31 15:48:30', null);
+INSERT INTO `items` VALUES ('1', null, 'PT00001', 'Platinum 75%', null, null, '5', null, '2017-09-02 04:18:53', '2017-09-02 04:18:53', null);
+INSERT INTO `items` VALUES ('2', null, 'D00001', 'Diamond 2li', null, null, '2', null, '2017-09-02 04:18:53', '2017-09-02 04:18:53', null);
+INSERT INTO `items` VALUES ('3', null, 'PT00002', 'Platinum 75%', null, '', '4', null, '2017-09-02 04:21:00', '2017-09-02 04:22:10', null);
+INSERT INTO `items` VALUES ('4', '1', 'R00001', 'Ring For Man', null, '[\"images\\/items\\/15327_1504328349_3249.png\"]', '7', '3000', '2017-09-02 04:56:18', '2017-09-02 04:59:09', null);
+INSERT INTO `items` VALUES ('5', '1', 'R00002', 'Ring Form Women', null, '[\"images\\/items\\/68908_1504328365_3451.png\"]', '7', '5000', '2017-09-02 04:56:18', '2017-09-02 04:59:25', null);
 
 -- ----------------------------
 -- Table structure for items_detail
@@ -198,9 +186,9 @@ CREATE TABLE `items_detail` (
   `item_code` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `unit` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `num_qty` double DEFAULT NULL,
   `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `num_qty` double DEFAULT NULL,
   `qty` double DEFAULT NULL,
   `cost` double DEFAULT NULL,
   `note` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -239,35 +227,27 @@ CREATE TABLE `items_transaction` (
   KEY `items_transaction_ref_type_index` (`ref_type`),
   KEY `items_transaction_item_id_index` (`item_id`),
   KEY `items_transaction_unit_index` (`unit`),
+  KEY `items_transaction_num_qty_index` (`num_qty`),
   KEY `items_transaction_qty_index` (`qty`),
   KEY `items_transaction_cost_index` (`cost`),
   KEY `items_transaction_price_index` (`price`),
   KEY `items_transaction_discount_index` (`discount`),
   KEY `items_transaction_tran_date_index` (`tran_date`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of items_transaction
 -- ----------------------------
-INSERT INTO `items_transaction` VALUES ('7', '2', 'open_items', '2', '4', '0', '1', '365', '0', '0', '2017-08-31', '2017-08-31 14:42:20', '2017-08-31 14:42:20');
-INSERT INTO `items_transaction` VALUES ('14', '3', 'open_items', '2', '4', '1', '2', '120', '0', '0', '2017-08-31', '2017-08-31 14:56:44', '2017-08-31 14:56:44');
-INSERT INTO `items_transaction` VALUES ('15', '3', 'open_items', '3', '1', '2', '5', '10', '0', '0', '2017-08-31', '2017-08-31 14:56:44', '2017-08-31 14:56:44');
-INSERT INTO `items_transaction` VALUES ('16', '3', 'open_items', '6', '4', '0', '1', '480', '0', '0', '2017-08-31', '2017-08-31 14:56:44', '2017-08-31 14:56:44');
-INSERT INTO `items_transaction` VALUES ('32', '4', 'open_items', '8', '4', '0', '1', '928', '0', '0', '2017-08-31', '2017-08-31 15:41:52', '2017-08-31 15:41:52');
-INSERT INTO `items_transaction` VALUES ('33', '4', 'open_items', '11', '4', '0', '2', '120', '0', '0', '2017-08-31', '2017-08-31 15:41:52', '2017-08-31 15:41:52');
-INSERT INTO `items_transaction` VALUES ('34', '4', 'open_items', '12', '4', '0', '1', '814', '0', '0', '2017-08-31', '2017-08-31 15:41:52', '2017-08-31 15:41:52');
-INSERT INTO `items_transaction` VALUES ('35', '4', 'open_items', '15', '4', '0', '1', '240', '0', '0', '2017-08-31', '2017-08-31 15:41:52', '2017-08-31 15:41:52');
-INSERT INTO `items_transaction` VALUES ('36', '4', 'open_items', '16', '4', '0', '1', '240', '0', '0', '2017-08-31', '2017-08-31 15:41:53', '2017-08-31 15:41:53');
-INSERT INTO `items_transaction` VALUES ('37', '4', 'open_items', '17', '4', '0', '1', '240', '0', '0', '2017-08-31', '2017-08-31 15:41:53', '2017-08-31 15:41:53');
-INSERT INTO `items_transaction` VALUES ('38', '4', 'open_items', '18', '4', '0', '1', '240', '0', '0', '2017-08-31', '2017-08-31 15:41:53', '2017-08-31 15:41:53');
-INSERT INTO `items_transaction` VALUES ('39', '4', 'open_items', '19', '4', '0', '1', '360', '0', '0', '2017-08-31', '2017-08-31 15:41:53', '2017-08-31 15:41:53');
-INSERT INTO `items_transaction` VALUES ('40', '4', 'open_items', '20', '4', '0', '1', '480', '0', '0', '2017-08-31', '2017-08-31 15:41:53', '2017-08-31 15:41:53');
-INSERT INTO `items_transaction` VALUES ('41', '4', 'open_items', '21', '4', '0', '1', '600', '0', '0', '2017-08-31', '2017-08-31 15:41:53', '2017-08-31 15:41:53');
-INSERT INTO `items_transaction` VALUES ('42', '4', 'open_items', '22', '4', '0', '1', '720', '0', '0', '2017-08-31', '2017-08-31 15:41:53', '2017-08-31 15:41:53');
-INSERT INTO `items_transaction` VALUES ('43', '4', 'open_items', '4', '1', '1', '3', '0.5', '0', '0', '2017-08-31', '2017-08-31 15:41:54', '2017-08-31 15:41:54');
-INSERT INTO `items_transaction` VALUES ('44', '4', 'open_items', '23', '4', '0', '1', '360', '0', '0', '2017-08-31', '2017-08-31 15:41:54', '2017-08-31 15:41:54');
-INSERT INTO `items_transaction` VALUES ('45', '4', 'open_items', '24', '4', '0', '1', '960', '0', '0', '2017-08-31', '2017-08-31 15:41:54', '2017-08-31 15:41:54');
-INSERT INTO `items_transaction` VALUES ('46', '4', 'open_items', '25', '4', '0', '1', '480', '0', '0', '2017-08-31', '2017-08-31 15:41:54', '2017-08-31 15:41:54');
+INSERT INTO `items_transaction` VALUES ('1', '1', 'open_items', '1', '5', '0', '2', '1200', '0', '0', '2017-10-02', '2017-09-02 04:18:53', '2017-09-02 04:18:53');
+INSERT INTO `items_transaction` VALUES ('2', '1', 'open_items', '2', '2', '2', '200', '20', '0', '0', '2017-10-02', '2017-09-02 04:18:53', '2017-09-02 04:18:53');
+INSERT INTO `items_transaction` VALUES ('6', '2', 'open_items', '3', '4', '0', '4', '120', '0', '0', '2017-10-02', '2017-09-02 04:25:18', '2017-09-02 04:25:18');
+INSERT INTO `items_transaction` VALUES ('7', '3', 'open_items', '4', '7', '0', '2', '1360', '0', '0', '2017-09-02', '2017-09-02 04:56:18', '2017-09-02 04:56:18');
+INSERT INTO `items_transaction` VALUES ('8', '3', 'open_items', '5', '7', '0', '4', '1240', '0', '0', '2017-09-02', '2017-09-02 04:56:18', '2017-09-02 04:56:18');
+INSERT INTO `items_transaction` VALUES ('14', '1', 'checklists', '1', '5', '2', '2', '0', '0', '0', '2017-08-29', '2017-09-02 07:07:08', '2017-09-02 07:07:08');
+INSERT INTO `items_transaction` VALUES ('15', '1', 'checklists', '2', '2', '100', '200', '0', '0', '0', '2017-08-29', '2017-09-02 07:07:08', '2017-09-02 07:07:08');
+INSERT INTO `items_transaction` VALUES ('16', '1', 'checklists', '3', '4', '3', '4', '0', '0', '0', '2017-08-29', '2017-09-02 07:07:08', '2017-09-02 07:07:08');
+INSERT INTO `items_transaction` VALUES ('17', '1', 'checklists', '4', '7', '2', '2', '0', '0', '0', '2017-08-29', '2017-09-02 07:07:08', '2017-09-02 07:07:08');
+INSERT INTO `items_transaction` VALUES ('18', '1', 'checklists', '5', '7', '3', '4', '0', '0', '0', '2017-08-29', '2017-09-02 07:07:09', '2017-09-02 07:07:09');
 
 -- ----------------------------
 -- Table structure for item_categories
@@ -284,25 +264,27 @@ CREATE TABLE `item_categories` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of item_categories
 -- ----------------------------
-INSERT INTO `item_categories` VALUES ('1', null, 'ចិញ្ចៀន', '[\"images\\/item_categories\\/67952_1504145337_2386.png\"]', null, 'ACTIVE', '2017-08-31 02:08:58', '2017-08-31 02:08:58', null);
-INSERT INTO `item_categories` VALUES ('2', null, 'កងដៃ', '[\"images\\/item_categories\\/84433_1504148951_2711.png\"]', null, 'ACTIVE', '2017-08-31 02:09:15', '2017-08-31 03:09:11', null);
-INSERT INTO `item_categories` VALUES ('3', null, 'ខ្សែក', '[\"images\\/item_categories\\/20909_1504148968_1831.png\"]', null, 'ACTIVE', '2017-08-31 02:09:32', '2017-08-31 03:09:28', null);
-INSERT INTO `item_categories` VALUES ('4', null, 'ក្រវិល', '[\"images\\/item_categories\\/91409_1504148987_3004.png\"]', null, 'ACTIVE', '2017-08-31 02:09:49', '2017-08-31 03:09:47', null);
-INSERT INTO `item_categories` VALUES ('5', null, 'ដង្កៀប', '[\"images\\/item_categories\\/35843_1504145414_2344.png\"]', null, 'ACTIVE', '2017-08-31 02:10:14', '2017-08-31 02:10:14', null);
-INSERT INTO `item_categories` VALUES ('6', null, 'បន្តោង', '[\"images\\/item_categories\\/79412_1504149000_2362.png\"]', null, 'ACTIVE', '2017-08-31 02:10:31', '2017-08-31 03:10:00', null);
-INSERT INTO `item_categories` VALUES ('7', null, 'ខ្សែជើង', '[\"images\\/item_categories\\/16709_1504145466_3430.png\"]', null, 'ACTIVE', '2017-08-31 02:11:06', '2017-08-31 02:11:06', null);
-INSERT INTO `item_categories` VALUES ('8', null, 'ខ្សែចង្កេះ', '[\"images\\/item_categories\\/36364_1504145488_2617.png\"]', null, 'ACTIVE', '2017-08-31 02:11:28', '2017-08-31 02:11:28', null);
-INSERT INTO `item_categories` VALUES ('9', null, 'ពេជ្រ', '[\"images\\/item_categories\\/82177_1504145607_1548.png\"]', null, 'ACTIVE', '2017-08-31 02:13:27', '2017-08-31 02:13:27', null);
-INSERT INTO `item_categories` VALUES ('10', null, 'ត្បូងពណ៏', '[\"images\\/item_categories\\/84723_1504145633_4869.png\"]', null, 'ACTIVE', '2017-08-31 02:13:53', '2017-08-31 02:13:53', null);
-INSERT INTO `item_categories` VALUES ('11', null, 'មាស', '[\"images\\/item_categories\\/80176_1504145648_2095.png\"]', null, 'ACTIVE', '2017-08-31 02:14:08', '2017-08-31 02:14:08', null);
-INSERT INTO `item_categories` VALUES ('12', null, 'ផ្លាទីន', '[\"images\\/item_categories\\/77698_1504145666_3522.png\"]', null, 'ACTIVE', '2017-08-31 02:14:26', '2017-08-31 02:14:26', null);
-INSERT INTO `item_categories` VALUES ('13', null, 'នាឡិកា', '[\"images\\/item_categories\\/80389_1504145689_3868.png\"]', null, 'ACTIVE', '2017-08-31 02:14:50', '2017-08-31 02:14:50', null);
-INSERT INTO `item_categories` VALUES ('14', null, 'ត្បូងស្នាយ', '[\"images\\/item_categories\\/71053_1504145726_1707.png\"]', null, 'ACTIVE', '2017-08-31 02:15:26', '2017-08-31 02:15:26', null);
+INSERT INTO `item_categories` VALUES ('1', null, 'ចិញ្ចៀន', '[\"images\\/item_categories\\/85984_1504320643_2911.png\"]', 'ចិញ្ចៀន', 'ACTIVE', '2017-09-02 02:50:43', '2017-09-02 02:50:43', null);
+INSERT INTO `item_categories` VALUES ('2', null, 'កងដៃ', '[\"images\\/item_categories\\/59268_1504320663_4250.png\"]', 'កងដៃ', 'ACTIVE', '2017-09-02 02:51:03', '2017-09-02 02:51:03', null);
+INSERT INTO `item_categories` VALUES ('3', null, 'ខ្សែដៃ', '[\"images\\/item_categories\\/46344_1504320704_3553.png\"]', 'ខ្សែដៃ', 'ACTIVE', '2017-09-02 02:51:44', '2017-09-02 02:51:44', null);
+INSERT INTO `item_categories` VALUES ('4', null, 'ខ្សែក', '[\"images\\/item_categories\\/52523_1504320741_4768.png\"]', 'ខ្សែក', 'ACTIVE', '2017-09-02 02:52:21', '2017-09-02 02:52:21', null);
+INSERT INTO `item_categories` VALUES ('5', null, 'ខ្សែកស្វារ៉េ', '[\"images\\/item_categories\\/99496_1504320777_2413.png\"]', 'ខ្សែកស្វារ៉េ', 'ACTIVE', '2017-09-02 02:52:57', '2017-09-02 02:52:57', null);
+INSERT INTO `item_categories` VALUES ('6', null, 'បន្តោងខ្សែក', '[\"images\\/item_categories\\/18155_1504322115_2448.png\"]', 'បន្តោងខ្សែក', 'ACTIVE', '2017-09-02 03:15:15', '2017-09-02 03:15:15', null);
+INSERT INTO `item_categories` VALUES ('7', null, 'ក្រវិល', '[\"images\\/item_categories\\/97001_1504322137_3227.png\"]', 'ក្រវិល', 'ACTIVE', '2017-09-02 03:15:37', '2017-09-02 03:15:37', null);
+INSERT INTO `item_categories` VALUES ('8', null, 'សីុញ', '[\"images\\/item_categories\\/42464_1504322176_3891.png\"]', 'សីុញ', 'ACTIVE', '2017-09-02 03:16:16', '2017-09-02 03:16:16', null);
+INSERT INTO `item_categories` VALUES ('9', null, 'ដង្កៀប', '[\"images\\/item_categories\\/59486_1504322190_4451.png\"]', 'ដង្កៀប', 'ACTIVE', '2017-09-02 03:16:30', '2017-09-02 03:16:30', null);
+INSERT INTO `item_categories` VALUES ('10', null, 'ខ្សែជើង', '[\"images\\/item_categories\\/29065_1504322265_3892.png\"]', 'ខ្សែជើង', 'ACTIVE', '2017-09-02 03:17:45', '2017-09-02 03:17:45', null);
+INSERT INTO `item_categories` VALUES ('11', null, 'ខ្សែចង្កេះ', '[\"images\\/item_categories\\/60937_1504322305_1018.png\"]', 'ខ្សែចង្កេះ', 'ACTIVE', '2017-09-02 03:18:25', '2017-09-02 03:18:25', null);
+INSERT INTO `item_categories` VALUES ('15', null, 'នាឡិកា', '[\"images\\/item_categories\\/87797_1504322418_1512.png\"]', 'នាឡិកា', 'ACTIVE', '2017-09-02 03:20:18', '2017-09-02 03:20:18', null);
+INSERT INTO `item_categories` VALUES ('16', null, 'ត្បូងពេជ្រ', '[\"http:\\/\\/127.0.0.1:8000\\/images\\/item_categories\\/48096_1504322481_4262.png\"]', 'ត្បូងពេជ្រ', 'ACTIVE', '2017-09-02 03:21:22', '2017-09-02 03:22:29', null);
+INSERT INTO `item_categories` VALUES ('17', null, 'ត្បូងស្នាយ', '[\"http:\\/\\/127.0.0.1:8000\\/images\\/item_categories\\/79775_1504322497_4656.png\"]', 'ត្បូងស្នាយ', 'ACTIVE', '2017-09-02 03:21:37', '2017-09-02 03:22:07', null);
+INSERT INTO `item_categories` VALUES ('18', null, 'ត្បូងពណ៏', '[\"images\\/item_categories\\/93446_1504322510_3430.png\"]', 'ត្បូងពណ៏', 'ACTIVE', '2017-09-02 03:21:50', '2017-09-02 03:21:50', null);
+INSERT INTO `item_categories` VALUES ('19', null, 'ផ្លុក', '[\"images\\/item_categories\\/31426_1504322596_3896.png\"]', 'ផ្លុក', 'ACTIVE', '2017-09-02 03:23:16', '2017-09-02 03:23:16', null);
 
 -- ----------------------------
 -- Table structure for languages
@@ -316,7 +298,7 @@ CREATE TABLE `languages` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=142 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of languages
@@ -344,7 +326,7 @@ INSERT INTO `languages` VALUES ('20', 'online', 'Online', 'Online', '2017-08-31 
 INSERT INTO `languages` VALUES ('21', 'table_report', 'Table Report', 'តារាងរបាយការណ៍', '2017-08-31 01:42:48', '2017-08-31 01:42:48');
 INSERT INTO `languages` VALUES ('22', 'product', 'Product', 'ផលិតផល', '2017-08-31 01:42:48', '2017-08-31 01:42:48');
 INSERT INTO `languages` VALUES ('23', 'product_category', 'Product Category', 'ប្រភេទ​ផលិតផល', '2017-08-31 01:42:48', '2017-08-31 01:42:48');
-INSERT INTO `languages` VALUES ('24', 'unit', 'Unit', 'ឯកតា', '2017-08-31 01:42:48', '2017-08-31 01:42:48');
+INSERT INTO `languages` VALUES ('24', 'unit', 'Unit', 'ខ្នាត', '2017-08-31 01:42:48', '2017-08-31 01:42:48');
 INSERT INTO `languages` VALUES ('25', 'checklist_stock', 'Checklist Stock', 'ផ្ទៀងផ្ទាត់​ ទំនិញ', '2017-08-31 01:42:48', '2017-08-31 01:42:48');
 INSERT INTO `languages` VALUES ('26', 'file_manager', 'File Manager', 'គ្រប់គ្រងឯកសារ', '2017-08-31 01:42:48', '2017-08-31 01:42:48');
 INSERT INTO `languages` VALUES ('27', 'settings', 'Settings', 'ការកំណត់', '2017-08-31 01:42:48', '2017-08-31 01:42:48');
@@ -374,7 +356,7 @@ INSERT INTO `languages` VALUES ('50', 'production_number', 'Production Number', 
 INSERT INTO `languages` VALUES ('51', 'production_date', 'Production Date', 'កាលបរិច្ឆេទ', '2017-08-31 02:03:11', '2017-08-31 02:03:11');
 INSERT INTO `languages` VALUES ('52', 'customer_production', 'Customer Production ', 'ផលិតកម្មអតិថិជន', '2017-08-31 02:03:11', '2017-08-31 02:03:11');
 INSERT INTO `languages` VALUES ('53', 'production_reference', 'Production Reference', 'សេចក្តីយោង', '2017-08-31 02:03:13', '2017-08-31 02:03:13');
-INSERT INTO `languages` VALUES ('54', 'units', 'Units', 'ឯកតា', '2017-08-31 02:04:27', '2017-08-31 02:04:27');
+INSERT INTO `languages` VALUES ('54', 'units', 'Units', 'ខ្នាត', '2017-08-31 02:04:27', '2017-08-31 02:04:27');
 INSERT INTO `languages` VALUES ('55', 'name', 'Name', 'ឈ្មោះ', '2017-08-31 02:04:27', '2017-08-31 02:04:27');
 INSERT INTO `languages` VALUES ('57', 'list', 'List', 'បញ្ជី', '2017-08-31 02:05:08', '2017-08-31 02:05:08');
 INSERT INTO `languages` VALUES ('58', 'detail', 'Detail', 'លំអិត', '2017-08-31 02:05:08', '2017-08-31 02:05:08');
@@ -407,6 +389,58 @@ INSERT INTO `languages` VALUES ('84', 'reports', 'Reports', 'របាយកា�
 INSERT INTO `languages` VALUES ('85', 'invoice_date', 'Invoice Date', 'កាលបរិច្ឆេទវិក្កយបត្រ', '2017-08-31 08:38:56', '2017-08-31 08:38:56');
 INSERT INTO `languages` VALUES ('86', 'customer_invoice', 'Customer Invoice', 'វិក័យប័ត្រអតិថិជន', '2017-08-31 08:38:56', '2017-08-31 08:38:56');
 INSERT INTO `languages` VALUES ('87', 'amount', 'Amount', 'សរុប', '2017-08-31 14:08:13', '2017-08-31 14:08:13');
+INSERT INTO `languages` VALUES ('88', 'first_page_you_see', 'First page you see', 'ទំព័រទីមួយដែលអ្នកឃើញ', '2017-09-01 12:18:12', '2017-09-01 12:18:12');
+INSERT INTO `languages` VALUES ('89', 'logged_in', 'Logged in', 'បានចូល', '2017-09-01 12:18:12', '2017-09-01 12:18:12');
+INSERT INTO `languages` VALUES ('90', 'administration', 'Administration', 'រដ្ឋបាល\r\n', '2017-09-01 12:18:13', '2017-09-01 12:18:13');
+INSERT INTO `languages` VALUES ('91', 'all', 'All', '>', '2017-09-01 12:25:40', '2017-09-01 12:25:40');
+INSERT INTO `languages` VALUES ('92', 'in_the_database', 'In the database', 'នៅក្នុងមូលដ្ឋានទិន្នន័យ', '2017-09-01 12:25:40', '2017-09-01 12:25:40');
+INSERT INTO `languages` VALUES ('93', 'admin', 'Admin', 'អ្នកគ្រប់គ្រង', '2017-09-01 12:25:41', '2017-09-01 12:25:41');
+INSERT INTO `languages` VALUES ('94', 'add', 'Add', 'បន្ថែម', '2017-09-01 12:25:41', '2017-09-01 12:25:41');
+INSERT INTO `languages` VALUES ('95', 'actions', 'Actions', 'សកម្មភាព', '2017-09-01 12:25:41', '2017-09-01 12:25:41');
+INSERT INTO `languages` VALUES ('96', 'emptytable', 'Empty Table', 'តារាងទទេ', '2017-09-01 12:25:41', '2017-09-01 12:25:41');
+INSERT INTO `languages` VALUES ('97', 'info', 'Info', 'ព័ត៌មាន', '2017-09-01 12:25:41', '2017-09-01 12:25:41');
+INSERT INTO `languages` VALUES ('98', 'infoempty', 'Info Empty', 'មិនមានព័ត៌មាន ', '2017-09-01 12:25:41', '2017-09-01 12:25:41');
+INSERT INTO `languages` VALUES ('99', 'infofiltered', 'Info Filtered', 'ព័ត៌មាន Filtered', '2017-09-01 12:25:41', '2017-09-01 12:25:41');
+INSERT INTO `languages` VALUES ('100', 'infopostfix', 'Info Postfix', 'ព័ត៌មាន Postfix', '2017-09-01 12:25:41', '2017-09-01 12:25:41');
+INSERT INTO `languages` VALUES ('101', 'thousands', 'Thousands', ' ខ្ទង់ពាន់', '2017-09-01 12:25:41', '2017-09-01 12:25:41');
+INSERT INTO `languages` VALUES ('102', 'lengthmenu', 'Length Menu', 'ម៉ឺនុយប្រវែង', '2017-09-01 12:25:41', '2017-09-01 12:25:41');
+INSERT INTO `languages` VALUES ('103', 'loadingrecords', 'Loading Records', 'កំពុងផ្ទុកកំណត់ត្រា', '2017-09-01 12:25:42', '2017-09-01 12:25:42');
+INSERT INTO `languages` VALUES ('104', 'processing', 'Processing', 'កំពុងដំណើរការ', '2017-09-01 12:25:42', '2017-09-01 12:25:42');
+INSERT INTO `languages` VALUES ('105', 'search', 'Search', 'ស្វែងរក', '2017-09-01 12:25:42', '2017-09-01 12:25:42');
+INSERT INTO `languages` VALUES ('106', 'zerorecords', 'Zero Records', 'កំណត់ត្រាសូន្យ', '2017-09-01 12:25:42', '2017-09-01 12:25:42');
+INSERT INTO `languages` VALUES ('107', 'first', 'First', 'ដំបូង', '2017-09-01 12:25:42', '2017-09-01 12:25:42');
+INSERT INTO `languages` VALUES ('108', 'last', 'Last', 'ចុងក្រោយ', '2017-09-01 12:25:42', '2017-09-01 12:25:42');
+INSERT INTO `languages` VALUES ('109', 'next', 'Next', 'បន្ទាប់', '2017-09-01 12:25:42', '2017-09-01 12:25:42');
+INSERT INTO `languages` VALUES ('110', 'previous', 'Previous', 'ពីមុន', '2017-09-01 12:25:42', '2017-09-01 12:25:42');
+INSERT INTO `languages` VALUES ('111', 'sortascending', 'Sort Ascending', 'តម្រៀបតាមលំដាប់ឡើង', '2017-09-01 12:25:42', '2017-09-01 12:25:42');
+INSERT INTO `languages` VALUES ('112', 'sortdescending', 'Sort Descending', 'តម្រៀបតាមលំដាប់ចុះក្រោម', '2017-09-01 12:25:42', '2017-09-01 12:25:42');
+INSERT INTO `languages` VALUES ('113', 'copy', 'Copy', 'ច្បាប់ចម្លង', '2017-09-01 12:25:42', '2017-09-01 12:25:42');
+INSERT INTO `languages` VALUES ('114', 'excel', 'Excel', 'Excel', '2017-09-01 12:25:42', '2017-09-01 12:25:42');
+INSERT INTO `languages` VALUES ('115', 'csv', 'CSV', 'CSV', '2017-09-01 12:25:42', '2017-09-01 12:25:42');
+INSERT INTO `languages` VALUES ('116', 'pdf', 'PDF', 'PDF', '2017-09-01 12:25:42', '2017-09-01 12:25:42');
+INSERT INTO `languages` VALUES ('117', 'print', 'Print', 'បោះពុម្ព', '2017-09-01 12:25:43', '2017-09-01 12:25:43');
+INSERT INTO `languages` VALUES ('118', 'column_visibility', 'Column Visibility', 'មើលឃើញជួរឈរ', '2017-09-01 12:25:43', '2017-09-01 12:25:43');
+INSERT INTO `languages` VALUES ('119', 'delete_confirm', 'Delete Confirm', 'លុបការអះអាង', '2017-09-01 12:25:43', '2017-09-01 12:25:43');
+INSERT INTO `languages` VALUES ('120', 'delete_confirmation_title', 'Delete Confirmation Title', 'លុបការបញ្ជាក់ចំណងជើង', '2017-09-01 12:25:43', '2017-09-01 12:25:43');
+INSERT INTO `languages` VALUES ('121', 'delete_confirmation_message', 'Delete Confirmation Message', 'លុបសារបញ្ជាក់', '2017-09-01 12:25:43', '2017-09-01 12:25:43');
+INSERT INTO `languages` VALUES ('122', 'delete_confirmation_not_title', 'Delete Confirmation Not Title', 'លុបការបញ្ជាក់មិនមានចំណងជើង', '2017-09-01 12:25:43', '2017-09-01 12:25:43');
+INSERT INTO `languages` VALUES ('123', 'delete_confirmation_not_message', 'Delete Confirmation Not Message', 'លុបការបញ្ជាក់សារមិនពិត', '2017-09-01 12:25:43', '2017-09-01 12:25:43');
+INSERT INTO `languages` VALUES ('124', 'delete_confirmation_not_deleted_title', 'Delete Confirmation Note Deleted Title', 'លុបសេចក្តីបញ្ជាក់ចំណាំចំណងជើង', '2017-09-01 12:25:43', '2017-09-01 12:25:43');
+INSERT INTO `languages` VALUES ('125', 'delete_confirmation_not_deleted_message', 'Delete Confirmation Not Delete Message', 'លុបការអះអាងមិនលុបសារ', '2017-09-01 12:25:43', '2017-09-01 12:25:43');
+INSERT INTO `languages` VALUES ('126', 'edit', 'Edit', 'កែសម្រួល', '2017-09-01 12:25:45', '2017-09-01 12:25:45');
+INSERT INTO `languages` VALUES ('127', 'delete', 'Delete', 'លុប', '2017-09-01 12:25:45', '2017-09-01 12:25:45');
+INSERT INTO `languages` VALUES ('128', 'back_to_all', 'Back to All', 'ត្រលប់ទៅទាំងអស់', '2017-09-01 12:28:06', '2017-09-01 12:28:06');
+INSERT INTO `languages` VALUES ('129', 'add_a_new', 'Add a New', 'បន្ថែមថ្មី', '2017-09-01 12:28:07', '2017-09-01 12:28:07');
+INSERT INTO `languages` VALUES ('132', 'sign_in_to_start_your_session', 'Sign in to start your session', 'បំពេញនូវអ៊ីមែល និង ពាក្យសម្ងាត់ ដើម្បីចូលទៅកានផ្ទាំងលក់', '2017-09-02 02:16:22', '2017-09-02 02:16:22');
+INSERT INTO `languages` VALUES ('133', 'email', 'Email', 'អ៊ីមែល', '2017-09-02 02:16:22', '2017-09-02 02:16:22');
+INSERT INTO `languages` VALUES ('134', 'password', 'Password', 'ពាក្យសម្ងាត់', '2017-09-02 02:16:22', '2017-09-02 02:16:22');
+INSERT INTO `languages` VALUES ('135', 'remember_me', 'Remember Me', 'ចងចាំខ្ញុំ', '2017-09-02 02:16:22', '2017-09-02 02:16:22');
+INSERT INTO `languages` VALUES ('136', 'stock_', 'Stock', 'ការគ្រប់គ្រង', '2017-09-02 02:18:38', '2017-09-02 02:18:38');
+INSERT INTO `languages` VALUES ('137', 'management_', 'Management', 'ស្តុក', '2017-09-02 02:18:38', '2017-09-02 02:18:38');
+INSERT INTO `languages` VALUES ('138', 'email_address', 'Email Address', 'អាស័យដ្ឋានអ៊ីមែល', '2017-09-02 02:24:44', '2017-09-02 02:24:44');
+INSERT INTO `languages` VALUES ('139', 'confirm_password', 'Confirm Password', 'បញ្ជាក់ពាក្យសម្ងាត់', '2017-09-02 02:24:44', '2017-09-02 02:24:44');
+INSERT INTO `languages` VALUES ('140', 'search_here', null, null, '2017-09-02 02:30:43', '2017-09-02 02:30:43');
+INSERT INTO `languages` VALUES ('141', 'choose_file', null, null, '2017-09-02 02:43:17', '2017-09-02 02:43:17');
 
 -- ----------------------------
 -- Table structure for migrations
@@ -417,32 +451,32 @@ CREATE TABLE `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of migrations
 -- ----------------------------
-INSERT INTO `migrations` VALUES ('1', '2014_10_12_000000_create_users_table', '1');
-INSERT INTO `migrations` VALUES ('2', '2014_10_12_100000_create_password_resets_table', '1');
-INSERT INTO `migrations` VALUES ('3', '2015_08_04_131614_create_settings_table', '1');
-INSERT INTO `migrations` VALUES ('4', '2017_07_28_090816_create_items_table', '1');
-INSERT INTO `migrations` VALUES ('5', '2017_07_28_091022_create_item_categories_table', '1');
-INSERT INTO `migrations` VALUES ('6', '2017_07_28_091525_create_customers_table', '1');
-INSERT INTO `migrations` VALUES ('7', '2017_07_28_092103_create_open_items_table', '1');
-INSERT INTO `migrations` VALUES ('8', '2017_07_28_092709_create_open_items_detail_table', '1');
-INSERT INTO `migrations` VALUES ('9', '2017_07_28_094725_create_purchase_table', '1');
-INSERT INTO `migrations` VALUES ('10', '2017_07_28_124724_create_items_detail_table', '1');
-INSERT INTO `migrations` VALUES ('11', '2017_07_28_131251_create_items_transaction_table', '1');
-INSERT INTO `migrations` VALUES ('12', '2017_07_28_132627_create_purchase_detail_table', '1');
-INSERT INTO `migrations` VALUES ('13', '2017_07_28_133140_create_invoice_table', '1');
-INSERT INTO `migrations` VALUES ('14', '2017_07_28_134724_create_invoice_detail_table', '1');
-INSERT INTO `migrations` VALUES ('15', '2017_08_16_141216_create_production_table', '1');
-INSERT INTO `migrations` VALUES ('16', '2017_08_16_142321_create_production_detail_table', '1');
-INSERT INTO `migrations` VALUES ('17', '2017_08_22_093239_create_checklists_table', '1');
-INSERT INTO `migrations` VALUES ('18', '2017_08_22_093318_create_checklist_detail_table', '1');
-INSERT INTO `migrations` VALUES ('19', '2017_08_23_062245_create_sessions_table', '1');
-INSERT INTO `migrations` VALUES ('20', '2017_08_28_132015_create_units_table', '1');
-INSERT INTO `migrations` VALUES ('21', '2017_08_30_151921_create_languages_table', '1');
+INSERT INTO `migrations` VALUES ('22', '2014_10_12_000000_create_users_table', '1');
+INSERT INTO `migrations` VALUES ('23', '2014_10_12_100000_create_password_resets_table', '1');
+INSERT INTO `migrations` VALUES ('24', '2015_08_04_131614_create_settings_table', '1');
+INSERT INTO `migrations` VALUES ('25', '2017_07_28_090816_create_items_table', '1');
+INSERT INTO `migrations` VALUES ('26', '2017_07_28_091022_create_item_categories_table', '1');
+INSERT INTO `migrations` VALUES ('27', '2017_07_28_091525_create_customers_table', '1');
+INSERT INTO `migrations` VALUES ('28', '2017_07_28_092103_create_open_items_table', '1');
+INSERT INTO `migrations` VALUES ('29', '2017_07_28_092709_create_open_items_detail_table', '1');
+INSERT INTO `migrations` VALUES ('30', '2017_07_28_094725_create_purchase_table', '1');
+INSERT INTO `migrations` VALUES ('31', '2017_07_28_124724_create_items_detail_table', '1');
+INSERT INTO `migrations` VALUES ('32', '2017_07_28_131251_create_items_transaction_table', '1');
+INSERT INTO `migrations` VALUES ('33', '2017_07_28_132627_create_purchase_detail_table', '1');
+INSERT INTO `migrations` VALUES ('34', '2017_07_28_133140_create_invoice_table', '1');
+INSERT INTO `migrations` VALUES ('35', '2017_07_28_134724_create_invoice_detail_table', '1');
+INSERT INTO `migrations` VALUES ('36', '2017_08_16_141216_create_production_table', '1');
+INSERT INTO `migrations` VALUES ('37', '2017_08_16_142321_create_production_detail_table', '1');
+INSERT INTO `migrations` VALUES ('38', '2017_08_22_093239_create_checklists_table', '1');
+INSERT INTO `migrations` VALUES ('39', '2017_08_22_093318_create_checklist_detail_table', '1');
+INSERT INTO `migrations` VALUES ('40', '2017_08_23_062245_create_sessions_table', '1');
+INSERT INTO `migrations` VALUES ('41', '2017_08_28_132015_create_units_table', '1');
+INSERT INTO `migrations` VALUES ('42', '2017_08_30_151921_create_languages_table', '1');
 
 -- ----------------------------
 -- Table structure for open_items
@@ -458,14 +492,14 @@ CREATE TABLE `open_items` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of open_items
 -- ----------------------------
-INSERT INTO `open_items` VALUES ('2', 'ON00001', '2017-08-31', 'open 1', null, '2017-08-31 14:32:46', '2017-08-31 14:42:20', null);
-INSERT INTO `open_items` VALUES ('3', 'ON00002', '2017-08-31', 'open 2', null, '2017-08-31 14:51:14', '2017-08-31 14:54:45', null);
-INSERT INTO `open_items` VALUES ('4', 'OP00003', '2017-08-31', 'open 3', null, '2017-08-31 15:41:06', '2017-08-31 15:41:51', null);
+INSERT INTO `open_items` VALUES ('1', 'OP00001', '2017-10-02', 'open one', null, '2017-09-02 04:18:53', '2017-09-02 04:18:53', null);
+INSERT INTO `open_items` VALUES ('2', 'OP00002', '2017-10-02', 'open two', null, '2017-09-02 04:21:00', '2017-09-02 04:21:00', null);
+INSERT INTO `open_items` VALUES ('3', 'OP00003', '2017-09-02', 'open three', null, '2017-09-02 04:56:17', '2017-09-02 04:56:17', null);
 
 -- ----------------------------
 -- Table structure for open_items_detail
@@ -492,30 +526,16 @@ CREATE TABLE `open_items_detail` (
   KEY `open_items_detail_ref_id_index` (`ref_id`),
   KEY `open_items_detail_item_id_index` (`item_id`),
   KEY `open_items_detail_title_index` (`title`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of open_items_detail
 -- ----------------------------
-INSERT INTO `open_items_detail` VALUES ('7', '2', '2', 'R00001', 'Ring for Man', '4', '0', '1', '365', '0', '0', '', '[{\"item_code\":\"D00001\",\"title\":\"Diamond\",\"description\":\"\",\"unit\":\"1\",\"num_qty\":\"2\",\"qty\":\"6\",\"cost\":\"20\",\"note\":\"\",\"item_id\":\"3\"},{\"item_code\":\"CS00001\",\"title\":\"Crystal1\",\"description\":\"\",\"unit\":\"1\",\"num_qty\":\"2\",\"qty\":\"10\",\"cost\":\"0.5\",\"note\":\"\",\"item_id\":\"4\"},{\"item_code\":\"PT00001\",\"title\":\"Platinum 75%\",\"description\":\"\",\"unit\":\"3\",\"num_qty\":\"1\",\"qty\":\"2\",\"cost\":\"120\",\"note\":\"\",\"item_id\":\"5\"}]', '2017-08-31 14:42:20', '2017-08-31 14:42:20', null);
-INSERT INTO `open_items_detail` VALUES ('14', '3', '2', 'R00001', 'Ring for Man', '4', '1', '2', '120', '0', '0', '', '[{\"item_code\":\"PT00001\",\"title\":\"Platinum 75%\",\"description\":\"\",\"unit\":\"3\",\"num_qty\":\"\",\"qty\":\"2\",\"cost\":\"120\",\"note\":\"\",\"item_id\":\"5\"}]', '2017-08-31 14:56:44', '2017-08-31 14:56:44', null);
-INSERT INTO `open_items_detail` VALUES ('15', '3', '3', 'D00001', 'Diamond1.5li', '1', '2', '5', '10', '0', '0', '', '[]', '2017-08-31 14:56:44', '2017-08-31 14:56:44', null);
-INSERT INTO `open_items_detail` VALUES ('16', '3', '6', 'E00001', 'Earring', '4', '0', '1', '480', '0', '0', '', '[{\"item_code\":\"PT00001\",\"title\":\"Platinum 75%\",\"description\":\"\",\"unit\":\"3\",\"num_qty\":\"\",\"qty\":\"2\",\"cost\":\"120\",\"note\":\"\",\"item_id\":\"5\"},{\"item_code\":\"D00003\",\"title\":\"Diamond3li\",\"description\":\"\",\"unit\":\"1\",\"num_qty\":\"3\",\"qty\":\"4\",\"cost\":\"60\",\"note\":\"\",\"item_id\":7}]', '2017-08-31 14:56:44', '2017-08-31 14:56:44', null);
-INSERT INTO `open_items_detail` VALUES ('32', '4', '8', 'R00002', 'Ring For Man', '4', '0', '1', '928', '0', '0', '', '[{\"item_code\":\"D00002\",\"title\":\"Diamond4li\",\"description\":\"\",\"unit\":\"1\",\"num_qty\":\"6\",\"qty\":\"1\",\"cost\":\"800\",\"note\":\"\",\"item_id\":\"9\"},{\"item_code\":\"D00004\",\"title\":\"Diamond3li\",\"description\":\"\",\"unit\":\"1\",\"num_qty\":\"3\",\"qty\":\"4\",\"cost\":\"32\",\"note\":\"\",\"item_id\":\"10\"}]', '2017-08-31 15:41:52', '2017-08-31 15:41:52', null);
-INSERT INTO `open_items_detail` VALUES ('33', '4', '11', 'R00003', 'Ring For Man', '4', '0', '2', '120', '0', '0', '', '[{\"item_code\":\"PT00001\",\"title\":\"Platinum 75%\",\"description\":\"\",\"unit\":\"3\",\"num_qty\":\"\",\"qty\":\"2\",\"cost\":\"120\",\"note\":\"\",\"item_id\":\"5\"}]', '2017-08-31 15:41:52', '2017-08-31 15:41:52', null);
-INSERT INTO `open_items_detail` VALUES ('34', '4', '12', 'R00004', 'Ring For Man', '4', '0', '1', '814', '0', '0', '', '[{\"item_code\":\"D00005\",\"title\":\"Diamond5li\",\"description\":\"\",\"unit\":\"1\",\"num_qty\":\"5\",\"qty\":\"1\",\"cost\":\"600\",\"note\":\"\",\"item_id\":\"13\"},{\"item_code\":\"PT00002\",\"title\":\"Platinum70%\",\"description\":\"\",\"unit\":\"3\",\"num_qty\":\"0\",\"qty\":\"2\",\"cost\":\"107\",\"note\":\"\",\"item_id\":\"14\"}]', '2017-08-31 15:41:52', '2017-08-31 15:41:52', null);
-INSERT INTO `open_items_detail` VALUES ('35', '4', '15', 'R00005', 'Ring For Man', '4', '0', '1', '240', '0', '0', '', '[{\"item_code\":\"PT00001\",\"title\":\"Platinum 75%\",\"description\":\"\",\"unit\":\"3\",\"num_qty\":\"\",\"qty\":\"2\",\"cost\":\"120\",\"note\":\"\",\"item_id\":\"5\"}]', '2017-08-31 15:41:52', '2017-08-31 15:41:52', null);
-INSERT INTO `open_items_detail` VALUES ('36', '4', '16', 'R00006', 'Ring For Man', '4', '0', '1', '240', '0', '0', '', '[{\"item_code\":\"PT00001\",\"title\":\"Platinum 75%\",\"description\":\"\",\"unit\":\"3\",\"num_qty\":\"\",\"qty\":\"2\",\"cost\":\"120\",\"note\":\"\",\"item_id\":\"5\"}]', '2017-08-31 15:41:53', '2017-08-31 15:41:53', null);
-INSERT INTO `open_items_detail` VALUES ('37', '4', '17', 'R00007', 'Ring For Man', '4', '0', '1', '240', '0', '0', '', '[{\"item_code\":\"PT00001\",\"title\":\"Platinum 75%\",\"description\":\"\",\"unit\":\"3\",\"num_qty\":\"\",\"qty\":\"2\",\"cost\":\"120\",\"note\":\"\",\"item_id\":\"5\"}]', '2017-08-31 15:41:53', '2017-08-31 15:41:53', null);
-INSERT INTO `open_items_detail` VALUES ('38', '4', '18', 'R00008', 'Ring For Man', '4', '0', '1', '240', '0', '0', '', '[{\"item_code\":\"PT00001\",\"title\":\"Platinum 75%\",\"description\":\"\",\"unit\":\"3\",\"num_qty\":\"\",\"qty\":\"2\",\"cost\":\"120\",\"note\":\"\",\"item_id\":\"5\"}]', '2017-08-31 15:41:53', '2017-08-31 15:41:53', null);
-INSERT INTO `open_items_detail` VALUES ('39', '4', '19', 'R00009', 'Ring For Man', '4', '0', '1', '360', '0', '0', '', '[{\"item_code\":\"PT00001\",\"title\":\"Platinum 75%\",\"description\":\"\",\"unit\":\"3\",\"num_qty\":\"\",\"qty\":\"3\",\"cost\":\"120\",\"note\":\"\",\"item_id\":\"5\"}]', '2017-08-31 15:41:53', '2017-08-31 15:41:53', null);
-INSERT INTO `open_items_detail` VALUES ('40', '4', '20', 'R000010', 'Ring For Man', '4', '0', '1', '480', '0', '0', '', '[{\"item_code\":\"PT00001\",\"title\":\"Platinum 75%\",\"description\":\"\",\"unit\":\"3\",\"num_qty\":\"\",\"qty\":\"4\",\"cost\":\"120\",\"note\":\"\",\"item_id\":\"5\"}]', '2017-08-31 15:41:53', '2017-08-31 15:41:53', null);
-INSERT INTO `open_items_detail` VALUES ('41', '4', '21', 'R000011', 'Ring For Man', '4', '0', '1', '600', '0', '0', '', '[{\"item_code\":\"PT00001\",\"title\":\"Platinum 75%\",\"description\":\"\",\"unit\":\"3\",\"num_qty\":\"\",\"qty\":\"5\",\"cost\":\"120\",\"note\":\"\",\"item_id\":\"5\"}]', '2017-08-31 15:41:53', '2017-08-31 15:41:53', null);
-INSERT INTO `open_items_detail` VALUES ('42', '4', '22', 'R000012', 'Ring For Man', '4', '0', '1', '720', '0', '0', '', '[{\"item_code\":\"PT00001\",\"title\":\"Platinum 75%\",\"description\":\"\",\"unit\":\"3\",\"num_qty\":\"\",\"qty\":\"6\",\"cost\":\"120\",\"note\":\"\",\"item_id\":\"5\"}]', '2017-08-31 15:41:53', '2017-08-31 15:41:53', null);
-INSERT INTO `open_items_detail` VALUES ('43', '4', '4', 'CS00001', 'Crystal', '1', '1', '3', '0.5', '0', '0', '', '[]', '2017-08-31 15:41:53', '2017-08-31 15:41:53', null);
-INSERT INTO `open_items_detail` VALUES ('44', '4', '23', 'R000014', 'Ring For Man', '4', '0', '1', '360', '0', '0', '', '[{\"item_code\":\"PT00001\",\"title\":\"Platinum 75%\",\"description\":\"\",\"unit\":\"3\",\"num_qty\":\"\",\"qty\":\"3\",\"cost\":\"120\",\"note\":\"\",\"item_id\":\"5\"}]', '2017-08-31 15:41:54', '2017-08-31 15:41:54', null);
-INSERT INTO `open_items_detail` VALUES ('45', '4', '24', 'R000015', 'Ring For Man', '4', '0', '1', '960', '0', '0', '', '[{\"item_code\":\"PT00001\",\"title\":\"Platinum 75%\",\"description\":\"\",\"unit\":\"3\",\"num_qty\":\"\",\"qty\":\"8\",\"cost\":\"120\",\"note\":\"\",\"item_id\":\"5\"}]', '2017-08-31 15:41:54', '2017-08-31 15:41:54', null);
-INSERT INTO `open_items_detail` VALUES ('46', '4', '25', 'R000016', 'Ring For Man', '4', '0', '1', '480', '0', '0', '', '[{\"item_code\":\"PT00001\",\"title\":\"Platinum 75%\",\"description\":\"\",\"unit\":\"3\",\"num_qty\":\"\",\"qty\":\"4\",\"cost\":\"120\",\"note\":\"\",\"item_id\":\"5\"}]', '2017-08-31 15:41:54', '2017-08-31 15:41:54', null);
+INSERT INTO `open_items_detail` VALUES ('1', '1', '1', 'PT00001', 'Platinum 75%', '5', '0', '2', '1200', '0', '0', '', '[]', '2017-09-02 04:18:53', '2017-09-02 04:18:53', null);
+INSERT INTO `open_items_detail` VALUES ('2', '1', '2', 'D00001', 'Diamond 2li', '2', '2', '200', '20', '0', '0', '', '[]', '2017-09-02 04:18:53', '2017-09-02 04:18:53', null);
+INSERT INTO `open_items_detail` VALUES ('6', '2', '3', 'PT00002', 'Platinum 75%', '4', '0', '4', '120', '0', '0', '', '[]', '2017-09-02 04:25:18', '2017-09-02 04:25:18', null);
+INSERT INTO `open_items_detail` VALUES ('7', '3', '4', 'R00001', 'Ring For Man', '7', '0', '2', '1360', '0', '0', '', '[{\"item_code\":\"D00001\",\"title\":\"Diamond 2li\",\"description\":\"\",\"unit\":\"2\",\"num_qty\":\"\",\"qty\":\"100\",\"cost\":\"20\",\"note\":\"\",\"item_id\":\"2\"},{\"item_code\":\"PT00002\",\"title\":\"Platinum 75%\",\"description\":\"\",\"unit\":\"4\",\"num_qty\":\"\",\"qty\":\"6\",\"cost\":\"120\",\"note\":\"\",\"item_id\":\"3\"}]', '2017-09-02 04:56:18', '2017-09-02 04:56:18', null);
+INSERT INTO `open_items_detail` VALUES ('8', '3', '5', 'R00002', 'Ring Form Women', '7', '0', '4', '1240', '0', '0', '', '[{\"item_code\":\"D00001\",\"title\":\"Diamond 2li\",\"description\":\"\",\"unit\":\"2\",\"num_qty\":\"2\",\"qty\":\"200\",\"cost\":\"20\",\"note\":\"\",\"item_id\":\"2\"},{\"item_code\":\"PT00002\",\"title\":\"Platinum 75%\",\"description\":\"\",\"unit\":\"4\",\"num_qty\":\"\",\"qty\":\"8\",\"cost\":\"120\",\"note\":\"\",\"item_id\":\"3\"}]', '2017-09-02 04:56:18', '2017-09-02 04:56:18', null);
 
 -- ----------------------------
 -- Table structure for password_resets
@@ -601,12 +621,11 @@ CREATE TABLE `purchase` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of purchase
 -- ----------------------------
-INSERT INTO `purchase` VALUES ('1', null, null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for purchase_detail
@@ -691,15 +710,18 @@ CREATE TABLE `units` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of units
 -- ----------------------------
-INSERT INTO `units` VALUES ('1', 'លី', '1', null, '2017-08-31 02:04:42', '2017-08-31 02:04:42', null);
-INSERT INTO `units` VALUES ('2', 'ក្រាដ', '1', null, '2017-08-31 02:16:05', '2017-08-31 02:17:12', null);
-INSERT INTO `units` VALUES ('3', 'ជី', '1', null, '2017-08-31 02:17:01', '2017-08-31 02:17:01', null);
-INSERT INTO `units` VALUES ('4', 'ឯកតា', '1', null, '2017-08-31 02:17:40', '2017-08-31 02:17:40', null);
+INSERT INTO `units` VALUES ('1', 'សីុ', '1', null, '2017-09-02 02:42:31', '2017-09-02 02:47:23', null);
+INSERT INTO `units` VALUES ('2', 'លី', '1', null, '2017-09-02 02:42:50', '2017-09-02 02:47:41', null);
+INSERT INTO `units` VALUES ('3', 'ហ៊ុន', '1', null, '2017-09-02 02:44:43', '2017-09-02 02:47:59', null);
+INSERT INTO `units` VALUES ('4', 'ជី', '1', null, '2017-09-02 02:45:50', '2017-09-02 02:48:15', null);
+INSERT INTO `units` VALUES ('5', 'តម្លឹង', '1', null, '2017-09-02 02:46:34', '2017-09-02 02:46:34', null);
+INSERT INTO `units` VALUES ('6', 'ក្រាដ', '1', null, '2017-09-02 02:46:54', '2017-09-02 02:48:37', null);
+INSERT INTO `units` VALUES ('7', 'ឯកតា', '1', null, '2017-09-02 02:48:58', '2017-09-02 02:48:58', null);
 
 -- ----------------------------
 -- Table structure for users
@@ -720,4 +742,4 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'admin', 'admin@gmail.com', '$2y$10$TgiyGV76N1Jz41OD9dKeEuDSWrYlGmSMAqWbJjqr/3V0me7PjMA0q', null, '2017-08-31 01:42:47', '2017-08-31 01:42:47');
+INSERT INTO `users` VALUES ('1', 'admin', 'admin@gmail.com', '$2y$10$WzzwGA6DbsFMVUEeIgunMOnphM5vhrzQlga1eCTbvzVpqH.mbQeMq', 'NXLkXlR98DxG7gph3is5DDntGE3xYSgi9d6FnnlOaVqDkKLIA3U9RXlDrxsx', '2017-09-02 02:28:42', '2017-09-02 02:28:42');
