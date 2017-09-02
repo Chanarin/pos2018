@@ -105,10 +105,10 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
             'columns' => [
                 'item_id' => ['label' => 'Item ID','show' => true,'width' => 150],
                 'item_code' => ['label' => 'Code','show' => true,'width' => 150],
-                'title' => ['label' => 'Title','show' => true,'width' => 150],
+                'title' => ['label' => 'Title','show' => true,'width' => 200],
                 'description' => ['label' => 'Description','show' => false,'width' => -1],
                 'unit' => ['label' => 'Unit','show' => true,'width' => 90],
-                'qty' => ['label' => 'Qty','show' => true,'width' => -1],
+                'qty' => ['label' => 'Qty','show' => true,'width' => 90],
                 'cost' => ['label' => 'Cost','show' => false,'width' => -1],
                 'price' => ['label' => 'Price','show' => false,'width' => -1],
                 'discount' => ['label' => 'Discount','show' => false,'width' => -1],
