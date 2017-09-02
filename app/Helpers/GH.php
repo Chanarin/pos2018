@@ -3,6 +3,7 @@ namespace App\Helpers;
 
 //use App\Language;
 use App\Models\Member;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -23,12 +24,75 @@ class GH extends Model
     public static function getRoleArray()
     {
         return [
-            1 => 'Post Card',
+            1 => 'Sale POS',
             2 => 'User',
             3 => 'Admin',
             4 => 'Supper Admin',
         ];
     }
+
+    public static function getUserID()
+    {
+        try {
+            $id = 0;
+            if (Auth::check())
+            {
+                $id =Auth::getUser()->id;
+            }
+            $user_id = $id;// session('u_id');
+            return $user_id - 0;
+        } catch (\Exception $e) {
+            return 0;
+        }
+    }
+
+    public static function getUserLevel()
+    {
+        $id = self::getUserID();
+
+        if($id>0){
+            try {
+                $u_level = session('u_level');
+                if(!($u_level > 0)){
+                    $m = User::find($id);
+                    if($m != null){
+                        session(['u_level'=>$m->role_id]);
+                        return $m->role_id;
+                    }
+                }
+
+
+                return $u_level - 0;
+            } catch (\Exception $e) {
+                return 0;
+            }
+        }
+
+        return 0;
+
+
+    }
+
+    public static function getUserInfo()
+    {
+        try {
+            return [
+                'id' => session('u_id'),
+                'name' => session('u_name'),
+                'email' => session('u_email'),
+                'phone' => session('u_phone')
+            ];
+        } catch (\Exception $e) {
+
+            return [
+                'id' => 0,
+                'name' => '',
+                'email' => '',
+                'phone' => ''
+            ];
+        }
+    }
+
 
     public static function getMemberRoleArray()
     {
@@ -102,20 +166,6 @@ class GH extends Model
 
     }
 
-    public static function getUserID()
-    {
-        try {
-            $id = 0;
-            if (Auth::check())
-            {
-                $id = Auth::user()->getId();
-            }
-            $user_id = $id;// session('u_id');
-            return $user_id - 0;
-        } catch (\Exception $e) {
-            return 0;
-        }
-    }
 
     public static function getAdminMemberID()
     {
@@ -129,41 +179,12 @@ class GH extends Model
 
 
 
-    public static function getUserInfo()
-    {
-        try {
-            return [
-                'id' => session('u_id'),
-                'name' => session('u_name'),
-                'email' => session('u_email'),
-                'phone' => session('u_phone')
-            ];
-        } catch (\Exception $e) {
-
-            return [
-                'id' => 0,
-                'name' => '',
-                'email' => '',
-                'phone' => ''
-            ];
-        }
-    }
-
     public static function arrUserLevel()
     {
         return [1=>'User',2=>'Admin',3=>'Supper Admin'];
     }
 
-    public static function getUserLevel()
-    {
-        return 3;
-        try {
-            $u_level = session('u_level');
-            return $u_level - 0;
-        } catch (\Exception $e) {
-            return 0;
-        }
-    }
+
 
     public static function status(){
         return [1=> 'Active',0=> 'Inactive'];

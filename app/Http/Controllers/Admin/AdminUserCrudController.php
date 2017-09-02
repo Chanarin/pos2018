@@ -179,9 +179,19 @@ class AdminUserCrudController extends CrudController
         // $this->crud->removeAllButtons();
         // $this->crud->removeAllButtonsFromStack('line');
 
+
         // ------ CRUD ACCESS
-        // $this->crud->allowAccess(['list', 'create', 'update', 'reorder', 'delete']);
-        // $this->crud->denyAccess(['list', 'create', 'update', 'reorder', 'delete']);
+        $u_level = GH::getUserLevel();
+        if($u_level<=2) {
+            $this->crud->denyAccess(['create',  'delete']);
+            $this->crud->addClause('where', 'id', '=', GH::getUserID());
+        }else if($u_level == 3){
+            $this->crud->denyAccess(['delete']);
+        }
+
+       /* $this->crud->allowAccess(['list', 'create', 'update', 'reorder', 'delete']);
+        $this->crud->denyAccess(['list', 'create', 'update', 'reorder', 'delete']);*/
+
 
         // ------ CRUD REORDER
         // $this->crud->enableReorder('label_name', MAX_TREE_LEVEL);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Helpers\_POS_;
+use App\Helpers\GH;
 use App\Helpers\IDP;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
@@ -75,6 +76,16 @@ class ItemCrudController extends CrudController
         ]);
 
         $this->crud->enableAjaxTable();
+
+        $u_level = GH::getUserLevel();
+        if($u_level==1) {
+            $this->crud->denyAccess(['list', 'create', 'update', 'reorder', 'delete']);
+            //$this->crud->addClause('where', 'id', '=', GH::getUserID());
+        }else if($u_level == 2){
+            $this->crud->denyAccess(['delete']);
+        }else if($u_level == 3){
+            $this->crud->denyAccess(['delete']);
+        }
 
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\GH;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Models\ItemCategory;
 use Illuminate\Http\Request;
@@ -124,7 +125,15 @@ class ItemCategoryCrudController extends CrudController
         // ------ CRUD ACCESS
         // $this->crud->allowAccess(['list', 'create', 'update', 'reorder', 'delete']);
         // $this->crud->denyAccess(['list', 'create', 'update', 'reorder', 'delete']);
-
+        $u_level = GH::getUserLevel();
+        if($u_level==1) {
+            $this->crud->denyAccess(['list', 'create', 'update', 'reorder', 'delete']);
+            //$this->crud->addClause('where', 'id', '=', GH::getUserID());
+        }else if($u_level == 2){
+            $this->crud->denyAccess(['delete']);
+        }else if($u_level == 3){
+            $this->crud->denyAccess(['delete']);
+        }
         // ------ CRUD REORDER
         // $this->crud->enableReorder('label_name', MAX_TREE_LEVEL);
         // NOTE: you also need to do allow access to the right users: $this->crud->allowAccess('reorder');
