@@ -1247,10 +1247,29 @@ class LanguagesTableSeeder extends Seeder
             array (
                 'id' => 140,
                 'key' => 'search_here',
-                'en' => NULL,
-                'km' => NULL,
+                'en' => 'Search Here',
+                'km' => 'ស្វែងរកនៅទីនេះ',
                 'created_at' => '2017-09-02 02:30:43',
                 'updated_at' => '2017-09-02 02:30:43',
+            ),
+            137 => 
+            array (
+                'id' => 141,
+                'key' => 'transaction',
+                'en' => 'Transaction',
+                'km' => 'ប្រតិបត្តិការ
+',
+                'created_at' => '2017-09-02 13:32:09',
+                'updated_at' => '2017-09-02 13:32:09',
+            ),
+            138 => 
+            array (
+                'id' => 142,
+                'key' => 'user_manager',
+                'en' => 'User Mananger',
+                'km' => 'គ្រប់គ្រងអ្នកប្រើ',
+                'created_at' => '2017-09-02 13:36:52',
+                'updated_at' => '2017-09-02 13:36:52',
             ),
         ));
         

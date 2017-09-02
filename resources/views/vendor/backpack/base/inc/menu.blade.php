@@ -24,9 +24,9 @@
         <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/customers') }}">
                 <i class="fa  fa-user"></i> <span>{{_t('Customer')}}</span>
-
             </a>
         </li>
+
         <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/openitem') }}">
                 <i class="fa fa-book"></i> <span>{{_t('Open Item')}}</span>
@@ -43,21 +43,11 @@
         <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/production') }}" >
                 <i class="fa fa-gavel"></i> <span>{{_t('Production')}}</span>
-
             </a>
         </li>
-
         <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/checklist') }}">
                 <i class="fa fa-check-square"></i> <span>{{_t('Checklist')}}</span>
-
-            </a>
-        </li>
-
-        <li class=" hidden-xs hidden-sm">
-            <a href="{{url('/admin/register')}}">
-                <i class="fa fa-th-large"></i> <span>{{_t('Register')}}</span>
-
             </a>
         </li>
         <!-- ========================================================= -->
