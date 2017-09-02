@@ -107,6 +107,7 @@
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/elfinder') }}"><i class="fa fa-files-o"></i> <span>{{_t('File manager')}}</span></a></li>
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/setting') }}"><i class="fa fa-cog"></i> <span>{{_t('Settings')}}</span></a></li>
 
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/adminuser') }}"><i class="fa fa-file-o"></i> <span>User manager</span></a></li>
           <!-- ======================================= -->
           <li class="header">{{_t('user') }}</li>
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/logout') }}"><i class="fa fa-sign-out"></i> <span>{{_t('logout')}}</span></a></li>

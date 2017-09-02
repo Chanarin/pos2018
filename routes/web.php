@@ -22,6 +22,11 @@ Route::get('admin/print-invoice', function () {
 
 Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin'], function () {
     // Backpack\CRUD: Define the resources for the entities you want to CRUD.
+    Route::any('user/change-pass','AdminUserCrudController@changePass');
+    Route::patch('user/change-pass','AdminUserCrudController@changePassSave');
+
+
+    CRUD::resource('adminuser', 'AdminUserCrudController');
     CRUD::resource('checklist', 'ChecklistCrudController');
     CRUD::resource('customer', 'CustomerCrudController');
     CRUD::resource('invoice', 'InvoiceCrudController');
