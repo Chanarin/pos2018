@@ -48,7 +48,7 @@
         </li>
 
         <li class=" hidden-xs hidden-sm">
-            <a href="{{ url('/admin/print-invoice') }}">
+            <a href="{{ url('/admin/checklist') }}">
                 <i class="fa fa-check-square"></i> <span>{{_t('Checklist')}}</span>
 
             </a>

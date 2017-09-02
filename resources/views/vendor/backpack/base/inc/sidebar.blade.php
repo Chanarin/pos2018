@@ -99,33 +99,11 @@
             </ul>
           </li>
 
-
-
-
-
-          <li class="treeview">
-            <a href="#">
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/checklist') }}">
               <i class="fa fa-fw fa-check-square"></i>
               <span>{{_t('Checklist')}}</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
             </a>
-            <ul class="treeview-menu">
-              <li>
-                <a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/view-checklist') }}">
-                  <i class="fa fa-fw fa-check-square"></i>
-                  <span>{{_t('Checklist Stock')}}</span>
-                </a>
-              </li>
-              <li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/checklist') }}">
-                  <i class="fa fa-fw fa-check-square"></i>
-                  <span>{{_t('Checklist')}}</span>
-                </a>
-              </li>
-            </ul>
           </li>
-
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/elfinder') }}"><i class="fa fa-files-o"></i> <span>{{_t('File manager')}}</span></a></li>
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/setting') }}"><i class="fa fa-cog"></i> <span>{{_t('Settings')}}</span></a></li>
 

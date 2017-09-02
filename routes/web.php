@@ -21,7 +21,6 @@ Route::get('admin/print-invoice', function () {
 
 
 Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin'], function () {
-    Route::get('view-checklist','ChecklistCrudController@viewChecklist');
     // Backpack\CRUD: Define the resources for the entities you want to CRUD.
     CRUD::resource('checklist', 'ChecklistCrudController');
     CRUD::resource('customer', 'CustomerCrudController');

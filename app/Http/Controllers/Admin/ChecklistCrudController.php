@@ -13,12 +13,6 @@ use App\Http\Requests\ChecklistRequest as UpdateRequest;
 
 class ChecklistCrudController extends CrudController
 {
-    public function viewChecklist(){
-        $key = 1;
-        $checklists = Item::get();
-        return view('pos.checklist.index',['checklist'=>$checklists,'key'=>$key]);
-    }
-
     public function setup()
     {
 

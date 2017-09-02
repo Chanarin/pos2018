@@ -7,13 +7,22 @@
 <div class="row" >
     <div class="col-md-12">
         <div class=" pull-right text-right">
-            <a href="{{url('/admin/view-checklist')}}" target="_blank" class="btn btn-xs btn-default pull-left">
+            <button class="btn btn-xs btn-default no-print pull-left" onclick="printContent('print-checklist')">
                 <i class="fa fa-print"></i>&nbsp;PRINT
-            </a>
+            </button>
         </div>
     </div>
 </div>
-<div class="row">
+<script>
+    function printContent(el) {
+        var restorepage = document.body.innerHTML;
+        var printcontent = document.getElementById(el).innerHTML;
+        document.body.innerHTML = printcontent;
+        window.print();
+        document.body.innerHTML = restorepage;
+    }
+</script>
+<div class="row" id="print-checklist">
     <div class="form-group col-lg-6 col-md-6 col-sm-6">
         @php
         $field = [   // date_picker
@@ -43,10 +52,6 @@
         @endphp
         @include('vendor.backpack.crud.custom.date_picker2',compact('crud', 'entry', 'field'))
     </div>
-
-</div>
-
-<div class="row">
 
     <div class="col-md-12">
         <div class="box">

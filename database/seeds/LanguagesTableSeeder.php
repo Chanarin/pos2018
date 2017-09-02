@@ -1171,6 +1171,87 @@ class LanguagesTableSeeder extends Seeder
                 'created_at' => '2017-09-01 12:28:07',
                 'updated_at' => '2017-09-01 12:28:07',
             ),
+            128 => 
+            array (
+                'id' => 132,
+                'key' => 'sign_in_to_start_your_session',
+                'en' => 'Sign in to start your session',
+                'km' => 'បំពេញនូវអ៊ីមែល និង ពាក្យសម្ងាត់ ដើម្បីចូលទៅកានផ្ទាំងលក់',
+                'created_at' => '2017-09-02 02:16:22',
+                'updated_at' => '2017-09-02 02:16:22',
+            ),
+            129 => 
+            array (
+                'id' => 133,
+                'key' => 'email',
+                'en' => 'Email',
+                'km' => 'អ៊ីមែល',
+                'created_at' => '2017-09-02 02:16:22',
+                'updated_at' => '2017-09-02 02:16:22',
+            ),
+            130 => 
+            array (
+                'id' => 134,
+                'key' => 'password',
+                'en' => 'Password',
+                'km' => 'ពាក្យសម្ងាត់',
+                'created_at' => '2017-09-02 02:16:22',
+                'updated_at' => '2017-09-02 02:16:22',
+            ),
+            131 => 
+            array (
+                'id' => 135,
+                'key' => 'remember_me',
+                'en' => 'Remember Me',
+                'km' => 'ចងចាំខ្ញុំ',
+                'created_at' => '2017-09-02 02:16:22',
+                'updated_at' => '2017-09-02 02:16:22',
+            ),
+            132 => 
+            array (
+                'id' => 136,
+                'key' => 'stock_',
+                'en' => 'Stock',
+                'km' => 'ការគ្រប់គ្រង',
+                'created_at' => '2017-09-02 02:18:38',
+                'updated_at' => '2017-09-02 02:18:38',
+            ),
+            133 => 
+            array (
+                'id' => 137,
+                'key' => 'management_',
+                'en' => 'Management',
+                'km' => 'ស្តុក',
+                'created_at' => '2017-09-02 02:18:38',
+                'updated_at' => '2017-09-02 02:18:38',
+            ),
+            134 => 
+            array (
+                'id' => 138,
+                'key' => 'email_address',
+                'en' => 'Email Address',
+                'km' => 'អាស័យដ្ឋានអ៊ីមែល',
+                'created_at' => '2017-09-02 02:24:44',
+                'updated_at' => '2017-09-02 02:24:44',
+            ),
+            135 => 
+            array (
+                'id' => 139,
+                'key' => 'confirm_password',
+                'en' => 'Confirm Password',
+                'km' => 'បញ្ជាក់ពាក្យសម្ងាត់',
+                'created_at' => '2017-09-02 02:24:44',
+                'updated_at' => '2017-09-02 02:24:44',
+            ),
+            136 => 
+            array (
+                'id' => 140,
+                'key' => 'search_here',
+                'en' => NULL,
+                'km' => NULL,
+                'created_at' => '2017-09-02 02:30:43',
+                'updated_at' => '2017-09-02 02:30:43',
+            ),
         ));
         
         
