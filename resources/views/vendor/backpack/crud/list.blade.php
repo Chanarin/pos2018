@@ -1,7 +1,8 @@
 @extends('backpack::layout')
 
 @section('header')
-	<section class="content-header">
+	<section class="content-header" style="font-family: 'Encode Sans Semi Condensed', sans-serif;
+            font-family: 'Hanuman', serif;">
 	  <h1>
 	    <span class="text-capitalize">{{ $crud->entity_name_plural }}</span>
 	    <small>{{_t('all')}} <span>{{ $crud->entity_name_plural }}</span> {{_t('in_the_database')}}.</small>

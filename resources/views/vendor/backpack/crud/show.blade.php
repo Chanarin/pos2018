@@ -1,7 +1,8 @@
 @extends('backpack::layout')
 
 @section('content-header')
-	<section class="content-header">
+	<section class="content-header" style="font-family: 'Encode Sans Semi Condensed', sans-serif;
+            font-family: 'Hanuman', serif;">
 	  <h1>
 	    {{_t('preview') }} <span>{{ $crud->entity_name }}</span>
 	  </h1>
