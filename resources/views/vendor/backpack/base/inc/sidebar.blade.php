@@ -126,7 +126,7 @@
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/setting') }}"><i class="fa fa-cog"></i> <span>{{_t('Settings')}}</span></a></li>
 
 
-          @if($u_level==3 && $u_level==4)
+          @if($u_level==3 || $u_level==4)
             <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/adminuser') }}"><i class="fa fa-file-o"></i> <span>{{_t('User manager')}}</span></a></li>
          @endif
           <!-- ======================================= -->

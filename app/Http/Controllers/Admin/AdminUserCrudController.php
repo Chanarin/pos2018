@@ -130,7 +130,7 @@ class AdminUserCrudController extends CrudController
         ]);
 
         $this->crud->addField([ // image
-            'default' => asset('no-image.png'),
+            'default' => asset('No_Image_Available.jpg'),
             'label' => "Photo",
             'name' => "photo",
             'type' => 'image2',
