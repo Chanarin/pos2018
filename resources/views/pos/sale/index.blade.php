@@ -3,6 +3,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('pos') }}/css/style.css">
     <link rel="stylesheet" href="{{ asset('vendor/adminlte') }}/plugins/select2/select2.min.css">
+    <style>
+        .pos-item{
+            cursor: pointer;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -97,6 +102,7 @@
                             <tr>
                                 <th style="width:15%;">Code</th>
                                 <th style="width:30%;">Name</th>
+                                <th style="width:10%;">Num.QTY</th>
                                 <th style="width:10%;">Qty</th>
                                 <th style="width:20%;">Price</th>
                                 <th style="width:20%;">Total</th>
@@ -107,9 +113,20 @@
                     </div>
                     <div class="table-show-pro">
                         <table style="width:100%;" class="show-order-item">
+{{--
 
                             <tr>
-                                <td style="width:10%;">P0001</td>
+                                <td style="width:10%;">
+                                    <input type="hidden" name="_data_[xxxx-uid-xxxx][item_id]" value="">
+                                    <input type="hidden" name="_data_[xxxx-uid-xxxx][item_code]" value="">
+                                    <input type="hidden" name="_data_[xxxx-uid-xxxx][title]" value="">
+                                    <input type="hidden" name="_data_[xxxx-uid-xxxx][unit]" value="">
+                                    <input type="hidden" name="_data_[xxxx-uid-xxxx][num_qty]" value="">
+                                    <input type="hidden" name="_data_[xxxx-uid-xxxx][qty]" value="">
+                                    <input type="hidden" name="_data_[xxxx-uid-xxxx][cost]" value="">
+                                    <input type="hidden" name="_data_[xxxx-uid-xxxx][price]" value="">
+                                    <input type="hidden" name="_data_[xxxx-uid-xxxx][discount]" value="">
+                                    P0001</td>
                                 <td style="width:30%;" class="name-style-order">Name Item 1</td>
                                 <td style="width:10%;"><input type="number" value="" min="0" placeholder=" 0 " style="width: 100%;"></td>
                                 <td style="width:20%;"><span>$</span> 200</td>
@@ -121,6 +138,7 @@
                                 </td>
                             </tr>
 
+--}}
 
                         </table>
                     </div>
@@ -163,7 +181,8 @@
                             </tr>
                             <tr>
                                 <td style="padding: 5px 10px; border-top: 1px solid #666; font-size: 20px; font-weight:bold; background:#333; color:#FFF;" colspan="2">
-                                    Total Payable                                        </td>
+                                    Total Payable
+                                </td>
                                 <td class="text-right" style="padding:5px 10px 5px 10px; font-size: 16px; border-top: 1px solid #666; font-weight:bold; background:#333; color:#FFF;" colspan="2">
                                     <span style="float:left" id="gtotal_kh">(៛ 79,80,000)</span>
                                     <span id="gtotal">1,900.00</span>
@@ -849,7 +868,7 @@
     <script>
         (function($) {
             //Initialize Select2 Elements
-            $(".select2").select2();
+            // $(".select2").select2();
             $.fn.flexboxslider = function(opts) {
                 var options = $.extend({}, $.fn.flexboxslider.defaults, opts);
 
@@ -1155,8 +1174,8 @@
                 tablet:768
             };
 
-
         })(jQuery);
+
         $(document).ready(function() {
 
             $('#slider-2').flexboxslider({
@@ -1189,11 +1208,74 @@
                     }
                 });
             });
+
             $('.item-by-category:first').trigger('click');
+
+            $('body').delegate('.pos-item','click',function (e) {
+                e.preventDefault();
+                var uid = (new Date().getTime());
+                var id = $(this).data('id');
+                var item_code = $(this).data('item_code');
+                var title = $(this).data('title');
+                var image = $(this).data('image');
+                var unit = $(this).data('unit');
+                var price = $(this).data('price');
+
+                //console.log(item_code + " ==== id = " + id); //  '  <input type="hidden" name="_data_['+uid+'][num_qty]" value="">\n' +
+
+                var tr = '\n' +
+                    '                            <tr>\n' +
+                    '                                <td style="width:10%;">                                    \n' +
+                    '                                    <input type="hidden" name="_data_['+uid+'][item_id]" value="'+id+'">\n' +
+                    '                                    <input type="hidden" name="_data_['+uid+'][item_code]" value="'+item_code+'">\n' +
+                    '                                    <input type="hidden" name="_data_['+uid+'][title]" value="'+title+'">\n' +
+                    '                                    <input type="hidden" name="_data_['+uid+'][unit]" value="'+unit+'">\n' +
+                    '                                    <input type="hidden" name="_data_['+uid+'][cost]" value="">\n' +
+                    '                                    <input type="hidden" class="price-row" name="_data_['+uid+'][price]" value="'+price+'">\n' +
+                    '                                    <input type="hidden" name="_data_['+uid+'][discount]" value="">                                    \n' +
+                    '                                    '+item_code+'</td>\n' +
+                    '                                <td style="width:30%;" class="name-style-order">'+title+'</td>\n' +
+                    '                                <td style="width:10%;"><input type="number" name="_data_['+uid+'][num_qty]" value="" min="0" placeholder=" 0 " style="width: 100%;"></td>\n' +
+                    '                                <td style="width:10%;"><input class="qty-row" type="number" name="_data_['+uid+'][qty]" value="1" min="0" placeholder=" 0 " style="width: 100%;"></td>\n' +
+                    '                                <td style="width:20%;"><span>$</span> '+price+'</td>\n' +
+                    '                                <td style="width:20%;"><span>$</span> <span class="total-amount-row">'+price+'</span></td>\n' +
+                    '                                <td style="width: 10%">\n' +
+                    '                                    <a class="btn btn-xs btn-default" style="font-size: 18px; color: rgba(160,8,22,0.84);">\n' +
+                    '                                        <i class="fa fa-fw fa-trash"></i>\n' +
+                    '                                    </a>\n' +
+                    '                                </td>\n' +
+                    '                            </tr>';
+
+                $('.show-order-item').append(tr);
+
+
+
+                calPOS();
+
+            });
+
+            $('body').delegate('.qty-row','keyup',function () {
+                calPOS();
+            });
+
         });
 
 
+        function calPOS() {
+            var g_total = 0;
+            $('.show-order-item tr').each(function () {
+                var d = $(this);
+                var price = d.find('.price-row').val() - 0;
+                var qty = d.find('.qty-row').val() - 0;
+                var amt = price * qty;
+                d.find('.total-amount-row').html(amt);
+                if(amt > 0){
+                    g_total += amt;
+                }
 
+                return g_total;
+            });
+        }
         //get item pagination by category
         $('body').delegate('.my-paginate ul li a', 'click', function (e) {
             e.preventDefault();
@@ -1214,27 +1296,9 @@
                 }
             });
         });
+
         // add item to order list
-        $('body').delegate('.add-order-item','click',function (e) {
 
-            var id = $(this).data('id');
-//            var d = $(this);
-            $.ajax({
-                type: "GET",
-                url: "{{url('admin/menu-item')}}/" + id,
-                //data: "{}",
-                dataType: "json",
-                success: function (data) {
-
-                    addRowItemOrderWithData(data,$('.show-order-item'));
-
-//                    d.parent().parent().remove();
-                },
-                error: function (result) {
-                    dd("Error");
-                }
-            });
-        });
 
         function addRowItemOrderWithData(data,ob) {
 

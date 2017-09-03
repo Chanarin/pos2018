@@ -8,7 +8,7 @@ Route::get('/lang/{l}', function ($l) {
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/admin');
 });
 Route::get('admin/view-report', function () {
     return view('pos.report.table.index');
