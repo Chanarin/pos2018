@@ -48,6 +48,26 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/add-customer',function (Request $request){
+   $m = new \App\Models\Customer();
+   $m->name = $request->name;
+   $m->phone = $request->phone;
+   $m->gender = $request->gender;
+
+   if ($m->save()){
+       $mc = \App\Models\Customer::all();
+       $op = '';
+       foreach ($mc as $row){
+           $op .= '<option '.($row->id == $m->id?' selected ':'').' value="'.$row->id.'">'.$row->name.'</option>';
+       }
+       return $op;
+   }else{
+       return 'no-data';
+   }
+
+});
+
+
 Route::get('/item','Api\ItemController@index');
 Route::get('/item/{id}','Api\ItemController@show');
 

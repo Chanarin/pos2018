@@ -27,13 +27,13 @@
                                 </style>
                                 <div class="">
                                     {{--disabled="disabled"--}}
-                                    <select class="form-control select2" style="width: 100%;">
-                                        <option>Alaska</option>
-                                        <option>California</option>
-                                        <option>Delaware</option>
-                                        <option>Tennessee</option>
-                                        <option>Texas</option>
-                                        <option>Washington</option>
+                                    <select name="customer_id" class="form-control select2 customer_id" style="width: 100%;">
+                                        @php
+                                         $custs = \App\Models\Customer::all();
+                                        @endphp
+                                        @foreach($custs as $rc)
+                                            <option  value="{{$rc->id}}">{{$rc->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -423,41 +423,32 @@
                         </button>
                         <h4 class="modal-title" id="myModalLabel">Add Customer</h4>
                     </div>
-                    <form action="#" data-toggle="validator" role="form" id="add-customer-form" enctype="multipart/form-data" method="post" class="bv-form">
+                    <form action="#" data-toggle="validator" role="form" id="add-customer-form"  class="bv-form" style="padding: 10px;">
                         <div class="modal-body">
                             <p>Please fill in the information below. The field labels marked with * are required input fields.</p>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group person has-feedback">
                                         <label for="name">Name *</label>
-                                        <input type="text" name="name" value="" class="form-control tip" id="name">
+                                        <input type="text" name="name" value="" class="form-control tip name" id="name">
                                     </div>
                                     <div class="form-group has-feedback">
                                         <label for="phone">Phone *</label>
-                                        <input type="text" name="phone" value="" class="form-control" id="phone">
+                                        <input type="text" name="phone" value="" class="form-control phone" id="phone">
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label" for="price_group">Gender</label>
-                                        <select class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <select name="gender" class="form-control gender" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option value="" selected="selected">Select Gender</option>
                                             <option value="male">Male</option>
                                             <option value="female">Female</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group has-feedback">
-                                        <label for="address">Note</label>
-                                        <textarea name="sale_note" cols="40" rows="10" id="sale_note"
-                                                  class="form-control kb-text skip" style="height: 181px;" placeholder="Customer Note"
-                                                  maxlength="250">
-                                        </textarea>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="submit" name="add_customer" value="Add Customer" class="btn btn-primary">
+                            <input type="button"  name="add_customer" value="Add Customer" class="btn btn-primary add_customer">
                         </div>
                     </form>
                 </div>
@@ -868,7 +859,7 @@
     <script>
         (function($) {
             //Initialize Select2 Elements
-            // $(".select2").select2();
+             $(".select2").select2();
             $.fn.flexboxslider = function(opts) {
                 var options = $.extend({}, $.fn.flexboxslider.defaults, opts);
 
@@ -1183,6 +1174,32 @@
                 // items:3,
                 timer: false
             });
+
+            $('.add_customer').on('click',function () {
+                var name = $('#add-customer-form').find('.name').val();
+                var phone = $('#add-customer-form').find('.phone').val();
+                var gender = $('#add-customer-form').find('.gender').val();
+
+                $.ajax({
+                    url: '{{url('/api/add-customer')}}',
+                    type: 'GET',
+                    dataType: 'html',
+                    data: {
+                        name: name,
+                        phone: phone,
+                        gender: gender
+                    },
+                    success: function (d) {
+                        $('.customer_id').html(d);
+                    },
+                    error: function () {
+
+                    }
+                });
+
+            });
+
+
         });
 
         //get item by category
