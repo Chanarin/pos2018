@@ -1,7 +1,8 @@
 @extends('backpack::layout')
 
 @section('header')
-	<section class="content-header">
+	<section class="content-header" style="font-family: 'Encode Sans Semi Condensed', sans-serif;
+            font-family: 'Hanuman', serif;">
 	  <h1>
 		  {{_t('add')}} <span>{{ $crud->entity_name }}</span>
 	  </h1>
@@ -28,7 +29,8 @@
 		  <div class="box">
 
 		    <div class="box-header with-border">
-		      <h3 class="box-title">{{_t('add_a_new')}} {{ $crud->entity_name }}</h3>
+		      <h3 class="box-title" style="font-family: 'Encode Sans Semi Condensed', sans-serif;
+            font-family: 'Hanuman', serif;">{{_t('add_a_new')}} {{ $crud->entity_name }}</h3>
 		    </div>
 		    <div class="box-body row">
 		      <!-- load the view from the application if it exists, otherwise load the one in the package -->
