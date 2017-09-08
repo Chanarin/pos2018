@@ -76,12 +76,12 @@
                                            id="add_item" data-placement="top" data-trigger="focus"
                                            placeholder="Search product by name/code" title="Please start typing code/name for suggestions" autocomplete="off">
                                     <div class="input-group-addon" style="padding: 2px 5px;">
-                                        <a href="#" id="search_details" data-toggle="modal" data-target="#searchProductFilterDetail">
+                                        <a href="#" id="search_details">
                                             <i class="fa fa-2x fa-search" id="addIcon"></i>
                                         </a>
                                     </div>
                                     <div class="input-group-addon" style="padding: 2px 5px;">
-                                        <a href="#" id="addManually">
+                                        <a href="#" id="addManually" data-toggle="modal" data-target="#searchProductFilterDetail">
                                             <i class="fa fa-2x fa-plus-circle" id="addIcon"></i>
                                         </a>
                                     </div>
@@ -98,7 +98,7 @@
                     <div style="clear:both;"></div>
                 </div>
 
-                <div class="col-md-12 col-sm-12 panel-height" >
+                <div class="col-md-12 col-sm-12 panel-height" style="position: relative;">
                     <div class="tbl-header">
                         <table class="table table-action">
                             <thead style="width:100%;">
