@@ -98,7 +98,7 @@
                     <div style="clear:both;"></div>
                 </div>
 
-                <div class="col-md-12 col-sm-12 panel-height" style="position: relative; ">
+                <div class="col-md-12 col-sm-12 panel-height" >
                     <div class="tbl-header">
                         <table class="table table-action">
                             <thead style="width:100%;">
@@ -147,7 +147,7 @@
                     </div>
                 </div>
 
-                <div id="left-bottom" style=" position: relative;">
+                <div id="left-bottom">
                     <div class="col-md-12 col-sm-12 checkout_amount">
                         <table id="totalTable" style="width:100%; float:right; padding:5px; color:#000; background: #FFF;">
                             <tbody>

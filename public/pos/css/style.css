@@ -12,7 +12,7 @@
 #left-panel{
     width: 33.9%;
     border-right: solid 1px #858585;
-    /*height:100%;*/
+    position: relative;
     background-color: #ffffff;
     float: left;
 }
@@ -22,6 +22,10 @@
     /*height: 100%;*/
     background-color: #ffffff;
     float: right;
+}
+#left-bottom{
+    position: absolute;
+    bottom: 0;
 }
 /*============import style==========*/
 .content {
