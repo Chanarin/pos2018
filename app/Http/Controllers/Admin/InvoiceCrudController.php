@@ -176,7 +176,11 @@ class InvoiceCrudController extends CrudController
         $iDP = new IDP($request->_data_,_POS_::invoice,$this->crud->entry->id);
         $iDP->saveAllDetail();
 
-        return $redirect_location;
+        if($request->is_pos>0){
+            return view('pos.sale.pos-print',['id',$this->crud->entry->id]);
+        }else {
+            return $redirect_location;
+        }
     }
 
     public function update(UpdateRequest $request)

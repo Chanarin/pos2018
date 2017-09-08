@@ -21,6 +21,7 @@
                 <input type="hidden" name="_date_" value="{{date('Y-m-d')}}">
                 <input type="hidden" name="description" value="">
                 <input type="hidden" name="invoice_number" value="-1">
+                <input type="hidden" name="is_pos" value="1">
             <div id="left-panel">
 
                 <div id="left-top">
