@@ -40,7 +40,7 @@
 
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/customer') }}"><i class="fa  fa-user"></i> <span>{{_t('Customer')}}</span></a></li>
 
-          @if($u_level==3 && $u_level==4)
+          @if($u_level != 1 && $u_level != 2)
           <li class="treeview">
             <a href="#">
               <i class="fa fa-pie-chart"></i>
