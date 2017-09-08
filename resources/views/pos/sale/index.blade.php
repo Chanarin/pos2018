@@ -7,13 +7,20 @@
         .pos-item{
             cursor: pointer;
         }
+        .show-all-customer tr,.show-all-product-list tr{
+            cursor: pointer;
+        }
     </style>
 @endsection
 
 @section('content')
     <div class="cover-add" id="overlay">
         <div id="container">
-            {{--99--}}
+            <form action="{{url('admin/invoice')}}" method="POST" enctype="multipart/form-data">
+                {!! csrf_field() !!}
+                <input type="hidden" name="_date_" value="{{date('Y-m-d')}}">
+                <input type="hidden" name="description" value="">
+                <input type="hidden" name="invoice_number" value="-1">
             <div id="left-panel">
 
                 <div id="left-top">
@@ -26,7 +33,7 @@
                                     }
                                 </style>
                                 <div class="">
-                                    {{--disabled="disabled"--}}
+
                                     <select name="customer_id" class="form-control select2 customer_id" style="width: 100%;">
                                         @php
                                          $custs = \App\Models\Customer::all();
@@ -55,20 +62,15 @@
                         <div class="no-print">
                             <div class="form-group" id="ui">
                                 <div class="input-group">
-                                    <div class="input-group-btn">
+                                    {{--<div class="input-group-btn">
                                         <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">All Category &nbsp;&nbsp; <span class="fa fa-caret-down"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">Rings</a></li>
-                                            <li><a href="#">Bracelets</a></li>
-                                            <li><a href="#">Necklaces</a></li>
-                                            <li><a href="#">Earrings</a></li>
-                                            <li><a href="#">Brooches</a></li>
-                                            <li><a href="#">Pendents</a></li>
-                                            <li><a href="#">Anklets</a></li>
-                                            <li><a href="#">Belly Chain</a></li>
+                                            @foreach(\App\Models\ItemCategory::all() as $rc)
+                                            <li><a data-id="{{$rc->id}}" href="#">{{$rc->title}}</a></li>
+                                            @endforeach
                                         </ul>
-                                    </div>
+                                    </div>--}}
                                     <input type="text" name="add_item" value="" class="form-control pos-tip ui-autocomplete-input"
                                            id="add_item" data-placement="top" data-trigger="focus"
                                            placeholder="Search product by name/code" title="Please start typing code/name for suggestions" autocomplete="off">
@@ -82,11 +84,11 @@
                                             <i class="fa fa-2x fa-plus-circle" id="addIcon"></i>
                                         </a>
                                     </div>
-                                    <div class="input-group-addon" style="padding: 2px 5px;">
+                                    {{--<div class="input-group-addon" style="padding: 2px 5px;">
                                         <a href="#" id="search_floor" data-toggle="modal" data-target="#searchProductFilter">
                                             <i class="fa fa-2x fa-th" id="addIcon"></i>
                                         </a>
-                                    </div>
+                                    </div>--}}
                                 </div>
                                 <div style="clear:both;"></div>
                             </div>
@@ -282,6 +284,7 @@
                 </div>
                 {{--====================end items==================--}}
             </div>
+            </form>
         </div>
     </div>
         {{--================modal pop up =============--}}
@@ -323,38 +326,29 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             <i class="fa fa-2x">×</i>
                         </button>
-                        <button type="button" class="btn btn-primary btn-xs no-print pull-right " onclick="window.print()">
-                            <i class="fa fa-print"></i>&nbsp;Print			</button>
-                        <h4 class="modal-title" id="myModalLabel">Mengeang</h4>
+                       {{-- <button type="button" class="btn btn-primary btn-xs no-print pull-right " onclick="window.print()">
+                            <i class="fa fa-print"></i>&nbsp;Print			</button>--}}
+                        <h4 class="modal-title" id="myModalLabel">Customer List</h4>
                     </div>
                     <div class="modal-body">
                         <div class="table-responsive">
+
                             <table class="table table-striped table-bordered" style="margin-bottom:0;">
-                                <tbody>
-                                <tr>
-                                    <td><strong>Name</strong></td>
-                                    <td>Mengeang</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Customer Group</strong></td>
-                                    <td>General</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Phone</strong></td>
-                                    <td>012 222 333</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Note</strong></td>
-                                    <td>40Eo, st.70B </td>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Phone</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="show-all-customer">
 
                                 </tbody>
                             </table>
                         </div>
                         <div class="modal-footer no-print">
                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                            <a href="#" target="_blank" class="btn btn-primary">Customers Report</a>
-                            <a href="#" data-toggle="modal" data-target="#editCustomerModal" class="btn btn-primary">Edit Customer</a>
+                            {{--<a href="#" target="_blank" class="btn btn-primary">Customers Report</a>
+                            <a href="#" data-toggle="modal" data-target="#editCustomerModal" class="btn btn-primary">Edit Customer</a>--}}
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -592,40 +586,23 @@
                     </div>
                     <div class="modal-body scroll_F ps-container" id="pr_popover_content" style="height:400px;overflow:hidden;">
                         <form class="form-horizontal" role="form" id="s_seModal">
-                            <table>
+                            <table class="table">
                                 <thead>
-                                <tr>
-                                    <td style="border:1px;width:5%"><input type="text" class="form-control" id="chk" disabled=""></td>
+                               {{-- <tr>
                                     <td style="padding:0;margin:0;border:1px;width:20%"><input type="text" class="form-control ui-autocomplete-input" id="Pcode" autocomplete="off"></td>
                                     <td style="padding:0;margin:0;border:1px;width:25%"><input type="text" class="form-control ui-autocomplete-input" id="Pname" autocomplete="off"></td>
-                                    <!--<td style="padding:0;margin:0;border:1px;"><input type="text" style="width:113px;border-right:none" class="form-control" id="Pdescription" /></td>-->
                                     <td style="padding:0;margin:0;border:1px;width:20%"><input type="text" class="form-control ui-autocomplete-input" id="Pcategory" autocomplete="off"></td>
                                     <td style="padding:0;margin:0;border:1px;width:10%"><input type="text" class="form-control ui-autocomplete-input" id="Pprice" autocomplete="off"></td>
-                                    <td style="padding:0;margin:0;border:1px;width:20%"><input type="text" class="form-control" id="dd" disabled=""></td>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>
-                            <table class="table table-bordered table-striped table-hover">
-                                <thead>
+                                </tr>--}}
                                 <tr>
-                                    <th style="width:5%;">
-                                        <center>
-                                            <input class="checkbox checkth input-xs" type="checkbox" name="check">
-                                        </center>
-                                    </th>
-                                    <th style="width:20%">Product Code</th>
-                                    <th style="width:25%">Product Name</th>
-                                    <!--<th style="width:104px">Description</th>-->
-                                    <th style="width:20%">Category</th>
-                                    <th style="width:10%">Price</th>
-                                    <!--<th style="width:200px">strap</th>-->
-                                    <th style="width:20px"><i class="fa fa-chain"></i></th>
+                                    <th>Item Code</th>
+                                    <th>Title</th>
+                                    <th>Unit</th>
+                                    <th>Price</th>
                                 </tr>
                                 </thead>
-                                <tbody class="test">
+
+                                <tbody class="show-all-product-list">
 
                                 </tbody>
                             </table>
@@ -1191,6 +1168,7 @@
                     },
                     success: function (d) {
                         $('.customer_id').html(d);
+                        $('#addCustomerModal').modal('hide');
                     },
                     error: function () {
 
@@ -1239,35 +1217,8 @@
                 var price = $(this).data('price');
 
                 //console.log(item_code + " ==== id = " + id); //  '  <input type="hidden" name="_data_['+uid+'][num_qty]" value="">\n' +
+                getRowItem(id,item_code,title,unit,price,image);
 
-                var tr = '\n' +
-                    '                            <tr>\n' +
-                    '                                <td style="width:10%;">                                    \n' +
-                    '                                    <input type="hidden" name="_data_['+uid+'][item_id]" value="'+id+'">\n' +
-                    '                                    <input type="hidden" name="_data_['+uid+'][item_code]" value="'+item_code+'">\n' +
-                    '                                    <input type="hidden" name="_data_['+uid+'][title]" value="'+title+'">\n' +
-                    '                                    <input type="hidden" name="_data_['+uid+'][unit]" value="'+unit+'">\n' +
-                    '                                    <input type="hidden" name="_data_['+uid+'][cost]" value="">\n' +
-                    '                                    <input type="hidden" class="price-row" name="_data_['+uid+'][price]" value="'+price+'">\n' +
-                    '                                    <input type="hidden" name="_data_['+uid+'][discount]" value="">                                    \n' +
-                    '                                    '+item_code+'</td>\n' +
-                    '                                <td style="width:30%;" class="name-style-order">'+title+'</td>\n' +
-                    '                                <td style="width:10%;"><input type="number" name="_data_['+uid+'][num_qty]" value="" min="0" placeholder=" 0 " style="width: 100%;"></td>\n' +
-                    '                                <td style="width:10%;"><input class="qty-row" type="number" name="_data_['+uid+'][qty]" value="1" min="0" placeholder=" 0 " style="width: 100%;"></td>\n' +
-                    '                                <td style="width:20%;"><span>$</span> '+price+'</td>\n' +
-                    '                                <td style="width:20%;"><span>$</span> <span class="total-amount-row">'+price+'</span></td>\n' +
-                    '                                <td style="width: 10%">\n' +
-                    '                                    <a class="btn btn-xs btn-default" style="font-size: 18px; color: rgba(160,8,22,0.84);">\n' +
-                    '                                        <i class="fa fa-fw fa-trash"></i>\n' +
-                    '                                    </a>\n' +
-                    '                                </td>\n' +
-                    '                            </tr>';
-
-                $('.show-order-item').append(tr);
-
-
-
-                calPOS();
 
             });
 
@@ -1276,6 +1227,37 @@
             });
 
         });
+
+        function getRowItem(id,item_code,title,unit,price,image) {
+            var uid = (new Date().getTime());
+
+            var tr = '\n' +
+                '                            <tr>\n' +
+                '                                <td style="width:10%;">                                    \n' +
+                '                                    <input type="hidden" name="_data_['+uid+'][item_id]" value="'+id+'">\n' +
+                '                                    <input type="hidden" name="_data_['+uid+'][item_code]" value="'+item_code+'">\n' +
+                '                                    <input type="hidden" name="_data_['+uid+'][title]" value="'+title+'">\n' +
+                '                                    <input type="hidden" name="_data_['+uid+'][unit]" value="'+unit+'">\n' +
+                '                                    <input type="hidden" name="_data_['+uid+'][cost]" value="">\n' +
+                '                                    <input type="hidden" class="price-row" name="_data_['+uid+'][price]" value="'+price+'">\n' +
+                '                                    <input type="hidden" name="_data_['+uid+'][discount]" value="">                                    \n' +
+                '                                    '+item_code+'</td>\n' +
+                '                                <td style="width:30%;">'+title+'</td>\n' +
+                '                                <td style="width:10%;"><input type="number" name="_data_['+uid+'][num_qty]" value="" min="0" placeholder=" 0 " style="width: 100%;"></td>\n' +
+                '                                <td style="width:10%;"><input class="qty-row" type="number" name="_data_['+uid+'][qty]" value="1" min="0" placeholder=" 0 " style="width: 100%;"></td>\n' +
+                '                                <td style="width:20%;"><span>$</span> '+price+'</td>\n' +
+                '                                <td style="width:20%;"><span>$</span> <span class="total-amount-row">'+price+'</span></td>\n' +
+                '                                <td style="width: 10%">\n' +
+                '                                    <a class="btn btn-xs btn-default" style="font-size: 18px; color: rgba(160,8,22,0.84);">\n' +
+                '                                        <i class="fa fa-fw fa-trash"></i>\n' +
+                '                                    </a>\n' +
+                '                                </td>\n' +
+                '                            </tr>';
+
+            $('.show-order-item').append(tr);
+
+            calPOS();
+        }
 
 
         function calPOS() {
@@ -1343,4 +1325,41 @@
 
     </script>
     {{--============script pop up item ============--}}
+    <script>
+        $(function () {
+
+            $('#viewCustomerModal').on('show.bs.modal', function (e) {
+                $('.show-all-customer').load('{{url('api/show-pos-customer')}}');
+            });
+
+            $('#searchProductFilterDetail').on('show.bs.modal', function (e) {
+                $('.show-all-product-list').load('{{url('api/show-pos-product')}}');
+            });
+
+            $('body').delegate('.show-all-customer tr','click',function () {
+                var id = $(this).data('id');
+                var name = $(this).data('name');
+                //var d = '<option value="'+id+'" selected="selected">'+name+'</option>';
+                $('.customer_id').val(id);
+                $('.customer_id').select2();
+                $('#viewCustomerModal').modal('hide');
+            });
+
+            $('body').delegate('.show-all-product-list tr','click',function () {
+
+                var uid = (new Date().getTime());
+                var id = $(this).data('id');
+                var item_code = $(this).data('item_code');
+                var title = $(this).data('title');
+                var image = $(this).data('image');
+                var unit = $(this).data('unit');
+                var price = $(this).data('price');
+
+                getRowItem(id,item_code,title,unit,price,image);
+
+                $('#searchProductFilterDetail').modal('hide');
+            });
+
+        });
+    </script>
 @endsection

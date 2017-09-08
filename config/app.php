@@ -181,7 +181,9 @@ return [
         Backpack\CRUD\CrudServiceProvider::class,
         Backpack\Settings\SettingsServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+
         App\Providers\HelperServiceProvider::class,
+
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
 
