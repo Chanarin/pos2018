@@ -159,8 +159,8 @@ class InvoiceCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
-//        dd($request->xxx);
-        //dd($request);
+        dd($request->all());
+
         $validator = Validator::make($request->all(), [
             'invoice_number' => 'required',
             '_date_' => 'required',

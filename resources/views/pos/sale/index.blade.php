@@ -10,17 +10,20 @@
         .show-all-customer tr,.show-all-product-list tr{
             cursor: pointer;
         }
+        .red{
+            background-color: rgba(255, 0, 0, 0.38);
+        }
     </style>
 @endsection
 
 @section('content')
     <div class="cover-add" id="overlay">
         <div id="container">
-            <form action="{{url('admin/invoice')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{url('admin/invoice')}}" method="POST" enctype="multipart/form-data" id="pos-form">
                 {!! csrf_field() !!}
                 <input type="hidden" name="_date_" value="{{date('Y-m-d')}}">
                 <input type="hidden" name="description" value="">
-                <input type="hidden" name="invoice_number" value="-1">
+                {{--<input type="hidden" name="invoice_number" value="-1">--}}
                 <input type="hidden" name="is_pos" value="1">
             <div id="left-panel">
 
@@ -219,7 +222,7 @@
                                 </div>
 
                                 <div class="btn-group">
-                                    <button type="submit" data-toggle="modal" data-target="#postPaidModal" style="height:68px; border-radius: 0% !important;" class="btn btn-success" id="payment">
+                                    <button type="button" data-toggle="modal" data-target="#postPaidModal" style="height:68px; border-radius: 0% !important;" class="btn btn-success" id="payment">
                                         <i class="fa fa-money"></i> Payment
                                     </button>
                                 </div>
@@ -326,7 +329,7 @@
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <label for="slref">Reference No</label>
-                                                    <input type="text" name="date" value="SALE/POS/1708/00008" class="form-control input-tip datetime" id="date" data-original-title="" title="">
+                                                    <input type="text" name="invoice_number" value="SALE/POS/1708/00008" class="form-control input-tip datetime" id="date" data-original-title="" title="">
                                                 </div>
                                             </div>
                                         </div>
@@ -413,7 +416,7 @@
                                                 <div class="payment">
                                                     <div class="row" style="font-size: 1.2em; font-weight: bold; margin-bottom: 0;">
                                                         <div class="col-sm-12">
-                                                            <textarea name="payment_note[]" id="payment_note_1" style="height: 60px;" class="pa form-control kb-text payment_note" placeholder="Payment Note"></textarea>
+                                                            <textarea name="payment_note" id="payment_note_1" style="height: 60px;" class="pa form-control kb-text payment_note" placeholder="Payment Note"></textarea>
                                                         </div>
                                                     </div>
 
@@ -1275,6 +1278,10 @@
             $('.p-total').html(_c(g_total));
             $('.total_amt').val(g_total);
             $('#item_count').html(_c(ic));
+
+            $('.p-total-payable').html(_c(g_total));
+            $('.p-total-payable-h').val(g_total);
+            $('#total_discount').val(0);
             return g_total;
         }
         //get item pagination by category
@@ -1388,6 +1395,15 @@
                 $('.main_remain_1').html(_c(p - payable));
             });
 
+            $('#pos-form').on('submit',function () {
+                var payable = $('.p-total-payable-h').val();
+
+                var paid = $('#paid').val();
+                if(paid-payable <= 0){
+                    $('#paid').addClass('red');
+                    return false;
+                }
+            });
 
         });
     </script>
