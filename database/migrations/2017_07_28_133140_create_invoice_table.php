@@ -19,7 +19,16 @@ class CreateInvoiceTable extends Migration
             $table->date('_date_')->nullable();
             $table->integer('customer_id')->nullable();
             $table->string('description')->nullable();
+            $table->string('customer_note')->nullable();
+            $table->string('payment_note')->nullable();
             $table->double('deposit')->nullable();
+
+            $table->double('total_amt')->default(0)->nullable();
+            $table->double('total_discount')->default(0)->nullable();
+            $table->double('total_payable')->default(0)->nullable();
+            $table->double('paid')->default(0)->nullable();
+
+
             $table->integer('user_id')->nullable();
             $table->enum('status',['PENDING','COMPLETE'])->default('PENDING');
             $table->date('complete_date')->nullable();

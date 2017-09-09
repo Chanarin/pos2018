@@ -19,7 +19,11 @@ class Invoice extends Model
     protected $primaryKey = 'id';
      public $timestamps = false;
     // protected $guarded = ['id'];
-     protected $fillable = ['invoice_number','_date_','customer_id','description','deposit','user_id','status','complete_date','complete_price'];
+     protected $fillable = [
+         'invoice_number','_date_','customer_id','description','customer_note',
+         'payment_note','deposit','total_amt','total_discount','total_payable',
+         'paid','user_id','status','complete_date','complete_price'
+     ];
     // protected $hidden = [];
     // protected $dates = [];
 
