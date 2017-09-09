@@ -667,17 +667,17 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <button type="button" class="btn btn-primary col-md-12 addButton">
-                                                <i class="fa fa-plus"></i> Add More Payments
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                                {{--<div class="form-group">--}}
+                                    {{--<div class="row">--}}
+                                        {{--<div class="col-sm-6">--}}
+                                        {{--</div>--}}
+                                        {{--<div class="col-sm-6">--}}
+                                            {{--<button type="button" class="btn btn-primary col-md-12 addButton">--}}
+                                                {{--<i class="fa fa-plus"></i> Add More Payments--}}
+                                            {{--</button>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
                                 <div class="clearfir"></div>
                                 <div id="payments">
                                     <div class="col-md-12 col-sm-9" style="padding:0;">
@@ -687,43 +687,43 @@
                                                 <tr>
                                                     <th width="50%" style="text-align:left;">Currency</th>
                                                     <th style="text-align:center;">USD</th>
-                                                    <th style="text-align:center;">KHM</th>
+                                                    {{--<th style="text-align:center;">KHM</th>--}}
                                                 </tr>
                                                 <tr>
                                                     <td width="50%" style="height: 50px;">Total Items</td>
                                                     <td class="text-right"><span id="item_count">17</span></td>
-                                                    <td class="text-right"><span class="item_count">17</span></td>
+                                                    {{--<td class="text-right"><span class="item_count">17</span></td>--}}
                                                 </tr>
                                                 <tr>
                                                     <td width="50%" style="height: 50px;">Total Payable</td>
                                                     <td class="text-right"><span id="twt">5,580.00</span></td>
-                                                    <td class="text-right"><span class="curr_tpay" rate="4200.0000" id="twt">0.00</span></td>
+                                                    {{--<td class="text-right"><span class="curr_tpay" rate="4200.0000" id="twt">0.00</span></td>--}}
                                                 </tr>
                                                 <tr>
                                                     <td width="50%" style="height: 50px;">Paid </td>
                                                     <td class="text-right"><input name="amount[]" type="text" id="amount_1" class="pa form-control input-lg kb-pad amount" style="text-align:right;"></td>
-                                                    <td class="text-right">
-                                                        <input name="other_cur_paid[]" rate="4200.0000" type="text" id="other_cur_paid" class="form-control input-lg kb-pad currencies_payment" style="text-align:right;">
-                                                    </td>
+                                                    {{--<td class="text-right">--}}
+                                                        {{--<input name="other_cur_paid[]" rate="4200.0000" type="text" id="other_cur_paid" class="form-control input-lg kb-pad currencies_payment" style="text-align:right;">--}}
+                                                    {{--</td>--}}
                                                 </tr>
 
                                                 <tr>
                                                     <td rowspan="2" width="50%" style="text-align:left;">Remaining</td>
                                                     <td class="text-right"><span id="remain_1" class="main_remain_1">0.00</span></td>
-                                                    <td class="text-right"><span class="curr_remain_1" rate="4200.0000" id="remain_1">0</span></td>
+                                                    {{--<td class="text-right"><span class="curr_remain_1" rate="4200.0000" id="remain_1">0</span></td>--}}
                                                 </tr>
                                                 <tr>
                                                     <td class="text-right"><span id="remain" class="main_remain">0.00</span></td>
-                                                    <td class="text-right"><span class="curr_remain" rate="4200.0000" id="remain">0</span></td>
+                                                    {{--<td class="text-right"><span class="curr_remain" rate="4200.0000" id="remain">0</span></td>--}}
                                                 </tr>
                                                 <tr>
                                                     <td rowspan="2" width="50%" style="text-align:left;">Change</td>
                                                     <td class="text-right"><span id="change_1">0.00</span></td>
-                                                    <td class="text-right"><span class="curr_change_1" rate="4200.0000" id="change_1">0</span></td>
+                                                    {{--<td class="text-right"><span class="curr_change_1" rate="4200.0000" id="change_1">0</span></td>--}}
                                                 </tr>
                                                 <tr>
                                                     <td class="text-right"><span id="change">0.00</span></td>
-                                                    <td class="text-right"><span class="curr_change" rate="4200.0000" id="change">0</span></td>
+                                                    {{--<td class="text-right"><span class="curr_change" rate="4200.0000" id="change">0</span></td>--}}
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -743,68 +743,69 @@
                                     </div>
                                 </div>
                                 {{--=========================admin more payment==============--}}
-                                <div id="multi-payment">
-                                    <button type="button" class="close close-payment" style="margin: -10px 0px 0 0;"><i class="fa fa-2x">×</i></button>
-                                    <div class="col-md-12 col-sm-9" style="padding:0;">
-                                        <div class="font16">
-                                            <table class="table table-bordered table-condensed table-striped" style="font-size: 1.2em; font-weight: bold; margin-bottom: 0;">
-                                                <tbody>
-                                                <tr>
-                                                    <th width="50%" style="text-align:left;">Currency</th>
-                                                    <th style="text-align:center;">USD</th>
-                                                    <th style="text-align:center;">KHM</th>
-                                                </tr>
-                                                <tr>
-                                                    <td width="50%" style="height: 50px;">Total Items</td>
-                                                    <td class="text-right"><span id="item_count">2</span></td>
-                                                    <td class="text-right"><span class="item_count">2</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="50%" style="height: 50px;">Total Payable</td>
-                                                    <td class="text-right"><span id="twt">1,080.00</span></td>
-                                                    <td class="text-right"><span class="curr_tpay" rate="4200.0000" id="twt">4536000</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="50%" style="height: 50px;">Paid </td>
-                                                    <td class="text-right"><input name="amount[]" type="text" id="amount_2" class="pa form-control input-lg kb-pad amount" style="text-align:right;"></td>
-                                                    <td class="text-right">
-                                                        <input name="other_cur_paid[]" rate="4200.0000" type="text" id="other_cur_paid" class="form-control input-lg kb-pad currencies_payment" style="text-align:right;">
-                                                    </td>
-                                                </tr>
+                                {{--<div id="multi-payment">--}}
+                                    {{--<button type="button" class="close close-payment" style="margin: -10px 0px 0 0;"><i class="fa fa-2x">×</i></button>--}}
+                                    {{--<div class="col-md-12 col-sm-9" style="padding:0;">--}}
+                                        {{--<div class="font16">--}}
+                                            {{--<table class="table table-bordered table-condensed table-striped" style="font-size: 1.2em; font-weight: bold; margin-bottom: 0;">--}}
+                                                {{--<tbody>--}}
+                                                {{--<tr>--}}
+                                                    {{--<th width="50%" style="text-align:left;">Currency</th>--}}
+                                                    {{--<th style="text-align:center;">USD</th>--}}
+                                                    {{--<th style="text-align:center;">KHM</th>--}}
+                                                {{--</tr>--}}
+                                                {{--<tr>--}}
+                                                    {{--<td width="50%" style="height: 50px;">Total Items</td>--}}
+                                                    {{--<td class="text-right"><span id="item_count">2</span></td>--}}
+                                                    {{--<td class="text-right"><span class="item_count">2</span></td>--}}
+                                                {{--</tr>--}}
+                                                {{--<tr>--}}
+                                                    {{--<td width="50%" style="height: 50px;">Total Payable</td>--}}
+                                                    {{--<td class="text-right"><span id="twt">1,080.00</span></td>--}}
+                                                    {{--<td class="text-right"><span class="curr_tpay" rate="4200.0000" id="twt">4536000</span></td>--}}
+                                                {{--</tr>--}}
+                                                {{--<tr>--}}
+                                                    {{--<td width="50%" style="height: 50px;">Paid </td>--}}
+                                                    {{--<td class="text-right"><input name="amount[]" type="text" id="amount_2" class="pa form-control input-lg kb-pad amount" style="text-align:right;"></td>--}}
+                                                    {{--<td class="text-right">--}}
+                                                        {{--<input name="other_cur_paid[]" rate="4200.0000" type="text" id="other_cur_paid" class="form-control input-lg kb-pad currencies_payment" style="text-align:right;">--}}
+                                                    {{--</td>--}}
+                                                {{--</tr>--}}
 
-                                                <tr>
-                                                    <td rowspan="2" width="50%" style="text-align:left;">Remaining</td>
-                                                    <td class="text-right"><span id="remain_2" class="main_remain_2">0.00</span></td>
-                                                    <td class="text-right"><span class="curr_remain_2" rate="4200.0000" id="remain_2">0</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-right"><span id="remain" class="main_remain">0.00</span></td>
-                                                    <td class="text-right"><span class="curr_remain" rate="4200.0000" id="remain">0</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td rowspan="2" width="50%" style="text-align:left;">Change</td>
-                                                    <td class="text-right"><span id="change_2">0.00</span></td>
-                                                    <td class="text-right"><span class="curr_change_2" rate="4200.0000" id="change_2">0</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-right"><span id="change">27,920.00</span></td>
-                                                    <td class="text-right"><span class="curr_change" rate="4200.0000" id="change">41664000</span></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </div>
-                                    <div class="well well-sm well_2">
-                                        <div class="payment">
-                                            <div class="row" style="font-size: 1.2em; font-weight: bold; margin-bottom: 0;">
-                                                <div class="col-sm-12">
-                                                    <textarea name="payment_note[]" id="payment_note_1" style="height: 60px;" class="pa form-control kb-text payment_note" placeholder="Payment Note"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                                {{--<tr>--}}
+                                                    {{--<td rowspan="2" width="50%" style="text-align:left;">Remaining</td>--}}
+                                                    {{--<td class="text-right"><span id="remain_2" class="main_remain_2">0.00</span></td>--}}
+                                                    {{--<td class="text-right"><span class="curr_remain_2" rate="4200.0000" id="remain_2">0</span></td>--}}
+                                                {{--</tr>--}}
+                                                {{--<tr>--}}
+                                                    {{--<td class="text-right"><span id="remain" class="main_remain">0.00</span></td>--}}
+                                                    {{--<td class="text-right"><span class="curr_remain" rate="4200.0000" id="remain">0</span></td>--}}
+                                                {{--</tr>--}}
+                                                {{--<tr>--}}
+                                                    {{--<td rowspan="2" width="50%" style="text-align:left;">Change</td>--}}
+                                                    {{--<td class="text-right"><span id="change_2">0.00</span></td>--}}
+                                                    {{--<td class="text-right"><span class="curr_change_2" rate="4200.0000" id="change_2">0</span></td>--}}
+                                                {{--</tr>--}}
+                                                {{--<tr>--}}
+                                                    {{--<td class="text-right"><span id="change">27,920.00</span></td>--}}
+                                                    {{--<td class="text-right"><span class="curr_change" rate="4200.0000" id="change">41664000</span></td>--}}
+                                                {{--</tr>--}}
+                                                {{--</tbody>--}}
+                                            {{--</table>--}}
+                                            {{--<div class="clearfix"></div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="well well-sm well_2">--}}
+                                        {{--<div class="payment">--}}
+                                            {{--<div class="row" style="font-size: 1.2em; font-weight: bold; margin-bottom: 0;">--}}
+                                                {{--<div class="col-sm-12">--}}
+                                                    {{--<textarea name="payment_note[]" id="payment_note_1" style="height: 60px;" class="pa form-control kb-text payment_note" placeholder="Payment Note"></textarea>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+
                                 <div style="clear:both; height:15px;"></div>
                             </div>
                             <div class="col-md-2 col-sm-3 text-center">
@@ -822,7 +823,7 @@
                                     <button type="button" class="btn btn-lg btn-danger" id="clear-cash-notes">Clear</button>
                                     <hr>
                                     <div class="btn-group">
-                                        <button onclick="location.href='{{url('admin/print-invoice')}}'" type="button" style="font-size: 1.2em; font-weight: bold; height:80px;" class="btn btn-success" id="submit-sale">
+                                        <button style="font-size: 1.2em; font-weight: bold; height:80px;" class="btn btn-success" id="submit-sale">
                                             <i class="fa fa-money"></i>
                                             Save
                                         </button>
