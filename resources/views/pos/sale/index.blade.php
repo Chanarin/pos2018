@@ -219,7 +219,7 @@
                                 </div>
 
                                 <div class="btn-group">
-                                    <button type="button" data-toggle="modal" data-target="#postPaidModal" style="height:68px; border-radius: 0% !important;" class="btn btn-success" id="payment">
+                                    <button type="submit" data-toggle="modal" data-target="#postPaidModal" style="height:68px; border-radius: 0% !important;" class="btn btn-success" id="payment">
                                         <i class="fa fa-money"></i> Payment
                                     </button>
                                 </div>
@@ -284,6 +284,178 @@
                 </div>
                 {{--====================end items==================--}}
             </div>
+
+
+
+                <div class="modal fade" id="postPaidModal" tabindex="-1" role="dialog" aria-labelledby="postPaidModal" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                {{--<button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>--}}
+                                <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">
+                            <i class="fa fa-2x">×</i></span><span class="sr-only">Close</span>
+                                </button>
+                                <h4 class="modal-title" id="payModalLabel">Finalize Sale</h4>
+                            </div>
+                            <div class="modal-body" id="payment_content">
+                                <div class="row">
+                                    <div class="col-md-10 col-sm-9">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="saleman">Customer Name</label>
+                                                        <input type="text" name="date" value="Mengeang" readonly class="form-control input-tip">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label for="date">Date</label> (yyyy-mm-dd)
+                                                    <input type="text" name="date" value="{{date('Y-m-d')}}" class="form-control input-tip datetime" id="date" data-original-title="" title="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                            <textarea readonly name="customer_note" cols="40" rows="10" id="sale_note"
+                                                      class="form-control kb-text skip" style="height: 60px;"
+                                                      maxlength="250">customer not detail
+                                            </textarea>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label for="slref">Reference No</label>
+                                                    <input type="text" name="date" value="SALE/POS/1708/00008" class="form-control input-tip datetime" id="date" data-original-title="" title="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="clearfir"></div>
+                                        <div id="payments">
+                                            <div class="col-md-12 col-sm-9" style="padding:0;">
+                                                <div class="font16">
+                                                    <table class="table table-bordered table-condensed table-striped" style="font-size: 1.2em; font-weight: bold; margin-bottom: 0;">
+                                                        <tbody>
+
+                                                        <tr>
+                                                            <td width="50%" style="height: 50px;">Total Items</td>
+                                                            <td class="text-right"><span id="item_count">0</span></td>
+                                                            {{--<td class="text-right"><span class="item_count">17</span></td>--}}
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="50%" style="text-align:left;">Currency</th>
+                                                            <th style="text-align:center;">USD</th>
+                                                            {{--<th style="text-align:center;">KHM</th>--}}
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="50%" style="height: 50px;">Total</td>
+                                                            <td class="text-right"><span id="twt" class="p-total">0.00</span>
+                                                                <input type="hidden" name="total_amt"  class="total_amt">
+                                                            </td>
+                                                            {{--<td class="text-right"><span class="curr_tpay" rate="4200.0000" id="twt">0.00</span></td>--}}
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="50%" style="height: 50px;">Discount </td>
+                                                            <td class="text-right">
+                                                                <input required name="total_discount" type="text" id="total_discount"
+                                                                       class="pa form-control input-lg" style="text-align:right;">
+                                                            </td>
+                                                            {{--<td class="text-right">--}}
+                                                            {{--<input name="other_cur_paid[]" rate="4200.0000" type="text" id="other_cur_paid" class="form-control input-lg kb-pad currencies_payment" style="text-align:right;">--}}
+                                                            {{--</td>--}}
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="50%" style="height: 50px;">Total Payable</td>
+                                                            <td class="text-right"><span id="twt" class="p-total-payable"></span>
+                                                                <input type="hidden" name="total_payable"  class="p-total-payable-h">
+                                                            </td>
+
+                                                            {{--<td class="text-right"><span class="curr_tpay" rate="4200.0000" id="twt">0.00</span></td>--}}
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="50%" style="height: 50px;">Paid </td>
+                                                            <td class="text-right">
+                                                                <input required name="paid" type="text" id="paid"
+                                                                       class="pa form-control input-lg kb-pad amount" style="text-align:right;">
+                                                            </td>
+                                                            {{--<td class="text-right">--}}
+                                                            {{--<input name="other_cur_paid[]" rate="4200.0000" type="text" id="other_cur_paid" class="form-control input-lg kb-pad currencies_payment" style="text-align:right;">--}}
+                                                            {{--</td>--}}
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td rowspan="2" width="50%" style="text-align:left;">Remaining</td>
+                                                            <td class="text-right"><span id="remain_1" class="main_remain_1">0.00</span></td>
+                                                            {{--<td class="text-right"><span class="curr_remain_1" rate="4200.0000" id="remain_1">0</span></td>--}}
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-right"><span id="remain" class="main_remain">0.00</span></td>
+                                                            {{--<td class="text-right"><span class="curr_remain" rate="4200.0000" id="remain">0</span></td>--}}
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowspan="2" width="50%" style="text-align:left;">Change</td>
+                                                            <td class="text-right"><span id="change_1">0.00</span></td>
+                                                            {{--<td class="text-right"><span class="curr_change_1" rate="4200.0000" id="change_1">0</span></td>--}}
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-right"><span id="change">0.00</span></td>
+                                                            {{--<td class="text-right"><span class="curr_change" rate="4200.0000" id="change">0</span></td>--}}
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                            <div class="well well-sm well_1">
+                                                <div class="payment">
+                                                    <div class="row" style="font-size: 1.2em; font-weight: bold; margin-bottom: 0;">
+                                                        <div class="col-sm-12">
+                                                            <textarea name="payment_note[]" id="payment_note_1" style="height: 60px;" class="pa form-control kb-text payment_note" placeholder="Payment Note"></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{--=========================admin more payment==============--}}
+
+
+                                        <div style="clear:both; height:15px;"></div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-3 text-center">
+                                        <span style="font-size: 1.2em; font-weight: bold;">Quick Cash</span>
+                                        <div class="btn-group btn-group-vertical">
+                                            <button type="button" class="btn btn-lg btn-info quick-cash" id="quick-payable">5580</button>
+                                            <input type="hidden" id="payable_amount" class="payable_amount" name="payable_amount" value="5580">
+                                            <button type="button" class="btn btn-lg btn-warning quick-cash">10</button>
+                                            <button type="button" class="btn btn-lg btn-warning quick-cash">20</button>
+                                            <button type="button" class="btn btn-lg btn-warning quick-cash">50</button>
+                                            <button type="button" class="btn btn-lg btn-warning quick-cash">100</button>
+                                            <button type="button" class="btn btn-lg btn-warning quick-cash">500</button>
+                                            <button type="button" class="btn btn-lg btn-warning quick-cash">1000</button>
+                                            <button type="button" class="btn btn-lg btn-warning quick-cash">5000</button>
+                                            <button type="button" class="btn btn-lg btn-danger" id="clear-cash-notes">Clear</button>
+                                            <hr>
+                                            <div class="btn-group">
+                                                <button style="font-size: 1.2em; font-weight: bold; height:80px;" type="submit"
+                                                        class="btn btn-success" id="submit-sale">
+                                                    <i class="fa fa-money"></i>
+                                                    Save
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </form>
         </div>
     </div>
@@ -623,227 +795,40 @@
             </div>
         </div>
 
-        <div class="modal fade" id="postPaidModal" tabindex="-1" role="dialog" aria-labelledby="postPaidModal" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        {{--<button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>--}}
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">
-                            <i class="fa fa-2x">×</i></span><span class="sr-only">Close</span>
-                        </button>
-                        <h4 class="modal-title" id="payModalLabel">Finalize Sale</h4>
-                    </div>
-                    <div class="modal-body" id="payment_content">
-                        <div class="row">
-                            <div class="col-md-10 col-sm-9">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="saleman">Customer Name</label>
-                                                <input type="text" name="date" value="Mengeang" readonly class="form-control input-tip">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <label for="date">Date</label> (yyyy-mm-dd)
-                                            <input type="text" name="date" value="2017-08-15 10:22:12" class="form-control input-tip datetime" id="date" data-original-title="" title="">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <textarea readonly name="customer_note" cols="40" rows="10" id="sale_note"
-                                                      class="form-control kb-text skip" style="height: 60px;"
-                                                      maxlength="250">customer not detial
-                                            </textarea>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <label for="slref">Reference No</label>
-                                            <input type="text" name="date" value="SALE/POS/1708/00008" class="form-control input-tip datetime" id="date" data-original-title="" title="">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {{--<div class="form-group">--}}
-                                    {{--<div class="row">--}}
-                                        {{--<div class="col-sm-6">--}}
-                                        {{--</div>--}}
-                                        {{--<div class="col-sm-6">--}}
-                                            {{--<button type="button" class="btn btn-primary col-md-12 addButton">--}}
-                                                {{--<i class="fa fa-plus"></i> Add More Payments--}}
-                                            {{--</button>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                <div class="clearfir"></div>
-                                <div id="payments">
-                                    <div class="col-md-12 col-sm-9" style="padding:0;">
-                                        <div class="font16">
-                                            <table class="table table-bordered table-condensed table-striped" style="font-size: 1.2em; font-weight: bold; margin-bottom: 0;">
-                                                <tbody>
-                                                <tr>
-                                                    <th width="50%" style="text-align:left;">Currency</th>
-                                                    <th style="text-align:center;">USD</th>
-                                                    {{--<th style="text-align:center;">KHM</th>--}}
-                                                </tr>
-                                                <tr>
-                                                    <td width="50%" style="height: 50px;">Total Items</td>
-                                                    <td class="text-right"><span id="item_count">17</span></td>
-                                                    {{--<td class="text-right"><span class="item_count">17</span></td>--}}
-                                                </tr>
-                                                <tr>
-                                                    <td width="50%" style="height: 50px;">Total Payable</td>
-                                                    <td class="text-right"><span id="twt">5,580.00</span></td>
-                                                    {{--<td class="text-right"><span class="curr_tpay" rate="4200.0000" id="twt">0.00</span></td>--}}
-                                                </tr>
-                                                <tr>
-                                                    <td width="50%" style="height: 50px;">Paid </td>
-                                                    <td class="text-right"><input name="amount[]" type="text" id="amount_1" class="pa form-control input-lg kb-pad amount" style="text-align:right;"></td>
-                                                    {{--<td class="text-right">--}}
-                                                        {{--<input name="other_cur_paid[]" rate="4200.0000" type="text" id="other_cur_paid" class="form-control input-lg kb-pad currencies_payment" style="text-align:right;">--}}
-                                                    {{--</td>--}}
-                                                </tr>
-
-                                                <tr>
-                                                    <td rowspan="2" width="50%" style="text-align:left;">Remaining</td>
-                                                    <td class="text-right"><span id="remain_1" class="main_remain_1">0.00</span></td>
-                                                    {{--<td class="text-right"><span class="curr_remain_1" rate="4200.0000" id="remain_1">0</span></td>--}}
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-right"><span id="remain" class="main_remain">0.00</span></td>
-                                                    {{--<td class="text-right"><span class="curr_remain" rate="4200.0000" id="remain">0</span></td>--}}
-                                                </tr>
-                                                <tr>
-                                                    <td rowspan="2" width="50%" style="text-align:left;">Change</td>
-                                                    <td class="text-right"><span id="change_1">0.00</span></td>
-                                                    {{--<td class="text-right"><span class="curr_change_1" rate="4200.0000" id="change_1">0</span></td>--}}
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-right"><span id="change">0.00</span></td>
-                                                    {{--<td class="text-right"><span class="curr_change" rate="4200.0000" id="change">0</span></td>--}}
-                                                </tr>
-                                                </tbody>
-                                            </table>
-
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </div>
-                                    <div class="well well-sm well_1">
-                                        <div class="payment">
-                                            <div class="row" style="font-size: 1.2em; font-weight: bold; margin-bottom: 0;">
-                                                <div class="col-sm-12">
-                                                    <textarea name="payment_note[]" id="payment_note_1" style="height: 60px;" class="pa form-control kb-text payment_note" placeholder="Payment Note"></textarea>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                {{--=========================admin more payment==============--}}
-                                {{--<div id="multi-payment">--}}
-                                    {{--<button type="button" class="close close-payment" style="margin: -10px 0px 0 0;"><i class="fa fa-2x">×</i></button>--}}
-                                    {{--<div class="col-md-12 col-sm-9" style="padding:0;">--}}
-                                        {{--<div class="font16">--}}
-                                            {{--<table class="table table-bordered table-condensed table-striped" style="font-size: 1.2em; font-weight: bold; margin-bottom: 0;">--}}
-                                                {{--<tbody>--}}
-                                                {{--<tr>--}}
-                                                    {{--<th width="50%" style="text-align:left;">Currency</th>--}}
-                                                    {{--<th style="text-align:center;">USD</th>--}}
-                                                    {{--<th style="text-align:center;">KHM</th>--}}
-                                                {{--</tr>--}}
-                                                {{--<tr>--}}
-                                                    {{--<td width="50%" style="height: 50px;">Total Items</td>--}}
-                                                    {{--<td class="text-right"><span id="item_count">2</span></td>--}}
-                                                    {{--<td class="text-right"><span class="item_count">2</span></td>--}}
-                                                {{--</tr>--}}
-                                                {{--<tr>--}}
-                                                    {{--<td width="50%" style="height: 50px;">Total Payable</td>--}}
-                                                    {{--<td class="text-right"><span id="twt">1,080.00</span></td>--}}
-                                                    {{--<td class="text-right"><span class="curr_tpay" rate="4200.0000" id="twt">4536000</span></td>--}}
-                                                {{--</tr>--}}
-                                                {{--<tr>--}}
-                                                    {{--<td width="50%" style="height: 50px;">Paid </td>--}}
-                                                    {{--<td class="text-right"><input name="amount[]" type="text" id="amount_2" class="pa form-control input-lg kb-pad amount" style="text-align:right;"></td>--}}
-                                                    {{--<td class="text-right">--}}
-                                                        {{--<input name="other_cur_paid[]" rate="4200.0000" type="text" id="other_cur_paid" class="form-control input-lg kb-pad currencies_payment" style="text-align:right;">--}}
-                                                    {{--</td>--}}
-                                                {{--</tr>--}}
-
-                                                {{--<tr>--}}
-                                                    {{--<td rowspan="2" width="50%" style="text-align:left;">Remaining</td>--}}
-                                                    {{--<td class="text-right"><span id="remain_2" class="main_remain_2">0.00</span></td>--}}
-                                                    {{--<td class="text-right"><span class="curr_remain_2" rate="4200.0000" id="remain_2">0</span></td>--}}
-                                                {{--</tr>--}}
-                                                {{--<tr>--}}
-                                                    {{--<td class="text-right"><span id="remain" class="main_remain">0.00</span></td>--}}
-                                                    {{--<td class="text-right"><span class="curr_remain" rate="4200.0000" id="remain">0</span></td>--}}
-                                                {{--</tr>--}}
-                                                {{--<tr>--}}
-                                                    {{--<td rowspan="2" width="50%" style="text-align:left;">Change</td>--}}
-                                                    {{--<td class="text-right"><span id="change_2">0.00</span></td>--}}
-                                                    {{--<td class="text-right"><span class="curr_change_2" rate="4200.0000" id="change_2">0</span></td>--}}
-                                                {{--</tr>--}}
-                                                {{--<tr>--}}
-                                                    {{--<td class="text-right"><span id="change">27,920.00</span></td>--}}
-                                                    {{--<td class="text-right"><span class="curr_change" rate="4200.0000" id="change">41664000</span></td>--}}
-                                                {{--</tr>--}}
-                                                {{--</tbody>--}}
-                                            {{--</table>--}}
-                                            {{--<div class="clearfix"></div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="well well-sm well_2">--}}
-                                        {{--<div class="payment">--}}
-                                            {{--<div class="row" style="font-size: 1.2em; font-weight: bold; margin-bottom: 0;">--}}
-                                                {{--<div class="col-sm-12">--}}
-                                                    {{--<textarea name="payment_note[]" id="payment_note_1" style="height: 60px;" class="pa form-control kb-text payment_note" placeholder="Payment Note"></textarea>--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-
-                                <div style="clear:both; height:15px;"></div>
-                            </div>
-                            <div class="col-md-2 col-sm-3 text-center">
-                                <span style="font-size: 1.2em; font-weight: bold;">Quick Cash</span>
-                                <div class="btn-group btn-group-vertical">
-                                    <button type="button" class="btn btn-lg btn-info quick-cash" id="quick-payable">5580</button>
-                                    <input type="hidden" id="payable_amount" class="payable_amount" name="payable_amount" value="5580">
-                                    <button type="button" class="btn btn-lg btn-warning quick-cash">10</button>
-                                    <button type="button" class="btn btn-lg btn-warning quick-cash">20</button>
-                                    <button type="button" class="btn btn-lg btn-warning quick-cash">50</button>
-                                    <button type="button" class="btn btn-lg btn-warning quick-cash">100</button>
-                                    <button type="button" class="btn btn-lg btn-warning quick-cash">500</button>
-                                    <button type="button" class="btn btn-lg btn-warning quick-cash">1000</button>
-                                    <button type="button" class="btn btn-lg btn-warning quick-cash">5000</button>
-                                    <button type="button" class="btn btn-lg btn-danger" id="clear-cash-notes">Clear</button>
-                                    <hr>
-                                    <div class="btn-group">
-                                        <button style="font-size: 1.2em; font-weight: bold; height:80px;" class="btn btn-success" id="submit-sale">
-                                            <i class="fa fa-money"></i>
-                                            Save
-                                        </button>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{--============end modal pop up==============--}}
+    {{--============end modal pop up==============--}}
     </div>
 @endsection
 @section('graph_script')
     <script src="{{ asset('vendor/adminlte') }}/dist/js/demo.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/plugins/select2/select2.full.min.js"></script>
     <script>
+
+        function _c(num)
+        {
+            num = num.toString().replace(/\$|\,/g, '');
+            if (isNaN(num))
+            {
+                num = "0";
+            }
+
+            sign = (num == (num = Math.abs(num)));
+            num = Math.floor(num * 100 + 0.50000000001);
+            cents = num % 100;
+            num = Math.floor(num / 100).toString();
+
+            if (cents < 10)
+            {
+                cents = "0" + cents;
+            }
+            for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
+            {
+                num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
+            }
+
+            return (((sign) ? '' : '-') + '$' + num + '.' + cents);
+        }
+
+
         (function($) {
             //Initialize Select2 Elements
              $(".select2").select2();
@@ -1272,18 +1257,25 @@
 
         function calPOS() {
             var g_total = 0;
+            var ic = 0;
             $('.show-order-item tr').each(function () {
                 var d = $(this);
                 var price = d.find('.price-row').val() - 0;
                 var qty = d.find('.qty-row').val() - 0;
                 var amt = price * qty;
-                d.find('.total-amount-row').html(amt);
+                d.find('.total-amount-row').html(_c(amt));
                 if(amt > 0){
+                    ic += qty;
                     g_total += amt;
                 }
 
-                return g_total;
+
             });
+
+            $('.p-total').html(_c(g_total));
+            $('.total_amt').val(g_total);
+            $('#item_count').html(_c(ic));
+            return g_total;
         }
         //get item pagination by category
         $('body').delegate('.my-paginate ul li a', 'click', function (e) {
@@ -1369,6 +1361,33 @@
 
                 $('#searchProductFilterDetail').modal('hide');
             });
+
+            $('#total_discount').on('keyup',function () {
+                var total_discount = $(this).val() - 0;
+                var g_total = $('.total_amt').val() - 0;
+                $('.p-total-payable').html(_c(g_total - total_discount));
+                $('.p-total-payable-h').val(g_total - total_discount);
+
+                var paid = $('#paid').val();
+                $('.main_remain_1').html(_c(paid - g_total - total_discount));
+            });
+
+            $('#paid').on('keyup',function () {
+                var paid = $(this).val() - 0;
+                var payable = $('.p-total-payable-h').val() -0;
+
+                $('.main_remain_1').html(_c(paid - payable));
+
+            });
+
+            $('.quick-cash').on('click',function(e){
+                e.preventDefault();
+                var p = $(this).html();
+                $('#paid').val(p);
+                var payable = $('.p-total-payable-h').val() -0;
+                $('.main_remain_1').html(_c(p - payable));
+            });
+
 
         });
     </script>
