@@ -18,6 +18,11 @@ Route::get('admin/print-invoice', function () {
     return view('pos.invoice.index');
 });
 
+Route::get('/pos-print/{id}',function ($id){
+
+   return view('pos.sale.pos-print',['id'=>$id]);
+});
+
 
 
 Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin'], function () {

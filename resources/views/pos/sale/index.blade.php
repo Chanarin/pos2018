@@ -220,7 +220,7 @@
 
 
                                 <div class="btn-group">
-                                    <button data-toggle="modal" data-target="#largeModal" title="Payment - F8" style="height:68px; border-radius: 0% !important;" class="btn btn-success" id="payment">
+                                    <button style="height:68px; border-radius: 0% !important;" class="btn btn-success" id="payment">
                                         <i class="fa fa-money"></i> Payment
                                     </button>
                                 </div>

@@ -159,6 +159,7 @@ class InvoiceCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
+//        dd($request->is_pos);
         //dd($request);
         $validator = Validator::make($request->all(), [
             'invoice_number' => 'required',
@@ -177,7 +178,8 @@ class InvoiceCrudController extends CrudController
         $iDP->saveAllDetail();
 
         if($request->is_pos>0){
-            return view('pos.sale.pos-print',['id',$this->crud->entry->id]);
+//            return view('pos.sale.pos-print',['id'=>$this->crud->entry->id]);
+            return redirect('/pos-print/'.$this->crud->entry->id);
         }else {
             return $redirect_location;
         }
