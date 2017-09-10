@@ -431,7 +431,7 @@
                                     <div class="col-md-2 col-sm-3 text-center">
                                         <span style="font-size: 1.2em; font-weight: bold;">Quick Cash</span>
                                         <div class="btn-group btn-group-vertical">
-                                            <button type="button" class="btn btn-lg btn-info quick-cash" id="quick-payable">5580</button>
+                                            <button type="button" class="btn btn-lg btn-info quick-cash total_amt-x" id="quick-payable-xxx"></button>
                                             <input type="hidden" id="payable_amount" class="payable_amount" name="payable_amount" value="5580">
                                             <button type="button" class="btn btn-lg btn-warning quick-cash">10</button>
                                             <button type="button" class="btn btn-lg btn-warning quick-cash">20</button>
@@ -1293,6 +1293,7 @@
 
             $('.p-total').html(_c(g_total));
             $('.total_amt').val(g_total);
+            $('.total_amt-x').html(g_total);
             $('.item_count').html((ic));
 
             $('.p-total-payable').html(_c(g_total));
@@ -1413,10 +1414,20 @@
 
             $('.quick-cash').on('click',function(e){
                 e.preventDefault();
-                var p = $(this).html();
-                $('#paid').val(p);
+                var p = $(this).html()-0;
+                var pp = $('#paid').val()-0;
+                $('#paid').val((p+pp));
                 var payable = $('.p-total-payable-h').val() -0;
-                $('.main_remain_1').html(_c(p - payable));
+                $('.main_remain_1').html(_c((p+pp) - payable));
+            });
+
+            $('.clear-cash-notes').on('click',function(e){
+                e.preventDefault();
+                var p = 0;
+                var pp = 0;
+                $('#paid').val((p+pp));
+                var payable = $('.p-total-payable-h').val() -0;
+                $('.main_remain_1').html(_c((p+pp) - payable));
             });
 
             $('#pos-form').on('submit',function () {
