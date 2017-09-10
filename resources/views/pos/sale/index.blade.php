@@ -1258,7 +1258,7 @@
                     '                                <td style="width:20%;"><span>$</span> ' + price + '</td>\n' +
                     '                                <td style="width:20%;"><span>$</span> <span class="total-amount-row">' + price + '</span></td>\n' +
                     '                                <td style="width: 10%">\n' +
-                    '                                    <a class="btn btn-xs btn-default" style="font-size: 18px; color: rgba(160,8,22,0.84);">\n' +
+                    '                                    <a class="btn btn-xs btn-default remove-pos" style="font-size: 18px; color: rgba(160,8,22,0.84);">\n' +
                     '                                        <i class="fa fa-fw fa-trash"></i>\n' +
                     '                                    </a>\n' +
                     '                                </td>\n' +
@@ -1437,9 +1437,23 @@
 
             });
 
-            /*$('[name="s_code_item"]').on('change',function () {
+            $('[name="s_code_item"]').on('change',function () {
+                var q = $(this).val();
                 getSearch(q);
-            });*/
+            });
+
+            $('#search_details').on('click',function () {
+                var q = $('[name="s_code_item"]').val();
+                getSearch(q);
+            });
+
+
+            $('body').delegate('.remove-pos','click',function (e) {
+                e.preventDefault();
+                $(this).parent().parent().remove();
+                calPOS();
+
+            });
 
         });
 
