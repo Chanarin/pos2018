@@ -15,7 +15,7 @@
         <td>
             <img src="{{url('pos/img/logo.jpg')}}" width="90" height="90" alt="">
         </td>
-        <td width="100%" style="text-align: center"><b>INVOICE</b></td>
+        <td width="100%" style="text-align: center"><b>វិក័យប័ត្រ</b></td>
     </tr>
 </table>
 @if(isset($id))
@@ -30,36 +30,36 @@
                             <tbody style="font-size: 14px;">
                             <tr style="text-align:center;">
                                 <td style="vertical-align:middle;text-align:left; padding-left:10px;">
-                                    <span><b>Invoice Number</b></span>
+                                    <span><b>លេខ​វិ​ក័​យ​ប័ត្រ</b></span>
                                     : {{$row->invoice_number}}
                                 </td>
-                                <td style="vertical-align:middle;text-align:left;"><span><b>Invoice Date</b></span> :
+                                <td style="vertical-align:middle;text-align:left;"><span><b>ថ្ងៃទី</b></span> :
                                     {{$row->_date_}}
                                 </td>
                             </tr>
 
                             <tr style="text-align:center;">
-                                <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Customer Name</b></span>
+                                <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>អតិថិជន</b></span>
                                     : {{$row->name}}
                                 </td>
-                                <td style="vertical-align:middle;text-align:left;"><span><b>Deposit</b></span>
+                                <td style="vertical-align:middle;text-align:left;"><span><b>ប្រាក់កក់</b></span>
                                     : {{$row->deposit}}
                                 </td>
                             </tr>
 
                             <tr style="text-align:center;">
-                                <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Complete Date</b></span>
+                                <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>ថ្ងៃបញ្ចប់</b></span>
                                     : {{$row->complete_date}}
                                 </td>
-                                <td style="vertical-align:middle;text-align:left;"><span><b>Complete Price</b></span> :
+                                <td style="vertical-align:middle;text-align:left;"><span><b>តម្លៃពេញ</b></span> :
                                     $ {{number_format($row->complete_price,2)}}
                                 </td>
                             </tr>
                             <tr style="text-align:center;">
                                 <td style="vertical-align:middle;text-align:left; padding-left:10px;">
-                                    <span><b>Status</b></span> : {{$row->status}}
+                                    <span><b>ស្ថានភាព</b></span> : {{$row->status}}
                                 </td>
-                                <td style="vertical-align:middle;text-align:left;"><span><b>Description</b></span> :
+                                <td style="vertical-align:middle;text-align:left;"><span><b>ពិពណ៌នា</b></span> :
                                     {{$row->description}}
                                 </td>
                             </tr>
@@ -73,13 +73,13 @@
                         <table border="1" class="table-condensed receipt no_border_btm" style="width:100%;border-collapse: collapse;">
                             <thead>
                             <tr style="font-size:14px;height: 30px;">
-                                <th>No</th>
+                                <th>ល.រ</th>
                                 <th>Code</th>
-                                <th class="text-center">Title</th>
-                                <th class="text-center">Unit</th>
-                                <th class="text-center">Qty</th>
-                                <th class="text-center">Price</th>
-                                <th class="text-center">Amount</th>
+                                <th class="text-center">ទំនិញ</th>
+                                <th class="text-center">ឯកតា</th>
+                                <th class="text-center">ចំនួន</th>
+                                <th class="text-center">តំលៃ</th>
+                                <th class="text-center">សរុប</th>
                             </tr>
                             </thead>
                             <tbody style="font-size: 12px;">
