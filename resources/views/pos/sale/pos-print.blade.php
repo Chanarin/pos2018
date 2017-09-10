@@ -10,6 +10,14 @@
     </style>
 </head>
 <body>
+<table width="100%">
+    <tr>
+        <td>
+            <img src="{{url('pos/img/logo.jpg')}}" width="90" height="90" alt="">
+        </td>
+        <td width="100%" style="text-align: center"><b>INVOICE</b></td>
+    </tr>
+</table>
 @if(isset($id))
     @if($id>0)
         @php $row = \App\Models\Invoice::join('customers','customers.id','=','invoice.customer_id')

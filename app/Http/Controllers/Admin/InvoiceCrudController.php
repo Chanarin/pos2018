@@ -38,11 +38,11 @@ class InvoiceCrudController extends CrudController
 
         $this->crud->addColumn([
             'name' => '_date_',
-            'label' => 'Open Date',
+            'label' => 'Date',
         ]);
 
         $this->crud->addColumn([
-            'label' => _t('Customer Purchase'),
+            'label' => _t('Customer'),
             'type' => 'select',
             'name' => 'customer_id',
             'entity' => 'customer',
@@ -116,6 +116,9 @@ class InvoiceCrudController extends CrudController
         }else if($u_level == 3){
             $this->crud->denyAccess(['delete']);
         }
+
+        $this->crud->addButtonFromModelFunction('line', 'addButtonCustom', 'addButtonCustom', 'beginning');
+
         // ------ CRUD REORDER
         // $this->crud->enableReorder('label_name', MAX_TREE_LEVEL);
         // NOTE: you also need to do allow access to the right users: $this->crud->allowAccess('reorder');
@@ -203,6 +206,13 @@ class InvoiceCrudController extends CrudController
         // use $this->data['entry'] or $this->crud->entry
         $iDP = new IDP($request->_data_,_POS_::invoice,$this->crud->entry->id);
         $iDP->saveAllDetail();
-        return $redirect_location;
+
+        if($request->is_pos>0){
+//            return view('pos.sale.pos-print',['id'=>$this->crud->entry->id]);
+            return redirect('/pos-print/'.$this->crud->entry->id);
+        }else {
+            return $redirect_location;
+        }
+
     }
 }
