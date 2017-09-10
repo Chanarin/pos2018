@@ -155,13 +155,13 @@
                         <table id="totalTable" style="width:100%; float:right; padding:5px; color:#000; background: #FFF;">
                             <tbody>
                             <tr>
-                                <td style="padding: 5px 10px; font-size: 16px;">Items <span style="padding: 5px 10px; font-size: 16px; font-weight:bold;" id="titems">4 (4)</span></td>
+                                <td style="padding: 5px 10px; font-size: 16px;">Items <span style="padding: 5px 10px; font-size: 16px; font-weight:bold;" id="titems" class="item_count">0</span></td>
                                 <td class="text-right">
                                     Rate <span style="padding: 5px 10px;font-size: 16px; font-weight:bold;" id="khmer_rate">4,200  ៛</span>
                                 </td>
                                 <td style="padding: 5px 10px; font-size: 16px;">Total</td>
                                 <td class="text-right" style="padding: 5px 10px;font-size: 16px; font-weight:bold;">
-                                    <span id="total">1,900.00</span>
+                                    <span id="total" class="p-total">0.0</span>
                                 </td>
 
                             </tr>
@@ -344,7 +344,7 @@
 
                                                         <tr>
                                                             <td width="50%" style="height: 50px;">Total Items</td>
-                                                            <td class="text-right"><span id="item_count">0</span></td>
+                                                            <td class="text-right"><span class="item_count" id="item_count">0</span></td>
                                                             {{--<td class="text-right"><span class="item_count">17</span></td>--}}
                                                         </tr>
                                                         <tr>
@@ -652,19 +652,8 @@
                                     <input type="text" class="form-control kb-text" id="mname">
                                 </div>
                             </div>
-                            {{--<div class="form-group">--}}
-                            {{--<label for="mtax" class="col-sm-4 control-label">Product Tax *</label>--}}
 
-                            {{--<div class="col-sm-8">--}}
-                            {{--<select class="form-control">--}}
-                            {{--<option selected="selected">No Tax</option>--}}
-                            {{--<option>VAT @10%</option>--}}
-                            {{--<option>GST @6%</option>--}}
-                            {{--<option>VAT @20%</option>--}}
-                            {{--<option>TAX @10%</option>--}}
-                            {{--</select>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
+
                             <div class="form-group">
                                 <label for="mquantity" class="col-sm-4 control-label">Quantity *</label>
 
@@ -1226,33 +1215,57 @@
 
         });
 
+        function isDupItem(item_id) {
+            var dup = false;
+
+            $('.item_id').each(function () {
+                var q = $(this).parent().parent();
+                var d = $(this).val();
+
+                console.log(d);
+                if(d != '' && d == item_id){
+                    var qqq = q.find('.qty-row').val() - 0 + 1;
+                    q.find('.qty-row').val(qqq);
+                    dup = true;
+                    return true;
+                }
+                
+            });
+
+            return dup;
+        }
+        
         function getRowItem(id,item_code,title,unit,price,image) {
             var uid = (new Date().getTime());
 
-            var tr = '\n' +
-                '                            <tr>\n' +
-                '                                <td style="width:10%;">                                    \n' +
-                '                                    <input type="hidden" name="_data_['+uid+'][item_id]" value="'+id+'">\n' +
-                '                                    <input type="hidden" name="_data_['+uid+'][item_code]" value="'+item_code+'">\n' +
-                '                                    <input type="hidden" name="_data_['+uid+'][title]" value="'+title+'">\n' +
-                '                                    <input type="hidden" name="_data_['+uid+'][unit]" value="'+unit+'">\n' +
-                '                                    <input type="hidden" name="_data_['+uid+'][cost]" value="">\n' +
-                '                                    <input type="hidden" class="price-row" name="_data_['+uid+'][price]" value="'+price+'">\n' +
-                '                                    <input type="hidden" name="_data_['+uid+'][discount]" value="">                                    \n' +
-                '                                    '+item_code+'</td>\n' +
-                '                                <td style="width:30%;">'+title+'</td>\n' +
-                '                                <td style="width:10%;"><input type="number" name="_data_['+uid+'][num_qty]" value="" min="0" placeholder=" 0 " style="width: 100%;"></td>\n' +
-                '                                <td style="width:10%;"><input class="qty-row" type="number" name="_data_['+uid+'][qty]" value="1" min="0" placeholder=" 0 " style="width: 100%;"></td>\n' +
-                '                                <td style="width:20%;"><span>$</span> '+price+'</td>\n' +
-                '                                <td style="width:20%;"><span>$</span> <span class="total-amount-row">'+price+'</span></td>\n' +
-                '                                <td style="width: 10%">\n' +
-                '                                    <a class="btn btn-xs btn-default" style="font-size: 18px; color: rgba(160,8,22,0.84);">\n' +
-                '                                        <i class="fa fa-fw fa-trash"></i>\n' +
-                '                                    </a>\n' +
-                '                                </td>\n' +
-                '                            </tr>';
+            if(isDupItem(id)){
 
-            $('.show-order-item').append(tr);
+            }else {
+                var tr = '\n' +
+                    '                            <tr>\n' +
+                    '                                <td style="width:10%;">                                    \n' +
+                    '                                    <input type="hidden" class="item_id" name="_data_[' + uid + '][item_id]" value="' + id + '">\n' +
+                    '                                    <input type="hidden" name="_data_[' + uid + '][item_code]" value="' + item_code + '">\n' +
+                    '                                    <input type="hidden" name="_data_[' + uid + '][title]" value="' + title + '">\n' +
+                    '                                    <input type="hidden" name="_data_[' + uid + '][unit]" value="' + unit + '">\n' +
+                    '                                    <input type="hidden" name="_data_[' + uid + '][cost]" value="">\n' +
+                    '                                    <input type="hidden" class="price-row" name="_data_[' + uid + '][price]" value="' + price + '">\n' +
+                    '                                    <input type="hidden" name="_data_[' + uid + '][discount]" value="">                                    \n' +
+                    '                                    ' + item_code + '</td>\n' +
+                    '                                <td style="width:30%;">' + title + '</td>\n' +
+                    '                                <td style="width:10%;"><input type="number" name="_data_[' + uid + '][num_qty]" value="" min="0" placeholder=" 0 " style="width: 100%;"></td>\n' +
+                    '                                <td style="width:10%;"><input class="qty-row" type="number" name="_data_[' + uid + '][qty]" value="1" min="0" placeholder=" 0 " style="width: 100%;"></td>\n' +
+                    '                                <td style="width:20%;"><span>$</span> ' + price + '</td>\n' +
+                    '                                <td style="width:20%;"><span>$</span> <span class="total-amount-row">' + price + '</span></td>\n' +
+                    '                                <td style="width: 10%">\n' +
+                    '                                    <a class="btn btn-xs btn-default" style="font-size: 18px; color: rgba(160,8,22,0.84);">\n' +
+                    '                                        <i class="fa fa-fw fa-trash"></i>\n' +
+                    '                                    </a>\n' +
+                    '                                </td>\n' +
+                    '                            </tr>';
+
+                $('.show-order-item').append(tr);
+            }
 
             calPOS();
         }
@@ -1268,16 +1281,19 @@
                 var amt = price * qty;
                 d.find('.total-amount-row').html(_c(amt));
                 if(amt > 0){
-                    ic += qty;
+
                     g_total += amt;
                 }
 
+                if(qty>0) {
+                    ic += qty;
+                }
 
             });
 
             $('.p-total').html(_c(g_total));
             $('.total_amt').val(g_total);
-            $('#item_count').html(_c(ic));
+            $('.item_count').html((ic));
 
             $('.p-total-payable').html(_c(g_total));
             $('.p-total-payable-h').val(g_total);
