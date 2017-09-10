@@ -475,6 +475,33 @@ class ItemDetailP
 
                 $iitrain->save();
 
+                //============ Add to Item Detail ==================
+                if(count($item_ref_detail)>0){
+                    foreach ($item_ref_detail as $item_dd){
+                        $mddd = ItemDetail::where('ref_id',$this->item_id)
+                        ->where('item_id',$item_dd['item_id'])->first();
+
+                        if($mddd == null){
+                            $mddd = new ItemDetail();
+                        }
+
+                        $mddd->ref_id   =  $this->item_id ;
+                        $mddd->item_id   =  $item_dd['item_id'] ;
+                        $mddd->item_code   =  isset($item_dd['item_code'])?$item_dd['item_code']:'' ;
+                        $mddd->title   =  isset($item_dd['title'])?$item_dd['title']:'' ;
+                        $mddd->unit   =  isset($item_dd['unit'])?$item_dd['unit']:'' ;
+                        $mddd->num_qty   =  isset($item_dd['num_qty'])?$item_dd['num_qty']:0 ;
+                        $mddd->description   =  isset($item_dd['description'])?$item_dd['description']:'' ;
+                        $mddd->qty   =  isset($item_dd['qty'])?$item_dd['qty']:0 ;
+                        $mddd->cost   =  isset($item_dd['cost'])?$item_dd['cost']:0 ;
+                        $mddd->note   =  isset($item_dd['note'])?$item_dd['note']:'' ;
+
+                        $mddd->save();
+
+                    }
+                }
+                //============End Add to Item Detail ===============
+
                 return $m;
             }
         } else {
