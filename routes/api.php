@@ -48,6 +48,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/get-search',function (Request $request){
+    $q = $request->q;
+    $m = \App\Models\Item::where('item_code',$q)->first();
+    if($m != null) {
+        return response()->json(['error' => 0, 'row' => $m]);
+    }else{
+        return response()->json(['error' => 1, 'row' => null]);
+    }
+});
+
 Route::get('/add-customer',function (Request $request){
    $m = new \App\Models\Customer();
    $m->name = $request->name;

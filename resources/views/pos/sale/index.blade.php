@@ -75,7 +75,7 @@
                                             @endforeach
                                         </ul>
                                     </div>--}}
-                                    <input type="text" name="add_item" value="" class="form-control pos-tip ui-autocomplete-input"
+                                    <input type="text" name="s_code_item" value="" class="form-control pos-tip ui-autocomplete-input"
                                            id="add_item" data-placement="top" data-trigger="focus"
                                            placeholder="Search product by name/code" title="Please start typing code/name for suggestions" autocomplete="off">
                                     <div class="input-group-addon" style="padding: 2px 5px;">
@@ -1351,6 +1351,14 @@
     </script>
     {{--============script pop up item ============--}}
     <script>
+        var delay = (function(){
+            var timer = 0;
+            return function(callback, ms){
+                clearTimeout (timer);
+                timer = setTimeout(callback, ms);
+            };
+        })();
+
         $(function () {
 
             $('#viewCustomerModal').on('show.bs.modal', function (e) {
@@ -1421,6 +1429,37 @@
                 }
             });
 
+            $('[name="s_code_item"]').on('keyup',function () {
+                var q = $(this).val();
+                delay(function () {
+                    getSearch(q);
+                }, 1000);
+
+            });
+
+            /*$('[name="s_code_item"]').on('change',function () {
+                getSearch(q);
+            });*/
+
         });
+
+        function getSearch(q) {
+            $.ajax({
+                url: '{{url('api/get-search')}}',
+                data: {q: q},
+                async: false,
+                dataType: 'json',
+                type: 'GET',
+                success: function (data) {
+                    if(data.error == 0) {
+                        var d = data.row;
+                        getRowItem(d.id,d.item_code,d.title,d.unit,d.price,'');
+                    }
+                },
+                error: function () {
+
+                }
+            });
+        }
     </script>
 @endsection
