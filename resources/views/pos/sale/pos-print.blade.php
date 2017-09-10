@@ -49,9 +49,10 @@
                             </tr>
                             <tr style="text-align:center;">
                                 <td style="vertical-align:middle;text-align:left; padding-left:10px;">
-                                    <span><b>Status</b></span> : PENDING
+                                    <span><b>Status</b></span> : {{$row->status}}
                                 </td>
                                 <td style="vertical-align:middle;text-align:left;"><span><b>Description</b></span> :
+                                    {{$row->description}}
                                 </td>
                             </tr>
                             </tbody>
@@ -82,7 +83,11 @@
                                 //dd($rowds);
                             @endphp
                             @foreach($rowds as $rd)
-                            <tr class="item" style="height: 30px;">
+                                @php
+                                    $rds = \App\Models\ItemDetail::where('ref_id',$rd->item_id)->get();
+                                    $oe = $loop->index;
+                                @endphp
+                            <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif ">
                                 <td class="text-left">{{$loop->index+1}}</td>
                                 <td class="text-left">{{$rd->item_code}}</td>
                                 <td class="text-left">{{$rd->title}}</td>
@@ -91,6 +96,19 @@
                                 <td class="text-right">$ {{number_format($rd->price,2)}}</td>
                                 <td class="text-right">$ {{number_format($rd->price*$rd->qty,2)}}</td>
                             </tr>
+                                @if(count($rds)>0)
+                                    @foreach($rds as $r)
+                                        <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif ">
+                                            <td class="text-left"></td>
+                                            <td class="text-left">{{$r->item_code}}</td>
+                                            <td class="text-left">{{$r->title}}</td>
+                                            <td class="text-left">{{$r->unit}}</td>
+                                            <td class="text-right">{{$r->qty*$rd->qty}}</td>
+                                            <td class="text-right">$ {{number_format($r->price,2)}}</td>
+                                            <td class="text-right">$ {{number_format($r->price*$r->qty*$rd->qty,2)}}</td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             @endforeach
                             </tbody>
                             <tfoot>
@@ -104,19 +122,29 @@
                         <table style="width: 100%; margin-top: 5px;">
                             <tbody>
                             <tr>
-                                <td style="text-align:left;">សរុប</td>
-                                <td style="text-align:right;">Sub Total (USD) :</td>
-                                <td style="text-align:right;">$ 308,911</td>
+                                <td width="60%"></td>
+                                <td style="text-align:right;">សរុប</td>
+                                <td style="text-align:right;">$ {{number_format($row->total_amt,2)}}</td>
                             </tr>
                             <tr>
-                                <td style="text-align:left;">បញ្ចុះតំលៃ</td>
-                                <td style="text-align:right;width:35%;">Discount (USD) :</td>
-                                <td style="text-align:right;">$ 0</td>
+                                <td width="60%"></td>
+                                <td style="text-align:right;">បញ្ចុះតំលៃ</td>
+                                <td style="text-align:right;">$ {{number_format($row->total_discount,2)}}</td>
                             </tr>
                             <tr>
-                                <td style="text-align:left;">សរុបចុងក្រោយ</td>
-                                <td style="text-align:right;width:40%;">Grand Total (USD) :</td>
-                                <td style="text-align:right;">$ 308,911</td>
+                                <td width="60%"></td>
+                                <td style="text-align:right;">សរុបចុងក្រោយ</td>
+                                <td style="text-align:right;">$ {{number_format($row->total_payable)}}</td>
+                            </tr>
+                            <tr>
+                                <td width="60%"></td>
+                                <td style="text-align:right;">លុយបង់</td>
+                                <td style="text-align:right;">$ {{number_format($row->paid,2)}}</td>
+                            </tr>
+                            <tr>
+                                <td width="60%"></td>
+                                <td style="text-align:right;">លុយអាប់</td>
+                                <td style="text-align:right;">$ {{number_format($row->paid-$row->total_payable,2)}}</td>
                             </tr>
 
                             </tbody>
