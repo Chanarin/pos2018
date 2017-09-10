@@ -1445,7 +1445,7 @@
             $('#search_details').on('click',function () {
                 var q = $('[name="s_code_item"]').val();
                 getSearch(q);
-            });
+            }) ;
 
 
             $('body').delegate('.remove-pos','click',function (e) {
