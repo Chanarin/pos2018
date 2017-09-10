@@ -490,10 +490,10 @@ class ItemDetailP
                         $mddd->item_code   =  isset($item_dd['item_code'])?$item_dd['item_code']:'' ;
                         $mddd->title   =  isset($item_dd['title'])?$item_dd['title']:'' ;
                         $mddd->unit   =  isset($item_dd['unit'])?$item_dd['unit']:'' ;
-                        $mddd->num_qty   =  isset($item_dd['num_qty'])?$item_dd['num_qty']:0 ;
+                        $mddd->num_qty   =  isset($item_dd['num_qty'])?$item_dd['num_qty']-0:0 ;
                         $mddd->description   =  isset($item_dd['description'])?$item_dd['description']:'' ;
-                        $mddd->qty   =  isset($item_dd['qty'])?$item_dd['qty']:0 ;
-                        $mddd->cost   =  isset($item_dd['cost'])?$item_dd['cost']:0 ;
+                        $mddd->qty   =  isset($item_dd['qty'])?$item_dd['qty']-0:0 ;
+                        $mddd->cost   =  isset($item_dd['cost'])?$item_dd['cost']-0:0 ;
                         $mddd->note   =  isset($item_dd['note'])?$item_dd['note']:'' ;
 
                         $mddd->save();
