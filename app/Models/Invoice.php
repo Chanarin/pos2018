@@ -22,7 +22,7 @@ class Invoice extends Model
      protected $fillable = [
          'invoice_number','_date_','customer_id','description','customer_note',
          'payment_note','deposit','total_amt','total_discount','total_payable',
-         'paid','user_id','status','complete_date','complete_price'
+         'paid','paid_kh','user_id','status','complete_date','complete_price'
      ];
     // protected $hidden = [];
     // protected $dates = [];

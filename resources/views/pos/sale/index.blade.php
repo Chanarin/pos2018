@@ -400,7 +400,7 @@
                                                             </td>
                                                             {{--====================--}}
                                                             <td class="text-right">
-                                                                <input name="paid-kh" type="text" id="other_cur_paid" class="form-control input-lg kb-pad currencies-payment-kh" style="text-align:right;">
+                                                                <input name="paid_kh" type="text" id="other_cur_paid" class="form-control input-lg kb-pad currencies-payment-kh" style="text-align:right;">
                                                             </td>
                                                         </tr>
                                         {{--===========================end paid===============================--}}
@@ -1500,13 +1500,22 @@
                 e.preventDefault();
                 var p = 0;
                 var pp = 0;
-                $('.paid').val('');
+                $('.paid').val(0);
+                $('.currencies-payment-kh').val(0);
 
-                $('#paid').val((p+pp));
+                $('#paid').val();
+
+                pp_d = $('#paid').val()-0;
+
+                pp_r = $('.currencies-payment-kh').val()-0;
+
+
                 var payable = $('.p-total-payable-h').val() -0;
-                $('.main_remain_1').html(_c((p+pp) - payable));
+
+                $('.main_remain_1').html(_c((pp_d+pp_r/ex) - payable));
 //===========kh=================
-                $('.main_remain_1_kh').html(_r(((p+pp) - payable)));
+                $('.main_remain_1_kh').html(_r((pp_d+pp_r/ex) - payable));
+
             });
 
             $('#pos-form').on('submit',function () {

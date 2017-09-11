@@ -27,6 +27,7 @@ class CreateInvoiceTable extends Migration
             $table->double('total_discount')->default(0)->nullable();
             $table->double('total_payable')->default(0)->nullable();
             $table->double('paid')->default(0)->nullable();
+            $table->double('paid_kh')->default(0)->nullable();
 
 
             $table->integer('user_id')->nullable();
