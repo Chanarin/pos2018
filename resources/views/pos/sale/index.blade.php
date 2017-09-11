@@ -396,7 +396,7 @@
                                                             <td width="50%" style="height: 50px;">Paid </td>
                                                             <td class="text-right">
                                                                 <input required name="paid" type="text" id="paid"
-                                                                       class="pa form-control input-lg kb-pad amount" style="text-align:right;">
+                                                                       class="pa form-control input-lg kb-pad amount paid p-current" style="text-align:right;">
                                                             </td>
                                                             {{--====================--}}
                                                             <td class="text-right">
@@ -820,56 +820,20 @@
     <script src="{{ asset('vendor/adminlte') }}/dist/js/demo.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/plugins/select2/select2.full.min.js"></script>
     <script>
-var ex = {{$exchanges->kh}} - 0 ;
+        var ex = {{$exchanges->kh}} - 0 ;
+
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
         function _c(num)
         {
-            num = num.toString().replace(/\$|\,/g, '');
-            if (isNaN(num))
-            {
-                num = "0";
-            }
-
-            sign = (num == (num = Math.abs(num)));
-            num = Math.floor(num * 100 + 0.50000000001);
-            cents = num % 100;
-            num = Math.floor(num / 100).toString();
-
-            if (cents < 10)
-            {
-                cents = "0" + cents;
-            }
-            for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
-            {
-                num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
-            }
-
-            return (((sign) ? '' : '-') + '$' + num + '.' + cents);
+            return '$'+numberWithCommas(num);
         }
 
         function _r(num)
         {
-
-            num = num.toString().replace(/\៛|\,/g, '');
-            if (isNaN(num))
-            {
-                num = "0";
-            }
-
-            sign = (num == (num = Math.abs(num)));
-            num = Math.floor((num * 100 + 0.50000000001)*ex);
-            cents = num % 100;
-            num = Math.floor(num / 100).toString();
-
-            if (cents < 10)
-            {
-                cents = "0" + cents;
-            }
-            for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
-            {
-                num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
-            }
-
-            return (((sign) ? '' : '-') + num + '.' + cents + ' ' + '៛');
+            return numberWithCommas(num*ex)+'៛';
         }
 
         (function($) {
@@ -1503,13 +1467,33 @@ var ex = {{$exchanges->kh}} - 0 ;
             $('.quick-cash').on('click',function(e){
                 e.preventDefault();
                 var p = $(this).html()-0;
+                /*
                 var pp = $('#paid').val()-0;
-                $('#paid').val((p+pp));
+                $('#paid').val((p+pp));*/
+
+                //var pp = $('.p-current').val()-0;
+
+                var pp_d = $('#paid').val()-0;
+                var pp_r = $('.currencies-payment-kh').val()-0;
+
+                if($('.p-current').hasClass('currencies-payment-kh')){
+                    //alert(9);
+                    $('.currencies-payment-kh').val(p*ex+pp_r);
+                }else {
+                    //alert(10);
+                    $('#paid').val(p+pp_d);
+                }
+
+                pp_d = $('#paid').val()-0;
+
+                pp_r = $('.currencies-payment-kh').val()-0;
+
+
                 var payable = $('.p-total-payable-h').val() -0;
 
-                $('.main_remain_1').html(_c((p+pp) - payable));
+                $('.main_remain_1').html(_c((pp_d+pp_r/ex) - payable));
 //===========kh=================
-                $('.main_remain_1').html(_r((p+pp) - payable));
+                $('.main_remain_1_kh').html(_r((pp_d+pp_r/ex) - payable));
             });
 
             $('.clear-cash-notes').on('click',function(e){
@@ -1565,6 +1549,19 @@ var ex = {{$exchanges->kh}} - 0 ;
                 location.reload();
 
             });
+
+
+            $('body').delegate('#paid,.currencies-payment-kh','click',function (e) {
+                e.preventDefault();
+
+                $('#paid').removeClass('p-current');
+                $('.currencies-payment-kh').removeClass('p-current');
+
+                $(this).addClass('p-current');
+            });
+
+
+
 
         });
 
