@@ -101,14 +101,14 @@
                     <div style="clear:both;"></div>
                 </div>
 
-                <div class="col-md-12 col-sm-12 panel-height" style="position: relative;">
+                <div class="col-md-12 col-sm-12 panel-height left-middle">
                     <div class="tbl-header">
                         <table class="table table-action">
                             <thead style="width:100%;">
                             <tr>
                                 <th style="width:15%;">Code</th>
                                 <th style="width:30%;">Name</th>
-                                <th style="width:10%;">Num.QTY</th>
+                                <th class="hidden" style="width:10%;">Num.QTY</th>
                                 <th style="width:10%;">Qty</th>
                                 <th style="width:20%;">Price</th>
                                 <th style="width:20%;">Total</th>
@@ -156,9 +156,15 @@
                             <tbody>
                             <tr>
                                 <td style="padding: 5px 10px; font-size: 16px;">Items <span style="padding: 5px 10px; font-size: 16px; font-weight:bold;" id="titems" class="item_count">0</span></td>
-                                <td class="text-right">
-                                    Rate <span style="padding: 5px 10px;font-size: 16px; font-weight:bold;" id="khmer_rate">4,200  ៛</span>
-                                </td>
+
+                                @php
+                                    $exchanges = \App\Models\ExchangeRate::orderBy('id','desc')->limit(1)->first();
+                                @endphp
+                                    <td class="text-right">
+                                        Rate <span style="padding: 5px 10px;font-size: 16px; font-weight:bold;" class="exchange_rate">{{number_format($exchanges->kh)}}  ៛</span>
+                                    </td>
+
+
                                 <td style="padding: 5px 10px; font-size: 16px;">Total</td>
                                 <td class="text-right" style="padding: 5px 10px;font-size: 16px; font-weight:bold;">
                                     <span id="total" class="p-total">0.0</span>
@@ -182,7 +188,7 @@
                                 </td>
 
                                 <td class="text-right" style="padding: 5px 10px; font-size: 16px; font-weight:bold;">
-                                    <span id="tds">(0) 0.00</span>
+                                    <span class="total-discount-show"> 0.00</span>
                                 </td>
                             </tr>
                             <tr>
@@ -190,8 +196,8 @@
                                     Total Payable
                                 </td>
                                 <td class="text-right" style="padding:5px 10px 5px 10px; font-size: 16px; border-top: 1px solid #666; font-weight:bold; background:#333; color:#FFF;" colspan="2">
-                                    <span style="float:left" id="gtotal_kh">(៛ 79,80,000)</span>
-                                    <span id="gtotal">1,900.00</span>
+                                    <span style="float:left" class="grand_total_kh">(៛ 0.00)</span>
+                                    <span class="grand_total">($ 0.00)</span>
                                 </td>
                             </tr>
                             </tbody>
@@ -345,66 +351,85 @@
                                                         <tr>
                                                             <td width="50%" style="height: 50px;">Total Items</td>
                                                             <td class="text-right"><span class="item_count" id="item_count">0</span></td>
-                                                            {{--<td class="text-right"><span class="item_count">17</span></td>--}}
+                                                            <td class="text-right"><span class="item_count" id="item_count">0</span></td>
                                                         </tr>
                                                         <tr>
                                                             <th width="50%" style="text-align:left;">Currency</th>
                                                             <th style="text-align:center;">USD</th>
-                                                            {{--<th style="text-align:center;">KHM</th>--}}
+                                                            {{--=======kh=============--}}
+                                                            <th style="text-align:center;">KHM</th>
                                                         </tr>
                                                         <tr>
                                                             <td width="50%" style="height: 50px;">Total</td>
                                                             <td class="text-right"><span id="twt" class="p-total">0.00</span>
                                                                 <input type="hidden" name="total_amt"  class="total_amt">
                                                             </td>
-                                                            {{--<td class="text-right"><span class="curr_tpay" rate="4200.0000" id="twt">0.00</span></td>--}}
+                                                            {{--=========kh===========--}}
+                                                            <td class="text-right">
+                                                                <span class="p-total-kh" id="twt">0.00</span>
+                                                            </td>
                                                         </tr>
                                                         <tr>
-                                                            <td width="50%" style="height: 50px;">Discount </td>
-                                                            <td class="text-right">
-                                                                <input required name="total_discount" type="text" id="total_discount"
-                                                                       class="pa form-control input-lg" style="text-align:right;">
+                                                            <td width="50%" style="height: 50px;">Discount</td>
+                                                            <td class="text-right"><span id="twt" class="p-total-discount">0.00</span>
+                                                                <input type="hidden" name="total_discount" class="total-discount-show">
                                                             </td>
-                                                            {{--<td class="text-right">--}}
-                                                            {{--<input name="other_cur_paid[]" rate="4200.0000" type="text" id="other_cur_paid" class="form-control input-lg kb-pad currencies_payment" style="text-align:right;">--}}
-                                                            {{--</td>--}}
+                                                            {{--====================--}}
+                                                            <td class="text-right">
+                                                                <span class="p-total-discount-kh" id="twt">0.00</span>
+                                                            </td>
                                                         </tr>
+
                                                         <tr>
                                                             <td width="50%" style="height: 50px;">Total Payable</td>
                                                             <td class="text-right"><span id="twt" class="p-total-payable"></span>
                                                                 <input type="hidden" name="total_payable"  class="p-total-payable-h">
                                                             </td>
-
-                                                            {{--<td class="text-right"><span class="curr_tpay" rate="4200.0000" id="twt">0.00</span></td>--}}
+                                                            {{--====================--}}
+                                                            <td class="text-right">
+                                                                <span class="p-total-payable-kh" id="twt">0.00</span>
+                                                            </td>
                                                         </tr>
+
+                                        {{--===========================paid===============================--}}
                                                         <tr>
                                                             <td width="50%" style="height: 50px;">Paid </td>
                                                             <td class="text-right">
                                                                 <input required name="paid" type="text" id="paid"
                                                                        class="pa form-control input-lg kb-pad amount" style="text-align:right;">
                                                             </td>
-                                                            {{--<td class="text-right">--}}
-                                                            {{--<input name="other_cur_paid[]" rate="4200.0000" type="text" id="other_cur_paid" class="form-control input-lg kb-pad currencies_payment" style="text-align:right;">--}}
-                                                            {{--</td>--}}
+                                                            {{--====================--}}
+                                                            <td class="text-right">
+                                                                <input name="paid-kh" type="text" id="other_cur_paid" class="form-control input-lg kb-pad currencies-payment-kh" style="text-align:right;">
+                                                            </td>
                                                         </tr>
-
+                                        {{--===========================end paid===============================--}}
                                                         <tr>
                                                             <td rowspan="2" width="50%" style="text-align:left;">Remaining</td>
-                                                            <td class="text-right"><span id="remain_1" class="main_remain_1">0.00</span></td>
-                                                            {{--<td class="text-right"><span class="curr_remain_1" rate="4200.0000" id="remain_1">0</span></td>--}}
+                                                            <td class="text-right">
+                                                                <span id="remain_1" class="main_remain_1">0.00</span>
+                                                            </td>
+                                                            {{--====================--}}
+                                                            <td class="text-right">
+                                                                <span class="main_remain_1_kh" id="remain_1">0.00
+                                                                </span>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="text-right"><span id="remain" class="main_remain">0.00</span></td>
-                                                            {{--<td class="text-right"><span class="curr_remain" rate="4200.0000" id="remain">0</span></td>--}}
+                                                            {{--====================--}}
+                                                            <td class="text-right"><span class="curr_remain" id="remain">0</span></td>
                                                         </tr>
                                                         <tr>
                                                             <td rowspan="2" width="50%" style="text-align:left;">Change</td>
                                                             <td class="text-right"><span id="change_1">0.00</span></td>
-                                                            {{--<td class="text-right"><span class="curr_change_1" rate="4200.0000" id="change_1">0</span></td>--}}
+                                                            {{--====================--}}
+                                                            <td class="text-right"><span class="curr_change_1" id="change_1">0</span></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="text-right"><span id="change">0.00</span></td>
-                                                            {{--<td class="text-right"><span class="curr_change" rate="4200.0000" id="change">0</span></td>--}}
+                                                            {{--====================--}}
+                                                            <td class="text-right"><span class="curr_change" id="change">0</span></td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
@@ -431,8 +456,9 @@
                                     <div class="col-md-2 col-sm-3 text-center">
                                         <span style="font-size: 1.2em; font-weight: bold;">Quick Cash</span>
                                         <div class="btn-group btn-group-vertical">
-                                            <button type="button" class="btn btn-lg btn-info quick-cash total_amt-x" id="quick-payable-xxx"></button>
-                                            <input type="hidden" id="payable_amount" class="payable_amount" name="payable_amount" value="5580">
+                                            {{--id="quick-payable-xxx"--}}
+                                            <button type="button" class="btn btn-lg btn-info quick-cash total_amt-x" ></button>
+                                            {{--<input type="hidden" id="payable_amount" class="payable_amount" name="payable_amount" value="5580">--}}
                                             <button type="button" class="btn btn-lg btn-warning quick-cash">10</button>
                                             <button type="button" class="btn btn-lg btn-warning quick-cash">20</button>
                                             <button type="button" class="btn btn-lg btn-warning quick-cash">50</button>
@@ -440,7 +466,7 @@
                                             <button type="button" class="btn btn-lg btn-warning quick-cash">500</button>
                                             <button type="button" class="btn btn-lg btn-warning quick-cash">1000</button>
                                             <button type="button" class="btn btn-lg btn-warning quick-cash">5000</button>
-                                            <button type="button" class="btn btn-lg btn-danger" id="clear-cash-notes">Clear</button>
+                                            <button type="button" class="btn btn-lg btn-danger clear-cash-notes">Clear</button>
                                             <hr>
                                             <div class="btn-group">
                                                 <button style="font-size: 1.2em; font-weight: bold; height:80px;" type="submit"
@@ -463,6 +489,25 @@
         </div>
     </div>
 
+    <div class="modal fade" id="discountModal" tabindex="-1" role="dialog" aria-labelledby="discountModal" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-2x">×</i></button>
+                    <h4 class="modal-title" id="dsModalLabel">Edit Order Discount</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="order_discount_input">Order Discount</label>
+                        <input type="text" name="total_discount" placeholder="$ 0.00 " value="" class="form-control total_discount">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" data-dismiss="modal" id="updateOrderDiscount" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
         {{--================modal pop up =============--}}
         <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModal" aria-hidden="true">
             <div class="modal-dialog modal-sm">
@@ -471,31 +516,13 @@
                         <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true" style="margin-top: -10px;"><i class="fa fa-2x">×</i>
                         </button><div class="bootbox-body">Are you sure?</div></div><div class="modal-footer">
                         <button data-bb-handler="cancel" type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
-                        <button data-bb-handler="confirm" type="button" class="btn btn-primary">OK</button>
+                        <button data-bb-handler="confirm" type="button" data-dismiss="modal" class="btn btn-primary getOrderCancel">OK</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="modal fade" id="discountModal" tabindex="-1" role="dialog" aria-labelledby="discountModal" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-2x">×</i></button>
-                        <h4 class="modal-title" id="dsModalLabel">Edit Order Discount</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="order_discount_input">Order Discount</label>
-                            <input type="text" name="order_discount_input" placeholder="$ 0.00 " value="" class="form-control kb-pad" id="order_discount_input">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="updateOrderDiscount" class="btn btn-primary">Update</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
         <div class="modal fade" id="viewCustomerModal" tabindex="-1" role="dialog" aria-labelledby="viewCustomerModal" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -788,13 +815,12 @@
         </div>
 
     {{--============end modal pop up==============--}}
-    </div>
 @endsection
 @section('graph_script')
     <script src="{{ asset('vendor/adminlte') }}/dist/js/demo.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/plugins/select2/select2.full.min.js"></script>
     <script>
-
+var ex = {{$exchanges->kh}} - 0 ;
         function _c(num)
         {
             num = num.toString().replace(/\$|\,/g, '');
@@ -820,6 +846,31 @@
             return (((sign) ? '' : '-') + '$' + num + '.' + cents);
         }
 
+        function _r(num)
+        {
+
+            num = num.toString().replace(/\៛|\,/g, '');
+            if (isNaN(num))
+            {
+                num = "0";
+            }
+
+            sign = (num == (num = Math.abs(num)));
+            num = Math.floor((num * 100 + 0.50000000001)*ex);
+            cents = num % 100;
+            num = Math.floor(num / 100).toString();
+
+            if (cents < 10)
+            {
+                cents = "0" + cents;
+            }
+            for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
+            {
+                num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
+            }
+
+            return (((sign) ? '' : '-') + num + '.' + cents + ' ' + '៛');
+        }
 
         (function($) {
             //Initialize Select2 Elements
@@ -1253,10 +1304,10 @@
                     '                                    <input type="hidden" name="_data_[' + uid + '][discount]" value="">                                    \n' +
                     '                                    ' + item_code + '</td>\n' +
                     '                                <td style="width:30%;">' + title + '</td>\n' +
-                    '                                <td style="width:10%;"><input type="number" name="_data_[' + uid + '][num_qty]" value="" min="0" placeholder=" 0 " style="width: 100%;"></td>\n' +
-                    '                                <td style="width:10%;"><input class="qty-row" type="number" name="_data_[' + uid + '][qty]" value="1" min="0" placeholder=" 0 " style="width: 100%;"></td>\n' +
+                    '                                <td style="width:0%;"><input class="hidden" type="number" name="_data_[' + uid + '][num_qty]" value="" min="0" placeholder=" 0 " style="width: 100%;"></td>\n' +
+                    '                                <td style="width:15%;"><input class="qty-row" type="number" name="_data_[' + uid + '][qty]" value="1" min="0" placeholder=" 0 " style="width: 100%;"></td>\n' +
                     '                                <td style="width:20%;"><span>$</span> ' + price + '</td>\n' +
-                    '                                <td style="width:20%;"><span>$</span> <span class="total-amount-row">' + price + '</span></td>\n' +
+                    '                                <td style="width:25%;"><span>$</span> <span class="total-amount-row">' + price + '</span></td>\n' +
                     '                                <td style="width: 10%">\n' +
                     '                                    <a class="btn btn-xs btn-default remove-pos" style="font-size: 18px; color: rgba(160,8,22,0.84);">\n' +
                     '                                        <i class="fa fa-fw fa-trash"></i>\n' +
@@ -1273,6 +1324,7 @@
 
         function calPOS() {
             var g_total = 0;
+            var total_discount = $('.total_discount').val() - 0;
             var ic = 0;
             $('.show-order-item tr').each(function () {
                 var d = $(this);
@@ -1281,24 +1333,34 @@
                 var amt = price * qty;
                 d.find('.total-amount-row').html(_c(amt));
                 if(amt > 0){
-
                     g_total += amt;
                 }
-
                 if(qty>0) {
                     ic += qty;
                 }
-
             });
 
             $('.p-total').html(_c(g_total));
+
             $('.total_amt').val(g_total);
             $('.total_amt-x').html(g_total);
             $('.item_count').html((ic));
 
             $('.p-total-payable').html(_c(g_total));
             $('.p-total-payable-h').val(g_total);
-            $('#total_discount').val(0);
+
+//            $('.total_discount').val();
+//            $('#total-discount-show').val();
+
+            //            =====================eang=======
+            $('.p-total-discount').val(_c(total_discount));
+            $('.grand_total').html(_c(g_total - total_discount));
+            //            =====================exchange kh=======
+            $('.grand_total_kh').html(_r(g_total - total_discount));
+            $('.p-total-kh').html(_r(g_total));
+            $('.p-total-payable-kh').html(_r(g_total));
+            $('.p-total-discount-kh').val(_r(total_discount));
+
             return g_total;
         }
         //get item pagination by category
@@ -1393,23 +1455,49 @@
 
                 $('#searchProductFilterDetail').modal('hide');
             });
+//=========== total discount=====================
+//            $('#total_discount').on('keyup',function () {
+//                var total_discount = $(this).val() - 0;
+//                var g_total = $('.total_amt').val() - 0;
+//                $('.p-total-payable').html(_c(g_total - total_discount));
+//                $('.p-total-payable-h').val(g_total - total_discount);
+//                var paid = $('#paid').val();
+//                $('.main_remain_1').html(_c(paid - g_total - total_discount));
+//            });
 
-            $('#total_discount').on('keyup',function () {
-                var total_discount = $(this).val() - 0;
+            $('#updateOrderDiscount').on('click',function () {
+                var total_discount = $('.total_discount').val() - 0;
                 var g_total = $('.total_amt').val() - 0;
+
                 $('.p-total-payable').html(_c(g_total - total_discount));
+
                 $('.p-total-payable-h').val(g_total - total_discount);
 
                 var paid = $('#paid').val();
+
                 $('.main_remain_1').html(_c(paid - g_total - total_discount));
+                $('.main_remain_1_kh').html(_r(paid - g_total - total_discount));
+
+//                =====eang================
+                $('.total-discount-show').html(_c(total_discount));
+                $('.grand_total').html(_c(g_total - total_discount));
+                $('.p-total-discount').html(_c(total_discount));
+                $('.total_amt-x').html(g_total - total_discount);
+
+                //            =====================exchange kh=======
+                $('.grand_total_kh').html(_r(g_total - total_discount));
+                $('.p-total-payable-kh').html(_r(g_total - total_discount));
+                $('.p-total-discount-kh').html(_r(total_discount));
+
+
             });
 
             $('#paid').on('keyup',function () {
                 var paid = $(this).val() - 0;
                 var payable = $('.p-total-payable-h').val() -0;
-
                 $('.main_remain_1').html(_c(paid - payable));
-
+//===========kh=================
+                $('.main_remain_1_kh').html(_r(paid - payable));
             });
 
             $('.quick-cash').on('click',function(e){
@@ -1418,23 +1506,30 @@
                 var pp = $('#paid').val()-0;
                 $('#paid').val((p+pp));
                 var payable = $('.p-total-payable-h').val() -0;
+
                 $('.main_remain_1').html(_c((p+pp) - payable));
+//===========kh=================
+                $('.main_remain_1').html(_r((p+pp) - payable));
             });
 
             $('.clear-cash-notes').on('click',function(e){
                 e.preventDefault();
                 var p = 0;
                 var pp = 0;
+                $('.paid').val('');
+
                 $('#paid').val((p+pp));
                 var payable = $('.p-total-payable-h').val() -0;
                 $('.main_remain_1').html(_c((p+pp) - payable));
+//===========kh=================
+                $('.main_remain_1_kh').html(_r(((p+pp) - payable)));
             });
 
             $('#pos-form').on('submit',function () {
                 var payable = $('.p-total-payable-h').val();
 
                 var paid = $('#paid').val();
-                if(paid-payable <= 0){
+                if(paid-payable < 0){
                     $('#paid').addClass('red');
                     return false;
                 }
@@ -1458,11 +1553,16 @@
                 getSearch(q);
             }) ;
 
-
             $('body').delegate('.remove-pos','click',function (e) {
                 e.preventDefault();
                 $(this).parent().parent().remove();
                 calPOS();
+
+            });
+
+            $('body').delegate('.getOrderCancel','click',function (e) {
+                e.preventDefault();
+                location.reload();
 
             });
 

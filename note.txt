@@ -15,3 +15,7 @@ php artisan iseed languages
 ======get data from file to database
 php artisan migrate:refresh
 php artisan db:seed
+
+php artisan iseed checklist_detail,checklists,customers,invoice,invoice_detail,item_categories,items,items_detail,items_transaction,languages,migrations,open_items,open_items_detail,password_resets,production,production_detail,purchase,purchase_detail,sessions,settings,units,users
+php artisan migrate --seed
+php artisan migrate:roldback

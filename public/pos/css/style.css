@@ -11,12 +11,23 @@
 }
 #left-panel{
     width: 33.9%;
-    border-right: solid 1px #858585;
     position: relative;
     background-color: #ffffff;
     float: left;
     height: 100%;
 }
+
+.left-middle{
+    position: relative;
+}
+
+#left-bottom{
+    /*border-right: solid 1px #858585;*/
+    width: 33.9%;
+    position: fixed;
+    bottom: 0;
+}
+
 #right-section{
     width: 66%;
     /*height: 900px;*/
@@ -24,12 +35,7 @@
     background-color: #ffffff;
     float: right;
 }
-#left-bottom{
-    border-right: solid 1px #858585;
-    width: 33.9%;
-    position: fixed;
-    bottom: 0;
-}
+
 /*============import style==========*/
 .content {
     /*min-height: 250px;*/

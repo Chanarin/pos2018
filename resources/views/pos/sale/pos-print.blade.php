@@ -106,11 +106,14 @@
                             </tr>
                                 @if(count($rds)>0)
                                     @foreach($rds as $r)
+                                        @php
+                                            $unit = \App\Models\Unit::where('id',$r->unit)->first();
+                                        @endphp
                                         <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif ">
                                             <td class="text-left"></td>
                                             <td class="text-left">{{$r->item_code}}</td>
                                             <td class="text-left">{{$r->title}}</td>
-                                            <td class="text-left">{{$r->unit}}</td>
+                                            <td class="text-left">{{$r->unit}} {{isset($unit->name)?$unit->name:''}}</td>
                                             <td class="text-right">{{$r->qty*$rd->qty}}</td>
                                             <td class="text-right">$ {{number_format($r->price,2)}}</td>
                                             <td class="text-right">$ {{number_format($r->price*$r->qty*$rd->qty,2)}}</td>

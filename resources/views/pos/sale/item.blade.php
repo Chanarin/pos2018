@@ -21,8 +21,8 @@
                 <img alt="{{$item->title}}" src="{{url('img/cache/original/'.\App\Helpers\Glb::get_basename($img[0]))}}" class=" open-button img-padding" width="120" height="120">
             @endif
             <div class="name-style  open-button" >{{$item->title}}</div>
-            <div class="id-style  open-button"><b><span>$</span> {{$item->price}}</b></div>
-            <div class="id-style  open-button"><b><span>ID:</span> {{$item->item_code}}</b></div>
+            <div class="id-style  open-button"><span>$</span> {{$item->price}}</div>
+            <div class="id-style  open-button"><span>កូដ:</span> {{$item->item_code}}</div>
         </div>
     </div>
 @endforeach
