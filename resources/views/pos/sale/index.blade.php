@@ -335,7 +335,7 @@
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <label for="slref">Reference No</label>
-                                                    <input type="text" name="invoice_number" value="SALE/POS/1708/00008" class="form-control input-tip datetime" id="date" data-original-title="" title="">
+                                                    <input type="text" name="invoice_number" value="{{getINVNext()}}" class="form-control input-tip datetime" id="date" data-original-title="" title="">
                                                 </div>
                                             </div>
                                         </div>
