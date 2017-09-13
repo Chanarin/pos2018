@@ -58,6 +58,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
                 'name' => 'price',
                 'value' => isset($crud->entry->price)?$crud->entry->price:null,
                 'label' => _t('Price'),
+               'attributes' => ["number" => "number"],
                 'type' => 'text'
                 ];
         @endphp

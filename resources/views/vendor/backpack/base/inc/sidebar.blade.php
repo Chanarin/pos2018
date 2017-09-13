@@ -56,11 +56,6 @@
                   <span>{{_t('Table Report')}}</span>
                 </a>
               </li>
-              <li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/report') }}">
-                  <i class="fa fa-pie-chart"></i>
-                  <span>{{_t('Report')}}</span>
-                </a>
-              </li>
             </ul>
           </li>
           @endif

@@ -1271,6 +1271,379 @@ class LanguagesTableSeeder extends Seeder
                 'created_at' => '2017-09-02 13:36:52',
                 'updated_at' => '2017-09-02 13:36:52',
             ),
+            139 => 
+            array (
+                'id' => 143,
+                'key' => 'choose_file',
+                'en' => 'Choose file',
+                'km' => 'ជ្រើសរើស​រូបភាព',
+                'created_at' => '2017-09-11 13:42:06',
+                'updated_at' => '2017-09-11 13:42:06',
+            ),
+            140 => 
+            array (
+                'id' => 144,
+                'key' => 'close',
+                'en' => 'Close',
+                'km' => 'បិទ',
+                'created_at' => '2017-09-13 02:23:37',
+                'updated_at' => '2017-09-13 02:23:37',
+            ),
+            141 => 
+            array (
+                'id' => 145,
+                'key' => 'finalize_sale',
+                'en' => 'Finalize Sale',
+                'km' => 'បញ្ចប់ការលក់',
+                'created_at' => '2017-09-13 02:23:37',
+                'updated_at' => '2017-09-13 02:23:37',
+            ),
+            142 => 
+            array (
+                'id' => 146,
+                'key' => 'date',
+                'en' => 'Date',
+                'km' => 'កាលបរិច្ឆេទ',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            143 => 
+            array (
+                'id' => 147,
+                'key' => 'yyyy-mm-dd',
+                'en' => 'yyyy-mm-dd',
+                'km' => 'ឆ្នាំ-ខែ-ថ្ងៃ',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            144 => 
+            array (
+                'id' => 149,
+                'key' => 'customer_name',
+                'en' => 'Customer Name',
+                'km' => 'ឈ្មោះ​អតិថិជន
+',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            145 => 
+            array (
+                'id' => 150,
+                'key' => 'total_items',
+                'en' => 'Total Items',
+                'km' => 'ផលិតផលសរុប',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            146 => 
+            array (
+                'id' => 151,
+                'key' => 'currency',
+                'en' => 'Currency',
+                'km' => 'រូបិយប័ណ្ណ',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            147 => 
+            array (
+                'id' => 152,
+                'key' => 'usd',
+                'en' => 'USD',
+                'km' => 'ដុល្លារ',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            148 => 
+            array (
+                'id' => 153,
+                'key' => 'khm',
+                'en' => 'KHM',
+                'km' => 'រៀល',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            149 => 
+            array (
+                'id' => 154,
+                'key' => 'total',
+                'en' => 'Total',
+                'km' => 'សរុប',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            150 => 
+            array (
+                'id' => 155,
+                'key' => 'total_payable',
+                'en' => 'Total Payable',
+                'km' => 'សរុបលុយបង់',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            151 => 
+            array (
+                'id' => 156,
+                'key' => 'paid',
+                'en' => 'Paid',
+                'km' => 'បង់លុយ',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            152 => 
+            array (
+                'id' => 157,
+                'key' => 'remaining',
+                'en' => 'Remaining',
+                'km' => 'លុយអាប់',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            153 => 
+            array (
+                'id' => 158,
+                'key' => 'change',
+                'en' => 'Change',
+                'km' => 'លុយដូរ',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            154 => 
+            array (
+                'id' => 159,
+                'key' => 'payment_note',
+                'en' => 'Payment Note',
+                'km' => 'ការទូទាត់ចំណាំ',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            155 => 
+            array (
+                'id' => 160,
+                'key' => 'quick_cash',
+                'en' => 'Quick Cash',
+                'km' => 'សាច់ប្រាក់រហ័ស',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            156 => 
+            array (
+                'id' => 161,
+                'key' => 'clear',
+                'en' => 'Clear',
+                'km' => 'លុប',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            157 => 
+            array (
+                'id' => 162,
+                'key' => 'save',
+                'en' => 'Save',
+                'km' => 'រក្សាទុក',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            158 => 
+            array (
+                'id' => 163,
+                'key' => 'update',
+                'en' => 'Update',
+                'km' => 'កែប្រែ',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            159 => 
+            array (
+                'id' => 164,
+                'key' => 'cancel',
+                'en' => 'Cancel',
+                'km' => 'បោះបង់',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            160 => 
+            array (
+                'id' => 165,
+                'key' => 'customer_list',
+                'en' => 'Customer List',
+                'km' => 'បញ្ជីអតិថិជន',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            161 => 
+            array (
+                'id' => 166,
+                'key' => 'edit_customer',
+                'en' => 'Edit Customer',
+                'km' => 'កែសម្រួលអតិថិជន',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            162 => 
+            array (
+                'id' => 167,
+                'key' => 'male',
+                'en' => 'Male',
+                'km' => 'ប្រុស',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            163 => 
+            array (
+                'id' => 168,
+                'key' => 'female',
+                'en' => 'Female',
+                'km' => 'ស្រី',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            164 => 
+            array (
+                'id' => 169,
+                'key' => 'submit',
+                'en' => 'Submit',
+                'km' => 'បញ្ចូន',
+                'created_at' => '2017-09-13 02:23:38',
+                'updated_at' => '2017-09-13 02:23:38',
+            ),
+            165 => 
+            array (
+                'id' => 170,
+                'key' => 'num.qty',
+                'en' => 'Num.Qty',
+                'km' => 'ចំនួនឯកតា',
+                'created_at' => '2017-09-13 02:43:39',
+                'updated_at' => '2017-09-13 02:43:39',
+            ),
+            166 => 
+            array (
+                'id' => 171,
+                'key' => 'rate',
+                'en' => 'Rate',
+                'km' => 'អត្រាប្តូរប្រាក់',
+                'created_at' => '2017-09-13 03:14:26',
+                'updated_at' => '2017-09-13 03:14:26',
+            ),
+            167 => 
+            array (
+                'id' => 172,
+                'key' => 'print_order',
+                'en' => 'Print Order',
+                'km' => 'ព្រីនការកម្មង់',
+                'created_at' => '2017-09-13 03:14:26',
+                'updated_at' => '2017-09-13 03:14:26',
+            ),
+            168 => 
+            array (
+                'id' => 173,
+                'key' => 'print_bill',
+                'en' => 'Print Bill',
+                'km' => 'ព្រីនវិក្កយបត្រ',
+                'created_at' => '2017-09-13 03:14:26',
+                'updated_at' => '2017-09-13 03:14:26',
+            ),
+            169 => 
+            array (
+                'id' => 174,
+                'key' => 'payment',
+                'en' => 'Payment',
+                'km' => 'ការទូទាត់',
+                'created_at' => '2017-09-13 03:14:26',
+                'updated_at' => '2017-09-13 03:14:26',
+            ),
+            170 => 
+            array (
+                'id' => 175,
+                'key' => 'edit_order_discount',
+                'en' => 'Edit Order Discount',
+                'km' => 'កែប្រែការបញ្ចុះតម្លៃ',
+                'created_at' => '2017-09-13 03:14:26',
+                'updated_at' => '2017-09-13 03:14:26',
+            ),
+            171 => 
+            array (
+                'id' => 176,
+                'key' => 'order_discount',
+            'en' => 'Order Discount($)',
+            'km' => 'បញ្ចុះតម្លៃ​ ($)',
+                'created_at' => '2017-09-13 03:14:26',
+                'updated_at' => '2017-09-13 03:14:26',
+            ),
+            172 => 
+            array (
+                'id' => 177,
+                'key' => 'invoice_no',
+                'en' => 'Invoice No',
+                'km' => 'លេខ​វិ​ក័​យ​ប័ត្រ
+',
+                'created_at' => '2017-09-13 03:15:27',
+                'updated_at' => '2017-09-13 03:15:27',
+            ),
+            173 => 
+            array (
+                'id' => 178,
+                'key' => 'ok',
+                'en' => 'OK',
+                'km' => 'យល់ព្រម',
+                'created_at' => '2017-09-13 03:21:07',
+                'updated_at' => '2017-09-13 03:21:07',
+            ),
+            174 => 
+            array (
+                'id' => 179,
+                'key' => 'are_you_sure?',
+                'en' => 'Are you sure?',
+                'km' => 'តើ​អ្នក​ប្រាកដ​ឬ​អត់?
+',
+                'created_at' => '2017-09-13 03:23:26',
+                'updated_at' => '2017-09-13 03:23:26',
+            ),
+            175 => 
+            array (
+                'id' => 180,
+                'key' => 'search_product_by_code',
+                'en' => 'Search product by item code',
+                'km' => 'ស្វែងរកផលិតផលតាមលេខកូដ',
+                'created_at' => '2017-09-13 03:24:22',
+                'updated_at' => '2017-09-13 03:24:22',
+            ),
+            176 => 
+            array (
+                'id' => 181,
+                'key' => 'add_customer',
+                'en' => 'Add Customer',
+                'km' => 'បន្ថែមអតិថិជន',
+                'created_at' => '2017-09-13 03:27:24',
+                'updated_at' => '2017-09-13 03:27:24',
+            ),
+            177 => 
+            array (
+                'id' => 182,
+                'key' => 'please_fill_in_the_information_below._the_field_labels_marked_with_*_are_required_input_fields.',
+                'en' => 'Please fill in the information below. The field lavels marked with * are required input fields.',
+                'km' => 'សូមបំពេញព័ត៌មានខាងក្រោម, ឈ្មោះ ដែលសម្គាល់ដោយសញ្ញា * តម្រូវអោយរវាយបញ្ចូល.',
+                'created_at' => '2017-09-13 03:31:01',
+                'updated_at' => '2017-09-13 03:31:01',
+            ),
+            178 => 
+            array (
+                'id' => 183,
+                'key' => 'select_gender',
+                'en' => 'Select Gender',
+                'km' => 'ជ្រើសរើសភេទ',
+                'created_at' => '2017-09-13 03:31:01',
+                'updated_at' => '2017-09-13 03:31:01',
+            ),
+            179 => 
+            array (
+                'id' => 184,
+                'key' => 'search_filter',
+                'en' => 'Search Filter',
+                'km' => 'ស្វែងរក
+',
+                'created_at' => '2017-09-13 03:31:01',
+                'updated_at' => '2017-09-13 03:31:01',
+            ),
         ));
         
         

@@ -211,6 +211,7 @@
                 if (c_c == 0) {
                     dd('no');
                 }
+            $('input[type=number],[number]').ForceNumericOnly();
 
         }
 
@@ -218,9 +219,29 @@
             var q = $('.search-item-to-show-txt').val();
             $('.load-search-item-list').html('');
             $('.load-search-item-list').load('{{ url('api/item-search') }}',{page:p,q:q,arr_item_id:arrItemID});
+
+            $('input[type=number],[number]').ForceNumericOnly();
         }
 
+
+
         jQuery(document).ready(function() {
+
+            $('body').delegate('[number]','keydown',function(e){
+                var key = e.charCode || e.keyCode || 0;
+                // allow backspace, tab, delete, enter, arrows, numbers and keypad numbers ONLY
+                // home, end, period, and numpad decimal
+                return (
+                    key == 8 ||
+                    key == 9 ||
+                    key == 13 ||
+                    key == 46 ||
+                    key == 110 ||
+                    key == 190 ||
+                    (key >= 35 && key <= 40) ||
+                    (key >= 48 && key <= 57) ||
+                    (key >= 96 && key <= 105));
+            });
 
             $('body').delegate('.modal-add-item-main','click',function (e) {
                 var id = $(this).data('id');
@@ -551,7 +572,7 @@
                     m_qty = m_qty > 0 ? m_qty : 1;
 
                     var m_discount = rm.find('.discount').val() - 0;
-dd(t_amount);
+//dd(t_amount);
                 if(t_amount>0) {
                     rm.find('.amount').val((t_amount - m_discount));
                     var n_p = t_amount / (m_num_qty * m_qty);

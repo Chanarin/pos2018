@@ -16,11 +16,13 @@
     float: left;
     height: 100%;
 }
+#left-top{
 
+}
 .left-middle{
     position: relative;
+    height: 100%;
 }
-
 #left-bottom{
     /*border-right: solid 1px #858585;*/
     width: 33.9%;
@@ -101,48 +103,14 @@
     /*height: 688px;*/
     background-color: #FFFFFF;
 }
-
-/*15.6" 1920*1080*/
-@media screen and (min-width: 1920px), screen and (min-height: 1080px) {
-    .table-show-pro{
-        width:100%;
-        overflow:auto;
-        height:696px !important;
-        text-align: center;
-        border-bottom: #ffffff;
-    }
+.table-show-pro{
+    width:100%;
+    overflow:auto;
+    height:100% !important;
+    text-align: center;
+    border-bottom: #ffffff;
+    position: absolute;
 }
-@media screen and (min-width: 1920px), screen and (min-height: 1050px) {
-    .table-show-pro{
-        width:100%;
-        overflow:auto;
-        /*height:665px !important;*/
-        text-align: center;
-        border-bottom: #ffffff;
-    }
-}
-
-/*14" 1366*800*/
-@media screen and (min-width: 1366px), screen and (min-height: 800px) {
-    .table-show-pro{
-        width:100%;
-        overflow:auto;
-        height:416px;
-        text-align: center;
-        border-bottom: #ffffff;
-    }
-}
-/*!*!*12" 1280*800*!*!*/
-@media screen and (min-width: 1280px), screen and (min-height: 800px) {
-    .table-show-pro{
-        width:100%;
-        overflow:auto;
-        height:416px;
-        text-align: center;
-        border-bottom: #ffffff;
-    }
-}
-
 table,tr,td{
     padding-bottom: 5px !important;
     padding-top: 5px !important;
@@ -153,7 +121,6 @@ table,tr,td{
     width:-moz-calc(100% - 17px);
 }
 table {
-    font-family: arial;
     max-width: 100%;
     background-color: transparent;
     border-collapse: collapse;
@@ -183,7 +150,6 @@ table {
 table thead th {
     background: #ffffff !important;
 }
-/* Small Sizes */
 @media (max-width: 480px) {
     .table-action thead {
         display: none;
@@ -256,15 +222,6 @@ table thead th {
 .slider-button--next {
     right: 0;
 }
-/*.slider-nav {*/
-    /*width: 100%;*/
-    /*position: absolute;*/
-    /*bottom: -40px;*/
-    /*text-align: center;*/
-    /*margin: 0;*/
-    /*padding: 0;*/
-    /*z-index: 50;*/
-/*}*/
 .slider-nav li {
     display: inline-block;
     margin: 0 6px;
@@ -283,7 +240,6 @@ table thead th {
 .slider-nav li a.active {
     pointer-events: none;
     background: rgba(122, 122, 122, 0.88);
-    background: rgba(121, 121, 121, 0.62);
     cursor: default;
 }
 

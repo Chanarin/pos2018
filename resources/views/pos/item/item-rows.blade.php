@@ -42,7 +42,7 @@
             </td>
             @if($k == 'unit')
                 <td>
-                <input  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"   vvvv-{{$num_qty['name']}}-vvvv
+                <input  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx" number="number"   vvvv-{{$num_qty['name']}}-vvvv
                         xx_name_xx="_data_[xxxx-uid-xxxx][{{$num_qty['name']}}]" style="width: 100%; "
                         class="form-control input-sm {{$num_qty['name']}}{{$r_id}}  {{$num_qty['name']}} {{$num_qty['name']}}-main" type="text">
                 </td>
@@ -131,7 +131,7 @@
                             </td>
                             @if($k == 'unit')
                             <td>
-                                <input  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"    pppp-{{$num_qty['name']}}-pppp
+                                <input  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx" number="number"   pppp-{{$num_qty['name']}}-pppp
                                         www_name_www="_data_[xxxx-uid-xxxx][detail][yyyy-uid-yyyy][{{$num_qty['name']}}]"
                                         style="width: 100%; " class="form-control input-sm {{$num_qty['name']}}{{$r_id}}  {{$num_qty['name']}} {{$num_qty['name']}}-sub"
                                         type="text">

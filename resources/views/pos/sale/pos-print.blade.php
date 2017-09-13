@@ -8,8 +8,11 @@
             padding: 5px;
         }
     </style>
+    <link href="https://fonts.googleapis.com/css?family=Hanuman|Moul" rel="stylesheet">
 </head>
 <body>
+
+
 <table width="100%">
     <tr>
         <td>
@@ -23,7 +26,7 @@
         @php $row = \App\Models\Invoice::join('customers','customers.id','=','invoice.customer_id')
                         ->where('invoice.id',$id)->first(); @endphp
         @if($row != null)
-            <table width="100%">
+            <table width="100%" style="font-family: 'Hanuman', serif; font-size: 12px;">
                 <tr>
                     <td>
                         <table style="width: 100%; margin-bottom: 10px; margin-top: 10px;">
@@ -74,7 +77,7 @@
                             <thead>
                             <tr style="font-size:14px;height: 30px;">
                                 <th>ល.រ</th>
-                                <th>Code</th>
+                                <th>កូដ</th>
                                 <th class="text-center">ទំនិញ</th>
                                 <th class="text-center">ឯកតា</th>
                                 <th class="text-center">ចំនួន</th>
@@ -131,31 +134,45 @@
                 <tr>
                     <td>
                         <table style="width: 100%; margin-top: 5px;">
+                            @php
+                            $riel = ($row->paid_kh)/($row->paid);
+                            @endphp
                             <tbody>
                             <tr>
                                 <td width="60%"></td>
                                 <td style="text-align:right;">សរុប</td>
                                 <td style="text-align:right;">$ {{number_format($row->total_amt,2)}}</td>
+                                <td style="text-align:right;">{{number_format(($row->total_amt)*$riel,2)}} ៛</td>
                             </tr>
+                            {{--<tr>--}}
+                                {{--<td width="60%"></td>--}}
+                                {{--<td style="text-align:right;">បញ្ចុះតំលៃ</td>--}}
+                                {{--<td style="text-align:right;">$ {{number_format($row->total_discount,2)}}</td>--}}
+                                {{--<td style="text-align:right;">{{number_format($row->total_discount,2)}} ៛</td>--}}
+                            {{--</tr>--}}
                             <tr>
                                 <td width="60%"></td>
                                 <td style="text-align:right;">បញ្ចុះតំលៃ</td>
-                                <td style="text-align:right;">$ {{number_format($row->total_discount,2)}}</td>
+                                <td style="text-align:right;">$ {{number_format($row->total_amt-$row->total_payable,2)}}</td>
+                                <td style="text-align:right;">{{number_format(($row->total_amt-$row->total_payable)*$riel,2)}} ៛</td>
                             </tr>
                             <tr>
                                 <td width="60%"></td>
                                 <td style="text-align:right;">សរុបចុងក្រោយ</td>
-                                <td style="text-align:right;">$ {{number_format($row->total_payable)}}</td>
+                                <td style="text-align:right;">$ {{number_format($row->total_payable,2)}}</td>
+                                <td style="text-align:right;">{{number_format(($row->total_payable)*$riel,2)}} ៛</td>
                             </tr>
                             <tr>
                                 <td width="60%"></td>
                                 <td style="text-align:right;">លុយបង់</td>
                                 <td style="text-align:right;">$ {{number_format($row->paid,2)}}</td>
+                                <td style="text-align:right;">{{number_format($row->paid_kh,2)}} ​​៛</td>
                             </tr>
                             <tr>
                                 <td width="60%"></td>
                                 <td style="text-align:right;">លុយអាប់</td>
                                 <td style="text-align:right;">$ {{number_format($row->paid-$row->total_payable,2)}}</td>
+                                <td style="text-align:right;">{{number_format(($row->paid-$row->total_payable)*$riel,2)}}​ ៛</td>
                             </tr>
 
                             </tbody>
@@ -166,5 +183,54 @@
         @endif
     @endif
 @endif
+<script>
+    //        ==============print invoice
+    window.print();
+
+    window.setTimeout(' window.history.back()',500);
+
+//    $(function () {
+//        $("#print-invoice").click(function () {
+//
+//            // $('#search-by-date').trigger('click');
+//
+//            var contents = $(".print-invoice").html();
+//            var frame1 = $('<iframe />');
+//            frame1[0].name = "frame1";
+//            frame1.css({"position": "absolute", "top": "-1000000px"});
+//            $("body").append(frame1);
+//            var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+//            frameDoc.document.open();
+//            //Create a new HTML document.
+//            frameDoc.document.write('<html><head><title>Print Report</title>');
+//
+//            frameDoc.document.write('<style> .txt{font-family: \'Hanuman\', serif; font-size: 12px; padding-top: 5px; padding-bottom: 0px; } \n' +
+//                '    table{\n' +
+//                '        border-collapse: collapse;\n' +
+//                '    }\n' +
+//                '    .border th, .border td {\n' +
+//                '        border: 1px solid rgba(188, 188, 188, 0.96);\n' +
+//                '        padding: 5px;\n' +
+//                '    }\n' +
+//                '</style>' +
+//                '<link href="https://fonts.googleapis.com/css?family=Hanuman|Moul" rel="stylesheet">');
+//
+//            frameDoc.document.write('</head><body>');
+//            //Append the external CSS file.
+//
+////                frameDoc.document.write('<link href="style.css" rel="stylesheet" type="text/css" />');
+//            //Append the DIV contents.
+//            frameDoc.document.write(contents);
+//            frameDoc.document.write('</body></html>');
+//            frameDoc.document.close();
+//            setTimeout(function () {
+//                window.frames["frame1"].focus();
+//                window.frames["frame1"].print();
+//                frame1.remove();
+//            }, 500);
+//        });
+//    });
+
+</script>
 </body>
 </html>
