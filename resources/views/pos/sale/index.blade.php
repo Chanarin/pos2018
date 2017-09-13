@@ -1090,6 +1090,8 @@
                 $('.p-total-discount-kh').html(_r(total_discount));
                 $('.total-discount-show').val((total_discount));
 
+                $('.total_amt-x').html(total_after_discount);
+
 
             });
 
