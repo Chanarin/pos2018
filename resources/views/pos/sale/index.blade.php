@@ -431,7 +431,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" data-dismiss="modal" id="updateOrderDiscount" class="btn btn-primary">{{_t('Update')}}</button>
+                                <button type="button" data-dismiss="modal" id="updateOrderDiscount" class="btn btn-primary updateOrderDiscount">{{_t('Update')}}</button>
                             </div>
                         </div>
                     </div>
@@ -1074,31 +1074,21 @@
                 $('#searchProductFilterDetail').modal('hide');
             });
 
-            $('#updateOrderDiscount').on('click',function () {
+            $('.updateOrderDiscount').on('click',function () {
                 var total_discount = $('.total_discount').val() - 0;
-                var g_total = $('.total_amt').val() - 0;
 
-                $('.p-total-payable').html(_c(g_total - total_discount));
-
-                $('.p-total-payable-en').val(g_total - total_discount);
-
-                var paid = $('.paid_en').val();
-
-                $('.main_remain_1').html(_c(paid - g_total - total_discount));
-                $('.main_remain_1_kh').html(_r(paid - g_total - total_discount));
-
-//                =====eang================
                 $('.total-discount-show').html(_c(total_discount));
-                $('.grand_total').html(_c(g_total - total_discount));
+
+                var total = calPOS();
+
+                var total_after_discount = total - total_discount;
+
+                $('.grand_total').html(_c(total_after_discount));
+                $('.grand_total_kh').html(_r(total_after_discount));
 
                 $('.p-total-discount').html(_c(total_discount));
-                $('.total_amt-x').html(g_total - total_discount);
-
-                //            =====================exchange kh=======
-                $('.grand_total_kh').html(_r(g_total - total_discount));
-
-                $('.p-total-payable-kh').html(_r(g_total - total_discount));
                 $('.p-total-discount-kh').html(_r(total_discount));
+                $('.total-discount-show').val((total_discount));
 
 
             });
