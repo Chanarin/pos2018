@@ -31,6 +31,7 @@ class IDP
 
     public function saveAllDetail()
     {
+//        dd($this->ref_id);
         $mr = null;
         switch ($this->type) {
             case _POS_::checklists:
@@ -49,24 +50,8 @@ class IDP
                 $mr = PurchaseDetail::where('ref_id', $this->ref_id);
                 break;
             case _POS_::items:
-                $itemDeetaill = ItemDetail::where('ref_id', $this->ref_id)->get();
-                if (count($itemDeetaill) > 0) {
-                    foreach ($itemDeetaill as $roww) {
-                        $itt = ItemTransaction::where('item_id',$roww->item_id)->first();
-                        if ($itt != null) {
-                        } else {
-                            $idd = PurchaseDetail::where('item_id',$roww->item_id)->first();
+                $itemDeetaill = ItemDetail::where('ref_id', $this->ref_id)->delete();
 
-                            if($idd != null){
-
-                            }else {
-
-
-                                //ItemDetail::where('item_id', $roww->item_id)->delete();
-                            }
-                        }
-                    }
-                }
                 break;
 
             default:
