@@ -269,6 +269,9 @@ class ItemDetailP
 
 
         if ($this->item_id > 0 && $this->type == _POS_::items) {
+
+            ItemDetail::where('ref_id',$this->ref_id)->delete();
+
             if (count($this->item_detail) > 0) {
 
                 foreach ($this->item_detail as $row) {
