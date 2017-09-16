@@ -271,6 +271,8 @@ class ItemDetailP
                     $unit = isset($row['unit']) ? $row['unit'] : '';
 
                     $qty = isset($row['qty']) ? $row['qty'] : 0;
+                    $num_qty = isset($row['num_qty']) ? $row['num_qty'] : 0;
+
                     $cost = isset($row['cost']) ? $row['cost'] : 0;
                     $price = isset($row['price']) ? $row['price'] : 0;
                     $discount = isset($row['discount']) ? $row['discount'] : 0;
@@ -306,6 +308,7 @@ class ItemDetailP
                         $mff->description = $description;
                         $mff->unit = $unit;
                         $mff->qty = $qty;
+                        $mff->num_qty = $num_qty;
                         $mff->cost = $cost;
                         $mff->note = $note;
                         $mff->save();
