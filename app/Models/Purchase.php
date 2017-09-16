@@ -55,4 +55,13 @@ class Purchase extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function($obj) {
+
+            PurchaseDetail::where('ref_id',$obj->id)->delete();
+
+        });
+    }
 }

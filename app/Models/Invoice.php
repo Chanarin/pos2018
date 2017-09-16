@@ -59,4 +59,13 @@ class Invoice extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function($obj) {
+
+            InvoiceDetail::where('ref_id',$obj->id)->delete();
+
+        });
+    }
 }

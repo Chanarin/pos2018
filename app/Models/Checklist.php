@@ -11,4 +11,14 @@ class Checklist extends Model
 
     protected $fillable = ['checklist_number','_date_'];
 
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function($obj) {
+
+            ChecklistDetail::where('ref_id',$obj->id)->delete();
+
+        });
+    }
+
 }
