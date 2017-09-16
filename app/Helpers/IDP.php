@@ -247,7 +247,6 @@ class ItemDetailP
             )) {
 
 
-
                 $this->createItem();
 
                 $this->saveDetail();
@@ -418,8 +417,29 @@ class ItemDetailP
                         'cost' => $d_cost,
                         'note' => $d_note
                     ];
+
+
+
                     if ($d_item_id > 0) {
                         $item_ref_detail[$ixix]['item_id'] = $d_item_id;
+
+                        //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                        $mITT = Item::find($d_item_id);
+
+                     /*   if ($mITT != null) {
+                            $item_ref_detail[$ixix]['item_id'] = $mITT->id;
+                        } else {*/
+                            //$mITT = new Item();
+                            $mITT->item_code = $d_item_code;
+                            $mITT->title = $d_title;
+                            $mITT->description = $d_description;
+                            $mITT->unit = $d_unit;
+
+                            if ($mITT->save()) {
+                                $item_ref_detail[$ixix]['item_id'] = $mITT->id;
+                            }
+                       // }
+
                     } else {
                         //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
                         $mITT = Item::where('item_code', trim($d_item_code))->first();
@@ -439,6 +459,10 @@ class ItemDetailP
                         }
 
                     }
+
+
+
+
 
                     $ixix++;
                 }
