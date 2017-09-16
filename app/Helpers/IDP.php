@@ -52,10 +52,18 @@ class IDP
                 $itemDeetaill = ItemDetail::where('ref_id', $this->ref_id)->get();
                 if (count($itemDeetaill) > 0) {
                     foreach ($itemDeetaill as $roww) {
-                        $itt = ItemTransaction::find($roww->item_id);
+                        $itt = ItemTransaction::where('item_id',$roww->item_id)->first();
                         if ($itt != null) {
                         } else {
-                            ItemDetail::where('item_id', $roww->item_id)->delete();
+                            $idd = PurchaseDetail::where('item_id',$roww->item_id)->first();
+
+                            if($idd != null){
+
+                            }else {
+
+
+                                ItemDetail::where('item_id', $roww->item_id)->delete();
+                            }
                         }
                     }
                 }
