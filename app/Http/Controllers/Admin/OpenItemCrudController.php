@@ -173,6 +173,30 @@ class OpenItemCrudController extends CrudController
         return $redirect_location;
     }
 
+
+    public function edit($id)
+    {
+        $inv = InvoiceDetail::where('item_id',$id)->first();
+        // your additional operations before save here
+        if($inv == null) {
+            $this->crud->hasAccessOrFail('update');
+
+            // get the info for that entry
+            $this->data['entry'] = $this->crud->getEntry($id);
+            $this->data['crud'] = $this->crud;
+            $this->data['saveAction'] = $this->getSaveAction();
+            $this->data['fields'] = $this->crud->getUpdateFields($id);
+            $this->data['title'] = trans('backpack::crud.edit') . ' ' . $this->crud->entity_name;
+
+            $this->data['id'] = $id;
+
+            // load the view from /resources/views/vendor/backpack/crud/ if it exists, otherwise load the one in the package
+            return view($this->crud->getEditView(), $this->data);
+        }else{
+            return redirect('/openitem');
+        }
+    }
+
     public function update(UpdateRequest $request)
     {
         $validator = Validator::make($request->all(), [
@@ -184,12 +208,16 @@ class OpenItemCrudController extends CrudController
             return redirect('admin/openitem');
         }
 
+        $inv = InvoiceDetail::where('item_id',$request->id)->first();
         // your additional operations before save here
+        if($inv == null) {
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-        $iDP = new IDP($request->_data_,_POS_::open_items,$this->crud->entry->id);
-        $iDP->saveAllDetail();
+
+            $iDP = new IDP($request->_data_, _POS_::open_items, $this->crud->entry->id);
+            $iDP->saveAllDetail();
+        }
 
         return $redirect_location;
     }

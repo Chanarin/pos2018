@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\_POS_;
 use App\Helpers\GH;
 use App\Helpers\IDP;
+use App\Models\InvoiceDetail;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
@@ -105,12 +106,17 @@ class ItemCrudController extends CrudController
 
     public function update(UpdateRequest $request)
     {
+
         // your additional operations before save here
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-        $iDP = new IDP($request->_data_,_POS_::items,$this->crud->entry->id);
-        $iDP->saveAllDetail();
+        $inv = InvoiceDetail::where('item_id',$this->crud->id)->first();
+
+        if($inv == null) {
+            $iDP = new IDP($request->_data_, _POS_::items, $this->crud->entry->id);
+            $iDP->saveAllDetail();
+        }
 
         return $redirect_location;
     }
