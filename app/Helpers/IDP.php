@@ -306,6 +306,22 @@ class ItemDetailP
                         $rrr = $mi;
                     }
                 }
+            }else{
+
+                $mi = Item::find($this->item_id);
+                //$mi = new Item();
+
+                $mi->item_code = $this->item_code;
+                $mi->title = $this->title;
+                //$mi->description = $this->description ;
+                //$mi->image = $this->image ;
+                $mi->unit = $this->unit;
+                if ($mi->save()) {
+                    $this->item_id = $mi->id;
+                    $rrr = $mi;
+                }
+
+
             }
 
         }
@@ -459,10 +475,6 @@ class ItemDetailP
                         }
 
                     }
-
-
-
-
 
                     $ixix++;
                 }
