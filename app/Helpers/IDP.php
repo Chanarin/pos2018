@@ -50,7 +50,7 @@ class IDP
                 $mr = PurchaseDetail::where('ref_id', $this->ref_id);
                 break;
             case _POS_::items:
-                //$itemDeetaill = ItemDetail::where('ref_id', $this->ref_id)->delete();
+                $itemDeetaill = ItemDetail::where('ref_id', $this->ref_id)->delete();
 
                 break;
 
@@ -66,7 +66,6 @@ class IDP
 
         if (count($this->data) > 0) {
             if (is_array($this->data)) {
-                $ixx = 0;
                 foreach ($this->data as $row) {
 
                     $item_code = isset($row['item_code']) ? $row['item_code'] : '';
@@ -107,18 +106,12 @@ class IDP
 
                     //=============================================
                     //=============================================
-                    if($this->type == _POS_::items && $ixx == 0){
-                        ItemDetail::where('ref_id', $this->ref_id)->delete();
-                    }
+
 
                     $itemDetailP = new ItemDetailP($this->type, $item_id, $this->ref_id,
                         $item_id, $item_code,
                         $title, $unit, $num_qty, $qty, $count_qty,
-                        $cost, $price, $discount, $note, $item_detail,null,null,null,$ixx);
-
-
-
-                    $ixx++;
+                        $cost, $price, $discount, $note, $item_detail);
 
 
                 }
@@ -181,14 +174,12 @@ class ItemDetailP
     public $updated_at;
     public $deleted_at;
 
-    public  $is_first;
-
     public function __construct($type = null, $id = null, $ref_id = null,
                                 $item_id = null, $item_code = null,
                                 $title = null, $unit = null, $num_qty = 1, $qty = 0, $count_qty = 0,
                                 $cost = 0, $price = 0, $discount = 0, $note = null,
                                 $item_detail = null, $created_at = null,
-                                $updated_at = null, $deleted_at = null,$is_first = 0)
+                                $updated_at = null, $deleted_at = null)
     {
         $this->unit = $unit;
         $this->num_qty = $num_qty;
@@ -208,8 +199,6 @@ class ItemDetailP
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
         $this->deleted_at = $deleted_at;
-
-        $is_first = $this->is_first;
 
         $this->_init_();
 
