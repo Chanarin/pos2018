@@ -62,7 +62,7 @@ class IDP
                             }else {
 
 
-                                ItemDetail::where('item_id', $roww->item_id)->delete();
+                                //ItemDetail::where('item_id', $roww->item_id)->delete();
                             }
                         }
                     }
