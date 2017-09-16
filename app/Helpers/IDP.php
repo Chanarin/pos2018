@@ -50,7 +50,7 @@ class IDP
                 $mr = PurchaseDetail::where('ref_id', $this->ref_id);
                 break;
             case _POS_::items:
-                $itemDeetaill = ItemDetail::where('ref_id', $this->ref_id)->delete();
+                //$itemDeetaill = ItemDetail::where('ref_id', $this->ref_id)->delete();
 
                 break;
 
