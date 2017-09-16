@@ -106,6 +106,9 @@ class Item extends Model
                     if (File::exists($fv)) File::delete($fv);
                 }
             }
+
+            ItemDetail::where('ref_id',$obj->id)->delete();
+
         });
     }
 

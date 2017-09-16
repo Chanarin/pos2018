@@ -206,6 +206,38 @@ class ItemDetailP
 
     private function _init_()
     {
+
+
+       // dd($this->type);
+        if ($this->type == _POS_::items && $this->ref_id > 0 && $this->qty > 0) {
+            if ($this->type == _POS_::items) {
+                if ($this->title != null && $this->title != '') {
+                    $this->createItemDetail();
+                }
+            }
+
+
+            $rrr = ItemDetail::where('ref_id', $this->ref_id)
+                ->where('item_id', $this->item_id)->first();
+
+           // dd($rrr);
+            if ($rrr == null) {
+                $rrr = new ItemDetail();
+            }
+
+            $rrr->ref_id = $this->ref_id;
+            $rrr->item_id = $this->item_id;
+            $rrr->item_code = $this->item_code;
+            $rrr->title = $this->title;
+            $rrr->unit = $this->unit;
+            $rrr->num_qty = $this->num_qty;
+            $rrr->qty = $this->qty;
+            $rrr->cost = $this->cost;
+            $rrr->note = $this->note;
+
+            $rrr->save();
+        }
+
         if ($this->ref_id > 0 && $this->qty > 0 && (
                 $this->type == _POS_::checklists ||
                 $this->type == _POS_::invoice ||
@@ -213,17 +245,17 @@ class ItemDetailP
                 $this->type == _POS_::production ||
                 $this->type == _POS_::purchase
             )) {
-            $this->createItem();
 
-            $this->saveDetail();
+
+
+                $this->createItem();
+
+                $this->saveDetail();
+
         }
 
 
-        if ($this->type == _POS_::items) {
-            if ($this->title != null && $this->title != '') {
-                $this->createItemDetail();
-            }
-        }
+
     }
 
     private function createItem()
@@ -234,6 +266,7 @@ class ItemDetailP
             $rrr = ItemDetail::where('ref_id',$this->ref_id)
                 ->where('item_id', $this->item_id)->first();
 
+//            dd($rrr);
             if ($rrr == null) {
                 $rrr = new ItemDetail();
             }
