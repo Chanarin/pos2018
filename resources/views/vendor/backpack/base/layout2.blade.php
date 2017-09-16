@@ -167,45 +167,8 @@
 @yield('after_scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
 <script>
-    //    ====================get print file====================
-    function printContent(el) {
-        var restorepage = document.body.innerHTML;
-        var printcontent = document.getElementById(el).innerHTML;
-        document.body.innerHTML = printcontent;
-        window.print();
-        document.body.innerHTML = restorepage;
-    }
 //    ====================select date rang===============
     $(function () {
-        var start = moment().subtract(29, 'days');
-        var end = moment();
-        function cb(start, end) {
-            $('#reservation span').html(start.format('YYYY/MM/DD') + ' - ' + end.format('YYYY/MM/DD'));
-            $('#from-date').val(start.format('YYYY/MM/DD'));
-            $('#to-date').val(end.format('YYYY/MM/DD'));
-        }
-        $('#reservation').daterangepicker({
-            startDate: start,
-            endDate: end,
-            locale: {
-                format: 'YYYY/MM/DD'
-            },
-            ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'This Year': [moment().startOf('year'), moment().endOf('year')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            }
-        }, cb).on('apply.daterangepicker', function (ev, picker) {
-            var st = (picker.startDate.format('YYYY/MM/DD'));
-            var ed = (picker.endDate.format('YYYY/MM/DD'));
-            $('#from-date').val(st);
-            $('#to-date').val(ed);
-        });
-        cb(start, end);
 
 //    ==================== report =====================
 
@@ -214,80 +177,9 @@
             checkboxClass: 'icheckbox_minimal-blue',
             radioClass: 'iradio_minimal-blue'
         });
-//    ====================ajax get report data pagination and search=====================
-        $('#search-report-by-date').on('click', function (e) {
-            e.preventDefault();
-            var report_url = $('.report-option:checked').data('url');
-            var from_date = $('#from-date').val();
-            var to_date = $('#to-date').val();
-            var q = $('#q').val();
-            if (report_url) {
-                $.ajax({
-                    url: report_url,
-                    type: 'GET',
-                    dataType: 'html',
-                    data: {
-                        from_date: from_date,
-                        to_date: to_date,
-                        q:q
-                    },
-                    success: function (d) {
-                        $('.report-item-list').html(d);
-                    },
-                    error: function (d) {
-                        alert('error');
-                    }
-                });
-            } else {
-                swal("អូរ.., មិនមានទិន្នន័យ!", "សូមលោកអ្នក​ ធ្វើការជ្រើសរើសប្រភេទនៃរបាយការណ័<<report>> និងថ្ងៃខែជាមុនសិន.")
-            }
-        });
-        $('body').delegate('.my-paginate ul li a', 'click', function (e) {
-                e.preventDefault();
-                var report_url = $(this).prop('href');
-                $.ajax({
-                    url: report_url,
-                    type: 'GET',
-                    dataType: 'html',
-                    success: function (d) {
-                        $('.report-item-list').html(d);
-                    },
-                    error: function (d) {
-                        alert('error');
-                    }
-                });
-            });
-//    ====================get pdf file====================
-        var specialElementHandlers = {
-            '#editor': function (element,renderer) {
-                return true;
-            }
-        };
-        $('#cmd').click(function () {
-            var doc = new jsPDF();
-            doc.fromHTML($('#report-print').html(), 15, 15, {
-                'width': 1070,'elementHandlers': specialElementHandlers
-            });
-            doc.save('report.pdf');
-        });
     });
-//    ====================get excel file====================
-    $(document).ready(function() {
-        $("#btnExport").click(function(e) {
-            e.preventDefault();
 
-            //getting data from our table
-            var data_type = 'data:application/vnd.ms-excel';
-            var table_div = document.getElementById('report-print');
-            var table_html = table_div.outerHTML.replace(/ /g, '%20');
-
-            var a = document.createElement('a');
-            a.href = data_type + ', ' + table_html;
-            a.download = 'exported_table_' + Math.floor((Math.random() * 9999999) + 1000000) + '.xls';
-            a.click();
-        });
-    });
-    //        ===================add class toggle by window media==================
+//        ===================add class toggle by window media==================
     (function($) {
         var $window = $(window),
             $html = $('#add-class-sidbar-toggle');

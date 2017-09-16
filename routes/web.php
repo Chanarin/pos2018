@@ -31,9 +31,16 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin']
     Route::patch('user/change-pass','AdminUserCrudController@changePassSave');
 
 
+    CRUD::resource('exchangerate', 'ExchangeRateCrudController');
+
     CRUD::resource('adminuser', 'AdminUserCrudController');
+
     CRUD::resource('checklist', 'ChecklistCrudController');
     CRUD::resource('customer', 'CustomerCrudController');
+    Route::get('customer-history', 'CustomerCrudController@cutomerOrderHistory');
+
+
+
     CRUD::resource('invoice', 'InvoiceCrudController');
     CRUD::resource('itemcategory', 'ItemCategoryCrudController');
 

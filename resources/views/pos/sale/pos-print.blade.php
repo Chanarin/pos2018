@@ -11,8 +11,6 @@
     <link href="https://fonts.googleapis.com/css?family=Hanuman|Moul" rel="stylesheet">
 </head>
 <body>
-
-
 <table width="100%">
     <tr>
         <td>
@@ -29,41 +27,27 @@
             <table width="100%" style="font-family: 'Hanuman', serif; font-size: 12px;">
                 <tr>
                     <td>
-                        <table style="width: 100%; margin-bottom: 10px; margin-top: 10px;">
+                        <table style="width: 100%;">
                             <tbody style="font-size: 14px;">
                             <tr style="text-align:center;">
                                 <td style="vertical-align:middle;text-align:left; padding-left:10px;">
-                                    <span><b>លេខ​វិ​ក័​យ​ប័ត្រ</b></span>
+                                    <span><b>{{_t('Invoice No')}}</b></span>
                                     : {{$row->invoice_number}}
                                 </td>
-                                <td style="vertical-align:middle;text-align:left;"><span><b>ថ្ងៃទី</b></span> :
+                                <td style="vertical-align:middle;text-align:left;"><span><b>{{_t('Invoice Due')}}</b></span> :
                                     {{$row->_date_}}
                                 </td>
                             </tr>
-
                             <tr style="text-align:center;">
-                                <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>អតិថិជន</b></span>
+                                <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>{{_t('Customer Name')}}</b></span>
                                     : {{$row->name}}
-                                </td>
-                                <td style="vertical-align:middle;text-align:left;"><span><b>ប្រាក់កក់</b></span>
-                                    : {{$row->deposit}}
-                                </td>
-                            </tr>
-
-                            <tr style="text-align:center;">
-                                <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>ថ្ងៃបញ្ចប់</b></span>
-                                    : {{$row->complete_date}}
-                                </td>
-                                <td style="vertical-align:middle;text-align:left;"><span><b>តម្លៃពេញ</b></span> :
-                                    $ {{number_format($row->complete_price,2)}}
+                                <td style="vertical-align:middle;text-align:left;"><span><b>{{_t('Exchange Rate')}}</b></span>
+                                    : $1 = {{$row->exchange_rate}} ៛
                                 </td>
                             </tr>
                             <tr style="text-align:center;">
-                                <td style="vertical-align:middle;text-align:left; padding-left:10px;">
-                                    <span><b>ស្ថានភាព</b></span> : {{$row->status}}
-                                </td>
-                                <td style="vertical-align:middle;text-align:left;"><span><b>ពិពណ៌នា</b></span> :
-                                    {{$row->description}}
+                                <td style="vertical-align:middle;text-align:left;padding-left:10px;"><span><b>{{_t('Note')}}</b></span> :
+                                    {{$row->payment_note}}
                                 </td>
                             </tr>
                             </tbody>
@@ -72,17 +56,16 @@
                 </tr>
                 <tr>
                     <td>
-
                         <table border="1" class="table-condensed receipt no_border_btm" style="width:100%;border-collapse: collapse;">
                             <thead>
                             <tr style="font-size:14px;height: 30px;">
-                                <th>ល.រ</th>
-                                <th>កូដ</th>
-                                <th class="text-center">ទំនិញ</th>
-                                <th class="text-center">ឯកតា</th>
-                                <th class="text-center">ចំនួន</th>
-                                <th class="text-center">តំលៃ</th>
-                                <th class="text-center">សរុប</th>
+                                <th class="text-center">{{_t('No')}}</th>
+                                <th class="text-center">{{_t('Code')}}</th>
+                                <th class="text-center">{{_t('Name')}}</th>
+                                <th class="text-center">{{_t('Unit')}}</th>
+                                <th class="text-center">{{_t('Qty')}}</th>
+                                <th class="text-center">{{_t('Cost')}}</th>
+                                <th class="text-center">{{_t('Total')}}</th>
                             </tr>
                             </thead>
                             <tbody style="font-size: 12px;">
@@ -90,8 +73,6 @@
                                 $rowds = \App\Models\InvoiceDetail::where('ref_id',$id)
                                     ->join('items','items.id','=','invoice_detail.item_id')
                                     ->get();
-
-                                //dd($rowds);
                             @endphp
                             @foreach($rowds as $rd)
                                 @php
@@ -134,49 +115,52 @@
                 <tr>
                     <td>
                         <table style="width: 100%; margin-top: 5px;">
-                            @php
-                            $riel = ($row->paid_kh)/($row->paid);
-                            @endphp
                             <tbody>
-                            <tr>
-                                <td width="60%"></td>
-                                <td style="text-align:right;">សរុប</td>
-                                <td style="text-align:right;">$ {{number_format($row->total_amt,2)}}</td>
-                                <td style="text-align:right;">{{number_format(($row->total_amt)*$riel,2)}} ៛</td>
-                            </tr>
-                            {{--<tr>--}}
-                                {{--<td width="60%"></td>--}}
-                                {{--<td style="text-align:right;">បញ្ចុះតំលៃ</td>--}}
-                                {{--<td style="text-align:right;">$ {{number_format($row->total_discount,2)}}</td>--}}
-                                {{--<td style="text-align:right;">{{number_format($row->total_discount,2)}} ៛</td>--}}
-                            {{--</tr>--}}
-                            <tr>
-                                <td width="60%"></td>
-                                <td style="text-align:right;">បញ្ចុះតំលៃ</td>
-                                <td style="text-align:right;">$ {{number_format($row->total_amt-$row->total_payable,2)}}</td>
-                                <td style="text-align:right;">{{number_format(($row->total_amt-$row->total_payable)*$riel,2)}} ៛</td>
-                            </tr>
-                            <tr>
-                                <td width="60%"></td>
-                                <td style="text-align:right;">សរុបចុងក្រោយ</td>
-                                <td style="text-align:right;">$ {{number_format($row->total_payable,2)}}</td>
-                                <td style="text-align:right;">{{number_format(($row->total_payable)*$riel,2)}} ៛</td>
-                            </tr>
-                            <tr>
-                                <td width="60%"></td>
-                                <td style="text-align:right;">លុយបង់</td>
-                                <td style="text-align:right;">$ {{number_format($row->paid,2)}}</td>
-                                <td style="text-align:right;">{{number_format($row->paid_kh,2)}} ​​៛</td>
-                            </tr>
-                            <tr>
-                                <td width="60%"></td>
-                                <td style="text-align:right;">លុយអាប់</td>
-                                <td style="text-align:right;">$ {{number_format($row->paid-$row->total_payable,2)}}</td>
-                                <td style="text-align:right;">{{number_format(($row->paid-$row->total_payable)*$riel,2)}}​ ៛</td>
-                            </tr>
-
+                                <tr>
+                                    <td width="60%"></td>
+                                    <td style="text-align:right;">{{_t('Total')}}</td>
+                                    <td style="text-align:right;">$ {{number_format($row->total_amt,2)}}</td>
+                                    <td style="text-align:right;">{{number_format(($row->total_amt)*$row->exchange_rate,2)}} ៛</td>
+                                </tr>
+                                <tr>
+                                    <td width="60%"></td>
+                                    <td style="text-align:right;">{{_t('Total Discount')}}</td>
+                                    <td style="text-align:right;">$ {{number_format($row->total_discount,2)}}</td>
+                                    <td style="text-align:right;">{{number_format(($row->total_discount)*$row->exchange_rate,2)}} ៛</td>
+                                </tr>
+                                <tr>
+                                    <td width="60%"></td>
+                                    <td style="text-align:right;">{{_t('Grand Total')}}</td>
+                                    <td style="text-align:right;">$ {{number_format($row->total_payable,2)}}</td>
+                                    <td style="text-align:right;">{{number_format(($row->total_payable)*$row->exchange_rate,2)}} ៛</td>
+                                </tr>
+                                <tr>
+                                    <td width="60%"></td>
+                                    <td style="text-align:right;">{{_t('Total Paid')}}</td>
+                                    <td style="text-align:right;">$ {{number_format($row->paid+($row->paid_kh/$row->exchange_rate),2)}}</td>
+                                    <td style="text-align:right;">{{number_format(($row->paid+($row->paid_kh/$row->exchange_rate))*$row->exchange_rate,2)}} ​​៛</td>
+                                </tr>
+                                <tr>
+                                    <td width="60%"></td>
+                                    <td style="text-align:right;">{{_t('Remaining')}}</td>
+                                    <td style="text-align:right;">$ {{number_format(($row->paid+($row->paid_kh/$row->exchange_rate))-$row->total_payable,2)}}</td>
+                                    <td style="text-align:right;">{{number_format((($row->paid+($row->paid_kh/$row->exchange_rate))-$row->total_payable)*$row->exchange_rate,2)}}​ ៛</td>
+                                </tr>
                             </tbody>
                         </table>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <table width="100%"​​>
+                <tr style="text-align:center;">
+                    <td style="vertical-align:top;text-align:center; width: 50%">
+                        <p>......................................</p>
+                        <p>{{_t('Buyer')}}</p>
+                    </td>
+                    <td style="vertical-align:top;text-align:center; width: 50%">
+                        <p>......................................</p>
+                        <p>{{_t('Seller')}}</p>
                     </td>
                 </tr>
             </table>
@@ -184,53 +168,8 @@
     @endif
 @endif
 <script>
-    //        ==============print invoice
     window.print();
-
     window.setTimeout(' window.history.back()',500);
-
-//    $(function () {
-//        $("#print-invoice").click(function () {
-//
-//            // $('#search-by-date').trigger('click');
-//
-//            var contents = $(".print-invoice").html();
-//            var frame1 = $('<iframe />');
-//            frame1[0].name = "frame1";
-//            frame1.css({"position": "absolute", "top": "-1000000px"});
-//            $("body").append(frame1);
-//            var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
-//            frameDoc.document.open();
-//            //Create a new HTML document.
-//            frameDoc.document.write('<html><head><title>Print Report</title>');
-//
-//            frameDoc.document.write('<style> .txt{font-family: \'Hanuman\', serif; font-size: 12px; padding-top: 5px; padding-bottom: 0px; } \n' +
-//                '    table{\n' +
-//                '        border-collapse: collapse;\n' +
-//                '    }\n' +
-//                '    .border th, .border td {\n' +
-//                '        border: 1px solid rgba(188, 188, 188, 0.96);\n' +
-//                '        padding: 5px;\n' +
-//                '    }\n' +
-//                '</style>' +
-//                '<link href="https://fonts.googleapis.com/css?family=Hanuman|Moul" rel="stylesheet">');
-//
-//            frameDoc.document.write('</head><body>');
-//            //Append the external CSS file.
-//
-////                frameDoc.document.write('<link href="style.css" rel="stylesheet" type="text/css" />');
-//            //Append the DIV contents.
-//            frameDoc.document.write(contents);
-//            frameDoc.document.write('</body></html>');
-//            frameDoc.document.close();
-//            setTimeout(function () {
-//                window.frames["frame1"].focus();
-//                window.frames["frame1"].print();
-//                frame1.remove();
-//            }, 500);
-//        });
-//    });
-
 </script>
 </body>
 </html>

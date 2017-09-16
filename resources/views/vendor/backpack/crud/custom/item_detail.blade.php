@@ -145,7 +145,6 @@
         function dd(o) {
             console.log(o);
         }
-
         var delay = (function(){
             var timer = 0;
             return function(callback, ms){
@@ -156,11 +155,7 @@
 
     </script>
     <script>
-
-
         var page = 1;
-
-        //$('.item_id-main-id')
         function getAllItemId(ob) {
             var id = [];
             ob.each(function () {
@@ -171,19 +166,15 @@
             });
             return id;
         }
-
         function addRowItemWithData(data,ob) {
                 var c_c = 0;
-
                 ob.each(function () {
                     if($(this).data('mainid') != 'uid-xxxx-uid-xxxx') {
                         var item_id = $(this).val();
                         var tr = $(this).parent().parent();
                         var item_code = tr.find('.item_code{{$r_id}}').val();
                         var title = tr.find('.title{{$r_id}}').val();
-
                         if (item_id > 0) {
-
                         } else if (item_code == '' && title == '') {
                             $(this).html('<option selected value="' + data.id + '">' + data.title + '</option>');
                             runSelect2{{$r_id}}($(this));
@@ -193,7 +184,6 @@
                             tr.find('.num_qty{{$r_id}}').val(data.num_qty);
                             tr.find('.price{{$r_id}}').val(data.price);
                             c_c++;
-
                             var subid = $(this).data('subid');
                             var mainid = $(this).data('mainid');
                             if ($('#' + subid).is(":last-child")) {
@@ -201,30 +191,23 @@
                                     addRowMain(null);
                                 }
                             }
-
                             return false;
                         }
                     }
-
                 });
-
                 if (c_c == 0) {
                     dd('no');
                 }
             $('input[type=number],[number]').ForceNumericOnly();
-
         }
-
         function loadItemSearch(p,arrItemID) {
             var q = $('.search-item-to-show-txt').val();
+
             $('.load-search-item-list').html('');
             $('.load-search-item-list').load('{{ url('api/item-search') }}',{page:p,q:q,arr_item_id:arrItemID});
 
             $('input[type=number],[number]').ForceNumericOnly();
         }
-
-
-
         jQuery(document).ready(function() {
 
             $('body').delegate('[number]','keydown',function(e){
@@ -269,7 +252,7 @@
                 var arrItemID = getAllItemId($('.item_id-main-id'));
                 loadItemSearch(page,arrItemID);
             });
-
+//===============item search modal pop up=================
             $('.search-item-to-show-txt').on('keyup',function (e) {
                 delay(function(){
                     var arrItemID = getAllItemId($('.item_id-main-id'));
@@ -302,8 +285,6 @@
 
 
         });
-
-
     </script>
     <script>
         String.prototype.replaceAll = function(search, replacement) {
@@ -410,10 +391,6 @@
 
         }
 
-        /*        String.prototype.replaceAll = function(search, replacement) {
-                    var target = this;
-                    return target.split(search).join(replacement);
-                };*/
         function getUniqIDRan() {
             var uid = Math.floor(new Date().valueOf() * Math.random());
             uid += '8' + Math.floor(new Date().valueOf() * Math.random());
@@ -524,8 +501,7 @@
             $('#'+subid).find('.tbody-original-row-sub').append(row);
             $('.qty,.price,.discount,.cost').ForceNumericOnly();
         }
-        
-        
+
         function c() {
             $('.row-tr-main').each(function () {
                 var subid = $(this).data('subid');

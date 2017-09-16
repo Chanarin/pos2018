@@ -1,134 +1,111 @@
+<style>
+    .border th, .border td {
+        border: 1px solid rgba(188, 188, 188, 0.96);
+        padding: 5px;
+    }
+</style>
+<div style="margin-bottom: 10px;">
+    <img src="{{asset('/pos/img/logo.jpg')}}" height="60" style="margin-bottom: 20px; margin-top: 20px;">
+    <h3 align="center" style="margin-top: -50px;">PRODUCTION LIST REPORT</h3>
+    @if($report_option == 'between')
+
+        <h4 align="center" style=" margin-top: 0px; ">Form Date
+            <b>{{\Carbon\Carbon::parse($from_date)->format('d/m/Y') }}</b> To Date
+            <b> {{\Carbon\Carbon::parse($to_date)->format('d/m/Y') }}</b></h4>
+    @else
+        <h4 align="center" style=" margin-top: 0px; ">Date <b>{{\Carbon\Carbon::parse($to_date)->format('d/m/Y') }}</b>
+        </h4>
+    @endif
+    {{--<h4 align="center" style=" margin-top: 0; ">Date {{Carbon\Carbon::now()->format('d/m/Y') }}</h4>--}}
+    <h5 style="margin-top: -30px; padding-left: 15px;">Tel : 012 669 175 /012 864 213</h5>
+    <h5 style="margin-top: -5px; padding-left: 37px;"> : 016 669 175 /010 864 213 /010 979 960</h5>
+</div>
 @if(count($rows) > 0)
-<div id="report-print">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 10px; margin-top: 10px;">
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 " style="text-align: center;">
-            <img src="{{asset('/pos/img/logo.jpg')}}" width="90" height="90" alt="">
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="text-align: center;">
-            <span style="font-size: 24px;"><b>POS SHOP REPORT</b></span><br>
-            <span style="font-size: 18px;"><b>PURCHASE ITEM LIST</b></span>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+    <table class="" style="width: 100%">
 
-        </div>
-    </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <table class="table table-bordered" style="width: 100%;">
-            <thead>
-            <tr style="font-size: 14px;">
-                <th class="text-center" style="width: 20px">#</th>
-                <th class="text-center">Purchase Number</th>
-                <th class="text-center">Date</th>
-                <th class="text-center">Customer Name</th>
-                <th class="text-center">Reference</th>
-                <th class="text-center">Description</th>
-                <th style="width: 20px"></th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($rows as $row)
-                <tr style="font-size: 12px;">
-                    <td>{{$k++}}.</td>
-                    <td>{{$row->purchase_number}}</td>
-                    <td>{{$row->_date_}}</td>
-                    <td>{{$row->customer->name}}</td>
-                    <td>{{$row->ref}}</td>
-                    <td>{{$row->description}}</td>
-                    <td><button type="button" data-toggle="modal" data-target="#popUpItemDetail{{$row->id}}"><i class="fa fa-eye">
-                            </i>
-                        </button>
-                    </td>
-                </tr>
+        <thead class="border">
+        <tr style="background: #CCCCCC; height: 30px;">
+            <th class="text-center">No</th>
+            <th class="text-center">Customer</th>
+            <th class="text-center">Purchase No</th>
+            <th class="text-center">Date</th>
+            <th style="text-align: center !important;">Description</th>
+            <th style="text-align: center !important;">Total Qty</th>
+            <th style="text-align: center !important;">Total Cost</th>
+
+        </tr>
+        </thead>
+
+        <tbody class="border">
+        @php
+            $count = 1;
+            $total_all_qty = 0;
+            $total_all_cost = 0;
+        @endphp
+
+        @foreach($rows as $row)
+            @php
+                $total_qty = 0;
+                $total_cost = 0;
+               $purchase_details = \App\Models\PurchaseDetail::where('ref_id','=',$row->id)->get();
+            @endphp
+            @foreach($purchase_details as $purchase_detail)
+                @php
+                    $total_qty+= ($purchase_detail->qty);
+                    $total_cost+= ($purchase_detail->cost);
+
+                    $total_all_qty+= ($purchase_detail->qty);
+                    $total_all_cost+= ($purchase_detail->cost);
+                @endphp
             @endforeach
-            </tbody>
-        </table>
+            <tr style="height: 30px ;   @if($loop->index % 2 > 0) background-color: #f1f1f1; @endif">
+                <td class="text-left">{{ (($rows->currentPage()-1)*$rows->perPage())+$count++ }}</td>
+                <td>{{$row->customer->name }}</td>
+                <td>{{$row->purchase_number }}</td>
+                <td>{{\Carbon\Carbon::parse($row->_date_)->format('d/m/Y') }}</td>
+                <td>{{$row->description}}</td>
+                <td>{{number_format($total_qty)}} @if($total_qty > 1) Units  @else Unit @endif</td>
+                <td>$ {{number_format($total_cost,2)}}</td>
+            </tr>
+        @endforeach
+        </tbody>
+
+        <tfoot>
+        <tr style="height: 30px;">
+            <td colspan="5" style="text-align: right;">Total:</td>
+            <td style="padding-left: 15px;">{{$total_all_qty}} @if($total_all_qty > 1) Units  @else Unit @endif </td>
+            <td style="padding-left: 15px;">$ {{number_format($total_all_cost,2)}} </td>
+        </tr>
+        <tr>
+            <td colspan="9">
+                <table width="100%" style="margin-top: 30px;">
+                    <tr>
+
+                        <td width="33%" style="text-align: center">
+                            Checked By: <br><br><br>
+                            Name: .................................<br><br>
+                            Date: _____/_____/_____
+                        </td>
+                        <td width="33%" style="text-align: center"></td>
+                        <td width="33%" style="text-align: center">
+                            Reported By <br><br><br>
+                            Name: .................................<br><br>
+                            Date: _____/_____/_____
+                        </td>
+
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+    <div align="center" class="my-paginate" >
+        {!! $rows->links() !!}
     </div>
-</div>
-
-
-@foreach($rows as $row)
-    <div class="modal fade" id="popUpItemDetail{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="popUpItemDetail{{$row->id}}" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-2x">×</i></span><span class="sr-only">Close</span></button>
-                    <div class="col-md-12">
-                        <div class="col-md-6">
-                            <h4 class="modal-title" id="mModalLabel">PURCHASE ITEM DETAIL</h4>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="" onclick="printContent('print-report-detail')">PRINT</button>
-                        </div>
-                        <div class="col-md-3"></div>
-                    </div>
-                </div>
-                <div class="col-md-12" id="print-report-detail">
-                    <div style="font-size:11px;">
-                        <table style="width: 100%; margin-bottom: 10px; margin-top: 10px;">
-                            <tbody style="font-size: 14px;">
-                            <tr style="text-align:center;">
-                                <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Number</b></span> : {{$row->purchase_number}}</td>
-                                <td style="vertical-align:middle;text-align:left;"><span><b>Open Date</b></span> : {{$row->_date_}}</td>
-                            </tr>
-                            <tr style="text-align:center;">
-                                <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Customer Name</b></span> : {{$row->customer->name}}</td>
-                                <td style="vertical-align:middle;text-align:left;"><span><b>Reference</b></span> : {{$row->ref}}</td>
-                            </tr>
-                            <tr style="text-align:center;">
-                                <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Description</b></span> : {{$row->description}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <table class="table-condensed receipt" style="width:100%;">
-                        <thead>
-                        <tr style="border:1px dotted black !important; font-size:14px;">
-                            <th>No</th>
-                            <th>Code</th>
-                            <th class="text-center">Title</th>
-                            <th class="text-center">Unit</th>
-                            <th class="text-center">Qty</th>
-                            <th class="text-center">Cost</th>
-                            <th class="text-center">Note</th>
-                        </tr>
-                        </thead>
-                        <tbody style=" font-size: 12px;">
-                        @php
-                            $key = 1;
-                            $purchase_details = \App\Models\PurchaseDetail::where('ref_id','=',$row->id)->get();
-                        @endphp
-                        @foreach($purchase_details as $purchase_detail)
-
-                            @php
-                                $item_field = \App\Models\Item::find($purchase_detail->item_id);
-                            @endphp
-                            <tr class="item">
-                                <td class="text-left">{{$key++}}</td>
-                                <td class="text-left">{{$purchase_detail->item_code}}</td>
-                                <td class="text-left">{{$item_field->title}}</td>
-                                <td class="text-left">{{$item_field->unit}}</td>
-                                <td class="text-right">{{number_format($purchase_detail->qty)}}</td>
-                                <td class="text-right">$ {{number_format($purchase_detail->cost)}}</td>
-                                <td class="text-left">{{$purchase_detail->note}}</td>
-                            </tr>
-                        @endforeach
-
-                        </tbody>
-
-                    </table>
-                </div>
-                <div class="modal-footer">
-
-                </div>
-            </div>
-        </div>
-    </div>
-@endforeach
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my-paginate" align="center">
-    {!! $rows->links() !!}
-</div>
 @else
     <h2 align="center">Not Record Found</h2>
 
 @endif
+
+
+

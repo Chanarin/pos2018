@@ -25,57 +25,36 @@
                 <input type="hidden" name="description" value="">
                 {{--<input type="hidden" name="invoice_number" value="-1">--}}
                 <input type="hidden" name="is_pos" value="1">
-            <div id="left-panel" style="border-right:1px solid #cccccc; overflow: hidden; hight:auto; position: absolute;" >
+                <div id="left-panel" style="border-right:1px solid #cccccc; overflow: hidden; hight:auto; position: absolute;" >
 
-                <div id="left-top">
-                    <div class="col-md-12" style="padding-left:0;">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <style>
-                                    .select2-container .select2-selection--single {
-                                        height: 34px !important;
-                                    }
-                                </style>
-                                <div class="">
-
-                                    <select name="customer_id" class="form-control select2 customer_id" style="width: 100%;">
-                                        @php
-                                         $custs = \App\Models\Customer::all();
-                                        @endphp
-                                        @foreach($custs as $rc)
-                                            <option  value="{{$rc->id}}">{{$rc->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="input-group-addon no-print" style="padding: 2px 5px; border-left: 0;">
-                                    <a href="#"  data-toggle="modal" data-target="#viewCustomerModal" id="view-customer" class="external">
-                                        <i class="fa fa-2x fa-user" id="addIcon"></i>
-                                    </a>
-                                </div>
-                                <div class="input-group-addon no-print" style="padding: 2px 5px;">
-                                    <a href="#"  data-toggle="modal" data-target="#addCustomerModal" id="add-customer" class="external">
-                                        <i class="fa fa-2x fa-plus-circle" id="addIcon"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div style="clear:both;"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-12" style="padding:0;">
-                        <div class="no-print">
-                            <div class="form-group" id="ui">
+                    <div id="left-top">
+                        <div class="col-md-12" style="padding-left:0;">
+                            <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" name="s_code_item" value="" class="form-control pos-tip ui-autocomplete-input"
-                                           id="add_item" data-placement="top" data-trigger="focus"
-                                           placeholder="{{_t('Search product by code')}}" title="Please start typing code/name for suggestions" autocomplete="off">
-                                    <div class="input-group-addon" style="padding: 2px 5px;">
-                                        <a href="#" class="search_details">
-                                            <i class="fa fa-2x fa-search" id="addIcon"></i>
+                                    <style>
+                                        .select2-container .select2-selection--single {
+                                            height: 34px !important;
+                                        }
+                                    </style>
+                                    <div class="">
+
+                                        <select name="customer_id" class="form-control select2 customer_id" style="width: 100%;">
+                                            @php
+                                             $custs = \App\Models\Customer::all();
+                                            @endphp
+                                            @foreach($custs as $rc)
+                                                <option  value="{{$rc->id}}">{{$rc->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="input-group-addon no-print" style="padding: 2px 5px; border-left: 0;">
+                                        <a href="#"  data-toggle="modal" data-target="#viewCustomerModal" id="view-customer" class="external">
+                                            <i class="fa fa-2x fa-user" id="addIcon"></i>
                                         </a>
                                     </div>
-                                    <div class="input-group-addon" style="padding: 2px 5px;">
-                                        <a href="#" id="addManually" data-toggle="modal" data-target="#searchProductFilterDetail">
+                                    <div class="input-group-addon no-print" style="padding: 2px 5px;">
+                                        <a href="#"  data-toggle="modal" data-target="#addCustomerModal" id="add-customer" class="external">
                                             <i class="fa fa-2x fa-plus-circle" id="addIcon"></i>
                                         </a>
                                     </div>
@@ -83,123 +62,145 @@
                                 <div style="clear:both;"></div>
                             </div>
                         </div>
-                    </div>
-                    <div style="clear:both;"></div>
-                </div>
-
-                <div class="col-md-12 col-sm-12 panel-height left-middle">
-                    <div class="tbl-header">
-                        <table class="table table-action">
-                            <thead style="width:100%;">
-                                <tr>
-                                    <th style="width:15%;">{{_t('Code')}}</th>
-                                    <th style="width:30%;">{{_t('Name')}}</th>
-                                    <th class="hidden" style="width:10%;">{{_t('Num.QTY')}}</th>
-                                    <th style="width:10%;">{{_t('Qty')}}</th>
-                                    <th style="width:20%;">{{_t('Price')}}</th>
-                                    <th style="width:20%;">{{_t('Total')}}</th>
-                                    <th style="width: 10%;"></th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                    <div class="table-show-pro">
-                        <table style="width:100%;" class="show-order-item" >
-    {{--==============================item add ===============--}}
-                        </table>
-                    </div>
-                </div>
-
-                <div id="left-bottom">
-                    <div class="col-md-12 col-sm-12 checkout_amount">
-                        <table id="totalTable" style="width:100%; float:right; padding:5px; color:#000; background: #FFF;">
-                            <tbody>
-                            <tr>
-                                <td style="padding: 5px 10px; font-size: 16px;">{{_t('Items')}} <span style="padding: 5px 10px; font-size: 16px; font-weight:bold;" id="titems" class="item_count">0</span></td>
-
-                                @php
-                                    $exchanges = \App\Models\ExchangeRate::orderBy('id','desc')->limit(1)->first();
-                                @endphp
-                                    <td class="text-right">
-                                        {{_t('Rate')}} <span style="padding: 5px 10px;font-size: 16px; font-weight:bold;" class="exchange_rate">{{number_format($exchanges->kh)}}  ៛</span>
-                                    </td>
-
-
-                                <td style="padding: 5px 10px; font-size: 16px;">{{_t('Total')}}</td>
-                                <td class="text-right" style="padding: 5px 10px;font-size: 16px; font-weight:bold;">
-                                    <span id="total" class="p-total">($ 0.00)</span>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                {{--<td style="padding: 5px 10px; font-size: 16px;">Order Tax--}}
-                                {{--<a href="#" id="pptax2" data-toggle="modal" data-target="#taxModal">--}}
-                                {{--<i class="fa fa-edit"></i>--}}
-                                {{--</a>--}}
-                                {{--</td>--}}
-                                {{--<td class="text-right" style="padding: 5px 10px;font-size: 16px; font-weight:bold;">--}}
-                                {{--<span id="ttax2">(0)0.00</span>--}}
-                                {{--</td>--}}
-
-                                <td style="padding: 5px 10px; font-size: 16px;">{{_t('Discount')}}
-                                    <a href="#" id="ppdiscount" data-toggle="modal" data-target="#discountModal">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                </td>
-
-                                <td class="text-right" style="padding: 5px 10px; font-size: 16px; font-weight:bold;">
-                                    <span class="total-discount-show">($ 0.00)</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 5px 10px; border-top: 1px solid #666; font-size: 20px; font-weight:bold; background:#333; color:#FFF;" colspan="2">
-                                    {{_t('Total Payable')}}
-                                </td>
-                                <td class="text-right" style="padding:5px 10px 5px 10px; font-size: 16px; border-top: 1px solid #666; font-weight:bold; background:#333; color:#FFF;" colspan="2">
-                                    <span style="float:left" class="grand_total_kh">(0.00 ៛)</span>
-                                    <span class="grand_total">($ 0.00)</span>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class="clearfix"></div>
-                        <div id="botbuttons" style="text-align:center;">
-                            <div class="btn-group btn-group-justified">
-                                <div class="btn-group">
-                                    <div class="btn-group btn-group-justified">
-                                        <div class="btn-group">
-                                            <button data-toggle="modal" data-target="#cancelModal" type="button" title="Cancel Order - F4" style="height:68px; border-radius: 0% !important;" class="btn btn-danger" id="reset">
-                                                <i class="fa fa-remove"></i> {{_t('Cancel')}}</button>
+                        <div class="col-md-12" style="padding:0;">
+                            <div class="no-print">
+                                <div class="form-group" id="ui">
+                                    <div class="input-group">
+                                        <input type="text" name="s_code_item" value="" class="form-control pos-tip ui-autocomplete-input"
+                                               id="add_item" data-placement="top" data-trigger="focus"
+                                               placeholder="{{_t('Search product by code')}}" title="Please start typing code/name for suggestions" autocomplete="off">
+                                        <div class="input-group-addon" style="padding: 2px 5px;">
+                                            <a href="#" class="search_details">
+                                                <i class="fa fa-2x fa-search" id="addIcon"></i>
+                                            </a>
+                                        </div>
+                                        <div class="input-group-addon" style="padding: 2px 5px;">
+                                            <a href="#" id="addManually" data-toggle="modal" data-target="#searchProductFilterDetail">
+                                                <i class="fa fa-2x fa-plus-circle" id="addIcon"></i>
+                                            </a>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="btn-group">
-                                    <div class="btn-group btn-group-justified">
-                                        <div class="btn-group">
-                                            <button type="button" title="Print Order - F9" style="border-radius: 0% !important;" class="btn btn-primary" id="print_order">
-                                                <i class="fa fa-print"></i> {{_t('Print Order')}}
-                                            </button>
-                                            <button type="button" title="Print Bill - F3" class="btn btn-primary" id="print_bill" style="margin-left: 0 !important; border-radius: 0% !important;">
-                                                <i class="fa fa-print"></i> {{_t('Print Bill')}}
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="btn-group">
-                                    <button type="button" data-toggle="modal" data-target="#postPaidModal" style="height:68px; border-radius: 0% !important;" class="btn btn-success" id="payment">
-                                        <i class="fa fa-money"></i> {{_t('Payment')}}
-                                    </button>
+                                    <div style="clear:both;"></div>
                                 </div>
                             </div>
                         </div>
-                        <div style="clear:both; height:5px;"></div>
+                        <div style="clear:both;"></div>
+                    </div>
+
+                    <div class="col-md-12 col-sm-12 panel-height left-middle">
+                        <div class="tbl-header">
+                            <table class="table table-action">
+                                <thead style="width:100%;">
+                                    <tr>
+                                        <th style="width:15%;">{{_t('Code')}}</th>
+                                        <th style="width:30%;">{{_t('Name')}}</th>
+                                        <th class="hidden" style="width:10%;">{{_t('Num.QTY')}}</th>
+                                        <th style="width:10%;">{{_t('Qty')}}</th>
+                                        <th style="width:20%;">{{_t('Price')}}</th>
+                                        <th style="width:20%;">{{_t('Total')}}</th>
+                                        <th style="width: 10%;"></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="table-show-pro">
+                            <table style="width:100%;" class="show-order-item" >
+        {{--==============================item add ===============--}}
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="left-bottom">
+                        <div class="col-md-12 col-sm-12 checkout_amount">
+                            <table id="totalTable" style="width:100%; float:right; padding:5px; color:#000; background: #FFF;">
+                                <tbody>
+                                <tr>
+                                    <td style="padding: 5px 10px; font-size: 16px;">{{_t('Items')}} <span style="padding: 5px 10px; font-size: 16px; font-weight:bold;" id="titems" class="item_count">0</span></td>
+
+                                    @php
+                                        $exchanges = \App\Models\ExchangeRate::orderBy('id','desc')->limit(1)->first();
+                                    @endphp
+                                        <td class="text-right">
+                                            {{_t('Rate')}} <span style="padding: 5px 10px;font-size: 16px; font-weight:bold;" class="exchange_rate">{{number_format($exchanges->kh)}}  ៛</span>
+                                            <input type="text" class="hidden" name="exchange_rate" value="{{$exchanges->kh}}">
+                                        </td>
+
+
+                                    <td style="padding: 5px 10px; font-size: 16px;">{{_t('Total')}}</td>
+                                    <td class="text-right" style="padding: 5px 10px;font-size: 16px; font-weight:bold;">
+                                        <span id="total" class="p-total">($ 0.00)</span>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    {{--<td style="padding: 5px 10px; font-size: 16px;">Order Tax--}}
+                                    {{--<a href="#" id="pptax2" data-toggle="modal" data-target="#taxModal">--}}
+                                    {{--<i class="fa fa-edit"></i>--}}
+                                    {{--</a>--}}
+                                    {{--</td>--}}
+                                    {{--<td class="text-right" style="padding: 5px 10px;font-size: 16px; font-weight:bold;">--}}
+                                    {{--<span id="ttax2">(0)0.00</span>--}}
+                                    {{--</td>--}}
+
+                                    <td style="padding: 5px 10px; font-size: 16px;">{{_t('Discount')}}
+                                        <a href="#" id="ppdiscount" data-toggle="modal" data-target="#discountModal">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </td>
+
+                                    <td class="text-right" style="padding: 5px 10px; font-size: 16px; font-weight:bold;">
+                                        <span class="total-discount-show">($ 0.00)</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 10px; border-top: 1px solid #666; font-size: 20px; font-weight:bold; background:#333; color:#FFF;" colspan="2">
+                                        {{_t('Total Payable')}}
+                                    </td>
+                                    <td class="text-right" style="padding:5px 10px 5px 10px; font-size: 16px; border-top: 1px solid #666; font-weight:bold; background:#333; color:#FFF;" colspan="2">
+                                        <span style="float:left" class="grand_total_kh">(0.00 ៛)</span>
+                                        <span class="grand_total">($ 0.00)</span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="clearfix"></div>
+                            <div id="botbuttons" style="text-align:center;">
+                                <div class="btn-group btn-group-justified">
+                                    <div class="btn-group">
+                                        <div class="btn-group btn-group-justified">
+                                            <div class="btn-group">
+                                                <button data-toggle="modal" data-target="#cancelModal" type="button" title="Cancel Order - F4" style="height:68px; border-radius: 0% !important;" class="btn btn-danger" id="reset">
+                                                    <i class="fa fa-remove"></i> {{_t('Cancel')}}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="btn-group">
+                                        <div class="btn-group btn-group-justified">
+                                            <div class="btn-group">
+                                                <button type="button" title="Print Order - F9" style="border-radius: 0% !important;" class="btn btn-primary" id="print_order">
+                                                    <i class="fa fa-print"></i> {{_t('Print Order')}}
+                                                </button>
+                                                <button type="button" title="Print Bill - F3" class="btn btn-primary" id="print_bill" style="margin-left: 0 !important; border-radius: 0% !important;">
+                                                    <i class="fa fa-print"></i> {{_t('Print Bill')}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="btn-group">
+                                        <button type="button" data-toggle="modal" data-target="#postPaidModal" style="height:68px; border-radius: 0% !important;" class="btn btn-success" id="payment">
+                                            <i class="fa fa-money"></i> {{_t('Payment')}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="clear:both; height:5px;"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div id="right-section">
+                <div id="right-section">
                 <div class="col-md-12 cat-items-style">
                     <div id="slider-2" class="slider slide-shadow">
                         <div class="slider-wrapper">
@@ -442,6 +443,7 @@
 
 
         {{--================modal pop up =============--}}
+
         <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModal" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
@@ -454,81 +456,102 @@
                 </div>
             </div>
         </div>
+    <div class="modal fade" id="addCustomerModal" tabindex="-1" role="dialog" aria-labelledby="addCustomerModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-2x">×</i>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">{{_t('Add Customer')}}</h4>
+                </div>
+                <form action="#" data-toggle="validator" role="form" id="add-customer-form"  class="bv-form" style="padding: 10px;">
+                    <div class="modal-body">
+                        <p>{{_t('Please fill in the information below. The field labels marked with * are required input fields.')}}</p>
 
 
 
-        <div class="modal fade" id="viewCustomerModal" tabindex="-1" role="dialog" aria-labelledby="viewCustomerModal" aria-hidden="true">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group person has-feedback">
+                                    <label for="name">{{_t('Name')}} *</label>
+                                    <input type="text" name="name" value="" class="form-control tip name" id="name">
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <label for="phone">{{_t('Phone')}} *</label>
+                                    <input type="text" name="phone" value="" class="form-control phone" id="phone">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="price_group">{{_t('Gender')}}</label>
+                                    <select name="gender" class="form-control gender" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <option value="" selected="selected">{{_t('Select Gender')}}</option>
+                                        <option value="male">{{_t('Male')}}</option>
+                                        <option value="female">{{_t('Female')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button"  name="add_customer" value="{{_t('Add Customer')}}" class="btn btn-primary add_customer">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="viewCustomerModal" tabindex="-1" role="dialog" aria-labelledby="viewCustomerModal" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             <i class="fa fa-2x">×</i>
                         </button>
-                       {{-- <button type="button" class="btn btn-primary btn-xs no-print pull-right " onclick="window.print()">
-                            <i class="fa fa-print"></i>&nbsp;Print			</button>--}}
                         <h4 class="modal-title" id="myModalLabel">{{_t('Customer List')}}</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="table-responsive">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-header">
+                                        <h3 class="box-title"></h3>
 
-                            <table class="table table-striped table-bordered" style="margin-bottom:0;">
-                                <thead>
-                                    <tr>
-                                        <th>{{_t('Name')}}</th>
-                                        <th>{{_t('Phone')}}</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="show-all-customer">
+                                        <div class="box-tools">
+                                            <div class="input-group input-group-sm" style="width: 150px;">
+                                                <input type="text" name="table_search" class="form-control pull-right search-customer-view-show-txt" placeholder="Search">
 
-                                </tbody>
-                            </table>
+                                                <div class="input-group-btn">
+                                                    <button type="button" class="btn btn-default search-customer-view-show"><i class="fa fa-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="table-responsive">
+
+                                        <table class="table table-striped table-bordered" style="margin-bottom:0;">
+                                            <thead>
+                                                <tr>
+                                                    <th>{{_t('Name')}}</th>
+                                                    <th>{{_t('Phone')}}</th>
+                                                    <th>{{_t('Description')}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="show-all-customer">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /.box -->
+                            </div>
                         </div>
                         <div class="modal-footer no-print">
                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                         </div>
                         <div class="clearfix"></div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="modal fade" id="addCustomerModal" tabindex="-1" role="dialog" aria-labelledby="addCustomerModal" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-2x">×</i>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">{{_t('Add Customer')}}</h4>
-                    </div>
-                    <form action="#" data-toggle="validator" role="form" id="add-customer-form"  class="bv-form" style="padding: 10px;">
-                        <div class="modal-body">
-                            <p>{{_t('Please fill in the information below. The field labels marked with * are required input fields.')}}</p>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group person has-feedback">
-                                        <label for="name">{{_t('Name')}} *</label>
-                                        <input type="text" name="name" value="" class="form-control tip name" id="name">
-                                    </div>
-                                    <div class="form-group has-feedback">
-                                        <label for="phone">{{_t('Phone')}} *</label>
-                                        <input type="text" name="phone" value="" class="form-control phone" id="phone">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label" for="price_group">{{_t('Gender')}}</label>
-                                        <select name="gender" class="form-control gender" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                            <option value="" selected="selected">{{_t('Select Gender')}}</option>
-                                            <option value="male">{{_t('Male')}}</option>
-                                            <option value="female">{{_t('Female')}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button"  name="add_customer" value="{{_t('Add Customer')}}" class="btn btn-primary add_customer">
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -540,23 +563,44 @@
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-2x">×</i></span><span class="sr-only">{{_t('Close')}}</span></button>
                         <h4 class="modal-title" id="prModalLabel">{{_t('Search Filter')}}</h4>
                     </div>
-                    <div class="modal-body scroll_F ps-container" id="pr_popover_content" style="height:400px;overflow:hidden;">
-                        <form class="form-horizontal" role="form" id="s_seModal">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>{{_t('Item Code')}}</th>
-                                    <th>{{_t('Title')}}</th>
-                                    <th>{{_t('Unit')}}</th>
-                                    <th>{{_t('Price')}}</th>
-                                </tr>
-                                </thead>
+                    <div class="modal-body" style="height:400px;">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-header">
+                                        <h3 class="box-title"></h3>
 
-                                <tbody class="show-all-product-list">
+                                        <div class="box-tools">
+                                            <div class="input-group input-group-sm" style="width: 150px;">
+                                                <input type="text" name="table_search" class="form-control pull-right search-item-pos-to-show-txt" placeholder="Search">
 
-                                </tbody>
-                            </table>
-                        </form>
+                                                <div class="input-group-btn">
+                                                    <button type="button" class="btn btn-default search-item-pos-to-show"><i class="fa fa-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>{{_t('Item Code')}}</th>
+                                        <th>{{_t('Title')}}</th>
+                                        <th>{{_t('Unit')}}</th>
+                                        <th>{{_t('Price')}}</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody class="show-all-product-list">
+
+                                    </tbody>
+                                </table>
+
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+
                         <div class="ps-scrollbar-x-rail" style="width: 0px; display: none; left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" style="left: -30px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 370px; display: none; right: 3px;"><div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div></div></div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" id="addItem">{{_t('Submit')}}</button>
@@ -627,7 +671,6 @@
     <script src="{{ asset('vendor/adminlte') }}/plugins/select2/select2.full.min.js"></script>
     <script>
         var ex = {{$exchanges->kh}} - 0 ;
-
         function numberWithCommas(x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
@@ -931,7 +974,6 @@
                 calPOS();
             });
         });
-
         function isDupItem(item_id) {
             var dup = false;
 
@@ -1034,7 +1076,7 @@
             });
         });
     </script>
-    {{--============script pop up item ============--}}
+
     <script>
         var delay = (function(){
             var timer = 0;
@@ -1043,13 +1085,35 @@
                 timer = setTimeout(callback, ms);
             };
         })();
+
+        function loadPosItemSearch() {
+            var q = $('.search-item-pos-to-show-txt').val();
+
+            $('.show-all-product-list').html('');
+            $('.show-all-product-list').load('{{url('api/show-pos-product')}}',{q:q});
+        }
+        function loadPosCustomerSearch() {
+            var q = $('.search-customer-view-show-txt').val();
+
+            $('.show-all-customer').html('');
+            $('.show-all-customer').load('{{url('api/show-pos-customer')}}',{q:q});
+
+        }
         $(function () {
-            $('#viewCustomerModal').on('show.bs.modal', function (e) {
-                $('.show-all-customer').load('{{url('api/show-pos-customer')}}');
+        {{--============search customer pop up ============--}}
+
+            $('.search-customer-view-show-txt').on('keyup',function (e) {
+                e.preventDefault();
+                loadPosCustomerSearch();
             });
 
-            $('#searchProductFilterDetail').on('show.bs.modal', function (e) {
-                $('.show-all-product-list').load('{{url('api/show-pos-product')}}');
+            $('.search-customer-view-show').on('click',function (e) {
+                e.preventDefault();
+                loadPosCustomerSearch();
+            });
+
+            $('#viewCustomerModal').on('show.bs.modal', function (e) {
+                loadPosCustomerSearch();
             });
 
             $('body').delegate('.show-all-customer tr','click',function () {
@@ -1058,6 +1122,18 @@
                 $('.customer_id').val(id);
                 $('.customer_id').select2();
                 $('#viewCustomerModal').modal('hide');
+            });
+        {{--============search item pop up ============--}}
+            $('.search-item-pos-to-show-txt').on('keyup',function (e) {
+                e.preventDefault();
+                loadPosItemSearch();
+            });
+            $('.search-item-pos-to-show').on('click',function (e) {
+                e.preventDefault();
+                loadPosItemSearch();
+            });
+            $('#searchProductFilterDetail').on('show.bs.modal', function (e) {
+                loadPosItemSearch();
             });
 
             $('body').delegate('.show-all-product-list tr','click',function () {
@@ -1168,6 +1244,7 @@
                 var q = $(this).val();
                 getSearch(q);
             });
+
             $('.search_details').on('click',function () {
                 var q = $('[name="s_code_item"]').val();
                 getSearch(q);
@@ -1193,6 +1270,7 @@
                 $(this).addClass('p-current');
             });
         });
+
         function getSearch(q) {
             $.ajax({
                 url: '{{url('api/get-search')}}',

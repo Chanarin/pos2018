@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Customer;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -64,6 +65,7 @@ class ItemController extends Controller
 
             }
         }
+
         else
         {
             if(count($arr_item_id)>0) {
@@ -74,6 +76,49 @@ class ItemController extends Controller
         }
 
         return view('pos.item.show-search-result',['rows' => $results]);
+    }
+
+    public function showPosItemSearchResult(Request $request){
+
+        $search_term = $request->input('q');
+        $results = [];
+
+        if ($search_term)
+        {
+            $results = Item::where('title', 'LIKE', '%'.$search_term.'%')
+                ->orWhere('item_code', 'LIKE', '%'.$search_term.'%')
+                ->orWhere('description', 'LIKE', '%' . $search_term . '%')
+                ->paginate(12);
+        }
+
+        else
+        {
+            $results = Item::orderBy('title','ASC')
+                ->paginate(12);
+        }
+
+        return view('pos.sale.show-pos-product',['rows'=>$results]);
+    }
+
+    public function showPosCustomerSearchResult(Request $request){
+        $search_term = $request->input('q');
+        $results = [];
+        if ($search_term)
+        {
+            $results = Customer::where('name', 'LIKE', '%'.$search_term.'%')
+                ->orWhere('gender', 'LIKE', '%'.$search_term.'%')
+                ->orWhere('phone', 'LIKE', '%'.$search_term.'%')
+                ->orWhere('description', 'LIKE', '%' . $search_term . '%')
+                ->paginate(12);
+        }
+
+        else
+        {
+            $results = Customer::orderBy('name','ASC')
+                ->paginate(12);
+        }
+
+        return view('pos.sale.show-pos-customer',['rows'=>$results]);
     }
 
 }

@@ -14,6 +14,7 @@
         @php
             $field = [
                 'name' => 'unit',
+                 'attributes' => ["number" => "number"],
                 'value' => isset($crud->entry->unit)?$crud->entry->unit:null,
                 'label' => _t('Unit'),
                 'type' => 'text'

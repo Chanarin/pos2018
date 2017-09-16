@@ -41,22 +41,11 @@
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/customer') }}"><i class="fa  fa-user"></i> <span>{{_t('Customer')}}</span></a></li>
 
           @if($u_level != 1 && $u_level != 2)
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-pie-chart"></i>
-              <span>{{_t('Report')}}</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
+          <li>
+            <a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/view-report') }}">
+              <i class="fa fa-bar-chart"></i>
+              <span>{{_t('Table Report')}}</span>
             </a>
-            <ul class="treeview-menu">
-              <li>
-                <a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/view-report') }}">
-                  <i class="fa fa-pie-chart"></i>
-                  <span>{{_t('Table Report')}}</span>
-                </a>
-              </li>
-            </ul>
           </li>
           @endif
           @if($u_level != 1)
@@ -70,15 +59,15 @@
             </a>
             <ul class="treeview-menu">
               <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/openitem') }}"><i class="fa fa-fw fa-book"></i> <span>{{_t('Open Item')}}</span></a></li>
-              <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/purchase') }}"><i class="fa fa-fw fa-cart-arrow-down"></i> <span>{{_t('Purchase')}}</span></a></li>
               <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/production') }}"><i class="fa fa-fw fa-gavel"></i> <span>{{_t('Production')}}</span></a></li>
+              <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/purchase') }}"><i class="fa fa-fw fa-cart-arrow-down"></i> <span>{{_t('Purchase')}}</span></a></li>
             </ul>
           </li>
           @endif
           @if($u_level != 1)
           <li class="treeview">
             <a href="#">
-              <i class="fa fa-university"></i>
+              <i class="fa fa-diamond"></i>
               <span>{{_t('Product')}}</span>
               <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
@@ -118,11 +107,11 @@
           </li>
           @endif
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/elfinder') }}"><i class="fa fa-files-o"></i> <span>{{_t('File manager')}}</span></a></li>
-          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/setting') }}"><i class="fa fa-cog"></i> <span>{{_t('Settings')}}</span></a></li>
+          {{--<li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/setting') }}"><i class="fa fa-cog"></i> <span>{{_t('Settings')}}</span></a></li>--}}
 
-
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/exchangerate') }}"><i class="fa fa-university"></i> <span>{{_t('Exchange Rate')}}</span></a></li>
           @if($u_level==3 || $u_level==4)
-            <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/adminuser') }}"><i class="fa fa-file-o"></i> <span>{{_t('User manager')}}</span></a></li>
+            <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/adminuser') }}"><i class="fa fa-users"></i> <span>{{_t('User manager')}}</span></a></li>
          @endif
           <!-- ======================================= -->
           <li class="header">{{_t('user') }}</li>

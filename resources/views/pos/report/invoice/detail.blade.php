@@ -1,119 +1,166 @@
-@if(count($rows) > 0)
-<div id="report-print">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 10px; margin-top: 10px;">
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 " style="text-align: center;">
-            <img src="{{asset('/pos/img/logo.jpg')}}" width="90" height="90" alt="">
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="text-align: center;">
-            <span style="font-size: 24px;"><b>POS SHOP REPORT</b></span><br>
-            <span style="font-size: 18px;"><b>INVOICE DETAIL</b></span>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+<style>
+    table{
+        border-collapse: collapse;
+    }
+    .border th, .border td {
+        border: 1px solid rgba(188, 188, 188, 0.96);
+        padding: 5px;
+    }
+</style>
+<div style="margin-bottom: 30px;">
+    <img src="{{asset('/pos/img/logo.jpg')}}" height="60" style="margin-bottom: 20px; margin-top: 20px;">
+    <h3 align="center" style="margin-top: -50px;">INVOICE DETAIL REPORT</h3>
+    @if($report_option == 'between')
 
-        </div>
-    </div>
-    @foreach($rows as $row)
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border: solid 1px darkgrey; margin-bottom: 10px;">
-            <div style="font-size:14px;">
-                <table style="width: 100%; margin-bottom: 10px; margin-top: 10px;">
-                    <tbody style="font-size: 14px;">
-                    <tr style="text-align:center;">
-                        <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Invoice Number</b></span> : {{$row->invoice_number}}</td>
-                        <td style="vertical-align:middle;text-align:left;"><span><b>Invoice Date</b></span> : {{$row->_date_}}</td>
-                    </tr>
-                    <tr style="text-align:center;">
-                        <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Customer Name</b></span> : {{$row->customer->name}}</td>
-                        <td style="vertical-align:middle;text-align:left;"><span><b>Deposit</b></span> : {{$row->deposit}}</td>
-                    </tr>
-                    <tr style="text-align:center;">
-                        <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Complete Date</b></span> : {{$row->complete_date}}</td>
-                        <td style="vertical-align:middle;text-align:left;"><span><b>Complete Price</b></span> : $ {{$row->complete_price}}</td>
-                    </tr>
-                    <tr style="text-align:center;">
-                        <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Status</b></span> : {{$row->status}}</td>
-                        <td style="vertical-align:middle;text-align:left;"><span><b>Description</b></span> : {{$row->description}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <style>
-                .no_border_btm tr td{
-                    border:none !important;
-                }
-            </style>
-            <table class="table-condensed receipt no_border_btm" style="width:100%;">
-                <thead>
-                <tr style="border:1px dotted black !important; font-size:14px;">
-                    <th>No</th>
-                    <th>Code</th>
-                    <th class="text-center">Title</th>
-                    <th class="text-center">Unit</th>
-                    <th class="text-center">Qty</th>
-                    <th class="text-center">Price</th>
-                    <th class="text-center">Discount</th>
-                    <th class="text-center">Amount</th>
+        <h4 align="center" style=" margin-top: 0px; ">Form Date
+            <b>{{\Carbon\Carbon::parse($from_date)->format('d/m/Y') }}</b> To Date
+            <b> {{\Carbon\Carbon::parse($to_date)->format('d/m/Y') }}</b></h4>
+    @else
+        <h4 align="center" style=" margin-top: 0px; ">Date <b>{{\Carbon\Carbon::parse($to_date)->format('d/m/Y') }}</b>
+        </h4>
+    @endif
+    <h5 style="margin-top: -30px; padding-left: 15px;">Tel : 012 669 175 /012 864 213</h5>
+    <h5 style="margin-top: -5px; padding-left: 37px;"> : 016 669 175 /010 864 213 /010 979 960</h5>
+</div>
+
+
+@if(count($rows) > 0)
+    <table class="" style="width: 100%">
+        @foreach($rows as $row)
+            <tr style="">
+                <td colspan="6">
+                    <table width="100%">
+                        <tr>
+                            <td width="33%" valign="top">
+
+                                Huy Sombath Jewelry Shop.<br>
+                                No.80Eo, St 19 Corner St. 154,<br>
+                                Sangkat Phsar Kandal II,<br>
+                                Khan Daun Penh, Phnom Penh<br>
+                                Phone: (012) 669 175<br>
+
+                            </td>
+                            <td width="34%" valign="top">
+                                Customer Name: {{$row->customer->name}}<br>
+                                Status: {{$row->status}}<br>
+                                Note: {{$row->payment_note}}
+                            </td>
+                            <td width="33%" valign="top">
+                                Invoice Number: {{$row->invoice_number}}<br>
+                                Payment Due: {{\Carbon\Carbon::parse($row->_date_)->format('d/m/Y') }}<br>
+                                Exchange Rate: {{$row->exchange_rate}} ៛<br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="6">
+                    <br>
+
+                </td>
+            </tr>
+
+            {{--  -------------------------------------------------------------------------------------}}
+            <table width="100%">
+                <thead class="border" style="background: #CCCCCC">
+                <tr>
+                    <th class="text-center">ល.រ</th>
+                    <th class="text-center">កូដ</th>
+                    <th class="text-center">ទំនិញ</th>
+                    <th class="text-center">ឯកតា</th>
+                    <th class="text-center">ចំនួន</th>
+                    <th class="text-center">តំលៃ</th>
+                    <th class="text-center">សរុប</th>
+
                 </tr>
                 </thead>
-                <tbody style="border-bottom:2px solid black; font-size: 12px;">
-                @php
-                    $key = 1;
-                    $invoice_details = \App\Models\InvoiceDetail::where('ref_id','=',$row->id)->get();
-                    $grand_total = 0;
-                    $sub_total = 0;
-                    $total_discount = 0;
-                @endphp
-                @foreach($invoice_details as $invoice_detail)
-
+                <tbody class="border">
                     @php
-                        $item_field = \App\Models\Item::find($invoice_detail->item_id);
-                        $amount = (($invoice_detail->qty)*($invoice_detail->price))-($invoice_detail->discount);
-                        $grand_total+= $amount;
-                        $sub_total+= ($invoice_detail->price);
-                        $total_discount+= ($invoice_detail->discount);
+                        $rowds = \App\Models\InvoiceDetail::where('ref_id',$row->id)
+                            ->join('items','items.id','=','invoice_detail.item_id')
+                            ->get();
+                        //dd($rowds);
                     @endphp
-                    <tr class="item">
-                        <td class="text-left">{{$key++}}</td>
-                        <td class="text-left">{{$invoice_detail->item_code}}</td>
-                        <td class="text-left">{{$item_field->title}}</td>
-                        <td class="text-left">{{$item_field->unit}}</td>
-                        <td class="text-right">{{number_format($invoice_detail->qty)}}</td>
-                        <td class="text-right">$ {{number_format($invoice_detail->price)}}</td>
-                        <td class="text-right">$ {{number_format($invoice_detail->discount)}}</td>
-                        <td class="text-right">$ {{number_format($amount)}}</td>
+                    @foreach($rowds as $rd)
+                        @php
+                            $rds = \App\Models\ItemDetail::where('ref_id',$rd->item_id)->get();
+                            $oe = $loop->index;
+                        @endphp
+                        <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif ">
+                            <td class="text-left">{{$loop->index+1}}</td>
+                            <td class="text-left">{{$rd->item_code}}</td>
+                            <td class="text-left">{{$rd->title}}</td>
+                            <td class="text-left">{{$rd->unit}}</td>
+                            <td class="text-right">{{$rd->qty}}</td>
+                            <td class="text-right">$ {{number_format($rd->price,2)}}</td>
+                            <td class="text-right">$ {{number_format($rd->price*$rd->qty,2)}}</td>
+                        </tr>
+                        @if(count($rds)>0)
+                            @foreach($rds as $r)
+                                @php
+                                    $unit = \App\Models\Unit::where('id',$r->unit)->first();
+                                @endphp
+                                <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif ">
+                                    <td class="text-left"></td>
+                                    <td class="text-left">{{$r->item_code}}</td>
+                                    <td class="text-left">{{$r->title}}</td>
+                                    <td class="text-left">{{$r->unit}} {{isset($unit->name)?$unit->name:''}}</td>
+                                    <td class="text-right">{{$r->qty}}</td>
+                                    <td class="text-right">$ {{number_format($r->price,2)}}</td>
+                                    <td class="text-right">$ {{number_format($r->price*$r->qty,2)}}</td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    @endforeach
 
-                    </tr>
-                @endforeach
                 </tbody>
-                <tfoot>
-                </tfoot>
+                <tr>
+                    <td colspan="4"></td>
+                    <td style="text-align:right;">សរុប</td>
+                    <td style="text-align:right;">$ {{number_format($row->total_amt,2)}}</td>
+                    <td style="text-align:right;">{{number_format(($row->total_amt)*$row->exchange_rate,2)}} ៛</td>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                    <td style="text-align:right;">បញ្ចុះតំលៃ</td>
+                    <td style="text-align:right;">$ {{number_format($row->total_discount,2)}}</td>
+                    <td style="text-align:right;">{{number_format(($row->total_discount)*$row->exchange_rate,2)}} ៛</td>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                    <td style="text-align:right;">សរុបចុងក្រោយ</td>
+                    <td style="text-align:right;">$ {{number_format($row->total_payable,2)}}</td>
+                    <td style="text-align:right;">{{number_format(($row->total_payable)*$row->exchange_rate,2)}} ៛</td>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                    <td style="text-align:right;">លុយបង់</td>
+                    <td style="text-align:right;">$ {{number_format($row->paid+($row->paid_kh/$row->exchange_rate),2)}}</td>
+                    <td style="text-align:right;">{{number_format(($row->paid+($row->paid_kh/$row->exchange_rate))*$row->exchange_rate,2)}} ​​៛</td>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                    <td style="text-align:right;">លុយអាប់</td>
+                    <td style="text-align:right;">$ {{number_format(($row->paid+($row->paid_kh/$row->exchange_rate))-$row->total_payable,2)}}</td>
+                    <td style="text-align:right;">{{number_format((($row->paid+($row->paid_kh/$row->exchange_rate))-$row->total_payable)*$row->exchange_rate,2)}}​ ៛</td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        <br>
+                        <hr>
+                        <br>
+                    </td>
+                </tr>
             </table>
-            <table style="width: 100%; margin-top: 5px;">
-                <tr>
-                    <td style="text-align:left;">សរុប</td>
-                    <td style="text-align:right;">Sub Total (USD) :</td>
-                    <td style="text-align:right;">$ {{number_format($sub_total)}}</td>
-                </tr>
-                <tr>
-                    <td style="text-align:left;">បញ្ចុះតំលៃ</td>
-                    <td style="text-align:right;width:35%;">Discount (USD) :</td>
-                    <td style="text-align:right;">$ {{number_format($total_discount)}}</td>
-                </tr>
-                <tr>
-                    <td style="text-align:left;">សរុបចុងក្រោយ</td>
-                    <td style="text-align:right;width:40%;">Grand Total (USD) :</td>
-                    <td style="text-align:right;">$ {{number_format($grand_total)}}</td>
-                </tr>
-
-            </table>
-        </div>
-    @endforeach
-
-</div>
-
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my-paginate" align="center">
-    {!! $rows->links() !!}
-</div>
+        @endforeach
+    </table>
+    <div class="my-paginate" align="center">
+        {!! $rows->links() !!}
+    </div>
 @else
     <h2 align="center">Not Record Found</h2>
 
 @endif
+

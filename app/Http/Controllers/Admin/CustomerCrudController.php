@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Helpers\GH;
+use App\Models\Invoice;
+use App\Models\Production;
+use App\Models\Purchase;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Illuminate\Http\Request;
 use App\Models\Customer;
@@ -47,6 +50,21 @@ class CustomerCrudController extends CrudController
         return $options->pluck('name', 'name');
     }
 
+//    customer order history=========================
+    public function cutomerOrderHistory(Request $request)
+    {
+        $row = Customer::find($request->customer_id);
+
+        $row_invoice = Invoice::where('invoice.customer_id',$request->customer_id)->get();
+
+        $row_production = Production::where('production.customer_id',$request->customer_id)->get();
+
+        $row_purchase = Purchase::where('purchase.customer_id',$request->customer_id)->get();
+
+        return view('pos.customer.order_history', ['row' => $row,
+            'row_invoice' => $row_invoice, 'row_production' => $row_production,'row_purchase'=>$row_purchase]);
+    }
+
     public function setup()
     {
 
@@ -78,7 +96,18 @@ class CustomerCrudController extends CrudController
             'name' => 'phone',
             'label' => _t('Phone'),
         ]);
-
+        $this->crud->addColumn([
+            'name' => 'image',
+            'label' => _t('image'),
+            'type' => 'image',
+            'attributes' => [
+                'als' => 'Image',
+                'class' => '',
+                'style' => 'width: 60px; height: 40px',
+            ],
+            'link' => true,
+            // 'disabled' => 'disabled'
+        ]);
         $this->crud->addColumn([
             'name' => 'description',
             'label' => _t('Description'),
@@ -109,11 +138,20 @@ class CustomerCrudController extends CrudController
             'label' => _t('Phone'),
             'type' => 'text',
         ]);
-
         $this->crud->addField([
             'name' => 'description',
             'label' => _t('Description'),
             'type' => 'textarea',
+        ]);
+        $this->crud->addField([ // image
+            'default' => asset('No_Image_Available.jpg'),
+            'label' => "Image",
+            'name' => "image",
+            'type' => 'image2',
+            'upload' => true,
+            'crop' => true, // set to true to allow cropping, false to disable
+            'aspect_ratio' => 3 / 2, // ommit or set to 0 to allow any aspect ratio
+            // 'prefix' => 'uploads/images/profile_pictures/' // in case you only store the filename in the database, this text will be prepended to the database value
         ]);
 
         $this->crud->addFilter([ // select2_ajax filter
@@ -161,6 +199,9 @@ class CustomerCrudController extends CrudController
                 $this->crud->addClause('where', 'created_at', '<=', $dates->to);
             });
 
+
+        $this->crud->addButtonFromModelFunction('line', 'addButtonCustom', 'addButtonCustom', 'beginning');
+
 //        $this->crud->setFromDb();
 
         // ------ CRUD FIELDS
@@ -178,6 +219,8 @@ class CustomerCrudController extends CrudController
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
 
         // ------ CRUD BUTTONS
+//        $this->crud->addButtonFromModelFunction('line', 'addButtonCustom', 'addButtonCustom', 'beginning');
+
         // possible positions: 'beginning' and 'end'; defaults to 'beginning' for the 'line' stack, 'end' for the others;
         // $this->crud->addButton($stack, $name, $type, $content, $position); // add a button; possible types are: view, model_function
         // $this->crud->addButtonFromModelFunction($stack, $name, $model_function_name, $position); // add a button whose HTML is returned by a method in the CRUD model

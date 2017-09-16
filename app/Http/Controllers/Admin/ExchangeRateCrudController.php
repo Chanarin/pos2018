@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Helpers\_POS_;
 use App\Helpers\GH;
-use App\Helpers\IDP;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\InvoiceRequest as StoreRequest;
-use App\Http\Requests\InvoiceRequest as UpdateRequest;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\ExchangeRateRequest as StoreRequest;
+use App\Http\Requests\ExchangeRateRequest as UpdateRequest;
 
-class InvoiceCrudController extends CrudController
+class ExchangeRateCrudController extends CrudController
 {
     public function setup()
     {
@@ -22,56 +19,31 @@ class InvoiceCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Invoice');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/invoice');
-        $this->crud->setEntityNameStrings(_t('invoice'), _t('invoices'));
+        $this->crud->setModel('App\Models\ExchangeRate');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/exchangerate');
+        $this->crud->setEntityNameStrings(_t('Exchange Rate'), _t('Exchange Rates'));
 
         /*
         |--------------------------------------------------------------------------
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
+
         $this->crud->addColumn([
-            'name' => 'invoice_number',
-            'label' => _t('Invoice Number'),
+            'name' => 'en',
+            'label' => _t('Dollar'),
         ]);
 
         $this->crud->addColumn([
-            'name' => '_date_',
-            'label' => _t('Date'),
-        ]);
-
-        $this->crud->addColumn([
-            'label' => _t('Customer'),
-            'type' => 'select',
-            'name' => 'customer_id',
-            'entity' => 'customer',
-            'attribute' => 'name',
-            'model' => "App\Models\Customer",
-        ]);
-
-        $this->crud->addColumn([
-            'name' => 'deposit',
-            'label' => _t('Deposit'),
-        ]);
-        $this->crud->addColumn([
-            'name' => 'total_payable',
-            'label' => _t('Complete Price'),
-        ]);
-        $this->crud->addColumn([
-            'name' => 'complete_date',
-            'label' => _t('Complete Date'),
-        ]);
-        $this->crud->addColumn([
-            'name' => 'status',
-            'label' => _t('Status'),
+            'name' => 'kh',
+            'label' => _t('Riel'),
         ]);
         $this->crud->addField([
             'name' => 'data',
             'type' => 'view',
-            'data_type' => _POS_::invoice,
-            'view' => 'pos.invoice.form'
+            'view' => 'pos.exchange_rate.form'
         ]);
+
 //        $this->crud->setFromDb();
 
         // ------ CRUD FIELDS
@@ -99,20 +71,19 @@ class InvoiceCrudController extends CrudController
         // $this->crud->removeAllButtonsFromStack('line');
 
         // ------ CRUD ACCESS
-         $this->crud->allowAccess(['list', 'create', 'update', 'reorder', 'delete']);
-        // $this->crud->denyAccess(['list', 'create', 'update', 'reorder', 'delete']);
+        // $this->crud->allowAccess(['list', 'create', 'update', 'reorder', 'delete']);
+        $this->crud->denyAccess(['list', 'create', 'update', 'reorder', 'delete']);
+
         $u_level = GH::getUserLevel();
         if($u_level==1) {
-            $this->crud->denyAccess(['update', 'delete']);
-            //$this->crud->addClause('where', 'id', '=', GH::getUserID());
+            $this->crud->allowAccess(['list', 'update',]);
         }else if($u_level == 2){
-            $this->crud->denyAccess(['delete']);
+            $this->crud->allowAccess(['list', 'update']);
         }else if($u_level == 3){
-            $this->crud->denyAccess(['delete']);
+            $this->crud->allowAccess(['list', 'update']);
+        }else if($u_level == 4){
+            $this->crud->allowAccess(['list', 'update']);
         }
-
-//        $this->crud->addButtonFromModelFunction('line', 'addButtonCustom', 'addButtonCustom', 'beginning');
-
         // ------ CRUD REORDER
         // $this->crud->enableReorder('label_name', MAX_TREE_LEVEL);
         // NOTE: you also need to do allow access to the right users: $this->crud->allowAccess('reorder');
@@ -136,7 +107,7 @@ class InvoiceCrudController extends CrudController
         // ------ DATATABLE EXPORT BUTTONS
         // Show export to PDF, CSV, XLS and Print buttons on the table view.
         // Does not work well with AJAX datatables.
-//         $this->crud->enableExportButtons();
+        // $this->crud->enableExportButtons();
 
         // ------ ADVANCED QUERIES
         // $this->crud->addClause('active');
@@ -156,57 +127,19 @@ class InvoiceCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
-//        dd($request->all());
-
-        $validator = Validator::make($request->all(), [
-            'invoice_number' => 'required',
-            '_date_' => 'required',
-            'customer_id' => 'required'
-        ]);
-
-        if ($validator->fails()) {
-            return redirect('admin/invoice');
-        }
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-        $iDP = new IDP($request->_data_,_POS_::invoice,$this->crud->entry->id);
-        $iDP->saveAllDetail();
-
-        if($request->is_pos>0){
-//            return view('pos.sale.pos-print',['id'=>$this->crud->entry->id]);
-            return redirect('/pos-print/'.$this->crud->entry->id);
-        }else {
-            return $redirect_location;
-        }
+        return $redirect_location;
     }
 
     public function update(UpdateRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'invoice_number' => 'required',
-            '_date_' => 'required',
-            'customer_id' => 'required'
-        ]);
-
-        if ($validator->fails()) {
-            return redirect('admin/invoice');
-        }
-
         // your additional operations before save here
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-        $iDP = new IDP($request->_data_,_POS_::invoice,$this->crud->entry->id);
-        $iDP->saveAllDetail();
-
-        if($request->is_pos>0){
-//            return view('pos.sale.pos-print',['id'=>$this->crud->entry->id]);
-            return redirect('/pos-print/'.$this->crud->entry->id);
-        }else {
-            return $redirect_location;
-        }
-
+        return $redirect_location;
     }
 }

@@ -3,6 +3,7 @@
         <tr data-id="{{$row->id}}" data-name="{{$row->name}}">
             <td><strong>{{$row->name}}</strong></td>
             <td>{{$row->phone}}</td>
+            <td>{{$row->description}}</td>
         </tr>
     @endforeach
 @endif

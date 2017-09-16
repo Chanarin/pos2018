@@ -76,20 +76,9 @@ Route::get('/add-customer',function (Request $request){
    }
 
 });
+Route::any('/show-pos-customer','Api\ItemController@showPosCustomerSearchResult');
 
-
-Route::get('/show-pos-customer',function (Request $request){
-    $rows = \App\Models\Customer::orderBy('name','ASC')
-        ->paginate(12);
-    return view('pos.sale.show-pos-customer',['rows'=>$rows]);
-});
-
-Route::get('/show-pos-product',function (Request $request){
-    $rows = \App\Models\Item::orderBy('title','ASC')
-        ->paginate(12);
-    return view('pos.sale.show-pos-product',['rows'=>$rows]);
-});
-
+Route::any('/show-pos-product','Api\ItemController@showPosItemSearchResult');
 
 Route::get('/item','Api\ItemController@index');
 Route::get('/item/{id}','Api\ItemController@show');

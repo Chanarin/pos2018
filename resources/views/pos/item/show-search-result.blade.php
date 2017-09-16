@@ -20,7 +20,10 @@
                 @endphp
                 <tr>
                     <td>
-                        <button data-id="{{$row->id}}" class="btn btn-sm btn-info modal-add-item-main" type="button"><span class="sr-only">add</span><i class="fa fa-plus" role="presentation" aria-hidden="true"></i></button>
+                        <button data-id="{{$row->id}}" class="btn btn-sm btn-info modal-add-item-main" type="button">
+                            <span class="sr-only">add</span>
+                            <i class="fa fa-plus" role="presentation" aria-hidden="true"></i>
+                        </button>
                     </td>
                     <td>{{ isset($row->category->title)?$row->category->title:'' }}</td>
                     <td>{{ $row->item_code }}</td>

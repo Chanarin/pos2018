@@ -58,6 +58,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
                 'name' => 'deposit',
                 'type' => 'text',
                 'label' => _t('Deposit'),
+                'attributes' => ["number" => "number"],
                 'value' => isset($crud->entry->deposit)?$crud->entry->deposit:null,
                 // optional:
             ];
@@ -84,9 +85,10 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
     <div class="form-group col-md-6">
         @php
             $field = [
-                'name' => 'complete_price',
+                'name' => 'total_payable',
                 'type' => 'text',
                 'label' => _t('Complete Price'),
+                'attributes' => ["number" => "number"],
                 'value' => isset($crud->entry->complete_price)?$crud->entry->complete_price:null,
                 // optional:
             ];
@@ -97,9 +99,9 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
     <div class="form-group col-md-12">
         @php
             $field = [
-                'name' => 'description',
+                'name' => 'payment_note',
                 'value' => isset($crud->entry->description)?$crud->entry->description:null,
-                'label' => _t('Description'),
+                'label' => _t('Note'),
                 'type' => 'textarea'
                 ];
         @endphp

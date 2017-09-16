@@ -1,81 +1,121 @@
-@if(count($rows) > 0)
-<div id="report-print">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 10px; margin-top: 10px;">
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 " style="text-align: center;">
-            <img src="{{asset('/pos/img/logo.jpg')}}" width="90" height="90" alt="">
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="text-align: center;">
-            <span style="font-size: 24px;"><b>POS SHOP REPORT</b></span><br>
-            <span style="font-size: 18px;"><b>PRODUCTION ITEM DETAIL</b></span>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+<style>
+    table{
+        border-collapse: collapse;
+    }
+    .border th, .border td {
+        border: 1px solid rgba(188, 188, 188, 0.96);
+        padding: 5px;
+    }
+</style>
+<div style="margin-bottom: 30px;">
+    <img src="{{asset('/pos/img/logo.jpg')}}" height="60" style="margin-bottom: 20px; margin-top: 20px;">
+    <h3 align="center" style="margin-top: -50px;">PRODUCTION DETAIL REPORT</h3>
+    @if($report_option == 'between')
 
-        </div>
-    </div>
-    @foreach($rows as $row)
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border: solid 1px darkgrey; margin-bottom: 10px;">
-            <div>
-                <table style="width: 100%; margin-bottom: 10px; margin-top: 10px;">
-                    <tbody style="font-size: 14px;">
-                    <tr style="text-align:center;">
-                        <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Production Number</b></span> : {{$row->production_number}}</td>
-                        <td style="vertical-align:middle;text-align:left;"><span><b>Production Date</b></span> : {{$row->_date_}}</td>
-                    </tr>
-                    <tr style="text-align:center;">
-                        <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Customer Name</b></span> : {{$row->customer->name}}</td>
-                        <td style="vertical-align:middle;text-align:left;"><span><b>Reference</b></span> : {{$row->ref}}</td>
-                    </tr>
-                    <tr style="text-align:center;">
-                        <td style="vertical-align:middle;text-align:left; padding-left:10px;"><span><b>Description</b></span> : {{$row->description}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <style>
-                .no_border_btm tr td{
-                    border:none !important;
-                }
-            </style>
-            <table class="table-condensed receipt no_border_btm" style="width:100%;">
-                <thead>
-                <tr style="border:1px dotted black !important; font-size:14px;">
-                    <th>No</th>
-                    <th>Code</th>
+        <h4 align="center" style=" margin-top: 0px; ">Form Date
+            <b>{{\Carbon\Carbon::parse($from_date)->format('d/m/Y') }}</b> To Date
+            <b> {{\Carbon\Carbon::parse($to_date)->format('d/m/Y') }}</b></h4>
+    @else
+        <h4 align="center" style=" margin-top: 0px; ">Date <b>{{\Carbon\Carbon::parse($to_date)->format('d/m/Y') }}</b>
+        </h4>
+    @endif
+    <h5 style="margin-top: -30px; padding-left: 15px;">Tel : 012 669 175 /012 864 213</h5>
+    <h5 style="margin-top: -5px; padding-left: 37px;"> : 016 669 175 /010 864 213 /010 979 960</h5>
+</div>
+@if(count($rows) > 0)
+    <table class="" style="width: 100%">
+
+
+        @foreach($rows as $row)
+            <tr style="">
+                <td colspan="6">
+                    <table width="100%">
+                        <tr>
+                            <td width="33%" valign="top">
+                                Production Number: {{$row->production_number}}<br>
+                                Customer: {{$row->customer->name }}<br>
+                            </td>
+                            <td width="34%" valign="top">
+                                Production Date: {{\Carbon\Carbon::parse($row->_date_)->format('d/m/Y') }}<br>
+                            </td>
+                            <td width="33%" valign="top">
+                                 Description: {{$row->description}}<br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7">
+                    <br>
+                </td>
+            </tr>
+            {{--  -------------------------------------------------------------------------------------}}
+            <table width="100%">
+                <thead class="border" style="background: #CCCCCC">
+                <tr>
+
+                    <th class="text-center">No</th>
+                    <th class="text-center">Code</th>
                     <th class="text-center">Title</th>
                     <th class="text-center">Unit</th>
                     <th class="text-center">Qty</th>
+                    <th class="text-center">Cost</th>
+                    <th class="text-center">Total</th>
+
                 </tr>
                 </thead>
-                <tbody style=" font-size: 12px;">
+                <tbody class="border">
                 @php
-                    $key = 1;
-                    $production_details = \App\Models\ProductionDetail::where('ref_id','=',$row->id)->get();
+                    $rowss = \App\Models\ProductionDetail::where('ref_id',$row->id)->get();
                 @endphp
-                @foreach($production_details as $production_detail)
+                @foreach($rowss as $rd)
                     @php
-                        $item_field = \App\Models\Item::find($production_detail->item_id);
+                        $oe = $loop->index;
                     @endphp
-                    <tr class="item">
-                        <td class="text-left">{{$key++}}</td>
-                        <td class="text-left">{{$production_detail->item_code}}</td>
-                        <td class="text-left">{{$item_field->title}}</td>
-                        <td class="text-left">{{$item_field->unit}}</td>
-                        <td class="text-right">{{number_format($production_detail->qty)}}</td>
+                    <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif ">
+                        <td class="text-left">{{$loop->index+1}}</td>
+                        <td class="text-left">{{$rd->item_code}}</td>
+                        <td class="text-left">{{$rd->title}}</td>
+                        <td class="text-left">{{$rd->unit}}</td>
+                        <td class="text-right">{{$rd->qty}}</td>
+                        <td class="text-right">$ {{number_format($rd->cost,2)}}</td>
+                        <td class="text-right">$ {{number_format($rd->cost*$rd->qty,2)}}</td>
                     </tr>
+                    @if(count($rd->item_detail)>0)
+                        @foreach(json_decode($rd->item_detail) as $r)
+                            @php
+                                $unit = \App\Models\Unit::where('id',$r->unit)->first();
+                            @endphp
+                            <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif ">
+                                <td class="text-left"></td>
+                                <td class="text-left">{{$r->item_code}}</td>
+                                <td class="text-left">{{$r->title}}</td>
+                                <td class="text-left">{{$r->unit}} {{isset($unit->name)?$unit->name:''}}</td>
+                                <td class="text-right">{{$r->qty}}</td>
+                                <td class="text-right">$ {{number_format($r->cost,2)}}</td>
+                                <td class="text-right">$ {{number_format($r->cost*$r->qty,2)}}</td>
+                            </tr>
+                        @endforeach
+                    @endif
                 @endforeach
-
                 </tbody>
-                <tfoot>
-                </tfoot>
-            </table>
-        </div>
-    @endforeach
-</div>
+                <tr>
+                    <td colspan="7">
+                        <br>
+                        <hr>
+                        <br>
+                    </td>
 
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my-paginate" align="center">
-    {!! $rows->links() !!}
-</div>
+                </tr>
+                @endforeach
+            </table>
+    </table>
+    <div class="my-paginate" align="center">
+        {!! $rows->links() !!}
+    </div>
 @else
     <h2 align="center">Not Record Found</h2>
 
 @endif
+
