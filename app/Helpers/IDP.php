@@ -242,7 +242,8 @@ class ItemDetailP
         $rrr = null;
         if ($this->type == _POS_::items) {
 
-            $rrr = ItemDetail::where('item_id', $this->item_id)->first();
+            $rrr = ItemDetail::where('ref_id',$this->ref_id)
+                ->where('item_id', $this->item_id)->first();
 
             if ($rrr == null) {
                 $rrr = new ItemDetail();
