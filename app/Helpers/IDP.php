@@ -50,7 +50,7 @@ class IDP
                 $mr = PurchaseDetail::where('ref_id', $this->ref_id);
                 break;
             case _POS_::items:
-                //$itemDeetaill = ItemDetail::where('ref_id', $this->ref_id)->delete();
+                $itemDeetaill = ItemDetail::where('ref_id', $this->ref_id)->delete();
 
                 break;
 
@@ -229,33 +229,57 @@ class ItemDetailP
     private function createItem()
     {
         $rrr = null;
-        if (!($this->item_id > 0)) {
-            //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        if ($this->type == _POS_::items) {
 
-            $mi = Item::where('item_code',trim($this->item_code))->first();
+            $rrr = ItemDetail::where('item_id', $this->item_id)->first();
 
-            if($mi != null){
-                $this->item_id = $mi->id;
-                $rrr = $mi;
-            }else {
+            if ($rrr == null) {
+                $rrr = new ItemDetail();
+            }
 
-                $mi = new Item();
-                $mi->item_code = $this->item_code;
-                $mi->title = $this->title;
-                //$mi->description = $this->description ;
-                //$mi->image = $this->image ;
-                $mi->unit = $this->unit;
-                if ($mi->save()) {
+            $rrr->ref_id = $this->ref_id;
+            $rrr->item_id = $this->item_id;
+            $rrr->item_code = $this->item_code;
+            $rrr->title = $this->title;
+            $rrr->unit = $this->unit;
+            $rrr->num_qty = $this->num_qty;
+            $rrr->qty = $this->qty;
+            $rrr->cost = $this->cost;
+            $rrr->note = $this->note;
+
+            $rrr->save();
+
+
+        } else {
+
+            if (!($this->item_id > 0)) {
+                //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+                $mi = Item::where('item_code', trim($this->item_code))->first();
+
+                if ($mi != null) {
                     $this->item_id = $mi->id;
                     $rrr = $mi;
+                } else {
+
+                    $mi = new Item();
+                    $mi->item_code = $this->item_code;
+                    $mi->title = $this->title;
+                    //$mi->description = $this->description ;
+                    //$mi->image = $this->image ;
+                    $mi->unit = $this->unit;
+                    if ($mi->save()) {
+                        $this->item_id = $mi->id;
+                        $rrr = $mi;
+                    }
                 }
             }
-        }
 
+        }
 
         if ($this->item_id > 0 && $this->type == _POS_::items) {
 
-            ItemDetail::where('ref_id',$this->ref_id)->delete();
+            //ItemDetail::where('ref_id',$this->ref_id)->delete();
 
             if (count($this->item_detail) > 0) {
 
@@ -282,11 +306,11 @@ class ItemDetailP
 //                    ===============================
                     if (!($item_id > 0)) {
                         //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                        $mis = Item::where('item_code',trim($item_code))->first();
+                        $mis = Item::where('item_code', trim($item_code))->first();
 
-                        if($mis != null){
+                        if ($mis != null) {
                             $item_id = $mis->id;
-                        }else {
+                        } else {
                             $mis = new Item();
                             $mis->item_code = $item_code;
                             $mis->title = $title;
@@ -317,6 +341,7 @@ class ItemDetailP
 
                 }
             }
+
         }
 
         return $rrr;
@@ -363,11 +388,11 @@ class ItemDetailP
                         $item_ref_detail[$ixix]['item_id'] = $d_item_id;
                     } else {
                         //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                        $mITT = Item::where('item_code',trim($d_item_code))->first();
+                        $mITT = Item::where('item_code', trim($d_item_code))->first();
 
-                        if($mITT != null){
+                        if ($mITT != null) {
                             $item_ref_detail[$ixix]['item_id'] = $mITT->id;
-                        }else {
+                        } else {
                             $mITT = new Item();
                             $mITT->item_code = $d_item_code;
                             $mITT->title = $d_title;
@@ -475,30 +500,30 @@ class ItemDetailP
                 $iitrain->save();
 
                 //============ Add to Item Detail ==================
-                if(count($item_ref_detail)>0){
-                    foreach ($item_ref_detail as $item_dd){
-                        $mddd = ItemDetail::where('ref_id',$this->item_id)
-                        ->where('item_id',$item_dd['item_id'])->first();
+                if (count($item_ref_detail) > 0) {
+                    foreach ($item_ref_detail as $item_dd) {
+                        $mddd = ItemDetail::where('ref_id', $this->item_id)
+                            ->where('item_id', $item_dd['item_id'])->first();
 
-                        if($mddd == null){
+                        if ($mddd == null) {
                             $mddd = new ItemDetail();
                         }
 
-                        $mddd->ref_id   =  $this->item_id ;
-                        $mddd->item_id   =  $item_dd['item_id'] ;
-                        $mddd->item_code   =  isset($item_dd['item_code'])?$item_dd['item_code']:'' ;
-                        $mddd->title   =  isset($item_dd['title'])?$item_dd['title']:'' ;
-                        $mddd->unit   =  isset($item_dd['unit'])?$item_dd['unit']:'' ;
+                        $mddd->ref_id = $this->item_id;
+                        $mddd->item_id = $item_dd['item_id'];
+                        $mddd->item_code = isset($item_dd['item_code']) ? $item_dd['item_code'] : '';
+                        $mddd->title = isset($item_dd['title']) ? $item_dd['title'] : '';
+                        $mddd->unit = isset($item_dd['unit']) ? $item_dd['unit'] : '';
 
-                        if($item_dd['num_qty']>0) {
+                        if ($item_dd['num_qty'] > 0) {
                             $mddd->num_qty = isset($item_dd['num_qty']) ? $item_dd['num_qty'] - 0 : 0;
-                        }else{
+                        } else {
                             $mddd->num_qty = 0;
                         }
-                        $mddd->description   =  isset($item_dd['description'])?$item_dd['description']:'' ;
-                        $mddd->qty   =  isset($item_dd['qty'])?$item_dd['qty']-0:0 ;
-                        $mddd->cost   =  isset($item_dd['cost'])?$item_dd['cost']-0:0 ;
-                        $mddd->note   =  isset($item_dd['note'])?$item_dd['note']:'' ;
+                        $mddd->description = isset($item_dd['description']) ? $item_dd['description'] : '';
+                        $mddd->qty = isset($item_dd['qty']) ? $item_dd['qty'] - 0 : 0;
+                        $mddd->cost = isset($item_dd['cost']) ? $item_dd['cost'] - 0 : 0;
+                        $mddd->note = isset($item_dd['note']) ? $item_dd['note'] : '';
 
                         $mddd->save();
 
@@ -517,11 +542,11 @@ class ItemDetailP
     {
         if (!($this->item_id > 0)) {
             //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-            $mi = Item::where('item_code',trim($this->item_code))->first();
+            $mi = Item::where('item_code', trim($this->item_code))->first();
 
-            if($mi != null){
+            if ($mi != null) {
                 $this->item_id = $mi->id;
-            }else {
+            } else {
                 $mi = new Item();
                 $mi->item_code = $this->item_code;
                 $mi->title = $this->title;
@@ -534,32 +559,32 @@ class ItemDetailP
             }
         }
 
-        if (_POS_::items == $this->type) {
+        /*        if (_POS_::items == $this->type) {
 
-            $md = null;
-            dd($this->item_detail);
-            foreach ($this->item_detail as $ittdd) {
+                    $md = null;
+                    dd($this->item_detail);
+                    foreach ($this->item_detail as $ittdd) {
 
-                $md = ItemDetail::where('item_id', $this->item_id)->first();
+                        $md = ItemDetail::where('item_id', $this->item_id)->first();
 
-                if ($md == null) {
-                    $md = new ItemDetail();
-                }
-                $md->ref_id = $this->ref_id;
-                $md->item_id = $this->item_id;
-                $md->item_code = $this->item_code;
-                $md->title = $this->title;
-//        $md->description  =  $this->description ;
-                $md->unit = $this->unit;
-                $md->qty = $this->qty;
-                $md->cost = $this->cost;
-                $md->note = $this->note;
+                        if ($md == null) {
+                            $md = new ItemDetail();
+                        }
+                        $md->ref_id = $this->ref_id;
+                        $md->item_id = $this->item_id;
+                        $md->item_code = $this->item_code;
+                        $md->title = $this->title;
+        //        $md->description  =  $this->description ;
+                        $md->unit = $this->unit;
+                        $md->qty = $this->qty;
+                        $md->cost = $this->cost;
+                        $md->note = $this->note;
 
-            }
+                    }
 
-            return $md->save() ? $md : null;
+                    return $md->save() ? $md : null;
 
-        }
+                }*/
 
     }
 
