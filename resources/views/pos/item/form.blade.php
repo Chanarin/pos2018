@@ -111,10 +111,10 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
                 'unit' => ['label' => 'Unit','show' => true,'width' => 90],
                 'qty' => ['label' => 'Qty','show' => true,'width' => 90],
                 'cost' => ['label' => 'Cost','show' => true,'width' => 90],
-                'price' => ['label' => 'Price','show' => false,'width' => -1],
+                'price' => ['label' => 'Price','show' => true,'width' => 90],
                 'discount' => ['label' => 'Discount','show' => false,'width' => -1],
                 'amount' => ['label' => 'Amount','show' => false,'width' => -1],
-                'note' => ['label' => 'Note','show' => true,'width' => -1],
+                'note' => ['label' => 'Note','show' => false,'width' => -1],
             ],
             'showOneTime' => 1
              ];
