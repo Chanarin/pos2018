@@ -536,21 +536,29 @@ class ItemDetailP
 
         if (_POS_::items == $this->type) {
 
-            $md = ItemDetail::where('item_id',$this->item_id)->first();
+            $md = null;
+            dd($this->item_detail);
+            foreach ($this->item_detail as $ittdd) {
 
-            if($md == null) {
-                $md = new ItemDetail();
-            }
-            $md->ref_id = $this->ref_id;
-            $md->item_id = $this->item_id;
-            $md->item_code = $this->item_code;
-            $md->title = $this->title;
+                $md = ItemDetail::where('item_id', $this->item_id)->first();
+
+                if ($md == null) {
+                    $md = new ItemDetail();
+                }
+                $md->ref_id = $this->ref_id;
+                $md->item_id = $this->item_id;
+                $md->item_code = $this->item_code;
+                $md->title = $this->title;
 //        $md->description  =  $this->description ;
-            $md->unit = $this->unit;
-            $md->qty = $this->qty;
-            $md->cost = $this->cost;
-            $md->note = $this->note;
+                $md->unit = $this->unit;
+                $md->qty = $this->qty;
+                $md->cost = $this->cost;
+                $md->note = $this->note;
+
+            }
+
             return $md->save() ? $md : null;
+
         }
 
     }
