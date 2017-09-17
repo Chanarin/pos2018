@@ -120,7 +120,7 @@ class ItemCrudController extends CrudController
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-        $inv = InvoiceDetail::where('item_id',$this->crud->id)->first();
+        $inv = InvoiceDetail::where('item_id',$this->crud->entry->id)->first();
 
         if($inv == null) {
             $iDP = new IDP($request->_data_, _POS_::items, $this->crud->entry->id);
