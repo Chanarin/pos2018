@@ -42,8 +42,7 @@ Route::middleware('cors')->post('/xyz',function (Request $request){
 });
 
 
-
-
+Route::get('/item/get-all-detail','Api\ItemController@itemGetAllDetail');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

@@ -29,7 +29,6 @@ class ItemController extends Controller
         return $results;
     }
 
-
     public function show($id)
     {
         return Item::find($id);
@@ -119,6 +118,34 @@ class ItemController extends Controller
         }
 
         return view('pos.sale.show-pos-customer',['rows'=>$results]);
+    }
+
+    public function itemGetAllDetail(Request $request){
+        $m = \App\Models\ItemDetail::where('ref_id',$request->item_id)
+            ->get();
+
+        if(count($m)>0){
+            $arr = [];
+            foreach ($m as $row){
+                $arr[] = [
+                    'id'=> $row->id,
+                    'item_id'=> $row->item_id,
+                    'item_code'=>$row->item_code,
+                    'title'=> $row->title,
+                    'description'=> $row->description,
+                    'unit'=> $row->unit,
+                    'num_qty'=> $row->num_qty,
+                    'qty'=> $row->qty,
+                    'cost'=> $row->cost,
+                    'price'=> $row->price,
+                    'discount'=> $row->discount==null?0:$row->discount,
+                    'note'=> $row->note
+                ];
+            }
+            return $arr;
+        }else{
+            return [];
+        }
     }
 
 }

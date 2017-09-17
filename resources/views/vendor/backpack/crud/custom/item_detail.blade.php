@@ -365,6 +365,7 @@
                     type: "GET",
                     url: "{{url('api/item')}}/" + id,
                     //data: "{}",
+                    async: false,
                     dataType: "json",
                     success: function (data) {
                         //dd(data);
@@ -469,11 +470,12 @@
                 type: "GET",
                 url: "{{url('api/item/get-all-detail')}}",
                 data: {item_id: item_id},
+                async: false,
                 dataType: "json",
                 success: function (data) {
                     if(data.length > 0){
                         //var subid = 'uid-' + uid + '-sub';
-                        $('#'+subid).find('.tbody-original-row-sub tr:not(:first)').remove();
+                        //$('#'+subid).find('.tbody-original-row-sub tr:not(:first)').remove();
                         $.each(data,function () {
                             var item = $(this);
 
@@ -491,6 +493,8 @@
                                 discount: item[0].discount,
                                 note: item[0].note
                             };
+                            dd(init2);
+                            dd(subid);
                             addRowSub(subid,init2);
                         });
                     }

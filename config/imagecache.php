@@ -64,6 +64,7 @@ return array(
         'img1920x910' => 'App\Filters\Image1920x910',
         'img930x677' => 'App\Filters\Image930x677',
         'img800x400' => 'App\Filters\Image800x400',
+        'img150x100' => 'App\Filters\Image150x100',
         'img800' => 'App\Filters\Image800',
         'img73x73' => 'App\Filters\Image73x73',
         'small' => 'App\Filters\Image3x2',

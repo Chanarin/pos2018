@@ -24,37 +24,6 @@ Route::get('/pos-print/{id}',function ($id){
    return view('pos.sale.pos-print',['id'=>$id]);
 });
 
-
-Route::get('/api/item/get-all-detail',function (Request $request){
-
-    $m = \App\Models\ItemDetail::where('ref_id',$request->item_id)
-        ->get();
-
-    if(count($m)>0){
-        $arr = [];
-        foreach ($m as $row){
-            $arr[] = [
-                'id'=> $row->id,
-                'item_id'=> $row->item_id,
-                'item_code'=>$row->item_code,
-                'title'=> $row->title,
-                'description'=> $row->description,
-                'unit'=> $row->unit,
-                'num_qty'=> $row->num_qty,
-                'qty'=> $row->qty,
-                'cost'=> $row->cost,
-                'price'=> $row->price,
-                'discount'=> $row->discount==null?0:$row->discount,
-                'note'=> $row->note
-            ];
-        }
-        return $arr;
-    }else{
-        return [];
-    }
-
-});
-
 Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin'], function () {
     // Backpack\CRUD: Define the resources for the entities you want to CRUD.
     Route::any('user/change-pass','AdminUserCrudController@changePass');

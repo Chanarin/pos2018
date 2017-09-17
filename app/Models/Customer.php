@@ -108,6 +108,6 @@ class Customer extends Model
     */
     public function addButtonCustom()
     {
-        return '<a href="' . url('/admin/customer-history?customer_id=' . $this->id) . '" class="btn btn-xs btn-danger" target="_blank">History</a>';
+        return '<a href="' . url('/admin/customer-history?customer_id=' . $this->id) . '" class="btn btn-xs btn-danger" target="_blank">'._t('History').'</a>';
     }
 }
