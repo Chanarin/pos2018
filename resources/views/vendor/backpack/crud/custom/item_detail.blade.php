@@ -476,8 +476,8 @@
                         $('#'+subid).find('.tbody-original-row-sub').html('');
                         $.each(data,function () {
                             var item = $(this);
-                            dd(item);
-                            addRowSub(subid,item);
+                            dd(item[0]);
+                            addRowSub(subid,item[0]);
                         });
                     }
                 },
