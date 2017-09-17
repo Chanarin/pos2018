@@ -187,7 +187,7 @@
                             var subid = $(this).data('subid');
                             var mainid = $(this).data('mainid');
 
-                            addItemDetailAll(subid,data.item_code);
+                            addItemDetailAll(subid,item_id);
 
                             if ($('#' + subid).is(":last-child")) {
                                 for (i = 1; i <= 5; i++) {
@@ -376,7 +376,7 @@
 
                         //==========================================
                         //==========================================
-                        addItemDetailAll(subid,data.item_code);
+                        addItemDetailAll(subid,id);
                         //==========================================
                         //==========================================
                         if($('#'+subid).is(":last-child"))
