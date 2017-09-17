@@ -60,7 +60,7 @@ Route::get('/item/get-all-detail',function (Request $request){
                 'qty'=> $row->qty,
                 'cost'=> $row->cost,
                 'price'=> $row->price,
-                'discount'=> $row->discount,
+                'discount'=> $row->discount==null?0:$row->discount,
                 'note'=> $row->note
             ];
         }
