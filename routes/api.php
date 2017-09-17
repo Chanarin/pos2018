@@ -43,6 +43,34 @@ Route::middleware('cors')->post('/xyz',function (Request $request){
 
 
 
+Route::get('/api/item/get-all-detail',function (Request $request){
+    $m = \App\Models\ItemDetail::where('ref_id',$request->item_id)->get();
+
+    if(count($m)>0){
+        $arr = [];
+        foreach ($m as $row){
+            $arr[] = [
+                'id'=> $row->id,
+                'item_id'=> $row->item_id,
+                'item_code'=>$row->item_code,
+                'title'=> $row->title,
+                'description'=> $row->description,
+                'unit'=> $row->unit,
+                'num_qty'=> $row->num_qty,
+                'qty'=> $row->qty,
+                'cost'=> $row->cost,
+                'price'=> $row->price,
+                'discount'=> $row->discount,
+                'note'=> $row->note
+            ];
+        }
+        return $arr;
+    }else{
+        return [];
+    }
+
+});
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

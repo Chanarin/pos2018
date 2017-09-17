@@ -445,6 +445,33 @@
             $('.tbody-main-for-use').append(row);
             $('.qty,.price,.discount,.cost').ForceNumericOnly();
 
+
+            //==========================================
+            //==========================================
+
+            $.ajax({
+                type: "GET",
+                url: "{{url('api/item/get-all-detail')}}",
+                data: {item_id: init.item_id},
+                dataType: "json",
+                success: function (data) {
+                    if(data.length > 0){
+                        var subid = 'uid-' + uid + '-sub';
+                        $('#'+subid).find('.tbody-original-row-sub').html('');
+                        $.each(data,function () {
+                            var item = $(this);
+                            addRowSub(subid,item);
+                        });
+                    }
+                },
+                error: function (result) {
+                    dd("Error");
+                }
+            });
+
+            //==========================================
+            //==========================================
+
             return uid;
         }
 
