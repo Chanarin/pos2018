@@ -24,7 +24,7 @@ Route::get('/pos-print/{id}',function ($id){
 });
 
 
-Route::get('/api/item/get-all-detail',function (Request $request){
+Route::get('/api/item/get-all-detail',function (\Illuminate\Http\Request $request){
     $m = \App\Models\ItemDetail::where('ref_id',$request->item_id)->get();
 
     if(count($m)>0){
