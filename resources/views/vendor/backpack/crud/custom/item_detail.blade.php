@@ -476,8 +476,22 @@
                         $('#'+subid).find('.tbody-original-row-sub tr:not(:first)').remove();
                         $.each(data,function () {
                             var item = $(this);
-                            dd(item[0]);
-                            addRowSub(subid,item[0]);
+
+                            var init2 = {
+                                id: item[0].id,
+                                item_id: item[0].item_id,
+                                item_code: item[0].item_code,
+                                title: item[0].title,
+                                description: item[0].description,
+                                unit: item[0].unit,
+                                num_qty: item[0].num_qty,
+                                qty: item[0].qty,
+                                cost: item[0].cost,
+                                price: item[0].price,
+                                discount: item[0].discount,
+                                note: item[0].note
+                            };
+                            addRowSub(subid,init2);
                         });
                     }
                 },
