@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Request;
 
 Route::get('/lang/{l}', function ($l) {
     $arr_lang = ['en','km'];
@@ -24,8 +25,10 @@ Route::get('/pos-print/{id}',function ($id){
 });
 
 
-Route::get('/api/item/get-all-detail',function (\Illuminate\Http\Request $request){
-    $m = \App\Models\ItemDetail::where('ref_id',$request->item_id)->get();
+Route::get('/api/item/get-all-detail',function (Request $request){
+
+    $m = \App\Models\ItemDetail::where('ref_id',$request->item_id)
+        ->get();
 
     if(count($m)>0){
         $arr = [];
