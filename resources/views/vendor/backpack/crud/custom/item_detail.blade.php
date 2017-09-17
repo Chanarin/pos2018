@@ -186,6 +186,9 @@
                             c_c++;
                             var subid = $(this).data('subid');
                             var mainid = $(this).data('mainid');
+
+                            addItemDetailAll(subid,data.item_code);
+
                             if ($('#' + subid).is(":last-child")) {
                                 for (i = 1; i <= 5; i++) {
                                     addRowMain(null);
@@ -364,14 +367,18 @@
                     //data: "{}",
                     dataType: "json",
                     success: function (data) {
-                        dd(data);
+                        //dd(data);
                         tr.find('.item_code{{$r_id}}').val(data.item_code);
                         tr.find('.title{{$r_id}}').val(data.title);
                         tr.find('.unit{{$r_id}}').val(data.unit);
                         tr.find('.num_qty{{$r_id}}').val(data.num_qty);
                         tr.find('.price{{$r_id}}').val(data.price);
 
-
+                        //==========================================
+                        //==========================================
+                        addItemDetailAll(subid,data.item_code);
+                        //==========================================
+                        //==========================================
                         if($('#'+subid).is(":last-child"))
                         {
                             if(d.hasClass('item_id-main-id')) {
@@ -448,15 +455,24 @@
 
             //==========================================
             //==========================================
+            addItemDetailAll('uid-' + uid + '-sub',init.item_id);
+            //==========================================
+            //==========================================
+
+            return uid;
+        }
+
+
+        function addItemDetailAll(subid,item_id) {
 
             $.ajax({
                 type: "GET",
                 url: "{{url('api/item/get-all-detail')}}",
-                data: {item_id: init.item_id},
+                data: {item_id: item_id},
                 dataType: "json",
                 success: function (data) {
                     if(data.length > 0){
-                        var subid = 'uid-' + uid + '-sub';
+                        //var subid = 'uid-' + uid + '-sub';
                         $('#'+subid).find('.tbody-original-row-sub').html('');
                         $.each(data,function () {
                             var item = $(this);
@@ -468,11 +484,6 @@
                     dd("Error");
                 }
             });
-
-            //==========================================
-            //==========================================
-
-            return uid;
         }
 
         function addRowSub(subid,option) {
