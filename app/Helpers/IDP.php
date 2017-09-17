@@ -208,7 +208,7 @@ class ItemDetailP
     {
 
 
-       // dd($this->type);
+        // dd($this->type);
         if ($this->type == _POS_::items && $this->ref_id > 0 && $this->qty > 0) {
             if ($this->type == _POS_::items) {
                 if ($this->title != null && $this->title != '') {
@@ -220,7 +220,7 @@ class ItemDetailP
             $rrr = ItemDetail::where('ref_id', $this->ref_id)
                 ->where('item_id', $this->item_id)->first();
 
-           // dd($rrr);
+            // dd($rrr);
             if ($rrr == null) {
                 $rrr = new ItemDetail();
             }
@@ -233,6 +233,7 @@ class ItemDetailP
             $rrr->num_qty = $this->num_qty;
             $rrr->qty = $this->qty;
             $rrr->cost = $this->cost;
+            $rrr->price = $this->price;
             $rrr->note = $this->note;
 
             $rrr->save();
@@ -247,12 +248,11 @@ class ItemDetailP
             )) {
 
 
-                $this->createItem();
+            $this->createItem();
 
-                $this->saveDetail();
+            $this->saveDetail();
 
         }
-
 
 
     }
@@ -262,7 +262,7 @@ class ItemDetailP
         $rrr = null;
         if ($this->type == _POS_::items) {
 
-            $rrr = ItemDetail::where('ref_id',$this->ref_id)
+            $rrr = ItemDetail::where('ref_id', $this->ref_id)
                 ->where('item_id', $this->item_id)->first();
 
 //            dd($rrr);
@@ -278,6 +278,7 @@ class ItemDetailP
             $rrr->num_qty = $this->num_qty;
             $rrr->qty = $this->qty;
             $rrr->cost = $this->cost;
+            $rrr->price = $this->price;
             $rrr->note = $this->note;
 
             $rrr->save();
@@ -298,6 +299,8 @@ class ItemDetailP
                     $mi = new Item();
                     $mi->item_code = $this->item_code;
                     $mi->title = $this->title;
+                    $mi->cost = $this->cost ;
+                    $mi->price = $this->price ;
                     //$mi->description = $this->description ;
                     //$mi->image = $this->image ;
                     $mi->unit = $this->unit;
@@ -306,13 +309,15 @@ class ItemDetailP
                         $rrr = $mi;
                     }
                 }
-            }else{
+            } else {
 
                 $mi = Item::find($this->item_id);
                 //$mi = new Item();
 
                 $mi->item_code = $this->item_code;
                 $mi->title = $this->title;
+                $mi->cost = $this->cost ;
+                $mi->price = $this->price ;
                 //$mi->description = $this->description ;
                 //$mi->image = $this->image ;
                 $mi->unit = $this->unit;
@@ -363,6 +368,8 @@ class ItemDetailP
                             $mis = new Item();
                             $mis->item_code = $item_code;
                             $mis->title = $title;
+                            $mis->cost = $this->cost ;
+                            $mis->price = $this->price ;
                             //$mi->description = $this->description ;
                             //$mi->image = $this->image ;
                             $mis->unit = $unit;
@@ -383,6 +390,7 @@ class ItemDetailP
                         $mff->qty = $qty;
                         $mff->num_qty = $num_qty;
                         $mff->cost = $cost;
+                        $mff->price = $price;
                         $mff->note = $note;
                         $mff->save();
                     }
@@ -435,26 +443,27 @@ class ItemDetailP
                     ];
 
 
-
                     if ($d_item_id > 0) {
                         $item_ref_detail[$ixix]['item_id'] = $d_item_id;
 
                         //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
                         $mITT = Item::find($d_item_id);
 
-                     /*   if ($mITT != null) {
-                            $item_ref_detail[$ixix]['item_id'] = $mITT->id;
-                        } else {*/
-                            //$mITT = new Item();
-                            $mITT->item_code = $d_item_code;
-                            $mITT->title = $d_title;
-                            $mITT->description = $d_description;
-                            $mITT->unit = $d_unit;
+                        /*   if ($mITT != null) {
+                               $item_ref_detail[$ixix]['item_id'] = $mITT->id;
+                           } else {*/
+                        //$mITT = new Item();
+                        $mITT->item_code = $d_item_code;
+                        $mITT->title = $d_title;
+                        $mITT->description = $d_description;
+                        $mITT->unit = $d_unit;
+                        $mITT->cost = $d_cost;
+                        $mITT->price = $d_price;
 
-                            if ($mITT->save()) {
-                                $item_ref_detail[$ixix]['item_id'] = $mITT->id;
-                            }
-                       // }
+                        if ($mITT->save()) {
+                            $item_ref_detail[$ixix]['item_id'] = $mITT->id;
+                        }
+                        // }
 
                     } else {
                         //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -468,6 +477,8 @@ class ItemDetailP
                             $mITT->title = $d_title;
                             $mITT->description = $d_description;
                             $mITT->unit = $d_unit;
+                            $mITT->price = $d_price;
+                            $mITT->cost = $d_cost;
 
                             if ($mITT->save()) {
                                 $item_ref_detail[$ixix]['item_id'] = $mITT->id;
@@ -593,6 +604,7 @@ class ItemDetailP
                         $mddd->description = isset($item_dd['description']) ? $item_dd['description'] : '';
                         $mddd->qty = isset($item_dd['qty']) ? $item_dd['qty'] - 0 : 0;
                         $mddd->cost = isset($item_dd['cost']) ? $item_dd['cost'] - 0 : 0;
+                        $mddd->price = isset($item_dd['price']) ? $item_dd['price'] - 0 : 0;
                         $mddd->note = isset($item_dd['note']) ? $item_dd['note'] : '';
 
                         $mddd->save();
@@ -623,6 +635,9 @@ class ItemDetailP
                 //$mi->description = $this->description ;
                 //$mi->image = $this->image ;
                 $mi->unit = $this->unit;
+                $mi->cost = $this->cost;
+                $mi->price = $this->price;
+
                 if ($mi->save()) {
                     $this->item_id = $mi->id;
                 }
