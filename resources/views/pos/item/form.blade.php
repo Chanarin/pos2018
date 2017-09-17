@@ -43,15 +43,21 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
     </div>
     <div class="form-group col-md-6">
         @php
-        $field = [
-            'name' => 'unit',
-            'value' => isset($crud->entry->unit)?$crud->entry->unit:null,
-            'label' => _t('Unit'),
-            'type' => 'text'
-            ];
+            $field = [
+                'label' => _t('Unit'),
+                'type' => 'select',
+                'name' => 'unit',
+                'value' => isset($crud->entry->unit)?$crud->entry->unit:null,
+                'entity' => 'units',
+                'attribute' => 'name',
+                'model' => "App\Models\Unit",
+                'showOneTime' => 0
+                ];
         @endphp
-        @include('vendor.backpack.crud.fields.text', compact('crud', 'entry', 'field'))
+        @include('vendor.backpack.crud.custom.select2', compact('crud', 'entry', 'field'))
     </div>
+
+
     <div class="form-group col-md-6">
         @php
             $field = [

@@ -63,6 +63,15 @@ class ItemCrudController extends CrudController
         ]);
 
         $this->crud->addColumn([
+            'label' => _t('Unit'),
+            'type' => 'select',
+            'name' => 'unit',
+            'entity' => 'units',
+            'attribute' => 'name',
+            'model' => "App\Models\Unit",
+        ]);
+
+        $this->crud->addColumn([
             'name' => 'price',
             'label' => _t('Price'),
         ]);

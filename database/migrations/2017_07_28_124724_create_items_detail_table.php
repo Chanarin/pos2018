@@ -27,6 +27,7 @@ class CreateItemsDetailTable extends Migration
             $table->string('image')->nullable();
             $table->double('qty')->nullable();
             $table->double('cost')->nullable();
+            $table->double('price')->nullable();
             $table->string('note')->nullable();
 
             $table->timestamps();

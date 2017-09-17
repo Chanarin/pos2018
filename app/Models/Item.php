@@ -43,6 +43,11 @@ class Item extends Model
         return $this->belongsTo('App\Models\ItemCategory', 'category_id');
     }
 
+    public function units()
+    {
+        return $this->belongsTo('App\Models\Unit', 'unit');
+    }
+
     public function setImageAttribute($values)
     {
 
