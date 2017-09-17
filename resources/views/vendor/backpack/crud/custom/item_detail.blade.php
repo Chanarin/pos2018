@@ -473,7 +473,7 @@
                 success: function (data) {
                     if(data.length > 0){
                         //var subid = 'uid-' + uid + '-sub';
-                        $('#'+subid).find('.tbody-original-row-sub').html('');
+                        $('#'+subid).find('.tbody-original-row-sub tr:not(:first)').remove();
                         $.each(data,function () {
                             var item = $(this);
                             dd(item[0]);
