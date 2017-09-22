@@ -3,6 +3,9 @@
    $mu = \App\Models\Unit::all();
 
    $num_qty =  ['name'=>'num_qty','label' => 'Num.QTY','show' => true,'width' => 80];
+
+
+    $readonly = \App\Helpers\_POS_::invoice == $data_type? ' readonly="readonly" ':'';
 @endphp
 <tbody class="table-origin-body" style="display: none;">
 @for($i_loop = 1;$i_loop <= 1 ;$i_loop++)
@@ -35,7 +38,9 @@
                         @endif
                     </select>
                 @else
-                    <input  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"   vvvv-{{$k}}-vvvv
+                    <input
+                            @if(!($k == 'qty' || $k == 'cost' || $k == 'price' || $k == 'discount')) {!! $readonly !!}  @endif
+                            data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"   vvvv-{{$k}}-vvvv
                             xx_name_xx="_data_[xxxx-uid-xxxx][{{$k}}]" style="width: 100%; "
                            class="form-control input-sm {{$k}}{{$r_id}}  {{$k}} {{$k}}-main" type="text">
                 @endif
@@ -123,7 +128,10 @@
                                         @endif
                                     </select>
                                 @else
-                                    <input  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"    pppp-{{$k}}-pppp
+                                    <input
+
+                                            @if(!($k == 'qty' || $k == 'cost' || $k == 'price' || $k == 'discount')) {!! $readonly !!}  @endif
+                                            data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx"    pppp-{{$k}}-pppp
                                             www_name_www="_data_[xxxx-uid-xxxx][detail][yyyy-uid-yyyy][{{$k}}]"
                                            style="width: 100%; " class="form-control input-sm {{$k}}{{$r_id}}  {{$k}} {{$k}}-sub"
                                            type="text">
