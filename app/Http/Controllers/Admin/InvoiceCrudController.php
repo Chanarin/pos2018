@@ -167,12 +167,15 @@ class InvoiceCrudController extends CrudController
         if ($validator->fails()) {
             return redirect('admin/invoice');
         }
+
+//        dd($request->_data_);
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
         $iDP = new IDP($request->_data_,_POS_::invoice,$this->crud->entry->id);
         $iDP->saveAllDetail();
+
 
         if($request->is_pos>0){
 //            return view('pos.sale.pos-print',['id'=>$this->crud->entry->id]);
