@@ -21,6 +21,7 @@ class CreateItemsTable extends Migration
             $table->string('description')->nullable();
             $table->text('image')->nullable();
             $table->string('unit')->nullable();
+            $table->double('cost')->nullable();
             $table->double('price')->nullable();
             $table->timestamps();
             $table->softDeletes();

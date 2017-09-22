@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\_POS_;
 use App\Helpers\GH;
 use App\Helpers\IDP;
+use App\Models\InvoiceDetail;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
