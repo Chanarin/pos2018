@@ -55,12 +55,16 @@ class InvoiceCrudController extends CrudController
             'label' => _t('Deposit'),
         ]);
         $this->crud->addColumn([
-            'name' => 'total_payable',
+            'name' => 'complete_price',
             'label' => _t('Complete Price'),
         ]);
         $this->crud->addColumn([
             'name' => 'complete_date',
             'label' => _t('Complete Date'),
+        ]);
+        $this->crud->addColumn([
+            'name' => 'exchange_rate',
+            'label' => _t('Exchange Rate'),
         ]);
         $this->crud->addColumn([
             'name' => 'status',

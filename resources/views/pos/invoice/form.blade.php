@@ -2,6 +2,8 @@
 $ref_id = isset($crud->entry->id)?$crud->entry->id:0;
 $data_type = isset($field['data_type'])?$field['data_type']:null;
 $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
+$exchanges = \App\Models\ExchangeRate::orderBy('id','desc')->select('kh')->limit(1)->first();
+$exchange = $exchanges->kh;
 ?>
 <div class="row">
     <div class="form-group col-md-6">
@@ -11,6 +13,19 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
             'type' => 'text',
             'label' =>_t( 'Invoice Number'),
             'value' => isset($crud->entry->invoice_number)?$crud->entry->invoice_number:null,
+            // optional:
+        ];
+        @endphp
+        @include('vendor.backpack.crud.custom.text2',compact('crud', 'entry', 'field'))
+    </div>
+    <div class="form-group col-md-6">
+        @php
+        $field = [   // date_picker
+            'name' => 'exchange_rate',
+            'type' => 'text',
+            'default'    => $exchange,
+            'label' =>_t( 'Exchange Rate'),
+            'value' => isset($crud->entry->exchange_rate)?$crud->entry->exchange_rate:null,
             // optional:
         ];
         @endphp
@@ -85,7 +100,7 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
     <div class="form-group col-md-6">
         @php
             $field = [
-                'name' => 'total_payable',
+                'name' => 'complete_price',
                 'type' => 'text',
                 'label' => _t('Complete Price'),
                 'attributes' => ["number" => "number"],
@@ -96,11 +111,11 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
         @include('vendor.backpack.crud.custom.text2',compact('crud', 'entry', 'field'))
     </div>
 
-    <div class="form-group col-md-12">
+    <div class="form-group col-md-6">
         @php
             $field = [
                 'name' => 'payment_note',
-                'value' => isset($crud->entry->description)?$crud->entry->description:null,
+                'value' => isset($crud->entry->payment_note)?$crud->entry->payment_note:null,
                 'label' => _t('Note'),
                 'type' => 'textarea'
                 ];

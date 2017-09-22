@@ -21,7 +21,7 @@ class Invoice extends Model
     // protected $guarded = ['id'];
      protected $fillable = [
          'invoice_number','_date_','customer_id','description','customer_note',
-         'payment_note','deposit','total_amt','total_discount','total_payable',
+         'payment_note','deposit','complete_price','total_amt','total_discount','total_payable',
          'paid','paid_kh','exchange_rate','user_id','status','complete_date'
      ];
     // protected $hidden = [];

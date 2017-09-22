@@ -439,6 +439,8 @@ class ItemDetailP
                         'num_qty' => $d_num_qty,
                         'qty' => $d_qty,
                         'cost' => $d_cost,
+                        'price' => $d_price,
+                        'discount' => $d_discount,
                         'note' => $d_note
                     ];
 

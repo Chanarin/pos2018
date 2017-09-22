@@ -22,6 +22,7 @@ class CreateInvoiceTable extends Migration
             $table->string('customer_note')->nullable();
             $table->string('payment_note')->nullable();
             $table->double('deposit')->nullable();
+            $table->double('complete_price')->nullable();
 
             $table->double('total_amt')->default(0)->nullable();
             $table->double('total_discount')->default(0)->nullable();
