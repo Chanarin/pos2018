@@ -117,6 +117,13 @@
 <!-- include field specific select2 js-->
 @push('crud_fields_scripts')
     <script>
+
+        var ss_subb = '';
+
+       $(function(){
+           ss_subb = $('.tbody-original-row-sub').first().html();
+       });
+
         // Numeric only control handler
         jQuery.fn.ForceNumericOnly =
             function()
@@ -495,6 +502,8 @@
                         //$('#'+subid).find('.tbody-original-row-sub tr:not(:first)').remove();
 
                         $('#'+subid).find('.tbody-original-row-sub').html('');
+
+                        addRowSub(subid,null);
                         $.each(data,function () {
                             var item = $(this);
 
@@ -549,10 +558,12 @@
             };
             var uid = $('#'+subid).data('id');
             var uid2 = getUniqIDRan();
-            var row_sub = $('.tbody-original-row-sub').first().html()
+            var row_sub = ss_subb // $('.tbody-original-row-sub').first().html()
                 .replaceAll('xxxx-uid-xxxx',uid)
                 .replaceAll('yyyy-uid-yyyy',uid2)
                 .replaceAll('www_name_www','name');
+
+            //$('.tbody-original-row-sub').first().hide();
 
             if(option != null)
             {
@@ -577,6 +588,8 @@
             runSelect2{{$r_id}}(row.find('.item_id-sub'));
                 row.find('.unit').val(uu);
             $('#'+subid).find('.tbody-original-row-sub').append(row);
+
+            $('#'+subid).find('.tbody-original-row-sub tr:first').hide();
             $('.qty,.price,.discount,.cost').ForceNumericOnly();
         }
 
@@ -692,6 +705,9 @@
 
                             @if(count($mItemDetail)>0)
                                 $('#'+'uid-' + sIdSub + '-sub').find('.tbody-original-row-sub').html('');
+
+
+            addRowSub('uid-' + sIdSub + '-sub',null);
                                 @forEach($mItemDetail as $rrr)
 
                                     sRowOption = {
@@ -790,6 +806,7 @@
                 var subid = $(this).data('subid');
                 var mainid = $(this).data('mainid');
 
+
                 if($(this).data('show') > 0) {
                     $('#' + subid).show(1000);
 
@@ -811,6 +828,9 @@
                     $('#' + subid).hide(1000);
                     $(this).data('show',1);
                 }
+
+
+                $('#'+subid).find('.tbody-original-row-sub tr:first').hide();
 
             });
 
