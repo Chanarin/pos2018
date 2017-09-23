@@ -4,6 +4,7 @@ $data_type = isset($field['data_type'])?$field['data_type']:null;
 $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
 $exchanges = \App\Models\ExchangeRate::orderBy('id','desc')->select('kh')->limit(1)->first();
 $exchange = $exchanges->kh;
+$invoicess = getINVNext();
 ?>
 <div class="row">
     <div class="form-group col-md-6">
@@ -11,9 +12,12 @@ $exchange = $exchanges->kh;
         $field = [   // date_picker
             'name' => 'invoice_number',
             'type' => 'text',
+            'default' => $invoicess,
             'label' =>_t( 'Invoice Number'),
             'value' => isset($crud->entry->invoice_number)?$crud->entry->invoice_number:null,
-            // optional:
+            'attributes' => [
+                'readonly' => 'readonly',
+            ],
         ];
         @endphp
         @include('vendor.backpack.crud.custom.text2',compact('crud', 'entry', 'field'))
@@ -23,9 +27,14 @@ $exchange = $exchanges->kh;
         $field = [   // date_picker
             'name' => 'exchange_rate',
             'type' => 'text',
-            'default'    => $exchange,
+            'default' => $exchange,
             'label' =>_t( 'Exchange Rate'),
             'value' => isset($crud->entry->exchange_rate)?$crud->entry->exchange_rate:null,
+            //'readonly'=>'readonly',
+            'attributes' => [
+                'readonly' => 'readonly',
+                //'class' => 'form-control some-class'
+            ],
             // optional:
         ];
         @endphp

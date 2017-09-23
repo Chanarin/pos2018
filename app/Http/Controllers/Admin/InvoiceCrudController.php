@@ -186,6 +186,7 @@ class InvoiceCrudController extends CrudController
             return redirect('/pos-print/'.$this->crud->entry->id);
         }else {
             return $redirect_location;
+//            return redirect('/pos-print/'.$this->crud->entry->id);
         }
     }
 
