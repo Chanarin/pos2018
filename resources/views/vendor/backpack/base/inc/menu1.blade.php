@@ -30,7 +30,7 @@
             {{--</a>--}}
         {{--</li>--}}
         <li class=" hidden-xs hidden-sm">
-            <a href="{{ url('/admin/customers') }}" >
+            <a href="{{ url('/admin/customer') }}" >
                 <i class="fa  fa-user"></i> <span>{{_t('Customer')}}</span>
 
             </a>
@@ -41,12 +41,12 @@
 
             </a>
         </li>
-        <li class=" hidden-xs hidden-sm">
-            <a href="#" >
-                <i class="fa fa-th-large"></i> <span>{{_t('Profit')}}</span>
+        {{--<li class=" hidden-xs hidden-sm">--}}
+            {{--<a href="#" >--}}
+                {{--<i class="fa fa-th-large"></i> <span>{{_t('Profit')}}</span>--}}
 
-            </a>
-        </li>
+            {{--</a>--}}
+        {{--</li>--}}
         {{--<li class=" hidden-xs hidden-sm">--}}
             {{--<a href="#" >--}}
                 {{--<i class="fa fa-print"></i> <span>{{_t('List Sale')}}</span>--}}
