@@ -36,7 +36,7 @@
                                 {{_t('Customer')}}: {{$row->customer->name }}<br>
                             </td>
                             <td width="34%" valign="top">
-                                {{_t('Purchase Date')}}: {{\Carbon\Carbon::parse($row->_date_)->format('d/m/Y') }}<br>
+                                {{_t('Purchase Due')}}: {{\Carbon\Carbon::parse($row->_date_)->format('d/m/Y') }}<br>
                             </td>
                             <td width="33%" valign="top">
                                 {{_t('Description')}}: {{$row->description}}<br>

@@ -698,7 +698,7 @@ class LanguagesTableSeeder extends Seeder
                 'id' => 77,
                 'key' => 'deposit',
                 'en' => 'Deposit',
-                'km' => 'ការដាក់ប្រាក់',
+                'km' => 'ប្រាក់កក់',
                 'created_at' => '2017-08-31 07:46:07',
                 'updated_at' => '2017-08-31 07:46:07',
             ),
@@ -1704,7 +1704,7 @@ class LanguagesTableSeeder extends Seeder
                 'id' => 191,
                 'key' => 'customer_invoice_record',
                 'en' => 'Customer Invoice Record',
-                'km' => 'កត់ត្រាវិក្កយបត្រអតិថិជន',
+                'km' => 'កំណត់ត្រាវិក្កយបត្រអតិថិជន',
                 'created_at' => '2017-09-18 02:41:45',
                 'updated_at' => '2017-09-18 02:41:45',
             ),
@@ -1722,7 +1722,7 @@ class LanguagesTableSeeder extends Seeder
                 'id' => 193,
                 'key' => 'no',
                 'en' => 'No',
-                'km' => 'លេខ',
+                'km' => 'ល.រ',
                 'created_at' => '2017-09-18 02:41:45',
                 'updated_at' => '2017-09-18 02:41:45',
             ),
@@ -1786,8 +1786,8 @@ class LanguagesTableSeeder extends Seeder
             array (
                 'id' => 200,
                 'key' => 'buyer',
-                'en' => NULL,
-                'km' => NULL,
+                'en' => 'Buyer',
+                'km' => 'អ្នកទិញ',
                 'created_at' => '2017-09-22 04:11:54',
                 'updated_at' => '2017-09-22 04:11:54',
             ),
@@ -1795,10 +1795,208 @@ class LanguagesTableSeeder extends Seeder
             array (
                 'id' => 201,
                 'key' => 'seller',
-                'en' => NULL,
-                'km' => NULL,
+                'en' => 'Seller',
+                'km' => 'អ្នកលក់',
                 'created_at' => '2017-09-22 04:11:54',
                 'updated_at' => '2017-09-22 04:11:54',
+            ),
+            197 => 
+            array (
+                'id' => 203,
+                'key' => 'invoice_list_report',
+                'en' => 'Invoice List Report',
+                'km' => 'បញ្ជីរបាយការណ៍វិក័យប័ត្រ',
+                'created_at' => '2017-09-23 06:36:07',
+                'updated_at' => '2017-09-23 06:36:07',
+            ),
+            198 => 
+            array (
+                'id' => 204,
+                'key' => 'form_date',
+                'en' => 'From Date',
+                'km' => 'ចាប់ពីថ្ងៃទី',
+                'created_at' => '2017-09-23 06:36:07',
+                'updated_at' => '2017-09-23 06:36:07',
+            ),
+            199 => 
+            array (
+                'id' => 205,
+                'key' => 'to_date',
+                'en' => 'To Date',
+                'km' => 'ដល់ថ្ងៃទី',
+                'created_at' => '2017-09-23 06:36:07',
+                'updated_at' => '2017-09-23 06:36:07',
+            ),
+            200 => 
+            array (
+                'id' => 206,
+                'key' => 'tel',
+                'en' => 'Tel',
+                'km' => 'ទូរស័ព្ទលេខ',
+                'created_at' => '2017-09-23 06:36:07',
+                'updated_at' => '2017-09-23 06:36:07',
+            ),
+            201 => 
+            array (
+                'id' => 207,
+                'key' => 'subtotal',
+                'en' => 'Subtotal ',
+                'km' => 'សរុប',
+                'created_at' => '2017-09-23 06:36:07',
+                'updated_at' => '2017-09-23 06:36:07',
+            ),
+            202 => 
+            array (
+                'id' => 208,
+                'key' => 'production_list_report',
+                'en' => 'Production List Report',
+                'km' => 'បញ្ជីរបាយការណ៍ផលិតកម្ម',
+                'created_at' => '2017-09-23 06:38:15',
+                'updated_at' => '2017-09-23 06:38:15',
+            ),
+            203 => 
+            array (
+                'id' => 209,
+                'key' => 'not_record_found',
+                'en' => 'Not Record Found',
+                'km' => 'មិនមានកំណត់ត្រា',
+                'created_at' => '2017-09-23 06:38:15',
+                'updated_at' => '2017-09-23 06:38:15',
+            ),
+            204 => 
+            array (
+                'id' => 210,
+                'key' => 'open_list_report',
+                'en' => 'Open List Report',
+                'km' => 'បញ្ជីរបាយការណ៍បើកស្តុក',
+                'created_at' => '2017-09-23 06:38:20',
+                'updated_at' => '2017-09-23 06:38:20',
+            ),
+            205 => 
+            array (
+                'id' => 211,
+                'key' => 'total_qty',
+                'en' => 'Total Qty',
+                'km' => 'ចំនួនសរុប',
+                'created_at' => '2017-09-23 06:38:20',
+                'updated_at' => '2017-09-23 06:38:20',
+            ),
+            206 => 
+            array (
+                'id' => 212,
+                'key' => 'total_cost',
+                'en' => 'Total Cost',
+                'km' => 'ថ្លៃដើមសរុប',
+                'created_at' => '2017-09-23 06:38:20',
+                'updated_at' => '2017-09-23 06:38:20',
+            ),
+            207 => 
+            array (
+                'id' => 213,
+                'key' => 'checked_by',
+                'en' => 'Checked By',
+                'km' => 'ពិនិត្រដោយ',
+                'created_at' => '2017-09-23 06:38:20',
+                'updated_at' => '2017-09-23 06:38:20',
+            ),
+            208 => 
+            array (
+                'id' => 214,
+                'key' => 'reported_by',
+                'en' => 'Reported By',
+                'km' => 'រៀបចំរបាយការណ័ដោយ',
+                'created_at' => '2017-09-23 06:38:20',
+                'updated_at' => '2017-09-23 06:38:20',
+            ),
+            209 => 
+            array (
+                'id' => 215,
+                'key' => 'between',
+                'en' => 'Between',
+                'km' => 'ចន្លោះ',
+                'created_at' => '2017-09-23 06:45:30',
+                'updated_at' => '2017-09-23 06:45:30',
+            ),
+            210 => 
+            array (
+                'id' => 216,
+                'key' => 'production_history',
+                'en' => 'Production History',
+                'km' => 'ប្រវត្តិផលិតកម្ម',
+                'created_at' => '2017-09-23 06:52:46',
+                'updated_at' => '2017-09-23 06:52:46',
+            ),
+            211 => 
+            array (
+                'id' => 217,
+                'key' => 'customer_production_record',
+                'en' => 'Customer Production Record',
+                'km' => 'កំណត់ត្រាផលិតកម្មអតិថិជន',
+                'created_at' => '2017-09-23 06:52:46',
+                'updated_at' => '2017-09-23 06:52:46',
+            ),
+            212 => 
+            array (
+                'id' => 218,
+                'key' => 'production_due',
+                'en' => 'Production Due',
+                'km' => 'ថ្ងៃទី',
+                'created_at' => '2017-09-23 06:52:46',
+                'updated_at' => '2017-09-23 06:52:46',
+            ),
+            213 => 
+            array (
+                'id' => 219,
+                'key' => 'purchase_history',
+                'en' => 'Purchase History',
+                'km' => 'ប្រវត្តិការទិញចូល',
+                'created_at' => '2017-09-23 06:57:38',
+                'updated_at' => '2017-09-23 06:57:38',
+            ),
+            214 => 
+            array (
+                'id' => 220,
+                'key' => 'customer_purchase_record',
+                'en' => 'Customer Purchase Record',
+                'km' => 'កំណត់ត្រាការទិញចូលពីអតិថិជន',
+                'created_at' => '2017-09-23 06:57:38',
+                'updated_at' => '2017-09-23 06:57:38',
+            ),
+            215 => 
+            array (
+                'id' => 221,
+                'key' => 'purchase_due',
+                'en' => 'Purchase Due',
+                'km' => 'ថ្ងៃទី',
+                'created_at' => '2017-09-23 06:57:38',
+                'updated_at' => '2017-09-23 06:57:38',
+            ),
+            216 => 
+            array (
+                'id' => 222,
+                'key' => 'open_detail_report',
+                'en' => 'Open Detail Report',
+                'km' => 'របាយការណ៍លម្អិតនៃការបើកស្តុក',
+                'created_at' => '2017-09-23 07:11:03',
+                'updated_at' => '2017-09-23 07:11:03',
+            ),
+            217 => 
+            array (
+                'id' => 223,
+                'key' => 'open_due',
+                'en' => 'Open Due',
+                'km' => 'ថ្ងៃទី',
+                'created_at' => '2017-09-23 07:11:03',
+                'updated_at' => '2017-09-23 07:11:03',
+            ),
+            218 => 
+            array (
+                'id' => 225,
+                'key' => 'purchase_detail_report',
+                'en' => 'Purchase Detail Report',
+                'km' => 'របាយការណ៍លម្អិតនៃការទិញចូល',
+                'created_at' => '2017-09-23 07:13:12',
+                'updated_at' => '2017-09-23 07:13:12',
             ),
         ));
         
