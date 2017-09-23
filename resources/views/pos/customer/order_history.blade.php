@@ -106,13 +106,21 @@
                                                         <tr>
                                                             <td width="33%" valign="top">
                                                                 {{_t('Invoice No')}}: {{$invoice->invoice_number}}<br>
+                                                                {{_t('Status')}}: {{$invoice->status}}<br>
                                                                 {{_t('Note')}}: {{$invoice->payment_note}}
                                                             </td>
                                                             <td width="34%" valign="top">
                                                                 {{_t('Exchange Rate')}}: {{$invoice->exchange_rate}} ៛<br>
+                                                                @if($invoice->deposit != '')
+                                                                    {{_t('Deposit')}}: $ {{number_format($invoice->deposit,2)}}<br>
+                                                                    {{_t('Complete Price')}}: $ {{number_format($invoice->complete_price,2)}}<br>
+                                                                @endif
                                                             </td>
                                                             <td width="33%" valign="top">
                                                                 {{_t('Invoice Due')}}: {{\Carbon\Carbon::parse($invoice->_date_)->format('d/m/Y') }}<br>
+                                                                @if($invoice->complete_date != '')
+                                                                    {{_t('Complete Date')}}: {{\Carbon\Carbon::parse($invoice->complete_date)->format('d/m/Y') }}<br>
+                                                                @endif
                                                             </td>
                                                         </tr>
 

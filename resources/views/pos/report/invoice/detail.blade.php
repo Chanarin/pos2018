@@ -41,14 +41,21 @@
 
                             </td>
                             <td width="34%" valign="top">
-                                Customer Name: {{$row->customer->name}}<br>
-                                Status: {{$row->status}}<br>
-                                Note: {{$row->payment_note}}
+                                {{_t('Customer Name')}}: {{$row->customer->name}}<br>
+                                {{_t('Status')}}: {{$row->status}}<br>
+                                {{_t('Note')}}: {{$row->payment_note}}<br>
+                                @if($row->deposit != '')
+                                    {{_t('Deposit')}}: $ {{number_format($row->deposit,2)}}<br>
+                                    {{_t('Complete Price')}}: $ {{number_format($row->complete_price,2)}}<br>
+                                @endif
                             </td>
                             <td width="33%" valign="top">
-                                Invoice Number: {{$row->invoice_number}}<br>
-                                Payment Due: {{\Carbon\Carbon::parse($row->_date_)->format('d/m/Y') }}<br>
-                                Exchange Rate: {{$row->exchange_rate}} ៛<br>
+                                {{_t('Invoice Number')}}: {{$row->invoice_number}}<br>
+                                {{_t('Invoice Due')}}: {{\Carbon\Carbon::parse($row->_date_)->format('d/m/Y') }}<br>
+                                @if($row->complete_date != '')
+                                    {{_t('Complete Date')}}: {{\Carbon\Carbon::parse($row->complete_date)->format('d/m/Y') }}<br>
+                                @endif
+                                {{_t('Exchange Rate')}}: {{$row->exchange_rate}} ៛<br>
                             </td>
                         </tr>
                     </table>
@@ -66,13 +73,13 @@
             <table width="100%">
                 <thead class="border" style="background: #CCCCCC">
                 <tr>
-                    <th class="text-center">ល.រ</th>
-                    <th class="text-center">កូដ</th>
-                    <th class="text-center">ទំនិញ</th>
-                    <th class="text-center">ឯកតា</th>
-                    <th class="text-center">ចំនួន</th>
-                    <th class="text-center">តំលៃ</th>
-                    <th class="text-center">សរុប</th>
+                    <th class="text-center">{{_t('No')}}</th>
+                    <th class="text-center">{{_t('Code')}}</th>
+                    <th class="text-center">{{_t('Name')}}</th>
+                    <th class="text-center">{{_t('Unit')}}</th>
+                    <th class="text-center">{{_t('Qty')}}</th>
+                    <th class="text-center">{{_t('Price')}}</th>
+                    <th class="text-center">{{_t('Total')}}</th>
 
                 </tr>
                 </thead>
@@ -118,31 +125,31 @@
                 </tbody>
                 <tr>
                     <td colspan="4"></td>
-                    <td style="text-align:right;">សរុប</td>
+                    <td style="text-align:right;">{{_t('Grand Total')}}</td>
                     <td style="text-align:right;">$ {{number_format($row->total_amt,2)}}</td>
                     <td style="text-align:right;">{{number_format(($row->total_amt)*$row->exchange_rate,2)}} ៛</td>
                 </tr>
                 <tr>
                     <td colspan="4"></td>
-                    <td style="text-align:right;">បញ្ចុះតំលៃ</td>
+                    <td style="text-align:right;">{{_t('Discount')}}</td>
                     <td style="text-align:right;">$ {{number_format($row->total_discount,2)}}</td>
                     <td style="text-align:right;">{{number_format(($row->total_discount)*$row->exchange_rate,2)}} ៛</td>
                 </tr>
                 <tr>
                     <td colspan="4"></td>
-                    <td style="text-align:right;">សរុបចុងក្រោយ</td>
+                    <td style="text-align:right;">{{_t('Total Payable')}}</td>
                     <td style="text-align:right;">$ {{number_format($row->total_payable,2)}}</td>
                     <td style="text-align:right;">{{number_format(($row->total_payable)*$row->exchange_rate,2)}} ៛</td>
                 </tr>
                 <tr>
                     <td colspan="4"></td>
-                    <td style="text-align:right;">លុយបង់</td>
+                    <td style="text-align:right;">{{_t('Paid')}}</td>
                     <td style="text-align:right;">$ {{number_format($row->paid+($row->paid_kh/$row->exchange_rate),2)}}</td>
                     <td style="text-align:right;">{{number_format(($row->paid+($row->paid_kh/$row->exchange_rate))*$row->exchange_rate,2)}} ​​៛</td>
                 </tr>
                 <tr>
                     <td colspan="4"></td>
-                    <td style="text-align:right;">លុយអាប់</td>
+                    <td style="text-align:right;">{{_t('Remaining')}}</td>
                     <td style="text-align:right;">$ {{number_format(($row->paid+($row->paid_kh/$row->exchange_rate))-$row->total_payable,2)}}</td>
                     <td style="text-align:right;">{{number_format((($row->paid+($row->paid_kh/$row->exchange_rate))-$row->total_payable)*$row->exchange_rate,2)}}​ ៛</td>
                 </tr>
