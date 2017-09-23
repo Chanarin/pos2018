@@ -61,6 +61,7 @@
                             <thead>
                             <tr style="font-size:14px;height: 30px;">
                                 <th class="text-center">{{_t('No')}}</th>
+                                <th class="text-center" style="width: 62px;">{{_t('Image')}}</th>
                                 <th class="text-center">{{_t('Code')}}</th>
                                 <th class="text-center">{{_t('Name')}}</th>
                                 <th class="text-center">{{_t('Unit')}}</th>
@@ -69,10 +70,24 @@
                                 <th class="text-center">{{_t('Total')}}</th>
                             </tr>
                             </thead>
-                            <tbody style="font-size: 12px;">
+                            <tbody style="font-size: 12px; border-bottom: none;">
                             {{--->join('items','items.id','=','invoice_detail.item_id')--}}
                             @php
                                 $rowds = \App\Models\InvoiceDetail::where('ref_id',$id)
+                                    ->join('items','items.id','=','invoice_detail.item_id')
+                                    ->selectRaw("items.id,
+                                    invoice_detail.item_id,
+                                    invoice_detail.item_code,
+                                    invoice_detail.title,
+                                    invoice_detail.unit,
+                                    invoice_detail.num_qty,
+                                    invoice_detail.qty,
+                                    invoice_detail.cost,
+                                    invoice_detail.price,
+                                    invoice_detail.discount,
+                                    invoice_detail.note,
+                                    invoice_detail.item_detail,
+                                    items.image")
                                     ->get();
                             @endphp
                             @foreach($rowds as $rd)
@@ -82,6 +97,14 @@
                                 @endphp
                             <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif ">
                                 <td class="text-left">{{$loop->index+1}}</td>
+                                <td class="text-left">
+                                    @php
+                                        $img = json_decode($rd->image);
+                                    @endphp
+                                    @if(count($img)>0)
+                                        <img src="{{url('img/cache/original/'.\App\Helpers\Glb::get_basename($img[0]))}}" width="60" height="60">
+                                    @endif
+                                </td>
                                 <td class="text-left">{{$rd->item_code}}</td>
                                 <td class="text-left">{{$rd->title}}</td>
                                 <td class="text-left">{{$rd->unit}}</td>
@@ -95,6 +118,7 @@
                                             $unit = \App\Models\Unit::where('id',$r->unit)->first();
                                         @endphp
                                         <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif ">
+                                            <td class="text-left"></td>
                                             <td class="text-left"></td>
                                             <td class="text-left">{{$r->item_code}}</td>
                                             <td class="text-left">{{$r->title}}</td>

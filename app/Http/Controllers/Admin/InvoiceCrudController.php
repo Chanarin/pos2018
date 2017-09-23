@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\_POS_;
 use App\Helpers\GH;
 use App\Helpers\IDP;
+use App\Models\Invoice;
+use App\Models\InvoiceDetail;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
@@ -181,10 +183,26 @@ class InvoiceCrudController extends CrudController
         $iDP->saveAllDetail();
 
 
+
         if($request->is_pos>0){
 //            return view('pos.sale.pos-print',['id'=>$this->crud->entry->id]);
             return redirect('/pos-print/'.$this->crud->entry->id);
         }else {
+
+            $g_total_detail = InvoiceDetail::where('ref_id',$this->crud->entry->id)
+                ->selectRaw("sum(qty*price) as stotal ")
+                ->selectRaw("sum(discount) as gdiscount ")
+                ->selectRaw("sum(qty*price-discount) as gtotal ")
+                ->selectRaw("sum(qty*price-discount) as gpaid ")
+                ->first();
+            $invoicesss = Invoice::find($this->crud->entry->id);
+
+            $invoicesss->total_amt = $g_total_detail->stotal;
+            $invoicesss->total_discount = $g_total_detail->gdiscount;
+            $invoicesss->total_payable = $g_total_detail->gtotal;
+            $invoicesss->paid = $g_total_detail->gpaid;
+
+            $invoicesss->save();
 //            return $redirect_location;
             return redirect('/invoice-print/'.$this->crud->entry->id);
         }
@@ -213,7 +231,22 @@ class InvoiceCrudController extends CrudController
 //            return view('pos.sale.pos-print',['id'=>$this->crud->entry->id]);
             return redirect('/pos-print/'.$this->crud->entry->id);
         }else {
-            return $redirect_location;
+            $g_total_detail = InvoiceDetail::where('ref_id',$this->crud->entry->id)
+                ->selectRaw("sum(qty*price) as stotal ")
+                ->selectRaw("sum(discount) as gdiscount ")
+                ->selectRaw("sum(qty*price-discount) as gtotal ")
+                ->selectRaw("sum(qty*price-discount) as gpaid ")
+                ->first();
+            $invoicesss = Invoice::find($this->crud->entry->id);
+
+            $invoicesss->total_amt = $g_total_detail->stotal;
+            $invoicesss->total_discount = $g_total_detail->gdiscount;
+            $invoicesss->total_payable = $g_total_detail->gtotal;
+            $invoicesss->paid = $g_total_detail->gpaid;
+
+            $invoicesss->save();
+//            return $redirect_location;
+            return redirect('/invoice-print/'.$this->crud->entry->id);
         }
 
     }

@@ -36,9 +36,26 @@
             </a>
         </li>
         <li class=" hidden-xs hidden-sm">
+            <a href="{{ url('/admin/exchangerate') }}" >
+                <i class="fa fa-university"></i> <span>{{_t('Exchange Rate')}}</span>
+
+            </a>
+        </li>
+        <li class=" hidden-xs hidden-sm">
             <a href="{{ url('/admin/purchase') }}">
                 <i class="fa fa-cart-arrow-down"></i> <span>{{_t('Purchase')}}</span>
 
+            </a>
+        </li>
+        <li class=" hidden-xs hidden-sm">
+            <a href="{{ url('/admin/production') }}">
+                <i class="fa fa-fw fa-gavel"></i> <span>{{_t('Production')}}</span>
+
+            </a>
+        </li>
+        <li class=" hidden-xs hidden-sm">
+            <a href="{{url('admin/view-report')}}" >
+                <i class="fa fa-pie-chart"></i> <span>{{_t('Report')}}</span>
             </a>
         </li>
         {{--<li class=" hidden-xs hidden-sm">--}}
@@ -53,12 +70,12 @@
 
             {{--</a>--}}
         {{--</li>--}}
-        <li class=" hidden-xs hidden-sm">
-            <a href="{{url('admin/view-report')}}" >
-                <i class="fa fa-th-large"></i> <span>{{_t('Today Sale')}}</span>
+        {{--<li class=" hidden-xs hidden-sm">--}}
+            {{--<a href="{{url('admin/view-report')}}" >--}}
+                {{--<i class="fa fa-th-large"></i> <span>{{_t('Today Sale')}}</span>--}}
 
-            </a>
-        </li>
+            {{--</a>--}}
+        {{--</li>--}}
       <!-- ========================================================= -->
       <!-- ========== Top menu right items (ordered left) ========== -->
       <!-- ========================================================= -->
