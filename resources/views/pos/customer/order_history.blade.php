@@ -140,7 +140,6 @@
                                                 <tbody class="border">
                                                     @php
                                                         $rowds = \App\Models\InvoiceDetail::where('ref_id',$invoice->id)
-                                                             ->join('items','items.id','=','invoice_detail.item_id')
                                                              ->get();
                                                     @endphp
                                                     @foreach($rowds as $rd)

@@ -77,9 +77,9 @@
                 </tr>
                 </thead>
                 <tbody class="border">
+                {{--->join('items','items.id','=','invoice_detail.item_id')--}}
                     @php
                         $rowds = \App\Models\InvoiceDetail::where('ref_id',$row->id)
-                            ->join('items','items.id','=','invoice_detail.item_id')
                             ->get();
                         //dd($rowds);
                     @endphp

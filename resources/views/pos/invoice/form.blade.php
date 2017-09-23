@@ -7,7 +7,7 @@ $exchange = $exchanges->kh;
 $invoicess = getINVNext();
 ?>
 <div class="row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-xs-6 col-md-6">
         @php
         $field = [   // date_picker
             'name' => 'invoice_number',
@@ -22,7 +22,24 @@ $invoicess = getINVNext();
         @endphp
         @include('vendor.backpack.crud.custom.text2',compact('crud', 'entry', 'field'))
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-xs-6 col-md-6">
+        @php
+            $field = [
+                'name' => '_date_',
+                'type' => 'date_picker',
+                'label' => _t('Invoice Date'),
+                'showOneTime' => 1,
+                'value' => isset($crud->entry->_date_)?$crud->entry->_date_:null,
+                'date_picker_options' => [
+                    'todayBtn' => true,
+                    'format' => 'yyyy-mm-dd',
+                    'language' => 'en'
+                ],
+            ];
+        @endphp
+        @include('vendor.backpack.crud.custom.date_picker2',compact('crud', 'entry', 'field'))
+    </div>
+    <div class="form-group col-xs-6 col-md-6">
         @php
         $field = [   // date_picker
             'name' => 'exchange_rate',
@@ -40,24 +57,8 @@ $invoicess = getINVNext();
         @endphp
         @include('vendor.backpack.crud.custom.text2',compact('crud', 'entry', 'field'))
     </div>
-    <div class="form-group col-md-6">
-        @php
-        $field = [
-            'name' => '_date_',
-            'type' => 'date_picker',
-            'label' => _t('Invoice Date'),
-            'showOneTime' => 1,
-            'value' => isset($crud->entry->_date_)?$crud->entry->_date_:null,
-            'date_picker_options' => [
-                'todayBtn' => true,
-                'format' => 'yyyy-mm-dd',
-                'language' => 'en'
-            ],
-        ];
-        @endphp
-        @include('vendor.backpack.crud.custom.date_picker2',compact('crud', 'entry', 'field'))
-    </div>
-    <div class="form-group col-md-6">
+
+    <div class="form-group col-xs-6 col-md-6">
         @php
             $field = [
                 // 1-n relationship
@@ -76,7 +77,7 @@ $invoicess = getINVNext();
         @endphp
         @include('vendor.backpack.crud.custom.select2_from_ajax2',compact('crud', 'entry', 'field'))
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-xs-6 col-md-6">
         @php
             $field = [
                 'name' => 'deposit',
@@ -89,7 +90,7 @@ $invoicess = getINVNext();
         @endphp
         @include('vendor.backpack.crud.custom.text2',compact('crud', 'entry', 'field'))
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-xs-6 col-md-6">
         @php
             $field = [
                 'name' => 'complete_date',
@@ -106,7 +107,7 @@ $invoicess = getINVNext();
         @endphp
         @include('vendor.backpack.crud.custom.date_picker2',compact('crud', 'entry', 'field'))
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-xs-6 col-md-6">
         @php
             $field = [
                 'name' => 'complete_price',
@@ -119,19 +120,7 @@ $invoicess = getINVNext();
         @endphp
         @include('vendor.backpack.crud.custom.text2',compact('crud', 'entry', 'field'))
     </div>
-
-    <div class="form-group col-md-6">
-        @php
-            $field = [
-                'name' => 'payment_note',
-                'value' => isset($crud->entry->payment_note)?$crud->entry->payment_note:null,
-                'label' => _t('Note'),
-                'type' => 'textarea'
-                ];
-        @endphp
-        @include('vendor.backpack.crud.fields.textarea', compact('crud', 'entry', 'field'))
-    </div>
-    <div class="form-group col-md-12">
+    <div class="form-group col-xs-6 col-md-6">
         @php
             $field = [
                    'name' => 'status',
@@ -142,8 +131,18 @@ $invoicess = getINVNext();
         @endphp
         @include('vendor.backpack.crud.custom.enum', compact('crud', 'entry', 'field'))
     </div>
-
-    <div class="form-group col-md-12">
+    <div class="form-group col-xs-12 col-md-12">
+        @php
+            $field = [
+                'name' => 'payment_note',
+                'value' => isset($crud->entry->payment_note)?$crud->entry->payment_note:null,
+                'label' => _t('Note'),
+                'type' => 'textarea'
+                ];
+        @endphp
+        @include('vendor.backpack.crud.fields.textarea', compact('crud', 'entry', 'field'))
+    </div>
+    <div class="form-group col-xs-6 col-md-12">
         @php
             $field = [
                 'dataDetails' => $dataDetails,

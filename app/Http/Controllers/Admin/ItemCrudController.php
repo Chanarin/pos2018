@@ -61,7 +61,6 @@ class ItemCrudController extends CrudController
             ],
             'link' => true,
         ]);
-
         $this->crud->addColumn([
             'label' => _t('Unit'),
             'type' => 'select',

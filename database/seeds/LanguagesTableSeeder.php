@@ -716,7 +716,7 @@ class LanguagesTableSeeder extends Seeder
                 'id' => 79,
                 'key' => 'complete_price',
                 'en' => 'Complete Price',
-                'km' => 'តម្លៃពេញ',
+                'km' => 'តម្លៃបង្គ្រប់',
                 'created_at' => '2017-08-31 07:46:07',
                 'updated_at' => '2017-08-31 07:46:07',
             ),
@@ -1643,6 +1643,162 @@ class LanguagesTableSeeder extends Seeder
 ',
                 'created_at' => '2017-09-13 03:31:01',
                 'updated_at' => '2017-09-13 03:31:01',
+            ),
+            180 => 
+            array (
+                'id' => 185,
+                'key' => 'exchange_rate',
+                'en' => 'Exchange Rate',
+                'km' => 'អត្រា​ប្តូ​រ​ប្រាក់
+',
+                'created_at' => '2017-09-18 02:41:21',
+                'updated_at' => '2017-09-18 02:41:21',
+            ),
+            181 => 
+            array (
+                'id' => 186,
+                'key' => 'history',
+                'en' => 'History',
+                'km' => 'ប្រវត្តិនៃការទិញ',
+                'created_at' => '2017-09-18 02:41:42',
+                'updated_at' => '2017-09-18 02:41:42',
+            ),
+            182 => 
+            array (
+                'id' => 187,
+                'key' => 'customer_information',
+                'en' => 'Customer Information',
+                'km' => 'ព័ត៌មានអតិថិជន',
+                'created_at' => '2017-09-18 02:41:45',
+                'updated_at' => '2017-09-18 02:41:45',
+            ),
+            183 => 
+            array (
+                'id' => 188,
+                'key' => 'customer_record',
+                'en' => 'Customer Record',
+                'km' => 'កំណត់ត្រាអតិថិជន',
+                'created_at' => '2017-09-18 02:41:45',
+                'updated_at' => '2017-09-18 02:41:45',
+            ),
+            184 => 
+            array (
+                'id' => 189,
+                'key' => 'member_date',
+                'en' => 'Member Date',
+                'km' => 'កាលបរិច្ឆេទសមាជិក',
+                'created_at' => '2017-09-18 02:41:45',
+                'updated_at' => '2017-09-18 02:41:45',
+            ),
+            185 => 
+            array (
+                'id' => 190,
+                'key' => 'invoice_history',
+                'en' => 'Invoice History',
+                'km' => 'ប្រវត្តិវិក្កយបត្រ',
+                'created_at' => '2017-09-18 02:41:45',
+                'updated_at' => '2017-09-18 02:41:45',
+            ),
+            186 => 
+            array (
+                'id' => 191,
+                'key' => 'customer_invoice_record',
+                'en' => 'Customer Invoice Record',
+                'km' => 'កត់ត្រាវិក្កយបត្រអតិថិជន',
+                'created_at' => '2017-09-18 02:41:45',
+                'updated_at' => '2017-09-18 02:41:45',
+            ),
+            187 => 
+            array (
+                'id' => 192,
+                'key' => 'invoice_due',
+                'en' => 'Invoice Due',
+                'km' => 'ថ្ងៃទី',
+                'created_at' => '2017-09-18 02:41:45',
+                'updated_at' => '2017-09-18 02:41:45',
+            ),
+            188 => 
+            array (
+                'id' => 193,
+                'key' => 'no',
+                'en' => 'No',
+                'km' => 'លេខ',
+                'created_at' => '2017-09-18 02:41:45',
+                'updated_at' => '2017-09-18 02:41:45',
+            ),
+            189 => 
+            array (
+                'id' => 194,
+                'key' => 'total_discount',
+                'en' => 'Total Discount',
+                'km' => 'បញ្ចុះតម្លៃសរុប',
+                'created_at' => '2017-09-18 02:41:45',
+                'updated_at' => '2017-09-18 02:41:45',
+            ),
+            190 => 
+            array (
+                'id' => 195,
+                'key' => 'grand_total',
+                'en' => 'Grand Total',
+                'km' => 'តំលៃ​បូក​សរុប
+',
+                'created_at' => '2017-09-18 02:41:45',
+                'updated_at' => '2017-09-18 02:41:45',
+            ),
+            191 => 
+            array (
+                'id' => 196,
+                'key' => 'total_paid',
+                'en' => 'Total Paid',
+                'km' => 'ការបង់ប្រាក់សរុប',
+                'created_at' => '2017-09-18 02:41:45',
+                'updated_at' => '2017-09-18 02:41:45',
+            ),
+            192 => 
+            array (
+                'id' => 197,
+                'key' => 'exchange_rates',
+                'en' => 'Exchange Rates',
+                'km' => 'អត្រា​ប្តូ​រ​ប្រាក់
+',
+                'created_at' => '2017-09-18 03:01:00',
+                'updated_at' => '2017-09-18 03:01:00',
+            ),
+            193 => 
+            array (
+                'id' => 198,
+                'key' => 'dollar',
+                'en' => 'Dollar',
+                'km' => 'ដុល្លារ',
+                'created_at' => '2017-09-18 03:01:00',
+                'updated_at' => '2017-09-18 03:01:00',
+            ),
+            194 => 
+            array (
+                'id' => 199,
+                'key' => 'riel',
+                'en' => 'Riel',
+                'km' => 'រៀល',
+                'created_at' => '2017-09-18 03:01:00',
+                'updated_at' => '2017-09-18 03:01:00',
+            ),
+            195 => 
+            array (
+                'id' => 200,
+                'key' => 'buyer',
+                'en' => NULL,
+                'km' => NULL,
+                'created_at' => '2017-09-22 04:11:54',
+                'updated_at' => '2017-09-22 04:11:54',
+            ),
+            196 => 
+            array (
+                'id' => 201,
+                'key' => 'seller',
+                'en' => NULL,
+                'km' => NULL,
+                'created_at' => '2017-09-22 04:11:54',
+                'updated_at' => '2017-09-22 04:11:54',
             ),
         ));
         
