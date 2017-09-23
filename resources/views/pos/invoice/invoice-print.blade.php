@@ -84,6 +84,19 @@
                             @php
                                 $rowds = \App\Models\InvoiceDetail::where('ref_id',$id)
                                 ->join('items','items.id','=','invoice_detail.item_id')
+                               ->selectRaw("items.id,
+                                invoice_detail.item_id,
+                                invoice_detail.item_code,
+                                invoice_detail.title,
+                                invoice_detail.unit,
+                                invoice_detail.num_qty,
+                                invoice_detail.qty,
+                                invoice_detail.cost,
+                                invoice_detail.price,
+                                invoice_detail.discount,
+                                invoice_detail.note,
+                                invoice_detail.item_detail,
+                                items.image")
                                 ->get();
 
 

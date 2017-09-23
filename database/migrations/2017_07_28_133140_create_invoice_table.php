@@ -35,7 +35,6 @@ class CreateInvoiceTable extends Migration
             $table->integer('user_id')->nullable();
             $table->enum('status',['PENDING','COMPLETE'])->default('PENDING');
             $table->date('complete_date')->nullable();
-            $table->double('complete_price')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
