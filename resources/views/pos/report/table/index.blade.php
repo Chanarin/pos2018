@@ -23,17 +23,17 @@
                                 <input type="hidden" id="to-date">
                                 <span class="input-group-btn">
                                   <button type="button" class="btn btn-info btn-flat" id="search-report-by-date">{{_t('Search')}}</button>
-                                  <button type="button" class="btn btn-info btn-flat" id="btnPrint">Print</button>
+                                  <button type="button" class="btn btn-info btn-flat" id="btnPrint">{{_t('Print')}}</button>
                                 </span>
                             </div>
                             <!-- /.input group -->
                         </div>
                         <label for="to_date">
-                            <input type="radio" id="to_date" class="report-name" name="report_option">To Date
+                            <input type="radio" id="to_date" class="report-name" name="report_option">{{_t('To Date')}}
                         </label>
                         <label for="between">
                             <input checked="checked" type="radio" id="between" class="report-name" name="report_option">
-                            Between
+                            {{_t('Between')}}
                         </label>
                     </div>
                 </div>

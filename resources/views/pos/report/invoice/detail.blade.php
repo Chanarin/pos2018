@@ -9,17 +9,17 @@
 </style>
 <div style="margin-bottom: 30px;">
     <img src="{{asset('/pos/img/logo.jpg')}}" height="60" style="margin-bottom: 20px; margin-top: 20px;">
-    <h3 align="center" style="margin-top: -50px;">INVOICE DETAIL REPORT</h3>
+    <h3 align="center" style="margin-top: -50px;">{{_t('INVOICE DETAIL REPORT')}}</h3>
     @if($report_option == 'between')
 
-        <h4 align="center" style=" margin-top: 0px; ">Form Date
-            <b>{{\Carbon\Carbon::parse($from_date)->format('d/m/Y') }}</b> To Date
+        <h4 align="center" style=" margin-top: 0px; ">{{_t('Form Date')}}
+            <b>{{\Carbon\Carbon::parse($from_date)->format('d/m/Y') }}</b> {{_t('To Date')}}
             <b> {{\Carbon\Carbon::parse($to_date)->format('d/m/Y') }}</b></h4>
     @else
-        <h4 align="center" style=" margin-top: 0px; ">Date <b>{{\Carbon\Carbon::parse($to_date)->format('d/m/Y') }}</b>
+        <h4 align="center" style=" margin-top: 0px; ">{{_t('Date')}} <b>{{\Carbon\Carbon::parse($to_date)->format('d/m/Y') }}</b>
         </h4>
     @endif
-    <h5 style="margin-top: -30px; padding-left: 15px;">Tel : 012 669 175 /012 864 213</h5>
+    <h5 style="margin-top: -30px; padding-left: 15px;">{{_t('Tel')}} : 012 669 175 /012 864 213</h5>
     <h5 style="margin-top: -5px; padding-left: 37px;"> : 016 669 175 /010 864 213 /010 979 960</h5>
 </div>
 
@@ -167,7 +167,7 @@
         {!! $rows->links() !!}
     </div>
 @else
-    <h2 align="center">Not Record Found</h2>
+    <h2 align="center">{{_t('Not Record Found')}}</h2>
 
 @endif
 

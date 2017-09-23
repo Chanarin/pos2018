@@ -9,17 +9,17 @@
 </style>
 <div style="margin-bottom: 30px;">
     <img src="{{asset('/pos/img/logo.jpg')}}" height="60" style="margin-bottom: 20px; margin-top: 20px;">
-    <h3 align="center" style="margin-top: -50px;">OPEN DETAIL REPORT</h3>
+    <h3 align="center" style="margin-top: -50px;">{{_t('OPEN DETAIL REPORT')}}</h3>
     @if($report_option == 'between')
 
-        <h4 align="center" style=" margin-top: 0px; ">Form Date
-            <b>{{\Carbon\Carbon::parse($from_date)->format('d/m/Y') }}</b> To Date
+        <h4 align="center" style=" margin-top: 0px; ">{{_t('Form Date')}}
+            <b>{{\Carbon\Carbon::parse($from_date)->format('d/m/Y') }}</b> {{_t('To Date')}}
             <b> {{\Carbon\Carbon::parse($to_date)->format('d/m/Y') }}</b></h4>
     @else
-        <h4 align="center" style=" margin-top: 0px; ">Date <b>{{\Carbon\Carbon::parse($to_date)->format('d/m/Y') }}</b>
+        <h4 align="center" style=" margin-top: 0px; ">{{_t('Date')}} <b>{{\Carbon\Carbon::parse($to_date)->format('d/m/Y') }}</b>
         </h4>
     @endif
-    <h5 style="margin-top: -30px; padding-left: 15px;">Tel : 012 669 175 /012 864 213</h5>
+    <h5 style="margin-top: -30px; padding-left: 15px;">{{_t('Tel')}} : 012 669 175 /012 864 213</h5>
     <h5 style="margin-top: -5px; padding-left: 37px;"> : 016 669 175 /010 864 213 /010 979 960</h5>
 </div>
 @if(count($rows) > 0)
@@ -32,13 +32,13 @@
                     <table width="100%">
                         <tr>
                             <td width="33%" valign="top">
-                                Open Number: {{$row->open_number}}<br>
+                                {{_t('Open Number')}}: {{$row->open_number}}<br>
                             </td>
                             <td width="34%" valign="top">
-                                Open Date: {{\Carbon\Carbon::parse($row->_date_)->format('d/m/Y') }}<br>
+                                {{_t('Open Due')}}: {{\Carbon\Carbon::parse($row->_date_)->format('d/m/Y') }}<br>
                             </td>
                             <td width="33%" valign="top">
-                                Description: {{$row->description}}<br>
+                                {{_t('Description')}}: {{$row->description}}<br>
                             </td>
                         </tr>
                     </table>
@@ -53,14 +53,13 @@
             <table width="100%">
                 <thead class="border" style="background: #CCCCCC">
                 <tr>
-
-                    <th class="text-center">No</th>
-                    <th class="text-center">Code</th>
-                    <th class="text-center">Title</th>
-                    <th class="text-center">Unit</th>
-                    <th class="text-center">Qty</th>
-                    <th class="text-center">Cost</th>
-                    <th class="text-center">Total</th>
+                    <th class="text-center">{{_t('No')}}</th>
+                    <th class="text-center">{{_t('Code')}}</th>
+                    <th class="text-center">{{_t('Name')}}</th>
+                    <th class="text-center">{{_t('Unit')}}</th>
+                    <th class="text-center">{{_t('Qty')}}</th>
+                    <th class="text-center">{{_t('Cost')}}</th>
+                    <th class="text-center">{{_t('Total')}}</th>
 
                 </tr>
                 </thead>
@@ -114,7 +113,7 @@
         {!! $rows->links() !!}
     </div>
 @else
-    <h2 align="center">Not Record Found</h2>
+    <h2 align="center">{{_t('Not Record Found')}}</h2>
 
 @endif
 

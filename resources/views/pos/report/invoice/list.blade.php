@@ -6,17 +6,17 @@
 </style>
 <div style="margin-bottom: 10px;">
     <img src="{{asset('/pos/img/logo.jpg')}}" height="60" style="margin-bottom: 20px; margin-top: 20px;">
-    <h3 align="center" style="margin-top: -50px;">INVOICE LIST REPORT</h3>
+    <h3 align="center" style="margin-top: -50px;">{{_t('INVOICE LIST REPORT')}}</h3>
      @if($report_option == 'between')
 
-         <h4 align="center" style=" margin-top: 0px; ">Form Date
-             <b>{{\Carbon\Carbon::parse($from_date)->format('d/m/Y') }}</b> To Date
+         <h4 align="center" style=" margin-top: 0px; ">{{_t('Form Date')}}
+             <b>{{\Carbon\Carbon::parse($from_date)->format('d/m/Y') }}</b> {{_t('To Date')}}
              <b> {{\Carbon\Carbon::parse($to_date)->format('d/m/Y') }}</b></h4>
      @else
-         <h4 align="center" style=" margin-top: 0px; ">Date <b>{{\Carbon\Carbon::parse($to_date)->format('d/m/Y') }}</b>
+         <h4 align="center" style=" margin-top: 0px; ">{{_t('Date')}} <b>{{\Carbon\Carbon::parse($to_date)->format('d/m/Y') }}</b>
          </h4>
      @endif
-    <h5 style="margin-top: -30px; padding-left: 15px;">Tel : 012 669 175 /012 864 213</h5>
+    <h5 style="margin-top: -30px; padding-left: 15px;">{{_t('Tel')}} : 012 669 175 /012 864 213</h5>
     <h5 style="margin-top: -5px; padding-left: 37px;"> : 016 669 175 /010 864 213 /010 979 960</h5>
 </div>
 @if(count($rows) > 0)
@@ -24,16 +24,16 @@
 
         <thead>
         <tr style="background: #CCCCCC; height: 30px;">
-            <th class="text-center">No</th>
-            <th class="text-center">Invoice Number</th>
-            <th class="text-center">Date</th>
-            <th style="text-align: center !important;">Customer</th>
-            <th style="text-align: center !important;">phone</th>
-            <th style="text-align: center !important;">Deposit</th>
-            <th style="text-align: center !important;">Complete Price</th>
-            <th style="text-align: center !important;">Subtotal</th>
-            <th style="text-align: center !important;">Discount</th>
-            <th style="text-align: center !important;">Total Payable</th>
+            <th class="text-center">{{_t('No')}}</th>
+            <th class="text-center">{{_t('Invoice Number')}}</th>
+            <th class="text-center">{{_t('Date')}}</th>
+            <th style="text-align: center !important;">{{_t('Customer')}}</th>
+            <th style="text-align: center !important;">{{_t('phone')}}</th>
+            <th style="text-align: center !important;">{{_t('Deposit')}}</th>
+            <th style="text-align: center !important;">{{_t('Complete Price')}}</th>
+            <th style="text-align: center !important;">{{_t('Subtotal')}}</th>
+            <th style="text-align: center !important;">{{_t('Discount')}}</th>
+            <th style="text-align: center !important;">{{_t('Total Payable')}}</th>
         </tr>
         </thead>
         <tbody>
@@ -73,7 +73,7 @@
         </tbody>
         <tfoot>
         <tr style="height: 30px;">
-            <td colspan="5" style="text-align: right;">Total:</td>
+            <td colspan="5" style="text-align: right;">{{_t('Total')}}:</td>
             <td style="padding-left: 15px;">$ {{number_format($total_deposit,2)}} </td>
             <td style="padding-left: 15px;">$ {{number_format($complete_price,2)}} </td>
             <td style="padding-left: 15px;">$ {{number_format($total_amount,2)}} </td>
@@ -87,7 +87,7 @@
         {!! $rows->links() !!}
     </div>
 @else
-    <h2 align="center">Not Record Found</h2>
+    <h2 align="center">{{_t('Not Record Found')}}</h2>
 
 @endif
 

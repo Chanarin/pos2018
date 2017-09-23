@@ -6,18 +6,18 @@
 </style>
 <div style="margin-bottom: 10px;">
     <img src="{{asset('/pos/img/logo.jpg')}}" height="60" style="margin-bottom: 20px; margin-top: 20px;">
-    <h3 align="center" style="margin-top: -50px;">PRODUCTION LIST REPORT</h3>
+    <h3 align="center" style="margin-top: -50px;">{{_t('PRODUCTION LIST REPORT')}}</h3>
     @if($report_option == 'between')
 
-        <h4 align="center" style=" margin-top: 0px; ">Form Date
-            <b>{{\Carbon\Carbon::parse($from_date)->format('d/m/Y') }}</b> To Date
+        <h4 align="center" style=" margin-top: 0px; ">{{_t('Form Date')}}
+            <b>{{\Carbon\Carbon::parse($from_date)->format('d/m/Y') }}</b> {{_t('To Date')}}
             <b> {{\Carbon\Carbon::parse($to_date)->format('d/m/Y') }}</b></h4>
     @else
-        <h4 align="center" style=" margin-top: 0px; ">Date <b>{{\Carbon\Carbon::parse($to_date)->format('d/m/Y') }}</b>
+        <h4 align="center" style=" margin-top: 0px; ">{{_t('Date')}} <b>{{\Carbon\Carbon::parse($to_date)->format('d/m/Y') }}</b>
         </h4>
     @endif
     {{--<h4 align="center" style=" margin-top: 0; ">Date {{Carbon\Carbon::now()->format('d/m/Y') }}</h4>--}}
-    <h5 style="margin-top: -30px; padding-left: 15px;">Tel : 012 669 175 /012 864 213</h5>
+    <h5 style="margin-top: -30px; padding-left: 15px;">{{_t('Tel')}} : 012 669 175 /012 864 213</h5>
     <h5 style="margin-top: -5px; padding-left: 37px;"> : 016 669 175 /010 864 213 /010 979 960</h5>
 </div>
 @if(count($rows) > 0)
@@ -25,13 +25,13 @@
 
         <thead class="border">
         <tr style="background: #CCCCCC; height: 30px;">
-            <th class="text-center">No</th>
-            <th class="text-center">Customer</th>
-            <th class="text-center">Production No</th>
-            <th class="text-center">Date</th>
-            <th style="text-align: center !important;">Description</th>
-            <th style="text-align: center !important;">Total Qty</th>
-            <th style="text-align: center !important;">Total Cost</th>
+            <th class="text-center">{{_t('No')}}</th>
+            <th class="text-center">{{_t('Customer')}}</th>
+            <th class="text-center">{{_t('Production No')}}</th>
+            <th class="text-center">{{_t('Date')}}</th>
+            <th style="text-align: center !important;">{{_t('Description')}}</th>
+            <th style="text-align: center !important;">{{_t('Total Qty')}}</th>
+            <th style="text-align: center !important;">{{_t('Total Cost')}}</th>
 
         </tr>
         </thead>
@@ -64,7 +64,7 @@
                 <td>{{$row->production_number }}</td>
                 <td>{{\Carbon\Carbon::parse($row->_date_)->format('d/m/Y') }}</td>
                 <td>{{$row->description}}</td>
-                <td>{{number_format($total_qty)}} @if($total_qty > 1) Units  @else Unit @endif</td>
+                <td>{{number_format($total_qty)}} @if($total_qty > 1) {{_t('Units')}}  @else {{_t('Unit')}} @endif</td>
                 <td>$ {{number_format($total_cost,2)}}</td>
             </tr>
         @endforeach
@@ -72,8 +72,8 @@
 
         <tfoot>
         <tr style="height: 30px;">
-            <td colspan="5" style="text-align: right;">Total:</td>
-            <td style="padding-left: 15px;">{{$total_all_qty}} @if($total_all_qty > 1) Units  @else Unit @endif </td>
+            <td colspan="5" style="text-align: right;">{{_t('Total')}}:</td>
+            <td style="padding-left: 15px;">{{$total_all_qty}} @if($total_all_qty > 1) {{_t('Units')}}  @else {{_t('Unit')}} @endif </td>
             <td style="padding-left: 15px;">$ {{number_format($total_all_cost,2)}} </td>
         </tr>
         <tr>
@@ -82,15 +82,15 @@
                     <tr>
 
                         <td width="33%" style="text-align: center">
-                            Checked By: <br><br><br>
-                            Name: .................................<br><br>
-                            Date: _____/_____/_____
+                            {{_t('Checked By')}}: <br><br><br>
+                            {{_t('Name')}}: .................................<br><br>
+                            {{_t('Date')}}: _____/_____/_____
                         </td>
                         <td width="33%" style="text-align: center"></td>
                         <td width="33%" style="text-align: center">
-                            Reported By <br><br><br>
-                            Name: .................................<br><br>
-                            Date: _____/_____/_____
+                            {{_t('Reported By')}} <br><br><br>
+                            {{_t('Name')}}: .................................<br><br>
+                            {{_t('Date')}}: _____/_____/_____
                         </td>
 
                     </tr>
@@ -103,7 +103,7 @@
         {!! $rows->links() !!}
     </div>
 @else
-    <h2 align="center">Not Record Found</h2>
+    <h2 align="center">{{_t('Not Record Found')}}</h2>
 
 @endif
 
