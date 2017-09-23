@@ -80,7 +80,7 @@
                                 <th class="text-center">{{_t('Total')}}</th>
                             </tr>
                             </thead>
-                            <tbody style="font-size: 12px;">
+                            <tbody style="font-size: 12px; border-bottom: none;">
                             @php
                                 $rowds = \App\Models\InvoiceDetail::where('ref_id',$id)
                                 ->join('items','items.id','=','invoice_detail.item_id')
@@ -139,36 +139,36 @@
                     <td>
                         <table style="width: 100%; margin-top: 5px;">
                             <tbody>
-                                {{--<tr>--}}
-                                    {{--<td width="60%"></td>--}}
-                                    {{--<td style="text-align:right;">{{_t('Total')}}</td>--}}
-                                    {{--<td style="text-align:right;">$ {{number_format($row->total_amt,2)}}</td>--}}
-                                    {{--<td style="text-align:right;">{{number_format(($row->total_amt)*$row->exchange_rate,2)}} ៛</td>--}}
-                                {{--</tr>--}}
-                                {{--<tr>--}}
-                                    {{--<td width="60%"></td>--}}
-                                    {{--<td style="text-align:right;">{{_t('Total Discount')}}</td>--}}
-                                    {{--<td style="text-align:right;">$ {{number_format($row->total_discount,2)}}</td>--}}
-                                    {{--<td style="text-align:right;">{{number_format(($row->total_discount)*$row->exchange_rate,2)}} ៛</td>--}}
-                                {{--</tr>--}}
-                                {{--<tr>--}}
-                                    {{--<td width="60%"></td>--}}
-                                    {{--<td style="text-align:right;">{{_t('Grand Total')}}</td>--}}
-                                    {{--<td style="text-align:right;">$ {{number_format($row->total_payable,2)}}</td>--}}
-                                    {{--<td style="text-align:right;">{{number_format(($row->total_payable)*$row->exchange_rate,2)}} ៛</td>--}}
-                                {{--</tr>--}}
-                                {{--<tr>--}}
-                                    {{--<td width="60%"></td>--}}
-                                    {{--<td style="text-align:right;">{{_t('Total Paid')}}</td>--}}
-                                    {{--<td style="text-align:right;">$ {{number_format($row->paid+($row->paid_kh/$row->exchange_rate),2)}}</td>--}}
-                                    {{--<td style="text-align:right;">{{number_format(($row->paid+($row->paid_kh/$row->exchange_rate))*$row->exchange_rate,2)}} ​​៛</td>--}}
-                                {{--</tr>--}}
-                                {{--<tr>--}}
-                                    {{--<td width="60%"></td>--}}
-                                    {{--<td style="text-align:right;">{{_t('Remaining')}}</td>--}}
-                                    {{--<td style="text-align:right;">$ {{number_format(($row->paid+($row->paid_kh/$row->exchange_rate))-$row->total_payable,2)}}</td>--}}
-                                    {{--<td style="text-align:right;">{{number_format((($row->paid+($row->paid_kh/$row->exchange_rate))-$row->total_payable)*$row->exchange_rate,2)}}​ ៛</td>--}}
-                                {{--</tr>--}}
+                                <tr>
+                                    <td width="60%"></td>
+                                    <td style="text-align:right;">{{_t('Total')}}</td>
+                                    <td style="text-align:right;">$ {{number_format($row->total_amt,2)}}</td>
+                                    <td style="text-align:right;">{{number_format(($row->total_amt)*$row->exchange_rate,2)}} ៛</td>
+                                </tr>
+                                <tr>
+                                    <td width="60%"></td>
+                                    <td style="text-align:right;">{{_t('Total Discount')}}</td>
+                                    <td style="text-align:right;">$ {{number_format($row->total_discount,2)}}</td>
+                                    <td style="text-align:right;">{{number_format(($row->total_discount)*$row->exchange_rate,2)}} ៛</td>
+                                </tr>
+                                <tr>
+                                    <td width="60%"></td>
+                                    <td style="text-align:right;">{{_t('Grand Total')}}</td>
+                                    <td style="text-align:right;">$ {{number_format($row->total_payable,2)}}</td>
+                                    <td style="text-align:right;">{{number_format(($row->total_payable)*$row->exchange_rate,2)}} ៛</td>
+                                </tr>
+                                <tr>
+                                    <td width="60%"></td>
+                                    <td style="text-align:right;">{{_t('Total Paid')}}</td>
+                                    <td style="text-align:right;">$ {{number_format($row->paid+($row->paid_kh/$row->exchange_rate),2)}}</td>
+                                    <td style="text-align:right;">{{number_format(($row->paid+($row->paid_kh/$row->exchange_rate))*$row->exchange_rate,2)}} ​​៛</td>
+                                </tr>
+                                <tr>
+                                    <td width="60%"></td>
+                                    <td style="text-align:right;">{{_t('Remaining')}}</td>
+                                    <td style="text-align:right;">$ {{number_format(($row->paid+($row->paid_kh/$row->exchange_rate))-$row->total_payable,2)}}</td>
+                                    <td style="text-align:right;">{{number_format((($row->paid+($row->paid_kh/$row->exchange_rate))-$row->total_payable)*$row->exchange_rate,2)}}​ ៛</td>
+                                </tr>
                             </tbody>
                         </table>
                     </td>
