@@ -136,6 +136,7 @@
                                                 <thead class="border" style="background: #CCCCCC">
                                                 <tr>
                                                     <th class="text-center">{{_t('No')}}</th>
+                                                    <th class="text-center" style="width: 62px;">{{_t('Image')}}</th>
                                                     <th class="text-center">{{_t('Code')}}</th>
                                                     <th class="text-center">{{_t('Name')}}</th>
                                                     <th class="text-center">{{_t('Unit')}}</th>
@@ -145,10 +146,24 @@
 
                                                 </tr>
                                                 </thead>
-                                                <tbody class="border">
+                                                <tbody class="border" style="border-bottom: none;">
                                                     @php
                                                         $rowds = \App\Models\InvoiceDetail::where('ref_id',$invoice->id)
-                                                             ->get();
+                                                              ->join('items','items.id','=','invoice_detail.item_id')
+                                                              ->selectRaw("items.id,
+                                                              invoice_detail.item_id,
+                                                              invoice_detail.item_code,
+                                                              invoice_detail.title,
+                                                              invoice_detail.unit,
+                                                              invoice_detail.num_qty,
+                                                              invoice_detail.qty,
+                                                              invoice_detail.cost,
+                                                              invoice_detail.price,
+                                                              invoice_detail.discount,
+                                                              invoice_detail.note,
+                                                              invoice_detail.item_detail,
+                                                              items.image")
+                                                              ->get();
                                                     @endphp
                                                     @foreach($rowds as $rd)
                                                         @php
@@ -157,6 +172,14 @@
                                                         @endphp
                                                            <tr class="item" style="height: 30px;  @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif">
                                                                <td class="text-left">{{$loop->index+1}}</td>
+                                                               <td class="text-left">
+                                                                   @php
+                                                                       $img = json_decode($rd->image);
+                                                                   @endphp
+                                                                   @if(count($img)>0)
+                                                                       <img src="{{url('img/cache/original/'.\App\Helpers\Glb::get_basename($img[0]))}}" width="60" height="60">
+                                                                   @endif
+                                                               </td>
                                                                <td class="text-left">{{$rd->item_code}}</td>
                                                                <td class="text-left">{{$rd->title}}</td>
                                                                <td class="text-left">{{$rd->unit}}</td>
@@ -171,6 +194,7 @@
                                                                 @endphp
                                                              <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif">
                                                                  <td class="text-left"></td>
+                                                                 <td class="text-left"></td>
                                                                  <td class="text-left">{{$r->item_code}}</td>
                                                                  <td class="text-left">{{$r->title}}</td>
                                                                  <td class="text-left">{{$r->unit}} {{isset($unit->name)?$unit->name:''}}</td>
@@ -183,38 +207,38 @@
                                                     @endforeach
                                                 </tbody>
                                                 <tr>
-                                                    <td colspan="4"></td>
+                                                    <td colspan="5"></td>
                                                     <td style="text-align:right;">{{_t('Total')}}</td>
                                                     <td style="text-align:right;">$ {{number_format($invoice->total_amt,2)}}</td>
                                                     <td style="text-align:right;">{{number_format(($invoice->total_amt)*$invoice->exchange_rate,2)}} ៛</td>
                                                 </tr>
                                                 <tr>
-                                                    <td colspan="4"></td>
+                                                    <td colspan="5"></td>
                                                     <td style="text-align:right;">{{_t('Total Discount')}}</td>
                                                     <td style="text-align:right;">$ {{number_format($invoice->total_discount,2)}}</td>
                                                     <td style="text-align:right;">{{number_format(($invoice->total_discount)*$invoice->exchange_rate,2)}} ៛</td>
                                                 </tr>
                                                 <tr>
-                                                    <td colspan="4"></td>
+                                                    <td colspan="5"></td>
                                                     <td style="text-align:right;">{{_t('Grand Total')}}</td>
                                                     <td style="text-align:right;">$ {{number_format($invoice->total_payable,2)}}</td>
                                                     <td style="text-align:right;">{{number_format(($invoice->total_payable)*$invoice->exchange_rate,2)}} ៛</td>
                                                 </tr>
                                                 <tr>
-                                                    <td colspan="4"></td>
+                                                    <td colspan="5"></td>
                                                     <td style="text-align:right;">{{_t('Total Paid')}}</td>
                                                     <td style="text-align:right;">$ {{number_format($invoice->paid+($invoice->paid_kh/$invoice->exchange_rate),2)}}</td>
                                                     <td style="text-align:right;">{{number_format(($invoice->paid+($invoice->paid_kh/$invoice->exchange_rate))*$invoice->exchange_rate,2)}} ​​៛</td>
                                                 </tr>
                                                 <tr>
-                                                    <td colspan="4"></td>
+                                                    <td colspan="5"></td>
                                                     <td style="text-align:right;">{{_t('Remaining')}}</td>
                                                     <td style="text-align:right;">$ {{number_format(($invoice->paid+($invoice->paid_kh/$invoice->exchange_rate))-$invoice->total_payable,2)}}</td>
                                                     <td style="text-align:right;">{{number_format((($invoice->paid+($invoice->paid_kh/$invoice->exchange_rate))-$invoice->total_payable)*$invoice->exchange_rate,2)}}​ ៛</td>
                                                 </tr>
 
                                                 <tr>
-                                                    <td colspan="7">
+                                                    <td colspan="8">
                                                         <br>
                                                         <hr>
                                                         <br>
