@@ -47,14 +47,14 @@
 
             </a>
         </li>
-        <li class=" hidden-xs hidden-sm">
-            <a href="#" >
-                <i class="fa fa-print"></i> <span>{{_t('List Sale')}}</span>
+        {{--<li class=" hidden-xs hidden-sm">--}}
+            {{--<a href="#" >--}}
+                {{--<i class="fa fa-print"></i> <span>{{_t('List Sale')}}</span>--}}
 
-            </a>
-        </li>
+            {{--</a>--}}
+        {{--</li>--}}
         <li class=" hidden-xs hidden-sm">
-            <a href="#" >
+            <a href="{{url('admin/view-report')}}" >
                 <i class="fa fa-th-large"></i> <span>{{_t('Today Sale')}}</span>
 
             </a>

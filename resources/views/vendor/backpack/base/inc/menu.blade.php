@@ -22,7 +22,7 @@
             </a>
         </li>
         <li class=" hidden-xs hidden-sm">
-            <a href="{{ url('/admin/customers') }}">
+            <a href="{{ url('/admin/customer') }}">
                 <i class="fa  fa-user"></i> <span>{{_t('Customer')}}</span>
             </a>
         </li>
