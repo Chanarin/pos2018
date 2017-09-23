@@ -24,6 +24,11 @@ Route::get('/pos-print/{id}',function ($id){
    return view('pos.sale.pos-print',['id'=>$id]);
 });
 
+Route::get('/invoice-print/{id}',function ($id){
+
+   return view('pos.invoice.invoice-print',['id'=>$id]);
+});
+
 Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin'], function () {
     // Backpack\CRUD: Define the resources for the entities you want to CRUD.
     Route::any('user/change-pass','AdminUserCrudController@changePass');

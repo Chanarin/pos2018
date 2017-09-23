@@ -185,8 +185,8 @@ class InvoiceCrudController extends CrudController
 //            return view('pos.sale.pos-print',['id'=>$this->crud->entry->id]);
             return redirect('/pos-print/'.$this->crud->entry->id);
         }else {
-            return $redirect_location;
-//            return redirect('/pos-print/'.$this->crud->entry->id);
+//            return $redirect_location;
+            return redirect('/invoice-print/'.$this->crud->entry->id);
         }
     }
 
