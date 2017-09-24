@@ -254,20 +254,20 @@
                 element: 'line-chart',
                 resize: true,
                 data: [
-                    {y: '2011 Q1', item1: 2666},
-                    {y: '2011 Q2', item1: 2778},
-                    {y: '2011 Q3', item1: 4912},
-                    {y: '2011 Q4', item1: 3767},
-                    {y: '2012 Q1', item1: 6810},
-                    {y: '2012 Q2', item1: 5670},
-                    {y: '2012 Q3', item1: 4820},
-                    {y: '2012 Q4', item1: 15073},
-                    {y: '2013 Q1', item1: 10687},
-                    {y: '2013 Q2', item1: 8432}
+                    {y: '2011 Q1', Income: 2666},
+                    {y: '2011 Q2', Income: 2778},
+                    {y: '2011 Q3', Income: 4912},
+                    {y: '2011 Q4', Income: 3767},
+                    {y: '2012 Q1', Income: 6810},
+                    {y: '2012 Q2', Income: 5670},
+                    {y: '2012 Q3', Income: 4820},
+                    {y: '2012 Q4', Income: 15073},
+                    {y: '2013 Q1', Income: 30687},
+                    {y: '2013 Q2', Income: 8432}
                 ],
                 xkey: 'y',
-                ykeys: ['item1'],
-                labels: ['Item 1'],
+                ykeys: ['Income'],
+                labels: ['Income'],
                 lineColors: ['#3c8dbc'],
                 hideHover: 'auto'
             });
@@ -288,7 +288,7 @@
                 barColors: ['#00a65a', '#f56954'],
                 xkey: 'y',
                 ykeys: ['a', 'b'],
-                labels: ['Diamond', 'Platinum'],
+                labels: ['Cost', 'Income'],
                 hideHover: 'auto'
             });
 
