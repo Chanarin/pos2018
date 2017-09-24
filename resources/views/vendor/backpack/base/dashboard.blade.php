@@ -168,7 +168,7 @@
                             <!-- LINE CHART -->
                             <div class="box box-info">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Line Chart</h3>
+                                    <h3 class="box-title">Sale Income Per Day</h3>
 
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -188,7 +188,7 @@
                             <!-- BAR CHART -->
                             <div class="box box-success">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Bar Chart</h3>
+                                    <h3 class="box-title">Sale Income Per Month</h3>
 
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -204,11 +204,11 @@
                             <!-- /.box -->
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <!-- DONUT CHART -->
                             <div class="box box-danger">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Donut Chart</h3>
+                                    <h3 class="box-title">Item in Stock</h3>
 
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -272,18 +272,6 @@
                 hideHover: 'auto'
             });
 
-            //DONUT CHART
-            var donut = new Morris.Donut({
-                element: 'sales-chart',
-                resize: true,
-                colors: ["#3c8dbc", "#f56954", "#00a65a"],
-                data: [
-                    {label: "Product Sales", value: 12},
-                    {label: "Purchase Products", value: 30},
-                    {label: "Production", value: 20}
-                ],
-                hideHover: 'auto'
-            });
             //BAR CHART
             var bar = new Morris.Bar({
                 element: 'bar-chart',
@@ -303,6 +291,21 @@
                 labels: ['Diamond', 'Platinum'],
                 hideHover: 'auto'
             });
+
+            //PRODUCT IN STOCK CHART
+            var donut = new Morris.Donut({
+                element: 'sales-chart',
+                resize: true,
+                colors: ["#3c8dbc", "#f56954", "#00a65a", "#F39C12"],
+                data: [
+                    {label: "Product Sales", value: 12},
+                    {label: "Open Product", value: 20},
+                    {label: "Purchase", value: 30},
+                    {label: "Production", value: 20}
+                ],
+                hideHover: 'auto'
+            });
+
         });
     </script>
 @endsection
