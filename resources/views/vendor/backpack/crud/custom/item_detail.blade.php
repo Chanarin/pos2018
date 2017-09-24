@@ -885,15 +885,38 @@
                 getItemPrice();
             });
 
-            $('body').delegate('.price-main','change',function () {
-                getItemPrice();
-            });
+
 
         });
 
        
     </script>
     @endif
+
+    <script>
+
+        $(function () {
+            $('body').delegate('.item_code-main','change',function () {
+                var c = $(this).val();
+                var cn = 0;
+                $('.item_code-main').each(function () {
+                    var cc = $(this).val();
+                    if(c == cc && c != ''){
+                        cn++;
+                    }
+
+                    if(cn>1){
+                        $(this).val('');
+                        alert('item code already exist!!');
+                        return false;
+                    }
+                });
+
+            });
+        });
+
+    </script>
+
 @endpush
 {{-- End of Extra CSS and JS --}}
 {{-- ########################################## --}}
