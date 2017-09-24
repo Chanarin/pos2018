@@ -857,6 +857,43 @@
 
         });
     </script>
+    @if(\App\Helpers\_POS_::items == $data_type)
+    <script>   
+        function getItemPrice() {
+            var p = 0;
+            $('.qty-main').each(function () {
+                var mainid = $(this).data('mainid');
+                var qty = $(this).val()-0;
+                var price = $('#'+mainid).find('.price-main').val() - 0;
+                p += qty*price;
+            });
+
+            if(p>0){
+                $('[name="price"]').val(p);
+            }
+
+            return p;
+        }
+
+
+
+
+        $(function () {
+            getItemPrice();
+
+            $('body').delegate('.qty-main','change',function () {
+                getItemPrice();
+            });
+
+            $('body').delegate('.price-main','change',function () {
+                getItemPrice();
+            });
+
+        });
+
+       
+    </script>
+    @endif
 @endpush
 {{-- End of Extra CSS and JS --}}
 {{-- ########################################## --}}
