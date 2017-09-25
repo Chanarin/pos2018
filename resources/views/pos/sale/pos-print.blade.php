@@ -193,8 +193,9 @@
     @endif
 @endif
 <script>
-//    window.print();
-//    window.setTimeout(' window.history.back()',500);
+    window.print();
+    window.setTimeout(' window.history.back()',500);
+    {{--window.location.href='{{url('/admin/sale')}}';--}}
 </script>
 </body>
 </html>

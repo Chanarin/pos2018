@@ -444,7 +444,7 @@
 
         {{--================modal pop up =============--}}
 
-        <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModal" aria-hidden="true">
+    <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModal" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -665,6 +665,97 @@
             </div>
         </div>
     </div>
+
+    {{--==========list sale today=======--}}
+    <div class="modal fade" id="listSaleTodayModal" tabindex="-1" role="dialog" aria-labelledby="listSaleTodayModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-2x">×</i>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">{{_t('Total Sale Today')}}</h4>
+                </div>
+                <form action="#" data-toggle="validator" role="form" id="add-customer-form"  class="bv-form" style="padding: 10px;">
+                    <div class="modal-body" style="height:600px;">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    @if(count($report_sale_today) > 0)
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center">{{_t('No')}}</th>
+                                            <th class="text-center">{{_t('Invoice Number')}}</th>
+                                            <th style="text-align: center !important;">{{_t('Customer')}}</th>
+                                            <th style="text-align: center !important;">{{_t('Deposit')}}</th>
+                                            <th style="text-align: center !important;">{{_t('Complete Price')}}</th>
+                                            <th style="text-align: center !important;">{{_t('Subtotal')}}</th>
+                                            <th style="text-align: center !important;">{{_t('Discount')}}</th>
+                                            <th style="text-align: center !important;">{{_t('Total Payable')}}</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @php
+                                            $count = 1;
+                                            $total_deposit = 0;
+                                            $complete_price = 0;
+                                            $total_amount = 0;
+                                            $total_discount = 0;
+                                            $total_payable = 0;
+                                            $total_paid = 0;
+                                            $total_remaining = 0;
+                                        @endphp
+
+                                        @foreach($report_sale_today as $report_sale)
+                                            @php
+                                                $total_deposit+= ($report_sale->deposit);
+                                                $complete_price+= ($report_sale->complete_price);
+                                                $total_amount+= ($report_sale->total_amt);
+                                                $total_discount+= ($report_sale->total_discount);
+                                                $total_payable+= ($report_sale->total_payable);
+                                            @endphp
+
+                                            <tr style="height: 30px ;   @if($loop->index % 2 > 0) background-color: #f1f1f1; @endif">
+                                                <td class="text-left">{{ (($report_sale_today->currentPage()-1)*$report_sale_today->perPage())+$count++ }}</td>
+                                                <td>{{$report_sale->invoice_number }}</td>
+                                                <td>{{$report_sale->customer->name}}</td>
+                                                <td>$ {{number_format($report_sale->deposit ,2)}}</td>
+                                                <td>$ {{number_format($report_sale->complete_price ,2)}}</td>
+                                                <td>$ {{number_format($report_sale->total_amt ,2)}}</td>
+                                                <td>$ {{number_format($report_sale->total_discount ,2)}}</td>
+                                                <td>$ {{number_format($report_sale->total_payable ,2)}}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                        <tr style="height: 30px;">
+                                            <td colspan="3" style="text-align: right;">{{_t('Total')}}:</td>
+                                            <td style="padding-left: 15px;">$ {{number_format($total_deposit,2)}} </td>
+                                            <td style="padding-left: 15px;">$ {{number_format($complete_price,2)}} </td>
+                                            <td style="padding-left: 15px;">$ {{number_format($total_amount,2)}} </td>
+                                            <td style="padding-left: 15px;">$ {{number_format($total_discount,2)}} </td>
+                                            <td style="padding-left: 15px;">$ {{number_format($total_payable,2)}} </td>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                    @else
+                                        <h2 align="center">{{_t('Not Record Found')}}</h2>
+                                    @endif
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 @endsection
 @section('graph_script')
     <script src="{{ asset('vendor/adminlte') }}/dist/js/demo.js"></script>

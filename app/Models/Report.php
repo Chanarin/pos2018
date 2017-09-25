@@ -5,8 +5,8 @@ class Report extends Model
 {
     static function openItemReport($request,$limit=200)
     {
-        $from_date = $request->from_date;
-        $to_date = $request->to_date;
+        $from_date = isset($request->from_date)?$request->from_date:Carbon::now()->format('Y-m-d');
+        $to_date = isset($request->to_date)?$request->to_date:Carbon::now()->format('Y-m-d');
         $q = $request->q;
         $report_option = $request->report_option;
 
@@ -29,8 +29,8 @@ class Report extends Model
     }
     static function purchaseItemReport($request,$limit=200)
     {
-        $from_date = $request->from_date;
-        $to_date = $request->to_date;
+        $from_date = isset($request->from_date)?$request->from_date:Carbon::now()->format('Y-m-d');
+        $to_date = isset($request->to_date)?$request->to_date:Carbon::now()->format('Y-m-d');
         $q = $request->q;
         $report_option = $request->report_option;
         $m = Purchase::whereBetween('_date_', array($from_date, $to_date));
@@ -52,8 +52,8 @@ class Report extends Model
     }
     static function productionItemReport($request,$limit=200)
     {
-        $from_date = $request->from_date;
-        $to_date = $request->to_date;
+        $from_date = isset($request->from_date)?$request->from_date:Carbon::now()->format('Y-m-d');
+        $to_date = isset($request->to_date)?$request->to_date:Carbon::now()->format('Y-m-d');
         $q = $request->q;
         $report_option = $request->report_option;
 
@@ -75,8 +75,8 @@ class Report extends Model
     }
     static function invoiceItemReport($request,$limit=200)
     {
-        $from_date = $request->from_date;
-        $to_date = $request->to_date;
+        $from_date = isset($request->from_date)?$request->from_date:Carbon::now()->format('Y-m-d');
+        $to_date = isset($request->to_date)?$request->to_date:Carbon::now()->format('Y-m-d');
         $q = $request->q;
         $report_option = $request->report_option;
 
