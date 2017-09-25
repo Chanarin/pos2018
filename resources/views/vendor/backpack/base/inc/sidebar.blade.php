@@ -42,7 +42,7 @@
 
           @if($u_level != 1 && $u_level != 2)
           <li>
-            <a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/view-report') }}">
+            <a  target="_blank" href="{{ url(config('backpack.base.route_prefix', 'admin') . '/view-report') }}">
               <i class="fa fa-bar-chart"></i>
               <span>{{_t('Table Report')}}</span>
             </a>

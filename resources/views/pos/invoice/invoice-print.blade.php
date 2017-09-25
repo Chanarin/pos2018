@@ -205,6 +205,7 @@
 <script>
 //    window.print();
 //    window.setTimeout(' window.history.back()',500);
+//    location.reload();
 </script>
 </body>
 </html>

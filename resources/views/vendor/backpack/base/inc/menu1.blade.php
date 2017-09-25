@@ -54,7 +54,7 @@
             </a>
         </li>
         <li class=" hidden-xs hidden-sm">
-            <a href="{{url('admin/view-report')}}" >
+            <a target="_blank" href="{{url('admin/view-report')}}" >
                 <i class="fa fa-pie-chart"></i> <span>{{_t('Report')}}</span>
             </a>
         </li>
