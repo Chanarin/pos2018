@@ -204,7 +204,7 @@
 @endif
 <script>
     window.print();
-    window.setTimeout(' window.history.back()',500);
+    window.setTimeout('window.location.href = "{{url('/admin/invoice')}}"',500);
 </script>
 </body>
 </html>

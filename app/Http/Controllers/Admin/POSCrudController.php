@@ -22,7 +22,8 @@ class POSCrudController extends CrudController
 
         $date_today = Carbon::now()->format('Y-m-d');
 
-        $report_sale_today = Invoice::whereDate('_date_','=',$date_today)->orderBy('id','ASC')->paginate();
+        $report_sale_today = Invoice::whereDate('_date_','=',$date_today)
+            ->orderBy('id','ASC')->paginate(10000);
 
 
        return view('pos.sale.index',['categories'=>$categories,'report_sale_today'=>$report_sale_today]);

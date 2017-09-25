@@ -23,7 +23,7 @@ class POS extends Model
     // protected $hidden = [];
     // protected $dates = [];
 
-    static function itemByMenu($request,$limit=20)
+    static function itemByMenu($request,$limit=10)
     {
         $q = $request->q;
         $category_id = $request->category_id - 0;

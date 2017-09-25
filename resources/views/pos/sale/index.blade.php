@@ -38,7 +38,7 @@
                                     </style>
                                     <div class="">
 
-                                        <select name="customer_id" class="form-control select2 customer_id" style="width: 100%;">
+                                        <select name="customer_id" required class="form-control select2 customer_id" style="width: 100%;">
                                             @php
                                              $custs = \App\Models\Customer::all();
                                             @endphp
@@ -474,15 +474,15 @@
                             <div class="col-md-12">
                                 <div class="form-group person has-feedback">
                                     <label for="name">{{_t('Name')}} *</label>
-                                    <input type="text" name="name" value="" class="form-control tip name" id="name">
+                                    <input type="text" required name="name" value="" class="form-control tip name" id="name">
                                 </div>
                                 <div class="form-group has-feedback">
                                     <label for="phone">{{_t('Phone')}} *</label>
-                                    <input type="text" name="phone" value="" class="form-control phone" id="phone">
+                                    <input type="text" required name="phone" value="" class="form-control phone" id="phone">
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="price_group">{{_t('Gender')}}</label>
-                                    <select name="gender" class="form-control gender" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                    <select name="gender" required class="form-control gender" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                         <option value="" selected="selected">{{_t('Select Gender')}}</option>
                                         <option value="male">{{_t('Male')}}</option>
                                         <option value="female">{{_t('Female')}}</option>
@@ -1008,22 +1008,28 @@
                 var name = $('#add-customer-form').find('.name').val();
                 var phone = $('#add-customer-form').find('.phone').val();
                 var gender = $('#add-customer-form').find('.gender').val();
-                $.ajax({
-                    url: '{{url('/api/add-customer')}}',
-                    type: 'GET',
-                    dataType: 'html',
-                    data: {
-                        name: name,
-                        phone: phone,
-                        gender: gender
-                    },
-                    success: function (d) {
-                        $('.customer_id').html(d);
-                        $('#addCustomerModal').modal('hide');
-                    },
-                    error: function () {
-                    }
-                });
+
+                if(name == '' || phone=='' || gender==''){
+                    alert('Please, input Name Phone and Gender!!!');
+                }else{
+                    $.ajax({
+                        url: '{{url('/api/add-customer')}}',
+                        type: 'GET',
+                        dataType: 'html',
+                        data: {
+                            name: name,
+                            phone: phone,
+                            gender: gender
+                        },
+                        success: function (d) {
+                            $('.customer_id').html(d);
+                            $('#addCustomerModal').modal('hide');
+                        },
+                        error: function () {
+                        }
+                    });
+                }
+
             });
         });
         //get item by category
