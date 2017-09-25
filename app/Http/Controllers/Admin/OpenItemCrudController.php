@@ -162,7 +162,7 @@ class OpenItemCrudController extends CrudController
         ]);
 
         if ($validator->fails()) {
-            return redirect('admin/openitem')->withErrors(['msg', 'The Message']);
+            return redirect('admin/openitem')->withErrors($validator);
         }
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
@@ -206,7 +206,7 @@ class OpenItemCrudController extends CrudController
         ]);
 
         if ($validator->fails()) {
-            return redirect('admin/openitem');
+            return redirect('admin/openitem')->withErrors($validator);;
         }
 
         $inv = InvoiceDetail::where('item_id',$request->id)->first();

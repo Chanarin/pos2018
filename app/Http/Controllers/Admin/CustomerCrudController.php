@@ -290,7 +290,7 @@ class CustomerCrudController extends CrudController
         ]);
 
         if ($validator->fails()) {
-            return redirect('admin/customer');
+            return redirect('admin/customer')->withErrors($validator);
         }
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
@@ -306,7 +306,7 @@ class CustomerCrudController extends CrudController
         ]);
 
         if ($validator->fails()) {
-            return redirect('admin/customer');
+            return redirect('admin/customer')->withErrors($validator);
         }
         // your additional operations before save here
         $redirect_location = parent::updateCrud($request);

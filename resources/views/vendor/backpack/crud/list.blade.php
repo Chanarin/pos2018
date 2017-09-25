@@ -17,10 +17,25 @@
 
 @section('content')
 <!-- Default box -->
+
   <div class="row">
 
     <!-- THE ACTUAL CONTENT -->
     <div class="col-md-12">
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
+    <div class="col-md-12">
+
+
       <div class="box">
         <div class="box-header {{ $crud->hasAccess('create')?'with-border':'' }}">
 
