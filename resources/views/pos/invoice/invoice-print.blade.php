@@ -203,9 +203,8 @@
     @endif
 @endif
 <script>
-//    window.print();
-//    window.setTimeout(' window.history.back()',500);
-//    location.reload();
+    window.print();
+    window.setTimeout(' window.history.back()',500);
 </script>
 </body>
 </html>
