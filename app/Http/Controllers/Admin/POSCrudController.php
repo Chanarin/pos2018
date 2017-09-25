@@ -20,10 +20,12 @@ class POSCrudController extends CrudController
 
         $categories = ItemCategory::where('status','=','ACTIVE')->get();
 
-        $date_today = Carbon::now()->format('Y/m/d');
-        $report_sale_today = Invoice::where('_date_',$date_today);
+        $date_today = Carbon::now()->format('Y-m-d');
 
-       return view('pos.sale.index',['categories'=>$categories]);
+        $report_sale_today = Invoice::whereDate('_date_','=',$date_today)->orderBy('id','ASC')->paginate();
+
+
+       return view('pos.sale.index',['categories'=>$categories,'report_sale_today'=>$report_sale_today]);
     }
 
     public function menuItem(Request $request){

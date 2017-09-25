@@ -58,18 +58,6 @@
                 <i class="fa fa-pie-chart"></i> <span>{{_t('Report')}}</span>
             </a>
         </li>
-        {{--<li class=" hidden-xs hidden-sm">--}}
-            {{--<a href="#" >--}}
-                {{--<i class="fa fa-th-large"></i> <span>{{_t('Profit')}}</span>--}}
-
-            {{--</a>--}}
-        {{--</li>--}}
-        {{--<li class=" hidden-xs hidden-sm">--}}
-            {{--<a href="#" >--}}
-                {{--<i class="fa fa-print"></i> <span>{{_t('List Sale')}}</span>--}}
-
-            {{--</a>--}}
-        {{--</li>--}}
         <li class=" hidden-xs hidden-sm">
             <a href="#" data-toggle="modal" data-target="#listSaleTodayModal" >
                 <i class="fa fa-th-large"></i> <span>{{_t('Today Sale')}}</span>
