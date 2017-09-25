@@ -70,12 +70,12 @@
 
             {{--</a>--}}
         {{--</li>--}}
-        {{--<li class=" hidden-xs hidden-sm">--}}
-            {{--<a href="{{url('admin/view-report')}}" >--}}
-                {{--<i class="fa fa-th-large"></i> <span>{{_t('Today Sale')}}</span>--}}
+        <li class=" hidden-xs hidden-sm">
+            <a href="#" data-toggle="modal" data-target="#listSaleTodayModal" >
+                <i class="fa fa-th-large"></i> <span>{{_t('Today Sale')}}</span>
 
-            {{--</a>--}}
-        {{--</li>--}}
+            </a>
+        </li>
       <!-- ========================================================= -->
       <!-- ========== Top menu right items (ordered left) ========== -->
       <!-- ========================================================= -->

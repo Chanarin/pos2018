@@ -444,7 +444,7 @@
 
         {{--================modal pop up =============--}}
 
-        <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModal" aria-hidden="true">
+    <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModal" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -665,6 +665,57 @@
             </div>
         </div>
     </div>
+
+    {{--==========list sale today=======--}}
+    <div class="modal fade" id="listSaleTodayModal" tabindex="-1" role="dialog" aria-labelledby="listSaleTodayModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-2x">×</i>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">{{_t('Add Customer')}}</h4>
+                </div>
+                <form action="#" data-toggle="validator" role="form" id="add-customer-form"  class="bv-form" style="padding: 10px;">
+                    <div class="modal-body" style="height:400px;">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center">{{_t('No')}}</th>
+                                            <th class="text-center">{{_t('Invoice Number')}}</th>
+                                            <th class="text-center">{{_t('Date')}}</th>
+                                            <th style="text-align: center !important;">{{_t('Customer')}}</th>
+                                            <th style="text-align: center !important;">{{_t('phone')}}</th>
+                                            <th style="text-align: center !important;">{{_t('Deposit')}}</th>
+                                            <th style="text-align: center !important;">{{_t('Complete Price')}}</th>
+                                            <th style="text-align: center !important;">{{_t('Subtotal')}}</th>
+                                            <th style="text-align: center !important;">{{_t('Discount')}}</th>
+                                            <th style="text-align: center !important;">{{_t('Total Payable')}}</th>
+
+                                        </tr>
+                                        </thead>
+
+                                        <tbody class="show-all-product-list">
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                        <div class="ps-scrollbar-x-rail" style="width: 0px; display: none; left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" style="left: -30px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 370px; display: none; right: 3px;"><div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div></div></div>
+                    <div class="modal-footer">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 @endsection
 @section('graph_script')
     <script src="{{ asset('vendor/adminlte') }}/dist/js/demo.js"></script>
