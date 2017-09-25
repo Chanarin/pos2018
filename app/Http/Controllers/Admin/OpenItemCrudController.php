@@ -162,7 +162,7 @@ class OpenItemCrudController extends CrudController
         ]);
 
         if ($validator->fails()) {
-            return redirect('admin/openitem');
+            return redirect('admin/openitem')->withErrors(['msg', 'The Message']);
         }
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
