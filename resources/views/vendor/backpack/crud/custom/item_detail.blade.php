@@ -885,6 +885,18 @@
                 getItemPrice();
             });
 
+            $('body').delegate('.qty-main','keydown',function () {
+                getItemPrice();
+            });
+
+            $('body').delegate('.price-main','change',function () {
+                getItemPrice();
+            });
+
+            $('body').delegate('.price-main','keydown',function () {
+                getItemPrice();
+            });
+
 
 
         });
