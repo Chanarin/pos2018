@@ -80,6 +80,8 @@ Route::any('/show-pos-customer','Api\ItemController@showPosCustomerSearchResult'
 
 Route::any('/show-pos-product','Api\ItemController@showPosItemSearchResult');
 
+Route::any('/show-report-sale-today','Api\ItemController@showReportSaleTodayResult');
+
 Route::get('/item','Api\ItemController@index');
 Route::get('/item/{id}','Api\ItemController@show');
 

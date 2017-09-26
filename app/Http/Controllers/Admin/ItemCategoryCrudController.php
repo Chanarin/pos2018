@@ -182,7 +182,7 @@ class ItemCategoryCrudController extends CrudController
         ]);
 
         if ($validator->fails()) {
-            return redirect('admin/itemcategory');
+            return redirect('admin/itemcategory')->withErrors($validator);
         }
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
@@ -198,7 +198,7 @@ class ItemCategoryCrudController extends CrudController
         ]);
 
         if ($validator->fails()) {
-            return redirect('admin/itemcategory');
+            return redirect('admin/itemcategory')->withErrors($validator);
         }
         // your additional operations before save here
         $redirect_location = parent::updateCrud($request);

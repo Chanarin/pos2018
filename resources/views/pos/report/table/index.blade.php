@@ -123,11 +123,9 @@
                             },
                             success: function (d) {
                                 $('.report-item-list').html(d);
-                                $('.my-modal').hide();
                             },
                             error: function (d) {
                                 alert('error');
-                                $('.my-modal').hide();
                             }
                         });
                     } else {
@@ -137,19 +135,15 @@
                 $('body').delegate('.my-paginate ul li a', 'click', function (e) {
                     e.preventDefault();
                     var report_url = $(this).prop('href');
-                    $('.my-modal').show(500);
-
                     $.ajax({
                         url: report_url,
                         type: 'GET',
                         dataType: 'html',
                         success: function (d) {
                             $('.report-item-list').html(d);
-                            $('.my-modal').hide();
                         },
                         error: function (d) {
                             alert('error');
-                            $('.my-modal').hide();
                         }
                     });
                 });

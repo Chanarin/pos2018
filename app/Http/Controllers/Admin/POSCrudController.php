@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Invoice;
 use App\Models\Item;
 use App\Models\ItemCategory;
 use App\Models\POS;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
@@ -20,13 +18,7 @@ class POSCrudController extends CrudController
 
         $categories = ItemCategory::where('status','=','ACTIVE')->get();
 
-        $date_today = Carbon::now()->format('Y-m-d');
-
-        $report_sale_today = Invoice::whereDate('_date_','=',$date_today)
-            ->orderBy('id','ASC')->paginate(10000);
-
-
-       return view('pos.sale.index',['categories'=>$categories,'report_sale_today'=>$report_sale_today]);
+       return view('pos.sale.index',['categories'=>$categories]);
     }
 
     public function menuItem(Request $request){

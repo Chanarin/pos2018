@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Customer;
+use App\Models\Invoice;
 use App\Models\Item;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -146,6 +148,16 @@ class ItemController extends Controller
         }else{
             return [];
         }
+    }
+    public function showReportSaleTodayResult($limit=1000){
+
+        $date_today = Carbon::now()->format('Y-m-d');
+
+        $results = Invoice::whereDate('_date_','=',$date_today)
+            ->orderBy('id','ASC')->paginate($limit)
+            ->appends($date_today);
+
+        return view('pos.sale.show-report-sale-today',['rows'=>$results]);
     }
 
 }

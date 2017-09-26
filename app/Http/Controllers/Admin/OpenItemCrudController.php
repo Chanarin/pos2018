@@ -194,7 +194,7 @@ class OpenItemCrudController extends CrudController
             // load the view from /resources/views/vendor/backpack/crud/ if it exists, otherwise load the one in the package
             return view($this->crud->getEditView(), $this->data);
         }else{
-            return redirect('/openitem');
+            return redirect('admin/openitem')->withErrors('This Product has sold. So, You cannot edit it.');
         }
     }
 
@@ -218,8 +218,9 @@ class OpenItemCrudController extends CrudController
 
             $iDP = new IDP($request->_data_, _POS_::open_items, $this->crud->entry->id);
             $iDP->saveAllDetail();
+            return $redirect_location;
         }
 
-        return $redirect_location;
+        return redirect('admin/openitem')->withErrors('This Product has sold. So, You cannot edit it.');
     }
 }

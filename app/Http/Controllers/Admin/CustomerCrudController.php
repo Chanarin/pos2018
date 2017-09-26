@@ -286,7 +286,10 @@ class CustomerCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|min:1|max:255'
+            'name' => 'required|min:1|max:255',
+            'gender' => 'required',
+            'phone' => 'required'
+
         ]);
 
         if ($validator->fails()) {
@@ -302,7 +305,9 @@ class CustomerCrudController extends CrudController
     public function update(UpdateRequest $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|min:1|max:255'
+            'name' => 'required|min:1|max:255',
+            'gender' => 'required',
+            'phone' => 'required'
         ]);
 
         if ($validator->fails()) {

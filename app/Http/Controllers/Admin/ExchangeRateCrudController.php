@@ -8,6 +8,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\ExchangeRateRequest as StoreRequest;
 use App\Http\Requests\ExchangeRateRequest as UpdateRequest;
+use Illuminate\Support\Facades\Validator;
 
 class ExchangeRateCrudController extends CrudController
 {
@@ -127,6 +128,15 @@ class ExchangeRateCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
+        $validator = Validator::make($request->all(), [
+            'en' => 'required',
+            'kh' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('admin/exchangerate')->withErrors($validator);
+        }
+
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
@@ -136,6 +146,15 @@ class ExchangeRateCrudController extends CrudController
 
     public function update(UpdateRequest $request)
     {
+        $validator = Validator::make($request->all(), [
+            'en' => 'required',
+            'kh' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('admin/exchangerate')->withErrors($validator);
+        }
+
         // your additional operations before save here
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here

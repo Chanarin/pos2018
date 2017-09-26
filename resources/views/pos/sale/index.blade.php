@@ -680,70 +680,10 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="box">
-                                    @if(count($report_sale_today) > 0)
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th class="text-center">{{_t('No')}}</th>
-                                            <th class="text-center">{{_t('Invoice Number')}}</th>
-                                            <th style="text-align: center !important;">{{_t('Customer')}}</th>
-                                            <th style="text-align: center !important;">{{_t('Deposit')}}</th>
-                                            <th style="text-align: center !important;">{{_t('Complete Price')}}</th>
-                                            <th style="text-align: center !important;">{{_t('Subtotal')}}</th>
-                                            <th style="text-align: center !important;">{{_t('Discount')}}</th>
-                                            <th style="text-align: center !important;">{{_t('Total Payable')}}</th>
+                                    <table class="table show-report-sale-today-list">
 
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @php
-                                            $count = 1;
-                                            $total_deposit = 0;
-                                            $complete_price = 0;
-                                            $total_amount = 0;
-                                            $total_discount = 0;
-                                            $total_payable = 0;
-                                            $total_paid = 0;
-                                            $total_remaining = 0;
-                                        @endphp
-
-                                        @foreach($report_sale_today as $report_sale)
-                                            @php
-                                                $total_deposit+= ($report_sale->deposit);
-                                                $complete_price+= ($report_sale->complete_price);
-                                                $total_amount+= ($report_sale->total_amt);
-                                                $total_discount+= ($report_sale->total_discount);
-                                                $total_payable+= ($report_sale->total_payable);
-                                            @endphp
-
-                                            <tr style="height: 30px ;   @if($loop->index % 2 > 0) background-color: #f1f1f1; @endif">
-                                                <td class="text-left">{{ (($report_sale_today->currentPage()-1)*$report_sale_today->perPage())+$count++ }}</td>
-                                                <td>{{$report_sale->invoice_number }}</td>
-                                                <td>{{$report_sale->customer->name}}</td>
-                                                <td>$ {{number_format($report_sale->deposit ,2)}}</td>
-                                                <td>$ {{number_format($report_sale->complete_price ,2)}}</td>
-                                                <td>$ {{number_format($report_sale->total_amt ,2)}}</td>
-                                                <td>$ {{number_format($report_sale->total_discount ,2)}}</td>
-                                                <td>$ {{number_format($report_sale->total_payable ,2)}}</td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                        <tfoot>
-                                        <tr style="height: 30px;">
-                                            <td colspan="3" style="text-align: right;">{{_t('Total')}}:</td>
-                                            <td style="padding-left: 15px;">$ {{number_format($total_deposit,2)}} </td>
-                                            <td style="padding-left: 15px;">$ {{number_format($complete_price,2)}} </td>
-                                            <td style="padding-left: 15px;">$ {{number_format($total_amount,2)}} </td>
-                                            <td style="padding-left: 15px;">$ {{number_format($total_discount,2)}} </td>
-                                            <td style="padding-left: 15px;">$ {{number_format($total_payable,2)}} </td>
-                                        </tr>
-                                        </tfoot>
                                     </table>
-                                    @else
-                                        <h2 align="center">{{_t('Not Record Found')}}</h2>
-                                    @endif
                                 </div>
-                                <!-- /.box -->
                             </div>
                         </div>
                     </div>
@@ -1173,7 +1113,6 @@
             });
         });
     </script>
-
     <script>
         var delay = (function(){
             var timer = 0;
@@ -1182,7 +1121,6 @@
                 timer = setTimeout(callback, ms);
             };
         })();
-
         function loadPosItemSearch() {
             var q = $('.search-item-pos-to-show-txt').val();
 
@@ -1220,6 +1158,7 @@
                 $('.customer_id').select2();
                 $('#viewCustomerModal').modal('hide');
             });
+
         {{--============search item pop up ============--}}
             $('.search-item-pos-to-show-txt').on('keyup',function (e) {
                 e.preventDefault();
@@ -1367,7 +1306,6 @@
                 $(this).addClass('p-current');
             });
         });
-
         function getSearch(q) {
             $.ajax({
                 url: '{{url('api/get-search')}}',
@@ -1385,5 +1323,42 @@
                 }
             });
         }
+
+        $(function () {
+            //    ====================ajax get report data pagination and search=====================
+            $('#listSaleTodayModala').on('click', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '{{url('api/show-report-sale-today')}}',
+                    type: 'GET',
+                    async: false,
+                    dataType: 'html',
+                    data: {
+                    },
+                    success: function (d) {
+                        $('.show-report-sale-today-list').html(d);
+                    },
+                    error: function (d) {
+                        alert('error');
+                    }
+                });
+            });
+            $('body').delegate('.my-paginate ul li a', 'click', function (e) {
+                e.preventDefault();
+                var report_url = $(this).prop('href');
+                $.ajax({
+
+                    url: report_url,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function (d) {
+                        $('.show-report-sale-today-list').html(d);
+                    },
+                    error: function (d) {
+                        alert('error');
+                    }
+                });
+            });
+        });
     </script>
 @endsection

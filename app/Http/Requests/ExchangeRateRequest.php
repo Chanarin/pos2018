@@ -26,6 +26,8 @@ class ExchangeRateRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
+            'en' => 'required',
+            'kh' => 'required',
         ];
     }
 

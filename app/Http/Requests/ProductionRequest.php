@@ -26,6 +26,9 @@ class ProductionRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
     {
         return [
             // 'name' => 'required|min:5|max:255'
+            'production_number' => 'required',
+            '_date_' => 'required',
+            'customer_id' => 'required',
         ];
     }
 

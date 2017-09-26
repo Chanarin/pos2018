@@ -59,7 +59,7 @@
             </a>
         </li>
         <li class=" hidden-xs hidden-sm">
-            <a href="#" data-toggle="modal" data-target="#listSaleTodayModal" >
+            <a href="#" data-toggle="modal" data-target="#listSaleTodayModal" id="listSaleTodayModala" >
                 <i class="fa fa-th-large"></i> <span>{{_t('Today Sale')}}</span>
 
             </a>

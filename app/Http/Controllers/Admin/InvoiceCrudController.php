@@ -171,7 +171,7 @@ class InvoiceCrudController extends CrudController
         ]);
 
         if ($validator->fails()) {
-            return redirect('admin/invoice');
+            return redirect('admin/invoice')->withErrors($validator);
         }
 
 //        dd($request->_data_);
@@ -217,7 +217,7 @@ class InvoiceCrudController extends CrudController
         ]);
 
         if ($validator->fails()) {
-            return redirect('admin/invoice');
+            return redirect('admin/invoice')->withErrors($validator);
         }
 
         // your additional operations before save here
