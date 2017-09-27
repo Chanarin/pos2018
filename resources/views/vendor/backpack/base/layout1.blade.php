@@ -68,7 +68,8 @@
       </div>
     @yield('before_scripts')
     {{--<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>--}}
-
+    <script src="{{asset('/pos/sweet-alert/')}}/sweetalert-dev.js"></script>
+    <link rel="stylesheet" href="{{asset('/pos/sweet-alert/')}}/sweetalert.css">
     <script src="{{asset('/pos/jquery/jquery-2.2.0.min.js')}}"></script>
     <script>window.jQuery || document.write('<script src="{{ asset('vendor/adminlte') }}/plugins/jQuery/jQuery-2.2.0.min.js"><\/script>')</script>
     <script src="{{ asset('vendor/adminlte') }}/bootstrap/js/bootstrap.min.js"></script>

@@ -191,7 +191,7 @@ class PurchaseCrudController extends CrudController
             // load the view from /resources/views/vendor/backpack/crud/ if it exists, otherwise load the one in the package
             return view($this->crud->getEditView(), $this->data);
         }else{
-            return redirect('admin/purchase')->withErrors('This Product has sold. So, You cannot edit it.');
+            return redirect('admin/purchase')->withErrors('This Product has been sold. So, You cannot edit it.');
         }
     }
 
