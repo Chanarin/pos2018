@@ -185,25 +185,25 @@
                             <!-- /.box -->
                         </div>
 
-                        <div class="col-md-12">
-                            <!-- DONUT CHART -->
-                            <div class="box box-danger">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Item in Stock</h3>
+                        {{--<div class="col-md-12">--}}
+                            {{--<!-- DONUT CHART -->--}}
+                            {{--<div class="box box-danger">--}}
+                                {{--<div class="box-header with-border">--}}
+                                    {{--<h3 class="box-title">Item in Stock</h3>--}}
 
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <div class="box-body chart-responsive">
-                                    <div class="chart" id="sales-chart" style="height: 300px; position: relative;"></div>
-                                </div>
-                                <!-- /.box-body -->
-                            </div>
-                            <!-- /.box -->
-                        </div>
+                                    {{--<div class="box-tools pull-right">--}}
+                                        {{--<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>--}}
+                                        {{--</button>--}}
+                                        {{--<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="box-body chart-responsive">--}}
+                                    {{--<div class="chart" id="sales-chart" style="height: 300px; position: relative;"></div>--}}
+                                {{--</div>--}}
+                                {{--<!-- /.box-body -->--}}
+                            {{--</div>--}}
+                            {{--<!-- /.box -->--}}
+                        {{--</div>--}}
                     </div>
                     <!-- /.row -->
                 </section>
@@ -245,19 +245,19 @@
                 hideHover: 'auto'
             });
 
-            //PRODUCT IN STOCK CHART
-            var donut = new Morris.Donut({
-                element: 'sales-chart',
-                resize: true,
-                colors: ["#3c8dbc", "#f56954", "#00a65a", "#F39C12"],
-                data: [
-                    {label: "Sales", value: 12},
-                    {label: "Open", value: 20},
-                    {label: "Purchase", value: 30},
-                    {label: "Production", value: 20}
-                ],
-                hideHover: 'auto'
-            });
+//            //PRODUCT IN STOCK CHART
+//            var donut = new Morris.Donut({
+//                element: 'sales-chart',
+//                resize: true,
+//                colors: ["#3c8dbc", "#f56954", "#00a65a", "#F39C12"],
+//                data: [
+//                    {label: "Sales", value: 12},
+//                    {label: "Open", value: 20},
+//                    {label: "Purchase", value: 30},
+//                    {label: "Production", value: 20}
+//                ],
+//                hideHover: 'auto'
+//            });
 
         });
     </script>

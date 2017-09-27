@@ -203,8 +203,8 @@
     @endif
 @endif
 <script>
-    window.print();
-    window.setTimeout('window.location.href = "{{url('/admin/invoice')}}"',500);
+    {{--window.print();--}}
+    {{--window.setTimeout('window.location.href = "{{url('/admin/invoice')}}"',500);--}}
 </script>
 </body>
 </html>
