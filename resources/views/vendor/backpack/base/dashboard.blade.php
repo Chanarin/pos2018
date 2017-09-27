@@ -232,13 +232,11 @@
                 element: 'bar-chart',
                 resize: true,
                 data: [
-                    {y: 'Mo', a: 100},
-                    {y: 'Tu', a: 75},
-                    {y: 'We', a: 50},
-                    {y: 'Th', a: 75},
-                    {y: 'Fr', a: 50},
-                    {y: 'Sa', a: 75},
-                    {y: 'Su', a: 10000}
+
+                    @foreach(\App\Models\Dashboard::saleOfWeek() as $row)
+                    {y: '{{ $row['day'] }}', a: '{{ $row['total'] }}' - 0},
+                    @endforeach
+
                 ],
                 barColors: ['#f56954'],
                 xkey: 'y',
