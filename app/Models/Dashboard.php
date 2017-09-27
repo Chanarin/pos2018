@@ -15,7 +15,7 @@ class Dashboard extends Model
         for($i=0; $i<7; $i++){
             $weekdays[] = [
                 'day' => $monday->format('D'),
-                'total' => Invoice::whereDate('_date_',$monday->format('Y-m-d'))->sum(total_amt)
+                'total' => Invoice::whereDate('_date_',$monday->format('Y-m-d'))->sum('total_amt')
             ];
             $monday->addDay(1);
         }
