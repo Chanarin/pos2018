@@ -238,9 +238,9 @@
                     {y: 'Th', a: 75},
                     {y: 'Fr', a: 50},
                     {y: 'Sa', a: 75},
-                    {y: 'Su', a: 100}
+                    {y: 'Su', a: 10000}
                 ],
-                barColors: ['#00a65a', '#f56954'],
+                barColors: ['#f56954'],
                 xkey: 'y',
                 ykeys: ['a'],
                 labels: ['Sale'],

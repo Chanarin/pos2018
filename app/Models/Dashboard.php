@@ -8,6 +8,6 @@ class Dashboard extends Model
 {
     public function saleOfWeek()
     {
-        $sale_of_week = Invoice::where('');
+        $sale_of_week = Invoice::where('_date_');
     }
 }
