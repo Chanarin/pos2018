@@ -462,17 +462,17 @@
 
     {{--================cancel pop up =============--}}
     <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModal" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true" style="margin-top: -10px;"><i class="fa fa-2x">×</i>
-                        </button><div class="bootbox-body">{{_t('Are you sure?')}}</div></div><div class="modal-footer">
-                        <button data-bb-handler="cancel" type="button" data-dismiss="modal" class="btn btn-default">{{_t('Cancel')}}</button>
-                        <button data-bb-handler="confirm" type="button" data-dismiss="modal" class="btn btn-primary getOrderCancel">{{_t('OK')}}</button>
-                    </div>
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="bootbox-close-button close" data-dismiss="modal" aria-hidden="true" style="margin-top: -10px;"><i class="fa fa-2x">×</i>
+                    </button><div class="bootbox-body">{{_t('Are you sure?')}}</div></div><div class="modal-footer">
+                    <button data-bb-handler="cancel" type="button" data-dismiss="modal" class="btn btn-default">{{_t('Cancel')}}</button>
+                    <button data-bb-handler="confirm" type="button" data-dismiss="modal" class="btn btn-primary getOrderCancel">{{_t('OK')}}</button>
                 </div>
             </div>
         </div>
+    </div>
 
     <div class="modal fade" id="addCustomerModal" tabindex="-1" role="dialog" aria-labelledby="addCustomerModal" aria-hidden="true">
         <div class="modal-dialog modal-lg">
