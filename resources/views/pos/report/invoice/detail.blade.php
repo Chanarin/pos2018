@@ -109,7 +109,7 @@
                             $rds = \App\Models\ItemDetail::where('ref_id',$rd->item_id)->get();
                             $oe = $loop->index;
                         @endphp
-                        <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif ">
+                        <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif color: #0586ff; font-weight: bold;">
                             <td class="text-left">{{$loop->index+1}}</td>
                             <td class="text-left">
                                 @php
@@ -146,31 +146,31 @@
                     @endforeach
 
                 </tbody>
-                <tr>
+                <tr style="color: #0586ff; font-weight: bold;">
                     <td colspan="5"></td>
                     <td style="text-align:right;">{{_t('Grand Total')}}</td>
                     <td style="text-align:right;">$ {{number_format($row->total_amt,2)}}</td>
                     <td style="text-align:right;">{{number_format(($row->total_amt)*$row->exchange_rate,2)}} ៛</td>
                 </tr>
-                <tr>
+                <tr style="color: #0586ff; font-weight: bold;">
                     <td colspan="5"></td>
                     <td style="text-align:right;">{{_t('Discount')}}</td>
                     <td style="text-align:right;">$ {{number_format($row->total_discount,2)}}</td>
                     <td style="text-align:right;">{{number_format(($row->total_discount)*$row->exchange_rate,2)}} ៛</td>
                 </tr>
-                <tr>
+                <tr style="color: #0586ff; font-weight: bold;">
                     <td colspan="5"></td>
                     <td style="text-align:right;">{{_t('Total Payable')}}</td>
                     <td style="text-align:right;">$ {{number_format($row->total_payable,2)}}</td>
                     <td style="text-align:right;">{{number_format(($row->total_payable)*$row->exchange_rate,2)}} ៛</td>
                 </tr>
-                <tr>
+                <tr style="color: #0586ff; font-weight: bold;">
                     <td colspan="5"></td>
                     <td style="text-align:right;">{{_t('Paid')}}</td>
                     <td style="text-align:right;">$ {{number_format($row->paid+($row->paid_kh/$row->exchange_rate),2)}}</td>
                     <td style="text-align:right;">{{number_format(($row->paid+($row->paid_kh/$row->exchange_rate))*$row->exchange_rate,2)}} ​​៛</td>
                 </tr>
-                <tr>
+                <tr style="color: #0586ff; font-weight: bold;">
                     <td colspan="5"></td>
                     <td style="text-align:right;">{{_t('Remaining')}}</td>
                     <td style="text-align:right;">$ {{number_format(($row->paid+($row->paid_kh/$row->exchange_rate))-$row->total_payable,2)}}</td>

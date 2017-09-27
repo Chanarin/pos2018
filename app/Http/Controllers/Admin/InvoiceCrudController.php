@@ -165,7 +165,7 @@ class InvoiceCrudController extends CrudController
 //        dd($request->all());
 
         $validator = Validator::make($request->all(), [
-            'invoice_number' => 'required',
+            'invoice_number' => 'required|unique:invoice,invoice_number',
             '_date_' => 'required',
             'customer_id' => 'required'
         ]);

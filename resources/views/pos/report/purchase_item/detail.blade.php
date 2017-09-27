@@ -71,7 +71,7 @@
                     @php
                         $oe = $loop->index;
                     @endphp
-                    <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif ">
+                    <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif color: #0586ff; font-weight: bold;">
                         <td class="text-left">{{$loop->index+1}}</td>
                         <td class="text-left">{{$rd->item_code}}</td>
                         <td class="text-left">{{$rd->title}}</td>

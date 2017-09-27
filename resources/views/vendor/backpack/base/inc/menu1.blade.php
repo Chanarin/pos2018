@@ -22,7 +22,6 @@
 </div>
 <div class="navbar-custom-menu">
     <ul class="nav navbar-nav">
-
         {{--<li class=" hidden-xs hidden-sm" style="background-color: #4a8009;">--}}
             {{--<a href="{{ url('/admin/dashboard') }}">--}}
                 {{--<i class="fa fa-dashboard"> Dashboard</i>--}}

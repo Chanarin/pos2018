@@ -48,13 +48,13 @@
     @endforeach
     </tbody>
     <tfoot>
-        <tr style="height: 30px;">
-            <td colspan="3" style="text-align: right;">{{_t('Total')}}:</td>
-            <td style="padding-left: 15px;">$ {{number_format($total_deposit,2)}} </td>
-            <td style="padding-left: 15px;">$ {{number_format($complete_price,2)}} </td>
-            <td style="padding-left: 15px;">$ {{number_format($total_amount,2)}} </td>
-            <td style="padding-left: 15px;">$ {{number_format($total_discount,2)}} </td>
-            <td style="padding-left: 15px;">$ {{number_format($total_payable,2)}} </td>
+        <tr style="height: 30px; color: #0586ff;">
+            <td colspan="3" style="text-align: right; font-weight: bold;">{{_t('Total')}}:</td>
+            <td style="padding-left: 15px; font-weight: bold;">$ {{number_format($total_deposit,2)}} </td>
+            <td style="padding-left: 15px; font-weight: bold;">$ {{number_format($complete_price,2)}} </td>
+            <td style="padding-left: 15px; font-weight: bold;">$ {{number_format($total_amount,2)}} </td>
+            <td style="padding-left: 15px; font-weight: bold;">$ {{number_format($total_discount,2)}} </td>
+            <td style="padding-left: 15px; font-weight: bold;">$ {{number_format($total_payable,2)}} </td>
         </tr>
         <tr style="text-align: right;" >
             <td class="my-paginate">

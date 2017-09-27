@@ -149,7 +149,7 @@ class ProductionCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         $validator = Validator::make($request->all(), [
-            'production_number' => 'required',
+            'production_number' => 'required|unique:production,production_number',
             '_date_' => 'required',
             'customer_id' => 'required',
         ]);

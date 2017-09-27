@@ -87,6 +87,24 @@
                         <div style="clear:both;"></div>
                     </div>
 
+                    <style>
+                        /*========= item add to invoice==*/
+                        .table-show-pro{
+                            width:100%;
+                            overflow:auto;
+                            height:350px;
+                            text-align: center;
+                            border-bottom: #ffffff;
+                            position: absolute;
+                        }
+                        /*========= show item list ==*/
+                        .items-style{
+                            padding-top: 5px;
+                            height: 650px;
+                            overflow: auto;
+                        }
+                    </style>
+
                     <div class="col-md-12 col-sm-12 panel-height left-middle">
                         <div class="tbl-header">
                             <table class="table table-action">
@@ -232,7 +250,7 @@
                     </div>
                 </div>
                 <div class="col-md-12 items-style menu-item-by-category">
-    {{--====================end items by categories==================--}}
+                {{--====================show items by categories==================--}}
                 </div>
             </div>
                 <div class="modal fade" id="postPaidModal" tabindex="-1" role="dialog" aria-labelledby="postPaidModal" aria-hidden="true">
@@ -442,8 +460,7 @@
     </div>
 
 
-        {{--================modal pop up =============--}}
-
+    {{--================cancel pop up =============--}}
     <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModal" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
@@ -456,6 +473,7 @@
                 </div>
             </div>
         </div>
+
     <div class="modal fade" id="addCustomerModal" tabindex="-1" role="dialog" aria-labelledby="addCustomerModal" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -499,118 +517,145 @@
         </div>
     </div>
 
-
     <div class="modal fade" id="viewCustomerModal" tabindex="-1" role="dialog" aria-labelledby="viewCustomerModal" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            <i class="fa fa-2x">×</i>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">{{_t('Customer List')}}</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="box">
-                                    <div class="box-header">
-                                        <h3 class="box-title"></h3>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="fa fa-2x">×</i>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">{{_t('Customer List')}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header">
+                                    <h3 class="box-title"></h3>
 
-                                        <div class="box-tools">
-                                            <div class="input-group input-group-sm" style="width: 150px;">
-                                                <input type="text" name="table_search" class="form-control pull-right search-customer-view-show-txt" placeholder="Search">
+                                    <div class="box-tools">
+                                        <div class="input-group input-group-sm" style="width: 150px;">
+                                            <input type="text" name="table_search" class="form-control pull-right search-customer-view-show-txt" placeholder="Search">
 
-                                                <div class="input-group-btn">
-                                                    <button type="button" class="btn btn-default search-customer-view-show"><i class="fa fa-search"></i></button>
-                                                </div>
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-default search-customer-view-show"><i class="fa fa-search"></i></button>
                                             </div>
                                         </div>
                                     </div>
-
-
-                                    <div class="table-responsive">
-
-                                        <table class="table table-striped table-bordered" style="margin-bottom:0;">
-                                            <thead>
-                                                <tr>
-                                                    <th>{{_t('Name')}}</th>
-                                                    <th>{{_t('Phone')}}</th>
-                                                    <th>{{_t('Description')}}</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="show-all-customer">
-
-                                            </tbody>
-                                        </table>
-                                    </div>
                                 </div>
-                                <!-- /.box -->
+
+
+                                <div class="table-responsive">
+
+                                    <table class="table table-striped table-bordered" style="margin-bottom:0;">
+                                        <thead>
+                                            <tr>
+                                                <th>{{_t('Name')}}</th>
+                                                <th>{{_t('Phone')}}</th>
+                                                <th>{{_t('Description')}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="show-all-customer">
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
+                            <!-- /.box -->
                         </div>
-                        <div class="modal-footer no-print">
-                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                        </div>
-                        <div class="clearfix"></div>
                     </div>
+                    <div class="modal-footer no-print">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="modal fade" id="searchProductFilterDetail" tabindex="-1" role="dialog" aria-labelledby="searchProductFilterDetail" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-2x">×</i></span><span class="sr-only">{{_t('Close')}}</span></button>
-                        <h4 class="modal-title" id="prModalLabel">{{_t('Search Filter')}}</h4>
-                    </div>
-                    <div class="modal-body" style="height:400px;">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="box">
-                                    <div class="box-header">
-                                        <h3 class="box-title"></h3>
+    <div class="modal fade" id="searchProductFilterDetail" tabindex="-1" role="dialog" aria-labelledby="searchProductFilterDetail" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-2x">×</i></span><span class="sr-only">{{_t('Close')}}</span></button>
+                    <h4 class="modal-title" id="prModalLabel">{{_t('Search Filter')}}</h4>
+                </div>
+                <div class="modal-body" style="height:400px;">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header">
+                                    <h3 class="box-title"></h3>
 
-                                        <div class="box-tools">
-                                            <div class="input-group input-group-sm" style="width: 150px;">
-                                                <input type="text" name="table_search" class="form-control pull-right search-item-pos-to-show-txt" placeholder="Search">
+                                    <div class="box-tools">
+                                        <div class="input-group input-group-sm" style="width: 150px;">
+                                            <input type="text" name="table_search" class="form-control pull-right search-item-pos-to-show-txt" placeholder="Search">
 
-                                                <div class="input-group-btn">
-                                                    <button type="button" class="btn btn-default search-item-pos-to-show"><i class="fa fa-search"></i></button>
-                                                </div>
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-default search-item-pos-to-show"><i class="fa fa-search"></i></button>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>{{_t('Item Code')}}</th>
-                                        <th>{{_t('Title')}}</th>
-                                        <th>{{_t('Unit')}}</th>
-                                        <th>{{_t('Price')}}</th>
-                                    </tr>
-                                    </thead>
-
-                                    <tbody class="show-all-product-list">
-
-                                    </tbody>
-                                </table>
-
                                 </div>
-                                <!-- /.box -->
+
+                                <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>{{_t('Item Code')}}</th>
+                                    <th>{{_t('Title')}}</th>
+                                    <th>{{_t('Unit')}}</th>
+                                    <th>{{_t('Price')}}</th>
+                                </tr>
+                                </thead>
+
+                                <tbody class="show-all-product-list">
+
+                                </tbody>
+                            </table>
+
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                    </div>
+
+                    <div class="ps-scrollbar-x-rail" style="width: 0px; display: none; left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" style="left: -30px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 370px; display: none; right: 3px;"><div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div></div></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="addItem">{{_t('Submit')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{--==========report list sale today=======--}}
+    <div class="modal fade" id="listSaleTodayModal" tabindex="-1" role="dialog" aria-labelledby="listSaleTodayModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-2x">×</i>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">{{_t('Total Sale Today')}}</h4>
+                </div>
+                <form action="#" data-toggle="validator" role="form" id="add-customer-form"  class="bv-form" style="padding: 10px;">
+                    <div class="modal-body" style="height:600px;">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <table class="table show-report-sale-today-list">
+
+                                    </table>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="ps-scrollbar-x-rail" style="width: 0px; display: none; left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" style="left: -30px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 370px; display: none; right: 3px;"><div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div></div></div>
+                    </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="addItem">{{_t('Submit')}}</button>
+
                     </div>
-                </div>
+                </form>
             </div>
         </div>
+    </div>
 
-    {{--============end modal pop up==============--}}
-
+    {{--============edit customer pop up==============--}}
     <div class="modal fade" id="editCustomerModal" tabindex="-1" role="dialog" aria-labelledby="editCustomerModal" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -660,35 +705,6 @@
                     </div>
                     <div class="modal-footer">
                         <input type="submit" name="edit_customer" value="Edit Customer" class="btn btn-primary">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    {{--==========list sale today=======--}}
-    <div class="modal fade" id="listSaleTodayModal" tabindex="-1" role="dialog" aria-labelledby="listSaleTodayModal" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-2x">×</i>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">{{_t('Total Sale Today')}}</h4>
-                </div>
-                <form action="#" data-toggle="validator" role="form" id="add-customer-form"  class="bv-form" style="padding: 10px;">
-                    <div class="modal-body" style="height:600px;">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="box">
-                                    <table class="table show-report-sale-today-list">
-
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-
                     </div>
                 </form>
             </div>
@@ -1323,7 +1339,6 @@
                 }
             });
         }
-
         $(function () {
             //    ====================ajax get report data pagination and search=====================
             $('#listSaleTodayModala').on('click', function (e) {
@@ -1361,4 +1376,5 @@
             });
         });
     </script>
+
 @endsection

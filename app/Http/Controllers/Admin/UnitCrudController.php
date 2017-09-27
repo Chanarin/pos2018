@@ -131,7 +131,7 @@ class UnitCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'name' => 'required|unique:units,name',
         ]);
 
         if ($validator->fails()) {

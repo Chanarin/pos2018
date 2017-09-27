@@ -111,23 +111,18 @@
         <!-- include select2 js-->
         <script src="{{ asset('vendor/adminlte/plugins/select2/select2.min.js') }}"></script>
     @endpush
-
 @endif
-
 <!-- include field specific select2 js-->
 @push('crud_fields_scripts')
     <script>
-
         var ss_subb = '';
-
        $(function(){
            ss_subb = $('.tbody-original-row-sub').first().html();
        });
-
         // Numeric only control handler
         jQuery.fn.ForceNumericOnly =
-            function()
-            {
+        function()
+        {
                 return this.each(function()
                 {
                     $(this).keydown(function(e)
@@ -148,7 +143,6 @@
                     });
                 });
             };
-
         function dd(o) {
             console.log(o);
         }
@@ -296,8 +290,6 @@
             $('body').delegate('.add{{$r_id}}','click',function () {
 
             });
-
-
         });
     </script>
     <script>
@@ -473,7 +465,6 @@
 
             return uid;
         }
-
 
         function addItemDetailAll(subid,item_id) {
 
@@ -875,9 +866,6 @@
             return p;
         }
 
-
-
-
         $(function () {
             getItemPrice();
 
@@ -900,8 +888,6 @@
 
 
         });
-
-       
     </script>
     @endif
 

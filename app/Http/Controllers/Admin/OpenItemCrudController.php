@@ -157,7 +157,7 @@ class OpenItemCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         $validator = Validator::make($request->all(), [
-            'open_number' => 'required',
+            'open_number' => 'required|unique:open_items,open_number',
             '_date_' => 'required',
         ]);
 

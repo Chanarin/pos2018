@@ -2,19 +2,6 @@
 html body{
     overflow: hidden;
 }
-.table-show-pro{
-    width:100%;
-    overflow:auto;
-    height:350px;
-    text-align: center;
-    border-bottom: #ffffff;
-    position: absolute;
-}
-.items-style{
-    padding-top: 5px;
-    height: 650px;
-    overflow: auto;
-}
 #container{
 
     margin-top: 5px;

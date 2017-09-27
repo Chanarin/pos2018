@@ -71,7 +71,7 @@
         </tbody>
 
         <tfoot>
-        <tr style="height: 30px;">
+        <tr style="height: 30px; color: #0586ff; font-weight: bold;">
             <td colspan="5" style="text-align: right;">{{_t('Total')}}:</td>
             <td style="padding-left: 15px;">{{$total_all_qty}} @if($total_all_qty > 1) Units  @else Unit @endif </td>
             <td style="padding-left: 15px;">$ {{number_format($total_all_cost,2)}} </td>

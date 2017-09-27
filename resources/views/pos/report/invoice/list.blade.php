@@ -72,8 +72,8 @@
             @endforeach
         </tbody>
         <tfoot>
-        <tr style="height: 30px;">
-            <td colspan="5" style="text-align: right;">{{_t('Total')}}:</td>
+        <tr style="height: 30px; color: #0586ff; font-weight: bold;">
+            <td colspan="5" style="text-align: right; ">{{_t('Total')}}:</td>
             <td style="padding-left: 15px;">$ {{number_format($total_deposit,2)}} </td>
             <td style="padding-left: 15px;">$ {{number_format($complete_price,2)}} </td>
             <td style="padding-left: 15px;">$ {{number_format($total_amount,2)}} </td>

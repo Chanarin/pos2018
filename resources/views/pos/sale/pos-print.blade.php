@@ -24,11 +24,11 @@
         @php $row = \App\Models\Invoice::join('customers','customers.id','=','invoice.customer_id')
                         ->where('invoice.id',$id)->first(); @endphp
         @if($row != null)
-            <table width="100%" style="font-family: 'Hanuman', serif; font-size: 12px;">
+            <table width="100%" style="font-family: 'Hanuman', serif;">
                 <tr>
                     <td>
                         <table style="width: 100%;">
-                            <tbody style="font-size: 14px;">
+                            <tbody style="font-size: 12px;">
                             <tr style="text-align:center;">
                                 <td style="vertical-align:middle;text-align:left; padding-left:10px;">
                                     <span><b>{{_t('Invoice No')}}</b></span>
@@ -59,18 +59,18 @@
                     <td>
                         <table border="1" class="table-condensed receipt no_border_btm" style="width:100%;border-collapse: collapse;">
                             <thead>
-                            <tr style="font-size:14px;height: 30px;">
+                            <tr style="font-size:12px;height: 30px;">
                                 <th class="text-center">{{_t('No')}}</th>
                                 <th class="text-center" style="width: 62px;">{{_t('Image')}}</th>
                                 <th class="text-center">{{_t('Code')}}</th>
                                 <th class="text-center">{{_t('Name')}}</th>
                                 <th class="text-center">{{_t('Unit')}}</th>
                                 <th class="text-center">{{_t('Qty')}}</th>
-                                <th class="text-center">{{_t('Cost')}}</th>
+                                <th class="text-center">{{_t('Price')}}</th>
                                 <th class="text-center">{{_t('Total')}}</th>
                             </tr>
                             </thead>
-                            <tbody style="font-size: 12px; border-bottom: none;">
+                            <tbody style="font-size: 10px; border-bottom: none;">
                             {{--->join('items','items.id','=','invoice_detail.item_id')--}}
                             @php
                                 $rowds = \App\Models\InvoiceDetail::where('ref_id',$id)
@@ -95,7 +95,7 @@
                                     $rds = \App\Models\ItemDetail::where('ref_id',$rd->item_id)->get();
                                     $oe = $loop->index;
                                 @endphp
-                            <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif ">
+                            <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif  color: #0586ff;">
                                 <td class="text-left">{{$loop->index+1}}</td>
                                 <td class="text-left">
                                     @php
@@ -139,34 +139,34 @@
                 </tr>
                 <tr>
                     <td>
-                        <table style="width: 100%; margin-top: 5px;">
+                        <table style="width: 100%; margin-top: 5px;  color: #0586ff; font-size:12px;">
                             <tbody>
                                 <tr>
-                                    <td width="60%"></td>
+                                    <td width="30%"></td>
                                     <td style="text-align:right;">{{_t('Total')}}</td>
                                     <td style="text-align:right;">$ {{number_format($row->total_amt,2)}}</td>
                                     <td style="text-align:right;">{{number_format(($row->total_amt)*$row->exchange_rate,2)}} ៛</td>
                                 </tr>
                                 <tr>
-                                    <td width="60%"></td>
+                                    <td width="30%"></td>
                                     <td style="text-align:right;">{{_t('Total Discount')}}</td>
                                     <td style="text-align:right;">$ {{number_format($row->total_discount,2)}}</td>
                                     <td style="text-align:right;">{{number_format(($row->total_discount)*$row->exchange_rate,2)}} ៛</td>
                                 </tr>
                                 <tr>
-                                    <td width="60%"></td>
+                                    <td width="30%"></td>
                                     <td style="text-align:right;">{{_t('Grand Total')}}</td>
                                     <td style="text-align:right;">$ {{number_format($row->total_payable,2)}}</td>
                                     <td style="text-align:right;">{{number_format(($row->total_payable)*$row->exchange_rate,2)}} ៛</td>
                                 </tr>
                                 <tr>
-                                    <td width="60%"></td>
+                                    <td width="30%"></td>
                                     <td style="text-align:right;">{{_t('Total Paid')}}</td>
                                     <td style="text-align:right;">$ {{number_format($row->paid+($row->paid_kh/$row->exchange_rate),2)}}</td>
                                     <td style="text-align:right;">{{number_format(($row->paid+($row->paid_kh/$row->exchange_rate))*$row->exchange_rate,2)}} ​​៛</td>
                                 </tr>
                                 <tr>
-                                    <td width="60%"></td>
+                                    <td width="30%"></td>
                                     <td style="text-align:right;">{{_t('Remaining')}}</td>
                                     <td style="text-align:right;">$ {{number_format(($row->paid+($row->paid_kh/$row->exchange_rate))-$row->total_payable,2)}}</td>
                                     <td style="text-align:right;">{{number_format((($row->paid+($row->paid_kh/$row->exchange_rate))-$row->total_payable)*$row->exchange_rate,2)}}​ ៛</td>
@@ -178,7 +178,7 @@
             </table>
             <br>
             <table width="100%"​​>
-                <tr style="text-align:center;">
+                <tr style="text-align:center; font-size:12px;">
                     <td style="vertical-align:top;text-align:center; width: 50%">
                         <p>......................................</p>
                         <p>{{_t('Buyer')}}</p>
@@ -194,8 +194,8 @@
 @endif
 <script>
 
-    window.print();
-    window.setTimeout('window.location.href = "{{url('/admin/sale')}}"',500);
+    {{--window.print();--}}
+    {{--window.setTimeout('window.location.href = "{{url('/admin/sale')}}"',500);--}}
 
 </script>
 </body>

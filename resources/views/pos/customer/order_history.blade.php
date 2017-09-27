@@ -170,7 +170,7 @@
                                                             $rds = \App\Models\ItemDetail::where('ref_id',$rd->item_id)->get();
                                                             $oe = $loop->index;
                                                         @endphp
-                                                           <tr class="item" style="height: 30px;  @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif">
+                                                           <tr class="item" style="height: 30px;  @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif color: #0586ff; font-weight: bold;">
                                                                <td class="text-left">{{$loop->index+1}}</td>
                                                                <td class="text-left">
                                                                    @php
@@ -206,31 +206,31 @@
                                                         @endif
                                                     @endforeach
                                                 </tbody>
-                                                <tr>
+                                                <tr style="color: #0586ff; font-weight: bold;">
                                                     <td colspan="5"></td>
                                                     <td style="text-align:right;">{{_t('Total')}}</td>
                                                     <td style="text-align:right;">$ {{number_format($invoice->total_amt,2)}}</td>
                                                     <td style="text-align:right;">{{number_format(($invoice->total_amt)*$invoice->exchange_rate,2)}} ៛</td>
                                                 </tr>
-                                                <tr>
+                                                <tr style="color: #0586ff; font-weight: bold;">
                                                     <td colspan="5"></td>
                                                     <td style="text-align:right;">{{_t('Total Discount')}}</td>
                                                     <td style="text-align:right;">$ {{number_format($invoice->total_discount,2)}}</td>
                                                     <td style="text-align:right;">{{number_format(($invoice->total_discount)*$invoice->exchange_rate,2)}} ៛</td>
                                                 </tr>
-                                                <tr>
+                                                <tr style="color: #0586ff; font-weight: bold;">
                                                     <td colspan="5"></td>
                                                     <td style="text-align:right;">{{_t('Grand Total')}}</td>
                                                     <td style="text-align:right;">$ {{number_format($invoice->total_payable,2)}}</td>
                                                     <td style="text-align:right;">{{number_format(($invoice->total_payable)*$invoice->exchange_rate,2)}} ៛</td>
                                                 </tr>
-                                                <tr>
+                                                <tr style="color: #0586ff; font-weight: bold;">
                                                     <td colspan="5"></td>
                                                     <td style="text-align:right;">{{_t('Total Paid')}}</td>
                                                     <td style="text-align:right;">$ {{number_format($invoice->paid+($invoice->paid_kh/$invoice->exchange_rate),2)}}</td>
                                                     <td style="text-align:right;">{{number_format(($invoice->paid+($invoice->paid_kh/$invoice->exchange_rate))*$invoice->exchange_rate,2)}} ​​៛</td>
                                                 </tr>
-                                                <tr>
+                                                <tr style="color: #0586ff; font-weight: bold;">
                                                     <td colspan="5"></td>
                                                     <td style="text-align:right;">{{_t('Remaining')}}</td>
                                                     <td style="text-align:right;">$ {{number_format(($invoice->paid+($invoice->paid_kh/$invoice->exchange_rate))-$invoice->total_payable,2)}}</td>
@@ -317,7 +317,7 @@
                                                 @php
                                                     $oe = $loop->index;
                                                 @endphp
-                                                <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif ">
+                                                <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif color: #0586ff; font-weight: bold;">
                                                     <td class="text-left">{{$loop->index+1}}</td>
                                                     <td class="text-left">{{$rd->item_code}}</td>
                                                     <td class="text-left">{{$rd->title}}</td>
@@ -423,7 +423,7 @@
                                             @php
                                                 $oe = $loop->index;
                                             @endphp
-                                            <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif ">
+                                            <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif color: #0586ff; font-weight: bold;">
                                                 <td class="text-left">{{$loop->index+1}}</td>
                                                 <td class="text-left">{{$rd->item_code}}</td>
                                                 <td class="text-left">{{$rd->title}}</td>

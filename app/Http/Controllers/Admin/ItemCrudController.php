@@ -103,6 +103,7 @@ class ItemCrudController extends CrudController
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required',
+            'item_code' => 'required|unique:items,item_code',
         ]);
 
         if ($validator->fails()) {
@@ -125,6 +126,7 @@ class ItemCrudController extends CrudController
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required',
+            'item_code' => 'required',
         ]);
 
         if ($validator->fails()) {

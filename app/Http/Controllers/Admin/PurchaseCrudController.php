@@ -154,7 +154,7 @@ class PurchaseCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         $validator = Validator::make($request->all(), [
-            'purchase_number' => 'required',
+            'purchase_number' => 'required|unique:purchase,purchase_number',
             '_date_' => 'required',
             'customer_id' => 'required',
         ]);
