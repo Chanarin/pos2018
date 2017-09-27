@@ -6,6 +6,7 @@ use App\Helpers\_POS_;
 use App\Helpers\GH;
 use App\Helpers\IDP;
 use App\Models\InvoiceDetail;
+use App\Models\OpenItemDetail;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
@@ -178,9 +179,20 @@ class OpenItemCrudController extends CrudController
     public function edit($id)
     {
 
-        $inv = InvoiceDetail::where('item_id',$id)->first();
+        $od = OpenItemDetail::where('ref_id',$id)->get();
+
+        foreach ($od as $row){
+            $ivd = InvoiceDetail::where('item_id',$row->item_id)->first();
+
+            if($ivd != null){
+                return redirect('admin/openitem')->withErrors('This Product has been sold. So, You cannot edit it.');
+
+            }
+
+        }
+
         // your additional operations before save here
-        if($inv == null) {
+
             $this->crud->hasAccessOrFail('update');
 
             // get the info for that entry
@@ -194,9 +206,7 @@ class OpenItemCrudController extends CrudController
 
             // load the view from /resources/views/vendor/backpack/crud/ if it exists, otherwise load the one in the package
             return view($this->crud->getEditView(), $this->data);
-        }else{
-            return redirect('admin/openitem')->withErrors('This Product has been sold. So, You cannot edit it.');
-        }
+
     }
 
     public function update(UpdateRequest $request)
@@ -210,9 +220,7 @@ class OpenItemCrudController extends CrudController
             return redirect('admin/openitem')->withErrors($validator);;
         }
 
-        $inv = InvoiceDetail::where('item_id',$request->id)->first();
-        // your additional operations before save here
-        if($inv == null) {
+
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
@@ -220,8 +228,8 @@ class OpenItemCrudController extends CrudController
             $iDP = new IDP($request->_data_, _POS_::open_items, $this->crud->entry->id);
             $iDP->saveAllDetail();
             return $redirect_location;
-        }
 
-        return redirect('admin/openitem')->withErrors('This Product has sold. So, You cannot edit it.');
+
+        //return redirect('admin/openitem')->withErrors('This Product has sold. So, You cannot edit it.');
     }
 }
