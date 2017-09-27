@@ -51,7 +51,6 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin']
 
     CRUD::resource('pos', 'POSCrudController');
 
-    Route::get('/dashboard','DashboardController@dashboard');
     Route::get('/sale','POSCrudController@posSale');
     Route::get('/menu-item','POSCrudController@menuItem');
     Route::get('/menu-item/{?id}','POSCrudController@menuItemShow');
