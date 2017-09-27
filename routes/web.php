@@ -11,6 +11,7 @@ Route::get('/lang/{l}', function ($l) {
 Route::get('/', function () {
     return redirect('/admin');
 });
+
 Route::get('admin/view-report', function () {
     return view('pos.report.table.index');
 });
@@ -34,7 +35,6 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin']
     Route::any('user/change-pass','AdminUserCrudController@changePass');
     Route::patch('user/change-pass','AdminUserCrudController@changePassSave');
 
-
     CRUD::resource('exchangerate', 'ExchangeRateCrudController');
 
     CRUD::resource('adminuser', 'AdminUserCrudController');
@@ -43,18 +43,15 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin']
     CRUD::resource('customer', 'CustomerCrudController');
     Route::get('customer-history', 'CustomerCrudController@cutomerOrderHistory');
 
-
-
     CRUD::resource('invoice', 'InvoiceCrudController');
     CRUD::resource('itemcategory', 'ItemCategoryCrudController');
-
 
     CRUD::resource('item', 'ItemCrudController');
     CRUD::resource('openitem', 'OpenItemCrudController');
 
-
     CRUD::resource('pos', 'POSCrudController');
 
+    Route::get('/dashboard','DashboardController@dashboard');
     Route::get('/sale','POSCrudController@posSale');
     Route::get('/menu-item','POSCrudController@menuItem');
     Route::get('/menu-item/{?id}','POSCrudController@menuItemShow');

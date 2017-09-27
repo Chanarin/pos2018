@@ -367,22 +367,22 @@
                                                                 </span>
                                                             </td>
                                                         </tr>
-                                                        {{--<tr>--}}
-                                                            {{--<td class="text-right"><span id="remain" class="main_remain">0.00</span></td>--}}
+                                                        <tr>
+                                                            <td class="text-right"><span id="remain" class="main_remain">0.00</span></td>
                                                             {{--====================--}}
-                                                            {{--<td class="text-right"><span class="curr_remain" id="remain">0.00</span></td>--}}
-                                                        {{--</tr>--}}
-                                                        {{--<tr>--}}
-                                                            {{--<td rowspan="2" width="50%" style="text-align:left;">{{_t('Change')}}</td>--}}
-                                                            {{--<td class="text-right"><span id="change_1">0.00</span></td>--}}
+                                                            <td class="text-right"><span class="curr_remain" id="remain">0.00</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowspan="2" width="50%" style="text-align:left;">{{_t('Change')}}</td>
+                                                            <td class="text-right"><span id="change_1">0.00</span></td>
                                                             {{--====================--}}
-                                                            {{--<td class="text-right"><span class="curr_change_1" id="change_1">0.00</span></td>--}}
-                                                        {{--</tr>--}}
-                                                        {{--<tr>--}}
-                                                            {{--<td class="text-right"><span id="change">0.00</span></td>--}}
+                                                            <td class="text-right"><span class="curr_change_1" id="change_1">0.00</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-right"><span id="change">0.00</span></td>
                                                             {{--====================--}}
-                                                            {{--<td class="text-right"><span class="curr_change" id="change">0.00</span></td>--}}
-                                                        {{--</tr>--}}
+                                                            <td class="text-right"><span class="curr_change" id="change">0.00</span></td>
+                                                        </tr>
                                                         </tbody>
                                                     </table>
 

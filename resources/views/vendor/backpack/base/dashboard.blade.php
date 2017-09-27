@@ -164,25 +164,6 @@
                 {{--======================--}}
                 <section class="content">
                     <div class="row">
-                        <div class="col-md-12">
-                            <!-- LINE CHART -->
-                            <div class="box box-info">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Sale Income Per Day</h3>
-
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <div class="box-body chart-responsive">
-                                    <div class="chart" id="line-chart" style="height: 300px;"></div>
-                                </div>
-                                <!-- /.box-body -->
-                            </div>
-                            <!-- /.box -->
-                        </div>
                         <!-- /.col (LEFT) -->
                         <div class="col-md-12">
                             <!-- BAR CHART -->
@@ -225,16 +206,13 @@
                         </div>
                     </div>
                     <!-- /.row -->
-
                 </section>
                 {{--======================--}}
-
-
-
                 <div class="box-body">{{_t('logged_in') }}</div>
             </div>
         </div>
     </div>
+
 @endsection
 @section('graph_script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
@@ -249,46 +227,23 @@
     <script>
         $(function () {
             "use strict";
-            // LINE CHART
-            var line = new Morris.Line({
-                element: 'line-chart',
-                resize: true,
-                data: [
-                    {y: '2011 Q1', Income: 2666},
-                    {y: '2011 Q2', Income: 2778},
-                    {y: '2011 Q3', Income: 4912},
-                    {y: '2011 Q4', Income: 3767},
-                    {y: '2012 Q1', Income: 6810},
-                    {y: '2012 Q2', Income: 5670},
-                    {y: '2012 Q3', Income: 4820},
-                    {y: '2012 Q4', Income: 15073},
-                    {y: '2013 Q1', Income: 30687},
-                    {y: '2013 Q2', Income: 8432}
-                ],
-                xkey: 'y',
-                ykeys: ['Income'],
-                labels: ['Income'],
-                lineColors: ['#3c8dbc'],
-                hideHover: 'auto'
-            });
-
             //BAR CHART
             var bar = new Morris.Bar({
                 element: 'bar-chart',
                 resize: true,
                 data: [
-                    {y: '2006', a: 100, b: 90},
-                    {y: '2007', a: 75, b: 65},
-                    {y: '2008', a: 50, b: 40},
-                    {y: '2009', a: 75, b: 65},
-                    {y: '2010', a: 50, b: 40},
-                    {y: '2011', a: 75, b: 65},
-                    {y: '2012', a: 100, b: 90}
+                    {y: 'Mo', a: 100},
+                    {y: 'Tu', a: 75},
+                    {y: 'We', a: 50},
+                    {y: 'Th', a: 75},
+                    {y: 'Fr', a: 50},
+                    {y: 'Sa', a: 75},
+                    {y: 'Su', a: 100}
                 ],
                 barColors: ['#00a65a', '#f56954'],
                 xkey: 'y',
-                ykeys: ['a', 'b'],
-                labels: ['Cost', 'Income'],
+                ykeys: ['a'],
+                labels: ['Sale'],
                 hideHover: 'auto'
             });
 
@@ -298,8 +253,8 @@
                 resize: true,
                 colors: ["#3c8dbc", "#f56954", "#00a65a", "#F39C12"],
                 data: [
-                    {label: "Product Sales", value: 12},
-                    {label: "Open Product", value: 20},
+                    {label: "Sales", value: 12},
+                    {label: "Open", value: 20},
                     {label: "Purchase", value: 30},
                     {label: "Production", value: 20}
                 ],
