@@ -199,35 +199,43 @@
                                                             <div class="content">
                                                                 <table class="table table-bordered table-hover table-striped table-condensed data" style="margin:0;">
                                                                     <tbody>
-                                                                    <tr>
-                                                                        <td>Amount</td><td>700.00</td>
-                                                                    </tr>
-                                                                    <tr><td>Discount</td><td>0.00</td></tr>
-                                                                    <tr><td>Payable</td><td>0.00</td></tr>
-                                                                    <tr><td>Paid</td><td>0.00</td></tr>
-                                                                    <tr><td></td><td>0.00</td></tr>
-                                                                    <tr><td>Order Tax</td><td>0.00</td></tr>
-                                                                    <tr><td>Total</td><td>700.00</td></tr>
-                                                                    <tr><td>Award Points</td><td>7</td></tr>
+                                                                        <tr><td>Deposit</td><td>700.00</td></tr>
+                                                                        <tr><td>Complete Price</td><td>0.00</td></tr>
+                                                                        <tr><td>Grand Total</td><td>0.00</td></tr>
+                                                                        <tr><td>Total Discount</td><td>0.00</td></tr>
+                                                                        <tr><td>Total Payable</td><td>0.00</td></tr>
+                                                                        <tr><td>Total Paid</td><td>0.00</td></tr>
+                                                                        <tr><td>Total Remaining</td><td>700.00</td></tr>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
                                                         </td><td class="day"><div class="day_num">26</div></td><td class="day">
                                                             <div class="day_num">27</div>
                                                             <div class="content"><table class="table table-bordered table-hover table-striped table-condensed data" style="margin:0;">
-                                                                    <tbody><tr><td>Amount</td><td>4,010.00</td></tr>
-                                                                    <tr><td>Order Discount</td><td>274.00</td></tr>
-                                                                    <tr><td>Shipping</td><td>0.00</td></tr>
-                                                                    <tr><td>Product Tax</td><td>0.00</td></tr>
-                                                                    <tr><td>Refund</td><td>0.00</td></tr>
-                                                                    <tr><td>Order Tax</td><td>0.00</td></tr>
-                                                                    <tr><td>Total</td><td>3,736.00</td></tr>
-                                                                    <tr><td>Award Points</td><td>40</td></tr>
-                                                                    </tbody></table></div>
-                                                        </td><td class="day"><div class="day_num highlight">28</div></td><td class="day"><div class="day_num">29</div></td><td class="day"><div class="day_num">30</div></td>
+                                                                    <tbody>
+                                                                        <tr><td>Deposit</td><td>700.00</td></tr>
+                                                                        <tr><td>Complete Price</td><td>0.00</td></tr>
+                                                                        <tr><td>Grand Total</td><td>0.00</td></tr>
+                                                                        <tr><td>Total Discount</td><td>0.00</td></tr>
+                                                                        <tr><td>Total Payable</td><td>0.00</td></tr>
+                                                                        <tr><td>Total Paid</td><td>0.00</td></tr>
+                                                                        <tr><td>Total Remaining</td><td>700.00</td></tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </td>
+                                                        <td class="day">
+                                                            <div class="day_num highlight">28</div>
+                                                        </td>
+                                                        <td class="day">
+                                                            <div class="day_num">29</div>
+                                                        </td><td class="day">
+                                                            <div class="day_num">30</div>
+                                                        </td>
                                                     </tr>
-
-                                                    </tbody></table>                </div>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
