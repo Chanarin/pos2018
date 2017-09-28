@@ -71,6 +71,24 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin']
 
     Route::get('ajax-open-item-number', 'OpenItemCrudController@getOpenNumber');
     Route::get('ajax-open-item-user', 'OpenItemCrudController@getUser');
-
     // [...] other routes
+
+    //=========report type get by select=======
+    Route::get('/report-type/open-item/list','ReportTypeController@openItemList');
+    Route::get('/report-type/open-item/detail','ReportTypeController@openItemDetail');
+
+    Route::get('/report-type/purchase-item/list','ReportTypeController@purchaseItemList');
+    Route::get('/report-type/purchase-item/detail','ReportTypeController@purchaseItemDetail');
+
+    Route::get('/report-type/production-item/list','ReportTypeController@productionItemList');
+    Route::get('/report-type/production-item/detail','ReportTypeController@productionItemDetail');
+
+    Route::get('/report-type/sale/list','ReportTypeController@saleList');
+    Route::get('/report-type/sale/detail','ReportTypeController@saleDetail');
+
+    Route::get('/report-type/sale/customer','ReportTypeController@saleCustomer');
+    Route::get('/report-type/sale/daily','ReportTypeController@saleDaily');
+    Route::get('/report-type/sale/discount','ReportTypeController@saleDiscount');
+    Route::get('/report-type/sale/monthly','ReportTypeController@saleMonthly');
+    Route::get('/report-type/sale/profit','ReportTypeController@saleProfit');
 });

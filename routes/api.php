@@ -104,9 +104,8 @@ Route::get('/item/{id}','Api\ItemController@show');
 Route::get('/unit','Api\UnitController@index');
 Route::get('/unit/{id}','Api\UnitController@show');
 
-
 Route::any('/item-search','Api\ItemController@showSearchResult');
-
+//=========report get by select=======
 Route::get('/report/open-item/list','Api\ReportController@openItemList');
 Route::get('/report/open-item/detail','Api\ReportController@openItemDetail');
 
@@ -118,3 +117,4 @@ Route::get('/report/production-item/detail','Api\ReportController@productionItem
 
 Route::get('/report/invoice/list','Api\ReportController@invoiceList');
 Route::get('/report/invoice/detail','Api\ReportController@invoiceDetail');
+

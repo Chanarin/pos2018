@@ -169,7 +169,7 @@
                             <!-- BAR CHART -->
                             <div class="box box-success">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Sale Income Per Month</h3>
+                                    <h3 class="box-title">{{_t('Daily Sales Report')}}</h3>
 
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -216,11 +216,10 @@
 @endsection
 @section('graph_script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+
     <script src="{{ asset('vendor/adminlte/') }}/plugins/morris/morris.min.js"></script>
     <!-- FastClick -->
     <script src="{{ asset('vendor/adminlte/') }}/plugins/fastclick/fastclick.js"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset('vendor/adminlte/') }}/dist/js/app.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('vendor/adminlte/') }}/dist/js/demo.js"></script>
     <!-- page script -->

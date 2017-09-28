@@ -26,6 +26,31 @@
 
       <ul class="sidebar-menu">
         <li class="header"><h4>{{_t('Select Report Type')}}</h4></li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-fw fa-file-excel-o"></i>
+            <span>{{_t('Sale Invoice')}}</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+              <a href="#">
+                <input data-url="{{url('/api/report/invoice/list')}}" type="radio" name="name-report-option" class="minimal report-option">
+                <span>{{_t('List')}}</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <input data-url="{{url('/api/report/invoice/detail')}}" type="radio" name="name-report-option" class="minimal report-option">
+                <span>{{_t('Detail')}}</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
          <li class="treeview">
           <a href="#">
             <i class="fa fa-fw fa-book"></i>
@@ -97,29 +122,7 @@
             </li>
           </ul>
         </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-fw fa-file-excel-o"></i>
-            <span>{{_t('Sale Invoice')}}</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li>
-              <a href="#">
-                <input data-url="{{url('/api/report/invoice/list')}}" type="radio" name="name-report-option" class="minimal report-option">
-                <span>{{_t('List')}}</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <input data-url="{{url('/api/report/invoice/detail')}}" type="radio" name="name-report-option" class="minimal report-option">
-                <span>{{_t('Detail')}}</span>
-              </a>
-            </li>
-          </ul>
-        </li>
+
 
       </ul>
     </section>

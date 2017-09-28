@@ -70,11 +70,15 @@
         </tbody>
 
         <tfoot>
-        <tr style="height: 30px; color: #0586ff; font-weight: bold;">
-            <td colspan="4" style="text-align: right;">{{_t('Total')}}:</td>
-            <td style="padding-left: 15px;">{{$total_all_qty}} @if($total_all_qty > 1) {{_t('Units')}}  @else {{_t('Unit')}} @endif </td>
-            <td style="padding-left: 15px;">$ {{number_format($total_all_cost,2)}} </td>
+        <tr style="background-color: #428BCA;color:white;border-color: #357EBD;">
+            <th style="text-align: right;">Total</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th style="padding-left: 15px;">{{$total_all_qty}} @if($total_all_qty > 1) {{_t('Units')}}  @else {{_t('Unit')}} @endif </th>
+            <th style="padding-left: 15px;">$ {{number_format($total_all_cost,2)}}</th>
         </tr>
+
         <tr>
             <td colspan="8">
                 <table width="100%" style="margin-top: 30px;">

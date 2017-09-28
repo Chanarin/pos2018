@@ -26,7 +26,28 @@
 
 @if(count($rows) > 0)
     <table class="" style="width: 100%">
+        @php
+            $total_qty = 0;
+                $total_deposit = 0;
+                $complete_price = 0;
+                $total_amount = 0;
+                $total_discount = 0;
+                $total_payable = 0;
+                $total_paid = 0;
+                $total_remaining = 0;
+        @endphp
+
         @foreach($rows as $row)
+            @php
+                $total_deposit+= ($row->deposit);
+                $complete_price+= ($row->complete_price);
+                $total_amount+= ($row->total_amt);
+                $total_discount+= ($row->total_discount);
+                $total_payable+= ($row->total_payable);
+                $total_paid+= ($row->paid+($row->paid_kh/$row->exchange_rate));
+                $total_remaining+= (($row->paid+($row->paid_kh/$row->exchange_rate))-$row->total_payable);
+            @endphp
+
             <tr style="">
                 <td colspan="6">
                     <table width="100%">
@@ -107,6 +128,8 @@
                     @foreach($rowds as $rd)
                         @php
                             $rds = \App\Models\ItemDetail::where('ref_id',$rd->item_id)->get();
+                            $total_qty+= ($rd->qty);
+                             $units = \App\Models\Unit::where('id',$rd->unit)->first();
                             $oe = $loop->index;
                         @endphp
                         <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif color: #0586ff; font-weight: bold;">
@@ -121,7 +144,7 @@
                             </td>
                             <td class="text-left">{{$rd->item_code}}</td>
                             <td class="text-left">{{$rd->title}}</td>
-                            <td class="text-left">{{$rd->unit}}</td>
+                            <td class="text-left">{{isset($units->name)?$units->name:''}}</td>
                             <td class="text-right">{{$rd->qty}}</td>
                             <td class="text-right">$ {{number_format($rd->price,2)}}</td>
                             <td class="text-right">$ {{number_format($rd->price*$rd->qty,2)}}</td>
@@ -136,7 +159,7 @@
                                     <td class="text-left"></td>
                                     <td class="text-left">{{$r->item_code}}</td>
                                     <td class="text-left">{{$r->title}}</td>
-                                    <td class="text-left">{{$r->unit}} {{isset($unit->name)?$unit->name:''}}</td>
+                                    <td class="text-left">{{$r->num_qty}} {{isset($unit->name)?$unit->name:''}}</td>
                                     <td class="text-right">{{$r->qty}}</td>
                                     <td class="text-right">$ {{number_format($r->price,2)}}</td>
                                     <td class="text-right">$ {{number_format($r->price*$r->qty,2)}}</td>
@@ -185,6 +208,50 @@
                 </tr>
             </table>
         @endforeach
+        <table width="100%">
+            <tr style="color: #a00816; font-weight: bold;">
+                <td colspan="6"></td>
+                <td style="text-align:right;">{{_t('TOTAL QTY')}}</td>
+                <td style="text-align:right;">{{$total_qty}} @if($total_qty > 1) {{_t('Units')}}  @else {{_t('Unit')}} @endif</td>
+            </tr>
+            <tr style="color: #a00816; font-weight: bold;">
+                <td colspan="6"></td>
+                <td style="text-align:right;">{{_t('TOTAL DEPOSIT')}}</td>
+                <td style="text-align:right;">$ {{number_format($total_deposit,2)}}</td>
+            </tr>
+            <tr style="color: #a00816; font-weight: bold;">
+                <td colspan="6"></td>
+                <td style="text-align:right;">{{_t('TOTAL COMPLETE PRICE ')}}</td>
+                <td style="text-align:right;">$ {{number_format($complete_price,2)}}</td>
+            </tr>
+            <tr style="color: #a00816; font-weight: bold;">
+                <td colspan="6"></td>
+                <td style="text-align:right;">{{_t('GRAND TOTAL')}}</td>
+                <td style="text-align:right;">$ {{number_format($total_amount,2)}}</td>
+            </tr>
+            <tr style="color: #a00816; font-weight: bold;">
+                <td colspan="6"></td>
+                <td style="text-align:right;">{{_t('TOTAL DISCOUNT')}}</td>
+                <td style="text-align:right;">$ {{number_format($total_discount,2)}}</td>
+            </tr>
+            <tr style="color: #a00816; font-weight: bold;">
+                <td colspan="6"></td>
+                <td style="text-align:right;">{{_t('TOTAL PAYABLE')}}</td>
+                <td style="text-align:right;">$ {{number_format($total_payable,2)}}</td>
+            </tr>
+            <tr style="color: #a00816; font-weight: bold;">
+                <td colspan="6"></td>
+                <td style="text-align:right;">{{_t('TOTAL PAID')}}</td>
+                <td style="text-align:right;">$ {{number_format($total_paid,2)}}</td>
+            </tr>
+            <tr style="color: #a00816; font-weight: bold;">
+                <td colspan="6"></td>
+                <td style="text-align:right;">{{_t('TOTAL REMAINING')}}</td>
+                <td style="text-align:right;">$ {{number_format($total_remaining,2)}}</td>
+            </tr>
+        </table>
+
+
     </table>
     <div class="my-paginate" align="center">
         {!! $rows->links() !!}

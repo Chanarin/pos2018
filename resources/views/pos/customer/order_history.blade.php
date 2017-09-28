@@ -98,7 +98,26 @@
                                 <h3 class="timeline-header"><a href="#"  style="font-family: 'Encode Sans Semi Condensed', sans-serif;
             font-family: 'Hanuman', serif;">{{_t('Customer Invoice Record')}}</a></h3>
                                 <div class="timeline-body">
+                                    @php
+                                        $total_qty = 0;
+                                        $total_deposit = 0;
+                                        $complete_price = 0;
+                                        $total_amount = 0;
+                                        $total_discount = 0;
+                                        $total_payable = 0;
+                                        $total_paid = 0;
+                                        $total_remaining = 0;
+                                    @endphp
                                     @foreach($row_invoice as $invoice)
+                                        @php
+                                            $total_deposit+= ($invoice->deposit);
+                                            $complete_price+= ($invoice->complete_price);
+                                            $total_amount+= ($invoice->total_amt);
+                                            $total_discount+= ($invoice->total_discount);
+                                            $total_payable+= ($invoice->total_payable);
+                                            $total_paid+= ($invoice->paid+($invoice->paid_kh/$invoice->exchange_rate));
+                                            $total_remaining+= (($invoice->paid+($invoice->paid_kh/$invoice->exchange_rate))-$invoice->total_payable);
+                                        @endphp
                                         <table style="width: 100%">
                                             <tr style="">
                                                 <td colspan="7">
@@ -141,7 +160,7 @@
                                                     <th class="text-center">{{_t('Name')}}</th>
                                                     <th class="text-center">{{_t('Unit')}}</th>
                                                     <th class="text-center">{{_t('Qty')}}</th>
-                                                    <th class="text-center">{{_t('Cost')}}</th>
+                                                    <th class="text-center">{{_t('Price')}}</th>
                                                     <th class="text-center">{{_t('Total')}}</th>
 
                                                 </tr>
@@ -168,6 +187,8 @@
                                                     @foreach($rowds as $rd)
                                                         @php
                                                             $rds = \App\Models\ItemDetail::where('ref_id',$rd->item_id)->get();
+                                                            $total_qty+= ($rd->qty);
+                                                             $units = \App\Models\Unit::where('id',$rd->unit)->first();
                                                             $oe = $loop->index;
                                                         @endphp
                                                            <tr class="item" style="height: 30px;  @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif color: #0586ff; font-weight: bold;">
@@ -182,7 +203,8 @@
                                                                </td>
                                                                <td class="text-left">{{$rd->item_code}}</td>
                                                                <td class="text-left">{{$rd->title}}</td>
-                                                               <td class="text-left">{{$rd->unit}}</td>
+                                                               <td class="text-left">{{isset($units->name)?$units->name:''}}</td>
+
                                                                <td class="text-right">{{$rd->qty}}</td>
                                                                <td class="text-right">$ {{number_format($rd->price,2)}}</td>
                                                                <td class="text-right">$ {{number_format($rd->price*$rd->qty,2)}}</td>
@@ -197,7 +219,7 @@
                                                                  <td class="text-left"></td>
                                                                  <td class="text-left">{{$r->item_code}}</td>
                                                                  <td class="text-left">{{$r->title}}</td>
-                                                                 <td class="text-left">{{$r->unit}} {{isset($unit->name)?$unit->name:''}}</td>
+                                                                 <td class="text-left">{{$r->num_qty}} {{isset($unit->name)?$unit->name:''}}</td>
                                                                  <td class="text-right">{{$r->qty}}</td>
                                                                  <td class="text-right">$ {{number_format($r->price,2)}}</td>
                                                                  <td class="text-right">$ {{number_format($r->price*$r->qty,2)}}</td>
@@ -236,7 +258,6 @@
                                                     <td style="text-align:right;">$ {{number_format(($invoice->paid+($invoice->paid_kh/$invoice->exchange_rate))-$invoice->total_payable,2)}}</td>
                                                     <td style="text-align:right;">{{number_format((($invoice->paid+($invoice->paid_kh/$invoice->exchange_rate))-$invoice->total_payable)*$invoice->exchange_rate,2)}}​ ៛</td>
                                                 </tr>
-
                                                 <tr>
                                                     <td colspan="8">
                                                         <br>
@@ -247,8 +268,49 @@
                                             </table>
                                     </table>
                                     @endforeach
+                                    <table width="100%">
+                                        <tr style="color: #a00816; font-weight: bold;">
+                                            <td colspan="6"></td>
+                                            <td style="text-align:right;">{{_t('TOTAL QTY')}}</td>
+                                            <td style="text-align:right;">{{$total_qty}} @if($total_qty > 1) {{_t('Units')}}  @else {{_t('Unit')}} @endif</td>
+                                        </tr>
 
-
+                                        <tr style="color: #a00816; font-weight: bold;">
+                                            <td colspan="6"></td>
+                                            <td style="text-align:right;">{{_t('TOTAL DEPOSIT')}}</td>
+                                            <td style="text-align:right;">$ {{number_format($total_deposit,2)}}</td>
+                                        </tr>
+                                        <tr style="color: #a00816; font-weight: bold;">
+                                            <td colspan="6"></td>
+                                            <td style="text-align:right;">{{_t('TOTAL COMPLETE PRICE ')}}</td>
+                                            <td style="text-align:right;">$ {{number_format($complete_price,2)}}</td>
+                                        </tr>
+                                        <tr style="color: #a00816; font-weight: bold;">
+                                            <td colspan="6"></td>
+                                            <td style="text-align:right;">{{_t('GRAND TOTAL')}}</td>
+                                            <td style="text-align:right;">$ {{number_format($total_amount,2)}}</td>
+                                        </tr>
+                                        <tr style="color: #a00816; font-weight: bold;">
+                                            <td colspan="6"></td>
+                                            <td style="text-align:right;">{{_t('TOTAL DISCOUNT')}}</td>
+                                            <td style="text-align:right;">$ {{number_format($total_discount,2)}}</td>
+                                        </tr>
+                                        <tr style="color: #a00816; font-weight: bold;">
+                                            <td colspan="6"></td>
+                                            <td style="text-align:right;">{{_t('TOTAL PAYABLE')}}</td>
+                                            <td style="text-align:right;">$ {{number_format($total_payable,2)}}</td>
+                                        </tr>
+                                        <tr style="color: #a00816; font-weight: bold;">
+                                            <td colspan="6"></td>
+                                            <td style="text-align:right;">{{_t('TOTAL PAID')}}</td>
+                                            <td style="text-align:right;">$ {{number_format($total_paid,2)}}</td>
+                                        </tr>
+                                        <tr style="color: #a00816; font-weight: bold;">
+                                            <td colspan="6"></td>
+                                            <td style="text-align:right;">{{_t('TOTAL REMAINING')}}</td>
+                                            <td style="text-align:right;">$ {{number_format($total_remaining,2)}}</td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </li>
@@ -273,6 +335,10 @@
             font-family: 'Hanuman', serif;">{{_t('Customer Production Record')}}</a></h3>
 
                             <div class="timeline-body">
+                                @php
+                                    $total_qty = 0;
+                                    $total_cost = 0;
+                                @endphp
                                 @foreach($row_production as $production)
                                     <table style="width: 100%">
                                         <tr style="">
@@ -315,13 +381,17 @@
                                             @endphp
                                             @foreach($rowss as $rd)
                                                 @php
+                                                    $total_qty+= ($rd->qty);
+                                                    $total_cost+= ($rd->cost*($rd->qty));
+                                                    $units = \App\Models\Unit::where('id',$rd->unit)->first();
                                                     $oe = $loop->index;
                                                 @endphp
                                                 <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif color: #0586ff; font-weight: bold;">
                                                     <td class="text-left">{{$loop->index+1}}</td>
                                                     <td class="text-left">{{$rd->item_code}}</td>
                                                     <td class="text-left">{{$rd->title}}</td>
-                                                    <td class="text-left">{{$rd->unit}}</td>
+
+                                                    <td class="text-left">{{isset($units->name)?$units->name:''}}</td>
                                                     <td class="text-right">{{$rd->qty}}</td>
                                                     <td class="text-right">$ {{number_format($rd->cost,2)}}</td>
                                                     <td class="text-right">$ {{number_format($rd->cost*$rd->qty,2)}}</td>
@@ -335,7 +405,7 @@
                                                                 <td class="text-left"></td>
                                                                 <td class="text-left">{{$r->item_code}}</td>
                                                                 <td class="text-left">{{$r->title}}</td>
-                                                                <td class="text-left">{{$r->unit}} {{isset($unit->name)?$unit->name:''}}</td>
+                                                                <td class="text-left">{{$r->num_qty}} {{isset($unit->name)?$unit->name:''}}</td>
                                                                 <td class="text-right">{{$r->qty}}</td>
                                                                 <td class="text-right">$ {{number_format($r->cost,2)}}</td>
                                                                 <td class="text-right">$ {{number_format($r->cost*$r->qty,2)}}</td>
@@ -352,8 +422,21 @@
                                                 </td>
                                             </tr>
                                         </table>
+
                                     </table>
                                 @endforeach
+                                <table width="100%">
+                                    <tr style="color: #a00816; font-weight: bold;">
+                                        <td colspan="5"></td>
+                                        <td style="text-align:right;">{{_t('TOTAL QTY')}}</td>
+                                        <td style="text-align:right;">{{$total_qty}} @if($total_qty > 1) {{_t('Units')}}  @else {{_t('Unit')}} @endif </td>
+                                    </tr>
+                                    <tr style="color: #a00816; font-weight: bold;">
+                                        <td colspan="5"></td>
+                                        <td style="text-align:right;">{{_t('TOTAL COST')}}</td>
+                                        <td style="text-align:right;">$ {{number_format($total_cost,2)}}</td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </li>
@@ -378,6 +461,10 @@
             font-family: 'Hanuman', serif;">{{_t('Customer Purchase Record')}}</a></h3>
 
                             <div class="timeline-body">
+                                @php
+                                    $total_qty = 0;
+                                    $total_cost = 0;
+                                @endphp
                                 @foreach($row_purchase as $purchase)
                                 <table style="width: 100%">
                                     <tr style="">
@@ -421,13 +508,16 @@
                                         @endphp
                                         @foreach($rowss as $rd)
                                             @php
-                                                $oe = $loop->index;
+                                                    $total_qty+= ($rd->qty);
+                                                   $total_cost+= ($rd->cost*($rd->qty));
+                                                   $units = \App\Models\Unit::where('id',$rd->unit)->first();
+                                                   $oe = $loop->index;
                                             @endphp
                                             <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif color: #0586ff; font-weight: bold;">
                                                 <td class="text-left">{{$loop->index+1}}</td>
                                                 <td class="text-left">{{$rd->item_code}}</td>
                                                 <td class="text-left">{{$rd->title}}</td>
-                                                <td class="text-left">{{$rd->unit}}</td>
+                                                <td class="text-left">{{isset($units->name)?$units->name:''}}</td>
                                                 <td class="text-right">{{$rd->qty}}</td>
                                                 <td class="text-right">$ {{number_format($rd->cost,2)}}</td>
                                                 <td class="text-right">$ {{number_format($rd->cost*$rd->qty,2)}}</td>
@@ -441,7 +531,7 @@
                                                         <td class="text-left"></td>
                                                         <td class="text-left">{{$r->item_code}}</td>
                                                         <td class="text-left">{{$r->title}}</td>
-                                                        <td class="text-left">{{$r->unit}} {{isset($unit->name)?$unit->name:''}}</td>
+                                                        <td class="text-left">{{$r->num_qty}} {{isset($unit->name)?$unit->name:''}}</td>
                                                         <td class="text-right">{{$r->qty}}</td>
                                                         <td class="text-right">$ {{number_format($r->cost,2)}}</td>
                                                         <td class="text-right">$ {{number_format($r->cost*$r->qty,2)}}</td>
@@ -461,6 +551,19 @@
 
                                 </table>
                                 @endforeach
+                                    <table width="100%">
+                                        <tr style="color: #a00816; font-weight: bold;">
+                                            <td colspan="5"></td>
+                                            <td style="text-align:right;">{{_t('TOTAL QTY')}}</td>
+                                            <td style="text-align:right;">{{$total_qty}} @if($total_qty > 1) {{_t('Units')}}  @else {{_t('Unit')}} @endif </td>
+                                        </tr>
+                                        <tr style="color: #a00816; font-weight: bold;">
+                                            <td colspan="5"></td>
+                                            <td style="text-align:right;">{{_t('TOTAL COST')}}</td>
+                                            <td style="text-align:right;">$ {{number_format($total_cost,2)}}</td>
+                                        </tr>
+                                    </table>
+
                             </div>
                         </div>
                     </li>

@@ -25,7 +25,10 @@
 @if(count($rows) > 0)
     <table class="" style="width: 100%">
 
-
+        @php
+            $total_qty = 0;
+            $total_cost = 0;
+        @endphp
         @foreach($rows as $row)
             <tr style="">
                 <td colspan="6">
@@ -70,7 +73,9 @@
                 @endphp
                 @foreach($rowss as $rd)
                     @php
-                        $oe = $loop->index;
+                            $total_qty+= ($rd->qty);
+                             $total_cost+= ($rd->cost*($rd->qty));
+                           $oe = $loop->index;
                     @endphp
                     <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif color: #0586ff; font-weight: bold;">
                         <td class="text-left">{{$loop->index+1}}</td>
@@ -107,7 +112,19 @@
                     </td>
 
                 </tr>
-                @endforeach
+            </table>
+        @endforeach
+            <table width="100%">
+                <tr style="color: #a00816; font-weight: bold;">
+                    <td colspan="5"></td>
+                    <td style="text-align:right;">{{_t('TOTAL QTY')}}</td>
+                    <td style="text-align:right;">{{$total_qty}} @if($total_qty > 1) {{_t('Units')}}  @else {{_t('Unit')}} @endif </td>
+                </tr>
+                <tr style="color: #a00816; font-weight: bold;">
+                    <td colspan="5"></td>
+                    <td style="text-align:right;">{{_t('TOTAL COST')}}</td>
+                    <td style="text-align:right;">$ {{number_format($total_cost,2)}}</td>
+                </tr>
             </table>
     </table>
     <div class="my-paginate" align="center">

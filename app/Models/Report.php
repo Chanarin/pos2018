@@ -3,7 +3,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
-    static function openItemReport($request,$limit=200)
+    static function openItemReport($request,$limit=100)
     {
         $from_date = isset($request->from_date)?$request->from_date:Carbon::now()->format('Y-m-d');
         $to_date = isset($request->to_date)?$request->to_date:Carbon::now()->format('Y-m-d');
@@ -27,7 +27,7 @@ class Report extends Model
         }
         return $m->orderBy('id','ASC')->paginate($limit);
     }
-    static function purchaseItemReport($request,$limit=200)
+    static function purchaseItemReport($request,$limit=100)
     {
         $from_date = isset($request->from_date)?$request->from_date:Carbon::now()->format('Y-m-d');
         $to_date = isset($request->to_date)?$request->to_date:Carbon::now()->format('Y-m-d');
@@ -50,7 +50,7 @@ class Report extends Model
         }
         return $m->orderBy('id','ASC')->paginate($limit);
     }
-    static function productionItemReport($request,$limit=200)
+    static function productionItemReport($request,$limit=100)
     {
         $from_date = isset($request->from_date)?$request->from_date:Carbon::now()->format('Y-m-d');
         $to_date = isset($request->to_date)?$request->to_date:Carbon::now()->format('Y-m-d');
@@ -73,7 +73,7 @@ class Report extends Model
         }
         return $m->orderBy('id','ASC')->paginate($limit);
     }
-    static function invoiceItemReport($request,$limit=200)
+    static function invoiceItemReport($request,$limit=100)
     {
         $from_date = isset($request->from_date)?$request->from_date:Carbon::now()->format('Y-m-d');
         $to_date = isset($request->to_date)?$request->to_date:Carbon::now()->format('Y-m-d');

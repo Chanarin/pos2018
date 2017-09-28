@@ -161,7 +161,6 @@ class OpenItemCrudController extends CrudController
             'open_number' => 'required|unique:open_items,open_number',
             '_date_' => 'required',
         ]);
-
         if ($validator->fails()) {
             return redirect('admin/openitem')->withErrors($validator);
         }
@@ -175,38 +174,26 @@ class OpenItemCrudController extends CrudController
         return $redirect_location;
     }
 
-
     public function edit($id)
     {
-
         $od = OpenItemDetail::where('ref_id',$id)->get();
-
         foreach ($od as $row){
             $ivd = InvoiceDetail::where('item_id',$row->item_id)->first();
-
             if($ivd != null){
                 return redirect('admin/openitem')->withErrors('This Product has been sold. So, You cannot edit it.');
-
             }
-
         }
-
         // your additional operations before save here
-
-            $this->crud->hasAccessOrFail('update');
-
-            // get the info for that entry
-            $this->data['entry'] = $this->crud->getEntry($id);
-            $this->data['crud'] = $this->crud;
-            $this->data['saveAction'] = $this->getSaveAction();
-            $this->data['fields'] = $this->crud->getUpdateFields($id);
-            $this->data['title'] = trans('backpack::crud.edit') . ' ' . $this->crud->entity_name;
-
-            $this->data['id'] = $id;
-
-            // load the view from /resources/views/vendor/backpack/crud/ if it exists, otherwise load the one in the package
-            return view($this->crud->getEditView(), $this->data);
-
+        $this->crud->hasAccessOrFail('update');
+        // get the info for that entry
+        $this->data['entry'] = $this->crud->getEntry($id);
+        $this->data['crud'] = $this->crud;
+        $this->data['saveAction'] = $this->getSaveAction();
+        $this->data['fields'] = $this->crud->getUpdateFields($id);
+        $this->data['title'] = trans('backpack::crud.edit') . ' ' . $this->crud->entity_name;
+        $this->data['id'] = $id;
+        // load the view from /resources/views/vendor/backpack/crud/ if it exists, otherwise load the one in the package
+        return view($this->crud->getEditView(), $this->data);
     }
 
     public function update(UpdateRequest $request)
@@ -215,21 +202,15 @@ class OpenItemCrudController extends CrudController
             'open_number' => 'required',
             '_date_' => 'required',
         ]);
-
         if ($validator->fails()) {
             return redirect('admin/openitem')->withErrors($validator);;
         }
-
-
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
-
             $iDP = new IDP($request->_data_, _POS_::open_items, $this->crud->entry->id);
             $iDP->saveAllDetail();
             return $redirect_location;
-
-
         //return redirect('admin/openitem')->withErrors('This Product has sold. So, You cannot edit it.');
     }
 }
