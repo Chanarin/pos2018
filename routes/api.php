@@ -117,4 +117,5 @@ Route::get('/report/production-item/detail','Api\ReportController@productionItem
 
 Route::get('/report/invoice/list','Api\ReportController@invoiceList');
 Route::get('/report/invoice/detail','Api\ReportController@invoiceDetail');
+Route::get('/report/invoice/profit','Api\ReportController@invoiceProfit');
 

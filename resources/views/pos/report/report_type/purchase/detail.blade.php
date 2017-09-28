@@ -5,11 +5,11 @@
 @section('header')
     <section class="content-header">
         <h1>
-            {{_t('Open Item List') }}
+            {{_t('Purchase Item Detail') }}
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-            <li class="active">{{_t('open item list')}}</li>
+            <li class="active">{{_t('purchase item detail')}}</li>
         </ol>
     </section>
 @endsection
@@ -54,7 +54,7 @@
                                 {{--  -------------------------------------------------------------------------------------}}
                                 <table width="100%">
                                     <thead class="border" style="background: #CCCCCC">
-                                    <tr>
+                                    <tr style="border: 1px solid #CCC;">
                                         <th class="text-center">{{_t('No')}}</th>
                                         <th class="text-center">{{_t('Code')}}</th>
                                         <th class="text-center">{{_t('Name')}}</th>

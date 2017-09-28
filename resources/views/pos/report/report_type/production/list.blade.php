@@ -18,11 +18,11 @@
 @section('header')
     <section class="content-header">
         <h1>
-            {{_t('Open Item List') }}
+            {{_t('Production Item List') }}
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-            <li class="active">{{_t('open item list')}}</li>
+            <li class="active">{{_t('production item list')}}</li>
         </ol>
     </section>
 @endsection

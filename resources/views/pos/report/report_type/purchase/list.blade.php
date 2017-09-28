@@ -18,11 +18,11 @@
 @section('header')
     <section class="content-header">
         <h1>
-            {{_t('Open Item List') }}
+            {{_t('Purchase Item List') }}
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-            <li class="active">{{_t('open item list')}}</li>
+            <li class="active">{{_t('purchase item list')}}</li>
         </ol>
     </section>
 @endsection
@@ -74,7 +74,7 @@
                                     <td>{{$row->purchase_number }}</td>
                                     <td>{{\Carbon\Carbon::parse($row->_date_)->format('d/m/Y') }}</td>
                                     <td>{{$row->description}}</td>
-                                    <td>{{number_format($total_qty)}} @if($total_qty > 1) Units  @else Unit @endif</td>
+                                    <td>{{number_format($total_qty)}} @if($total_qty > 1) {{_t('Units')}}  @else {{_t('Unit')}} @endif</td>
                                     <td>$ {{number_format($total_cost,2)}}</td>
                                 </tr>
                             @endforeach

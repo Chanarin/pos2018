@@ -89,7 +89,7 @@
                                 {{--  -------------------------------------------------------------------------------------}}
                                 <table width="100%">
                                     <thead class="border" style="background: #CCCCCC">
-                                    <tr>
+                                    <tr style="border: 1px solid #CCC;">
                                         <th class="text-center">{{_t('No')}}</th>
                                         <th class="text-center">{{_t('Image')}}</th>
                                         <th class="text-center">{{_t('Code')}}</th>

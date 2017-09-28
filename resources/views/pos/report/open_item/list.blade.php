@@ -70,7 +70,8 @@
         </tbody>
 
         <tfoot>
-        <tr style="background-color: #428BCA;color:white;border-color: #357EBD;">
+
+        <tr style="background-color: #428BCA;color:white; border: 1px solid #357EBD;">
             <th style="text-align: right;">Total</th>
             <th></th>
             <th></th>

@@ -30,7 +30,7 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-fw fa-file-excel-o"></i>
-            <span>{{_t('Sale Invoice')}}</span>
+            <span>{{_t('Sale Report')}}</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -46,6 +46,13 @@
               <a href="#">
                 <input data-url="{{url('/api/report/invoice/detail')}}" type="radio" name="name-report-option" class="minimal report-option">
                 <span>{{_t('Detail')}}</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="#">
+                <input data-url="{{url('/api/report/invoice/profit')}}" type="radio" name="name-report-option" class="minimal report-option">
+                <span>{{_t('Profit')}}</span>
               </a>
             </li>
           </ul>

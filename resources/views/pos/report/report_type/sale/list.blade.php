@@ -72,7 +72,7 @@
                                     $total_payable+= ($row->total_payable);
                                 @endphp
 
-                                <tr style="height: 30px ;   @if($loop->index % 2 > 0) background-color: #f1f1f1; @endif">
+                                <tr>
                                     <td class="text-left">{{ (($rows->currentPage()-1)*$rows->perPage())+$count++ }}</td>
                                     <td>{{$row->invoice_number }}</td>
                                     <td>{{\Carbon\Carbon::parse($row->_date_)->format('d/m/Y') }}</td>

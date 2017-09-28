@@ -144,4 +144,20 @@ class ReportController extends Controller
         return view('pos.report.invoice.detail',['rows'=>$rows,'from_date' => $from_date, 'to_date' => $to_date,
             'report_option' => $report_option]);
     }
+    public function invoiceProfit(Request $request){
+        $from_date = isset($request->from_date)?$request->from_date:Carbon::now()->format('Y-m-d');
+        $to_date = isset($request->to_date)?$request->to_date:Carbon::now()->format('Y-m-d');
+        $q = $request->q;
+        $report_option = $request->report_option;
+        $rows = Report::invoiceItemReport($request);
+        $rows->appends([
+            'from_date'=>$from_date,
+            'to_date'=>$to_date,
+            'report_option' => $report_option,
+            'q'=>$q
+        ]);
+
+        return view('pos.report.invoice.profit',['rows'=>$rows,'from_date' => $from_date, 'to_date' => $to_date,
+            'report_option' => $report_option]);
+    }
 }
