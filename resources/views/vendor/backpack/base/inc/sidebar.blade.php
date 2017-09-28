@@ -116,7 +116,7 @@
 
                     <li><a href="{{url('/admin/report-type/sale/detail')}}"><i class="fa fa-fw fa-cart-arrow-down"></i> <span>{{_t('Sale Detail')}}</span></a></li>
 
-                    <li><a href="#"><i class="fa fa-fw fa-cart-arrow-down"></i> <span>{{_t('Sale Profit')}}</span></a></li>
+                    <li><a href="{{url('/admin/report-type/sale/profit')}}"><i class="fa fa-fw fa-cart-arrow-down"></i> <span>{{_t('Sale Profit')}}</span></a></li>
 
                     <li><a href="{{url('/admin/report-type/sale/daily')}}"><i class="fa fa-fw fa-cart-arrow-down"></i> <span>{{_t('Sale Daily')}}</span></a></li>
 

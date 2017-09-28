@@ -49,8 +49,14 @@ class ReportTypeController extends Controller
         return view('pos.report.report_type.sale.detail',['rows'=>$rows]);
     }
     public function saleDiscount($limit=100){
-        $rows = Invoice::where('total_discount','!=',null)->orderBy('id','ASC')->paginate($limit);
+        $rows = Invoice::where('total_discount','<>',null)
+            ->where('total_discount','<>',0)
+            ->orderBy('id','ASC')->paginate($limit);
         return view('pos.report.report_type.sale.discount',['rows'=>$rows]);
+    }
+    public function saleCustomer($limit=100){
+        $rows = Invoice::orderBy('id','ASC')->paginate($limit);
+        return view('pos.report.report_type.sale.customer',['rows'=>$rows]);
     }
     public function saleDaily(){
         return view('pos.report.report_type.sale.daily');
@@ -58,8 +64,8 @@ class ReportTypeController extends Controller
     public function saleMonthly(){
         return view('pos.report.report_type.sale.monthly');
     }
-    public function saleCustomer($limit=100){
-        $rows = Invoice::orderBy('id','ASC')->paginate($limit);
-        return view('pos.report.report_type.sale.customer',['rows'=>$rows]);
+    public function saleProfit(){
+
+        return view('pos.report.report_type.sale.profit');
     }
 }

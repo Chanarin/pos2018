@@ -23,7 +23,8 @@
                    {{--=========--}}
                     <div class="row">
                         <div class="col-lg-12">
-                            <div id="alerts"></div><style>
+                            <div id="alerts"></div>
+                            <style>
                                 .table th {
                                     text-align: center;
                                 }
@@ -71,17 +72,6 @@
                                     background: #F5F5F5;
                                 }
 
-                                .content {
-                                    width: 100%;
-                                    text-align: left;
-                                    color: #428bca;
-                                    padding: 8px;
-                                }
-
-                                .highlight {
-                                    color: #0088CC;
-                                    font-weight: bold;
-                                }
                             </style>
                             <div class="box">
                                 <div class="box-header">
@@ -95,45 +85,133 @@
                                             <div id="style">
                                                 <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered dfTable">
 
-                                                    <tbody><tr>
-                                                        <th><a href="http://cloudnet-myanmar.com/iCloudERP_v3_Production/reports/daily_sales/2017/08">&lt;&lt;</a></th>
+                                                    <tbody>
+                                                    <tr>
+                                                        <th>
+                                                            <a style="color: #428BCA;" href="http://cloudnet-myanmar.com/iCloudERP_v3_Production/reports/daily_sales/2017/08">
+                                                                <b>&lt;&lt;</b>
+                                                            </a>
+                                                        </th>
                                                         <th colspan="5" id="month_year">September&nbsp;2017</th>
-                                                        <th><a href="http://cloudnet-myanmar.com/iCloudERP_v3_Production/reports/daily_sales/2017/10">&gt;&gt;</a></th>
+                                                        <th>
+                                                            <a style="color: #428BCA;" href="http://cloudnet-myanmar.com/iCloudERP_v3_Production/reports/daily_sales/2017/10">
+                                                                <b>&gt;&gt;</b>
+                                                            </a>
+                                                        </th>
                                                     </tr>
 
                                                     <tr>
-                                                        <td class="cl_wday">Sunday</td><td class="cl_wday">Monday</td><td class="cl_wday">Tuesday</td><td class="cl_wday">Wednesday</td><td class="cl_wday">Thursday</td><td class="cl_wday">Friday</td><td class="cl_wday">Saturday</td>
+                                                        <td class="cl_wday">Sunday</td>
+                                                        <td class="cl_wday">Monday</td>
+                                                        <td class="cl_wday">Tuesday</td>
+                                                        <td class="cl_wday">Wednesday</td>
+                                                        <td class="cl_wday">Thursday</td>
+                                                        <td class="cl_wday">Friday</td>
+                                                        <td class="cl_wday">Saturday</td>
                                                     </tr>
 
                                                     <tr class="days">
-                                                        <td class="day">&nbsp;</td><td class="day">&nbsp;</td><td class="day">&nbsp;</td><td class="day">&nbsp;</td><td class="day">&nbsp;</td><td class="day"><div class="day_num">1</div></td><td class="day"><div class="day_num">2</div></td>
+                                                        <td class="day">&nbsp;</td>
+                                                        <td class="day">&nbsp;</td>
+                                                        <td class="day">&nbsp;</td>
+                                                        <td class="day">&nbsp;</td>
+                                                        <td class="day">&nbsp;</td>
+                                                        <td class="day">
+                                                            <div class="day_num">1</div>
+                                                        </td><td class="day">
+                                                            <div class="day_num">2</div>
+                                                        </td>
                                                     </tr>
 
                                                     <tr class="days">
-                                                        <td class="day"><div class="day_num">3</div></td><td class="day"><div class="day_num">4</div></td><td class="day"><div class="day_num">5</div></td><td class="day"><div class="day_num">6</div></td><td class="day"><div class="day_num">7</div></td><td class="day"><div class="day_num">8</div></td><td class="day"><div class="day_num">9</div></td>
+                                                        <td class="day">
+                                                            <div class="day_num">3</div>
+                                                        </td>
+                                                        <td class="day">
+                                                            <div class="day_num">4</div>
+                                                        </td>
+                                                        <td class="day">
+                                                            <div class="day_num">5</div>
+                                                        </td>
+                                                        <td class="day">
+                                                            <div class="day_num">6</div>
+                                                        </td>
+                                                        <td class="day">
+                                                            <div class="day_num">7</div>
+                                                        </td>
+                                                        <td class="day">
+                                                            <div class="day_num">8</div>
+                                                        </td>
+                                                        <td class="day">
+                                                            <div class="day_num">9</div>
+                                                        </td>
                                                     </tr>
 
                                                     <tr class="days">
-                                                        <td class="day"><div class="day_num">10</div></td><td class="day"><div class="day_num">11</div></td><td class="day"><div class="day_num">12</div></td><td class="day"><div class="day_num">13</div></td><td class="day"><div class="day_num">14</div></td><td class="day"><div class="day_num">15</div></td><td class="day"><div class="day_num">16</div></td>
+                                                        <td class="day">
+                                                            <div class="day_num">10</div>
+                                                        </td>
+                                                        <td class="day">
+                                                            <div class="day_num">11</div>
+                                                        </td><td class="day">
+                                                            <div class="day_num">12</div>
+                                                        </td><td class="day">
+                                                            <div class="day_num">13</div>
+                                                        </td><td class="day">
+                                                            <div class="day_num">14</div>
+                                                        </td><td class="day">
+                                                            <div class="day_num">15</div>
+                                                        </td><td class="day">
+                                                            <div class="day_num">16</div>
+                                                        </td>
                                                     </tr>
 
                                                     <tr class="days">
-                                                        <td class="day"><div class="day_num">17</div></td><td class="day"><div class="day_num">18</div></td><td class="day"><div class="day_num">19</div></td><td class="day"><div class="day_num">20</div></td><td class="day"><div class="day_num">21</div></td><td class="day"><div class="day_num">22</div></td><td class="day"><div class="day_num">23</div></td>
+                                                        <td class="day">
+                                                            <div class="day_num">17</div>
+                                                        </td>
+                                                        <td class="day">
+                                                            <div class="day_num">18</div>
+                                                        </td>
+                                                        <td class="day">
+                                                            <div class="day_num">19</div>
+                                                        </td>
+                                                        <td class="day">
+                                                            <div class="day_num">20</div>
+                                                        </td>
+                                                        <td class="day">
+                                                            <div class="day_num">21</div>
+                                                        </td>
+                                                        <td class="day">
+                                                            <div class="day_num">22</div>
+                                                        </td>
+                                                        <td class="day">
+                                                            <div class="day_num">23</div>
+                                                        </td>
                                                     </tr>
 
                                                     <tr class="days">
-                                                        <td class="day"><div class="day_num">24</div></td><td class="day">
+                                                        <td class="day">
+                                                            <div class="day_num">24</div>
+                                                        </td>
+                                                        <td class="day">
                                                             <div class="day_num">25</div>
-                                                            <div class="content"><table class="table table-bordered table-hover table-striped table-condensed data" style="margin:0;">
-                                                                    <tbody><tr><td>Amount</td><td>700.00</td></tr>
-                                                                    <tr><td>Order Discount</td><td>0.00</td></tr>
-                                                                    <tr><td>Shipping</td><td>0.00</td></tr>
-                                                                    <tr><td>Product Tax</td><td>0.00</td></tr>
-                                                                    <tr><td>Refund</td><td>0.00</td></tr>
+                                                            <div class="content">
+                                                                <table class="table table-bordered table-hover table-striped table-condensed data" style="margin:0;">
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td>Amount</td><td>700.00</td>
+                                                                    </tr>
+                                                                    <tr><td>Discount</td><td>0.00</td></tr>
+                                                                    <tr><td>Payable</td><td>0.00</td></tr>
+                                                                    <tr><td>Paid</td><td>0.00</td></tr>
+                                                                    <tr><td></td><td>0.00</td></tr>
                                                                     <tr><td>Order Tax</td><td>0.00</td></tr>
                                                                     <tr><td>Total</td><td>700.00</td></tr>
                                                                     <tr><td>Award Points</td><td>7</td></tr>
-                                                                    </tbody></table></div>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                         </td><td class="day"><div class="day_num">26</div></td><td class="day">
                                                             <div class="day_num">27</div>
                                                             <div class="content"><table class="table table-bordered table-hover table-striped table-condensed data" style="margin:0;">

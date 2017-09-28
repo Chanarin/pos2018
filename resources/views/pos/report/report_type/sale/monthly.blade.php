@@ -23,7 +23,8 @@
                    {{--=========--}}
                     <div class="row">
                         <div class="col-lg-12">
-                            <div id="alerts"></div><style type="text/css">
+                            <div id="alerts"></div>
+                            <style type="text/css">
                                 .dfTable th, .dfTable td {
                                     text-align: center;
                                     vertical-align: middle;
@@ -40,6 +41,15 @@
                                 .data tr:nth-child(even) td {
                                     text-align: right;
                                 }
+                                .table > thead:first-child > tr:first-child > th, .table > thead:first-child > tr:first-child > td, .table-striped thead tr.primary:nth-child(odd) th {
+                                    background-color: #428BCA;
+                                    color: white;
+                                    border-color: #357EBD;
+                                    border-top: 1px solid #357EBD;
+                                    text-align: center;
+                                }
+
+
                             </style>
                             <div class="box">
                                 <div class="box-header">
@@ -54,9 +64,17 @@
                                                 <table class="table table-bordered table-striped dfTable reports-table">
                                                     <thead>
                                                     <tr class="year_roller">
-                                                        <th><a class="white" href="reports/monthly_sales/2016">&lt;&lt;</a></th>
+                                                        <th>
+                                                            <a style="color: white;" class="white" href="reports/monthly_sales/2016">
+                                                                <b>&lt;&lt;</b>
+                                                            </a>
+                                                        </th>
                                                         <th colspan="10"> 2017</th>
-                                                        <th><a class="white" href="reports/monthly_sales/2018">&gt;&gt;</a></th>
+                                                        <th>
+                                                            <a style="color: white;" class="white" href="reports/monthly_sales/2018">
+                                                                <b>&gt;&gt;</b>
+                                                            </a>
+                                                        </th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
