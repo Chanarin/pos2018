@@ -1020,7 +1020,8 @@
                 var image = $(this).data('image');
                 var unit = $(this).data('unit');
                 var price = $(this).data('price');
-                getRowItem(id,item_code,title,unit,price,image);
+                var cost = $(this).data('cost');
+                getRowItem(id,item_code,title,unit,price,image,cost);
             });
 
             $('body').delegate('.qty-row','keyup',function () {
@@ -1044,7 +1045,7 @@
             });
             return dup;
         }
-        function getRowItem(id,item_code,title,unit,price,image) {
+        function getRowItem(id,item_code,title,unit,price,image,cost) {
             var uid = (new Date().getTime());
             if(isDupItem(id)){
             }else {
@@ -1055,7 +1056,7 @@
                     '                                    <input type="hidden" name="_data_[' + uid + '][item_code]" value="' + item_code + '">\n' +
                     '                                    <input type="hidden" name="_data_[' + uid + '][title]" value="' + title + '">\n' +
                     '                                    <input type="hidden" name="_data_[' + uid + '][unit]" value="' + unit + '">\n' +
-                    '                                    <input type="hidden" name="_data_[' + uid + '][cost]" value="">\n' +
+                    '                                    <input type="hidden" name="_data_[' + uid + '][cost]" value="'+cost+'">\n' +
                     '                                    <input type="hidden" class="price-row" name="_data_[' + uid + '][price]" value="' + price + '">\n' +
                     '                                    <input type="hidden" name="_data_[' + uid + '][discount]" value="">                                    \n' +
                     '                                    ' + item_code + '</td>\n' +
@@ -1196,8 +1197,9 @@
                 var image = $(this).data('image');
                 var unit = $(this).data('unit');
                 var price = $(this).data('price');
+                var cost = $(this).data('cost');
 
-                getRowItem(id,item_code,title,unit,price,image);
+                getRowItem(id,item_code,title,unit,price,image,cost);
 
                 $('#searchProductFilterDetail').modal('hide');
             });
@@ -1332,7 +1334,7 @@
                 success: function (data) {
                     if(data.error == 0) {
                         var d = data.row;
-                        getRowItem(d.id,d.item_code,d.title,d.unit,d.price,'');
+                        getRowItem(d.id,d.item_code,d.title,d.unit,d.price,'',d.cost);
                     }
                 },
                 error: function () {

@@ -64,8 +64,8 @@ class ReportTypeController extends Controller
     public function saleMonthly(){
         return view('pos.report.report_type.sale.monthly');
     }
-    public function saleProfit(){
-
-        return view('pos.report.report_type.sale.profit');
+    public function saleProfit($limit=100){
+        $rows = Invoice::orderBy('id','ASC')->paginate($limit);
+        return view('pos.report.report_type.sale.profit',['rows'=>$rows]);
     }
 }

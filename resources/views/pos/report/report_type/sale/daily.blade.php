@@ -229,7 +229,8 @@
                                                         </td>
                                                         <td class="day">
                                                             <div class="day_num">29</div>
-                                                        </td><td class="day">
+                                                        </td>
+                                                        <td class="day">
                                                             <div class="day_num">30</div>
                                                         </td>
                                                     </tr>

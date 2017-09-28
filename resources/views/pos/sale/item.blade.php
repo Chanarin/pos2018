@@ -8,6 +8,7 @@
         data-item_code  = "{{$item->item_code  }}"
         data-title  = "{{$item->title  }}"
         data-unit  = "{{$item->unit  }}"
+        data-cost  = "{{$item->cost  }}"
         data-price  = "{{$item->price  }}"
              @if(count($img)>0)
                 data-image  = "{{url('img/cache/original/'.\App\Helpers\Glb::get_basename($img[0]))}}"
