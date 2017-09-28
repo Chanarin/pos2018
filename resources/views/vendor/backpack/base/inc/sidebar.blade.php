@@ -118,13 +118,13 @@
 
                     <li><a href="#"><i class="fa fa-fw fa-cart-arrow-down"></i> <span>{{_t('Sale Profit')}}</span></a></li>
 
-                    <li><a href="#"><i class="fa fa-fw fa-cart-arrow-down"></i> <span>{{_t('Sale Daily')}}</span></a></li>
+                    <li><a href="{{url('/admin/report-type/sale/daily')}}"><i class="fa fa-fw fa-cart-arrow-down"></i> <span>{{_t('Sale Daily')}}</span></a></li>
 
-                    <li><a href="#"><i class="fa fa-fw fa-cart-arrow-down"></i> <span>{{_t('Sale Monthly')}}</span></a></li>
+                    <li><a href="{{url('/admin/report-type/sale/monthly')}}"><i class="fa fa-fw fa-cart-arrow-down"></i> <span>{{_t('Sale Monthly')}}</span></a></li>
 
                     <li><a href="{{url('/admin/report-type/sale/discount')}}"><i class="fa fa-fw fa-cart-arrow-down"></i> <span>{{_t('Sale Discount')}}</span></a></li>
 
-                    <li><a href="#"><i class="fa fa-fw fa-cart-arrow-down"></i> <span>{{_t('Customer Report')}}</span></a></li>
+                    <li><a href="{{url('/admin/report-type/sale/customer')}}"><i class="fa fa-fw fa-cart-arrow-down"></i> <span>{{_t('Customer Report')}}</span></a></li>
 
                   </ul>
                 </li>
