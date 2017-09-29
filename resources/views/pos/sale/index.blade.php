@@ -99,7 +99,7 @@
                         }
                         /*========= show item list ==*/
                         .items-style{
-                            padding-top: 5px;
+                            padding-top: 20px;
                             height: 650px;
                             overflow: auto;
                         }
