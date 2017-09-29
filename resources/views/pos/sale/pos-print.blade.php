@@ -14,9 +14,20 @@
 <table width="100%">
     <tr>
         <td>
-            <img src="{{url('pos/img/logo.jpg')}}" width="90" height="90" alt="">
+            <img src="{{url('pos/img/logo.jpg')}}" width="200" height="90" alt="">
         </td>
-        <td width="100%" style="text-align: center"><b>វិក័យប័ត្រ</b></td>
+        <td width="100%" style="text-align: right ">
+            <b>(លក់គ្រឿងអលង្ការ)</b><br>
+            <span style="font-size: 9px;">
+                  ផ្ទះលេខ 80Eo ផ្លូវ19​ កែងផ្លូវ154 សង្កាត់ផ្សារកណ្តាលទី២<br>
+            ខ័ណ្ឌដូនពេញ (ទល់មុខសង្កាត់ជ័យជំនះ) រាជធានីភ្នំពេញ<br>
+            No.80Eo, St 19 Corner St. 154,Sangkat Phsar Kandal II,<br>
+            Khan Daun Penh, Phnom Penh<br>
+            Tel: (012) 669 175/ (012) 864 213<br>
+            (016) 669 175/ (010) 8640213/ (010) 979 960
+            </span>
+
+        </td>
     </tr>
 </table>
 @if(isset($id))
