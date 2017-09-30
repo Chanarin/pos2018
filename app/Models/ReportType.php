@@ -3,7 +3,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 class ReportType extends Model
 {
-    static function openItemReport($request,$limit=1)
+    static function openItemReport($request,$limit=100)
     {
         $q = $request->q;
         $m = OpenItem::orderBy('id','ASC');
@@ -17,6 +17,7 @@ class ReportType extends Model
         }
         return $m->paginate($limit);
     }
+
     static function purchaseItemReport($request,$limit=100)
     {
         $from_date = isset($request->from_date)?$request->from_date:Carbon::now()->format('Y-m-d');

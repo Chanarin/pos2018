@@ -41,25 +41,9 @@
                     }
                 </style>
 
-                <div class="box-body table-responsive">
-
-                    <table class="table table-hover" border="1" style="border-color: #CCCCCC">
-                        <thead>
-                            <tr style="background-color: #7B7777; color: white;border-color: #CCCCCC">
-                                <th>{{_t('No')}}</th>
-                                <th>{{_t('Open Number')}}</th>
-                                <th>{{_t('Date')}}</th>
-                                <th>{{_t('Description')}}</th>
-                                <th>{{_t('Total Qty')}}</th>
-                                <th>{{_t('Total Cost')}}</th>
-                            </tr>
-                        </thead>
-                        <tbody class="open-item-list">
-
-                        </tbody>
+                <div class="box-body table-responsive open-item-list">
 
 
-                    </table>
 
                 </div>
 
@@ -71,7 +55,21 @@
     <script src="{{ asset('vendor/adminlte/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
     <script>
         $(function () {
-
+            $.ajax({
+                url: '{{url('/admin/report-type/open-item/data')}}',
+                type: 'GET',
+                async: false,
+                dataType: 'html',
+                data: {
+                    q:''
+                },
+                success: function (d) {
+                    $('.open-item-list').html(d);
+                },
+                error: function (d) {
+                    alert('error');
+                }
+            });
             $('#q').on('keyup',function (e) {
                 e.preventDefault();
                 var q = $('#q').val();
@@ -94,6 +92,7 @@
 
             $('.search-button').on('click', function (e) {
                 e.preventDefault();
+
                 var q = $('#q').val();
                 $.ajax({
                     url: '{{url('/admin/report-type/open-item/data')}}',
