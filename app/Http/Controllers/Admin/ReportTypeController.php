@@ -7,16 +7,28 @@ use App\Models\Invoice;
 use App\Models\OpenItem;
 use App\Models\Production;
 use App\Models\Purchase;
-use App\Models\Report;
+use App\Models\ReportType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ReportTypeController extends Controller
 {
-    public function openItemList($limit=100){
-        $rows = OpenItem::orderBy('id','ASC')->paginate($limit);
-        return view('pos.report.report_type.open.list',['rows'=>$rows]);
+    public function openItemData(Request $request){
+        $q = $request->q;
+
+        $rows = ReportType::openItemReport($request);
+        $rows->appends([
+            'q'=>$q
+        ]);
+
+        return view('pos.report.report_type.open.data',['rows'=>$rows]);
     }
+    public function openItemList(){
+
+        return view('pos.report.report_type.open.list');
+    }
+
+
     public function openItemDetail($limit=100){
         $rows = OpenItem::orderBy('id','ASC')->paginate($limit);
         return view('pos.report.report_type.open.detail',['rows'=>$rows]);
@@ -67,5 +79,9 @@ class ReportTypeController extends Controller
     public function saleProfit($limit=100){
         $rows = Invoice::orderBy('id','ASC')->paginate($limit);
         return view('pos.report.report_type.sale.profit',['rows'=>$rows]);
+    }
+
+    public function productInOut(){
+        return view('pos.report.report_type.product.in_out_stock');
     }
 }

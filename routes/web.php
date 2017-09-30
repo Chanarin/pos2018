@@ -75,6 +75,9 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin']
 
     //=========report type get by select=======
     Route::get('/report-type/open-item/list','ReportTypeController@openItemList');
+    Route::get('/report-type/open-item/data','ReportTypeController@openItemData');
+
+
     Route::get('/report-type/open-item/detail','ReportTypeController@openItemDetail');
 
     Route::get('/report-type/purchase-item/list','ReportTypeController@purchaseItemList');
@@ -91,4 +94,7 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin']
     Route::get('/report-type/sale/discount','ReportTypeController@saleDiscount');
     Route::get('/report-type/sale/monthly','ReportTypeController@saleMonthly');
     Route::get('/report-type/sale/profit','ReportTypeController@saleProfit');
+
+    Route::get('/report-type/product/in-out','ReportTypeController@productInOut');
+
 });

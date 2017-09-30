@@ -96,13 +96,27 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-bar-chart"></i>
-                <span>{{_t('Table Report')}}</span>
+                <span>{{_t('Reports')}}</span>
                 <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
               </a>
               <ul class="treeview-menu">
                 <li><a target="_blank" href="{{ url(config('backpack.base.route_prefix', 'admin') . '/view-report') }}"><i class="fa fa-fw fa-book"></i> <span>{{_t('Table Report')}}</span></a></li>
+
+                <li class="treeview">
+                  <a href="#">
+                    <i class="fa fa-fw fa-book"></i>
+                    <span>{{_t('Product Report')}}</span>
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li><a href="{{url('/admin/report-type/product/in-out')}}"><i class="fa fa-fw fa-gavel"></i> <span>{{_t('Products In/Out')}}</span></a></li>
+                  </ul>
+                </li>
+
                 <li class="treeview">
                   <a href="#">
                     <i class="fa fa-fw fa-book"></i>

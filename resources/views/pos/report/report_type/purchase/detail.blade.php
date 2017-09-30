@@ -1,25 +1,32 @@
 @extends('backpack::layout')
 @section('graph_style')
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/plugins/morris/morris.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/dist/css/skins/_all-skins.min.css">
 @endsection
 @section('header')
-    <section class="content-header">
-        <h1>
-            {{_t('Purchase Item Detail') }}
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-            <li class="active">{{_t('purchase item detail')}}</li>
-        </ol>
-    </section>
+<section class="content-header">
+<h1>
+    {{_t('Purchase Item Detail') }}
+</h1>
+<ol class="breadcrumb">
+    <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
+    <li class="active">{{_t('purchase item detail')}}</li>
+</ol>
+</section>
 @endsection
 @section('content')
-
+    <style>
+        .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+            border-top: 1px solid #CCCCCC;
+        }
+    </style>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <!-- /.box-header -->
-                <div class="box-body">
+                <div class="box-body table-responsive">
                     @if(count($rows) > 0)
                         <table class="" style="width: 100%">
 
@@ -52,9 +59,9 @@
                                     </td>
                                 </tr>
                                 {{--  -------------------------------------------------------------------------------------}}
-                                <table width="100%">
+                                <table width="100%" class="table table-hover" border="1">
                                     <thead class="border" style="background: #CCCCCC">
-                                    <tr style="border: 1px solid #CCC;">
+                                    <tr style="background-color: #7B7777; color: white; border-color: #CCCCCC">
                                         <th class="text-center">{{_t('No')}}</th>
                                         <th class="text-center">{{_t('Code')}}</th>
                                         <th class="text-center">{{_t('Name')}}</th>
@@ -62,6 +69,7 @@
                                         <th class="text-center">{{_t('Qty')}}</th>
                                         <th class="text-center">{{_t('Cost')}}</th>
                                         <th class="text-center">{{_t('Total')}}</th>
+
                                     </tr>
                                     </thead>
                                     <tbody class="border" style=" border: 1px solid #CCC;">
@@ -80,7 +88,6 @@
                                             <td class="text-left">{{$rd->item_code}}</td>
                                             <td class="text-left">{{$rd->title}}</td>
                                             <td class="text-left">{{isset($units->name)?$units->name:''}}</td>
-
                                             <td class="text-right">{{$rd->qty}}</td>
                                             <td class="text-right">$ {{number_format($rd->cost,2)}}</td>
                                             <td class="text-right">$ {{number_format($rd->cost*$rd->qty,2)}}</td>
@@ -90,7 +97,7 @@
                                                 @php
                                                     $unit = \App\Models\Unit::where('id',$r->unit)->first();
                                                 @endphp
-                                                <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif ">
+                                                <tr class="item" style="height: 30px; @if($oe % 2 > 0) background: rgba(240,255,0,0.29); @endif">
                                                     <td class="text-left"></td>
                                                     <td class="text-left">{{$r->item_code}}</td>
                                                     <td class="text-left">{{$r->title}}</td>
@@ -103,15 +110,15 @@
                                         @endif
                                     @endforeach
                                     </tbody>
-                                    <tr>
-                                        <td colspan="7">
-                                            <br>
-                                            <hr>
-                                            <br>
-                                        </td>
-
-                                    </tr>
                                 </table>
+                                <tr>
+                                    <td colspan="7">
+                                        <br>
+                                        <hr>
+                                        <br>
+                                    </td>
+
+                                </tr>
                             @endforeach
                             <table width="100%">
                                 <tr style="color: #a00816; font-weight: bold;">
@@ -134,7 +141,6 @@
                         <h2 align="center">{{_t('Not Record Found')}}</h2>
 
                     @endif
-
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -145,6 +151,6 @@
 
 @endsection
 @section('graph_script')
-
+    <script src="{{ asset('vendor/adminlte/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
 @endsection
 

@@ -1,8 +1,9 @@
 @extends('backpack::layout')
 @section('graph_style')
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/bootstrap/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/plugins/datatables/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/dist/css/skins/_all-skins.min.css">
 @endsection
 @section('header')
     <section class="content-header">
@@ -19,12 +20,16 @@
     </section>
 @endsection
 @section('content')
-
+    <style>
+        .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+            border-top: 1px solid #CCCCCC;
+        }
+    </style>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <!-- /.box-header -->
-                <div class="box-body">
+                <div class="box-body table-responsive">
                     @if(count($rows) > 0)
                         <table class="" style="width: 100%">
 
@@ -56,9 +61,9 @@
                                     </td>
                                 </tr>
                                 {{--  -------------------------------------------------------------------------------------}}
-                                <table width="100%">
+                                <table width="100%" class="table table-hover" border="1">
                                     <thead class="border" style="background: #CCCCCC">
-                                    <tr style="border: 1px solid #CCC;">
+                                    <tr style="background-color: #7B7777; color: white; border-color: #CCCCCC">
                                         <th class="text-center">{{_t('No')}}</th>
                                         <th class="text-center">{{_t('Code')}}</th>
                                         <th class="text-center">{{_t('Name')}}</th>
@@ -107,15 +112,15 @@
                                         @endif
                                     @endforeach
                                     </tbody>
-                                    <tr>
-                                        <td colspan="7">
-                                            <br>
-                                            <hr>
-                                            <br>
-                                        </td>
-
-                                    </tr>
                                 </table>
+                                <tr>
+                                    <td colspan="7">
+                                        <br>
+                                        <hr>
+                                        <br>
+                                    </td>
+
+                                </tr>
                             @endforeach
                             <table width="100%">
                                 <tr style="color: #a00816; font-weight: bold;">
@@ -148,6 +153,6 @@
 
 @endsection
 @section('graph_script')
-
+    <script src="{{ asset('vendor/adminlte/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
 @endsection
 
