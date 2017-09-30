@@ -186,6 +186,7 @@
                             tr.find('.unit{{$r_id}}').val(data.unit);
                             tr.find('.num_qty{{$r_id}}').val(data.num_qty);
                             tr.find('.price{{$r_id}}').val(data.price);
+                            tr.find('.cost{{$r_id}}').val(data.cost);
                             c_c++;
                             var subid = $(this).data('subid');
                             var mainid = $(this).data('mainid');
@@ -371,12 +372,13 @@
                     async: false,
                     dataType: "json",
                     success: function (data) {
-                        //dd(data);
+
                         tr.find('.item_code{{$r_id}}').val(data.item_code);
                         tr.find('.title{{$r_id}}').val(data.title);
                         tr.find('.unit{{$r_id}}').val(data.unit);
                         tr.find('.num_qty{{$r_id}}').val(data.num_qty);
                         tr.find('.price{{$r_id}}').val(data.price);
+                        tr.find('.cost{{$r_id}}').val(data.cost);
 
                         //==========================================
                         //==========================================
