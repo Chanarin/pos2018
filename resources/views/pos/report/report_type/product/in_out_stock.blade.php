@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/dist/css/skins/_all-skins.min.css">
 
+    <link rel="stylesheet" href="{{asset('vendor/adminlte/plugins/daterangepicker/daterangepicker.css')}}">
+
 @endsection
 @section('header')
     <section class="content-header">
@@ -26,64 +28,147 @@
                         <h3 class="box-title"></h3>
 
                         <div class="box-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                            <div class="input-group input-group-sm" style="width: 400px;">
+                                <input type="text" id="q" name="table_search" class="form-control pull-right" placeholder="Search">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" id="reservation">
+                                        <input type="hidden" id="from-date">
+                                        <input type="hidden" id="to-date">
+                                        <span class="input-group-btn">
+                                      <button type="button" class="btn btn-info btn-flat" id="search-report-by-date">{{_t('Search')}}</button>
+                                      {{--<button type="button" class="btn btn-info btn-flat" id="btnPrint">{{_t('Print')}}</button>--}}
+                                    </span>
 
-                                <div class="input-group-btn">
-                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <style>
                         .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
                             border-top: 1px solid #2C2C2C;
+                            text-align: center;
                         }
                     </style>
-                    <div class="box-body table-responsive">
-                        <table class="table table-hover" border="1">
-                            <tr style="background-color: #7B7777; color: white;">
-                                <th>ID</th>
-                                <th>User</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Reason</th>
-                            </tr>
-                            <tr>
-                                <td>183</td>
-                                <td>John Doe</td>
-                                <td>11-7-2014</td>
-                                <td><span class="label label-success">Approved</span></td>
-                                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                            </tr>
-                            <tr style="background-color: #428BCA; color: white;">
-                                <th>[ID]</th>
-                                <th>[User]</th>
-                                <th>[Date]</th>
-                                <th>[Status]</th>
-                                <th>[Reason]</th>
-                            </tr>
-                        </table>
+                    <div class="box-body table-responsive report-item-list">
+                       {{--=--}}
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-    {{--<tr>--}}
-        {{--<th rowspan="2">Location <span style="color:orange;">/</span> Category <span style="color:orange;">/</span> Item</th>--}}
-        {{--<th rowspan="2">Begin</th>--}}
-        {{--<th rowspan="2">Total In</th>--}}
-        {{--<th colspan="1">OUT</th>--}}
-        {{--<th rowspan="2">Total Out</th>--}}
-        {{--<th rowspan="2">Balance</th>--}}
-    {{--</tr>--}}
-    {{--<tr class="shead">--}}
-        {{--<th>Sale</th>--}}
-    {{--</tr>--}}
 @endsection
 @section('graph_script')
-    <script src="{{ asset('vendor/adminlte/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+
+    <script src="{{ asset('vendor/adminlte') }}/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{ asset('vendor/adminlte') }}/plugins/pace/pace.min.js"></script>
+    <script src="{{ asset('vendor/adminlte') }}/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="{{ asset('vendor/adminlte') }}/plugins/fastclick/fastclick.js"></script>
+    <script src="{{ asset('vendor/adminlte') }}/dist/js/app.min.js"></script>
+
+    <script src="{{ asset('vendor/adminlte') }}/plugins/iCheck/icheck.min.js"></script>
+    <script src="{{ asset('vendor/adminlte') }}/dist/js/demo.js"></script>
+    <script src="{{ asset('vendor/adminlte') }}/plugins/select2/select2.full.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+
+    <script src="{{asset('vendor/adminlte/plugins/daterangepicker/daterangepicker.js')}}"></script>
+    <script src="{{asset('vendor/adminlte/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
+
+
+    <script src="{{asset('vendor/adminlte/plugins/daterangepicker/daterangepicker.js')}}"></script>
+    <script src="{{asset('vendor/adminlte/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
+
+        <script src="{{ asset('vendor/adminlte/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+        <script type="text/javascript">
+            $(function () {
+
+                var start = moment().subtract(29, 'days');
+                var end = moment();
+                function cb(start, end) {
+                    $('#reservation span').html(start.format('YYYY/MM/DD') + ' - ' + end.format('YYYY/MM/DD'));
+                    $('#from-date').val(start.format('YYYY/MM/DD'));
+                    $('#to-date').val(end.format('YYYY/MM/DD'));
+                }
+                $('#reservation').daterangepicker({
+                    startDate: start,
+                    endDate: end,
+                    locale: {
+                        format: 'YYYY/MM/DD'
+                    },
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'This Year': [moment().startOf('year'), moment().endOf('year')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    }
+                }, cb).on('apply.daterangepicker', function (ev, picker) {
+                    var st = (picker.startDate.format('YYYY/MM/DD'));
+                    var ed = (picker.endDate.format('YYYY/MM/DD'));
+                    $('#from-date').val(st);
+                    $('#to-date').val(ed);
+                });
+                cb(start, end);
+//================================
+                $.ajax({
+                    url: '{{url('/admin/report-type/product/in-out/data')}}',
+                    type: 'GET',
+                    async: false,
+                    dataType: 'html',
+                    data: {
+                        from_date: '',
+                        to_date: '',
+                        q:''
+                    },
+                    success: function (d) {
+                        $('.report-item-list').html(d);
+                    },
+                    error: function (d) {
+                        alert('error');
+                    }
+                });
+                $('#search-report-by-date').on('click', function (e) {
+                    e.preventDefault();
+                    var from_date = $('#from-date').val();
+                    var to_date = $('#to-date').val();
+                    var q = $('#q').val();
+                        $.ajax({
+                            url: '{{url('/admin/report-type/product/in-out/data')}}',
+                            type: 'GET',
+                            async: false,
+                            dataType: 'html',
+                            data: {
+                                from_date: from_date,
+                                to_date: to_date,
+                                q:q
+                            },
+                            success: function (d) {
+                                $('.report-item-list').html(d);
+                            },
+                            error: function (d) {
+                                alert('error');
+                            }
+                        });
+
+                });
+                $('body').delegate('.my-paginate ul li a', 'click', function (e) {
+                    e.preventDefault();
+                    var report_url = $(this).prop('href');
+                    $.ajax({
+                        url: report_url,
+                        type: 'GET',
+                        dataType: 'html',
+                        success: function (d) {
+                            $('.report-item-list').html(d);
+                        },
+                        error: function (d) {
+                            alert('error');
+                        }
+                    });
+                });
+            });
+        </script>
 @endsection
 

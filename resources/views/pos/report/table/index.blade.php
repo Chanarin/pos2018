@@ -7,14 +7,10 @@
             {{--breadcrumb--}}
             <ol>
                 <div class="col-md-10" >
-                    <!-- Date range -->
-                    <div class="col-md-4 input-group-sm">
-                        <input type="text" id="q" class="form-control pull-right" placeholder="{{_t('search here')}}...">
-                    </div>
-                    <div class="col-md-8 text-center">
+                    <div class="col-md-12 text-center">
                         <div class="form-group">
-
                             <div class="input-group input-group-sm">
+                                <input type="text" id="q" class="form-control pull-right" placeholder="{{_t('search here')}}...">
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>

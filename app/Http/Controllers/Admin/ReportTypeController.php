@@ -27,8 +27,6 @@ class ReportTypeController extends Controller
 
         return view('pos.report.report_type.open.list');
     }
-
-
     public function openItemDetail($limit=100){
         $rows = OpenItem::orderBy('id','ASC')->paginate($limit);
         return view('pos.report.report_type.open.detail',['rows'=>$rows]);
@@ -81,7 +79,29 @@ class ReportTypeController extends Controller
         return view('pos.report.report_type.sale.profit',['rows'=>$rows]);
     }
 
+    public function productInOutData(Request $request){
+        $from_date = isset($request->from_date)?$request->from_date:Carbon::now()->format('Y-m-d');
+        $to_date = isset($request->to_date)?$request->to_date:Carbon::now()->format('Y-m-d');
+        $q = $request->q;
+
+        $report = ReportType::productInOut($request);
+
+        $rows = $report['rows'];
+
+        $rows->appends([
+            'from_date'=>$from_date,
+            'to_date'=>$to_date,
+            'q'=>$q
+        ]);
+
+        return view('pos.report.report_type.product.data',['rows'=>$rows,'from_date' => $from_date, 'to_date' => $to_date,
+            'stocks' => $report['stocks']
+           ]);
+    }
     public function productInOut(){
+
         return view('pos.report.report_type.product.in_out_stock');
     }
+
+
 }
