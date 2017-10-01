@@ -74,26 +74,34 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin']
     // [...] other routes
 
     //=========report type get by select=======
+    Route::get('/report-type/sale/customer','ReportTypeController@saleCustomer');
+    Route::get('/report-type/sale/customer/data','ReportTypeController@saleCustomerData');
+
+    Route::get('/report-type/sale/discount','ReportTypeController@saleDiscount');
+    Route::get('/report-type/sale/discount/data','ReportTypeController@saleDiscountData');
+
+    Route::get('/report-type/sale/daily','ReportTypeController@saleDaily');
+    Route::get('/report-type/sale/monthly','ReportTypeController@saleMonthly');
+
+
+    Route::get('/report-type/sale/profit','ReportTypeController@saleProfit');
+    Route::get('/report-type/sale/profit/data','ReportTypeController@saleProfitData');
+
     Route::get('/report-type/open-item/list','ReportTypeController@openItemList');
-    Route::get('/report-type/open-item/data','ReportTypeController@openItemData');
-
-
+    Route::get('/report-type/open-item/list/data','ReportTypeController@openItemListData');
     Route::get('/report-type/open-item/detail','ReportTypeController@openItemDetail');
 
     Route::get('/report-type/purchase-item/list','ReportTypeController@purchaseItemList');
+    Route::get('/report-type/purchase-item/list/data','ReportTypeController@purchaseItemListData');
     Route::get('/report-type/purchase-item/detail','ReportTypeController@purchaseItemDetail');
 
     Route::get('/report-type/production-item/list','ReportTypeController@productionItemList');
+    Route::get('/report-type/production-item/list/data','ReportTypeController@productionItemListData');
     Route::get('/report-type/production-item/detail','ReportTypeController@productionItemDetail');
 
     Route::get('/report-type/sale/list','ReportTypeController@saleList');
+    Route::get('/report-type/sale/list/data','ReportTypeController@saleListData');
     Route::get('/report-type/sale/detail','ReportTypeController@saleDetail');
-
-    Route::get('/report-type/sale/customer','ReportTypeController@saleCustomer');
-    Route::get('/report-type/sale/daily','ReportTypeController@saleDaily');
-    Route::get('/report-type/sale/discount','ReportTypeController@saleDiscount');
-    Route::get('/report-type/sale/monthly','ReportTypeController@saleMonthly');
-    Route::get('/report-type/sale/profit','ReportTypeController@saleProfit');
 
     Route::get('/report-type/product/in-out/data','ReportTypeController@productInOutData');
     Route::get('/report-type/product/in-out','ReportTypeController@productInOut');

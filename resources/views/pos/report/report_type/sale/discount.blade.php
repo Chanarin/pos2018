@@ -27,10 +27,10 @@
 
                     <div class="box-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                            <input type="text" id="q" name="table_search" class="form-control pull-right" placeholder="{{_t('Search')}}">
 
                             <div class="input-group-btn">
-                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                <button type="submit" class="btn btn-default search-button"><i class="fa fa-search"></i></button>
                             </div>
                         </div>
                     </div>
@@ -40,85 +40,94 @@
                         border-top: 1px solid #CCCCCC;
                     }
                 </style>
-                @if(count($rows) > 0)
-                    <div class="box-body table-responsive">
 
-                        <table class="table table-hover" border="1" style="border-color: #CCCCCC">
-                            <tr style="background-color: #7B7777; color: white;border-color: #CCCCCC">
+                    <div class="box-body table-responsive show-item-list">
 
-                                <th>{{_t('No')}}</th>
-                                <th>{{_t('Invoice Number')}}</th>
-                                <th>{{_t('Date')}}</th>
-                                <th>{{_t('Customer')}}</th>
-                                <th>{{_t('phone')}}</th>
-                                <th>{{_t('Deposit')}}</th>
-                                <th>{{_t('Complete Price')}}</th>
-                                <th>{{_t('Subtotal')}}</th>
-                                <th>{{_t('Discount')}}</th>
-                                <th>{{_t('Total Payable')}}</th>
-                            </tr>
-
-                            @php
-                                $count = 1;
-                                $total_deposit = 0;
-                                $complete_price = 0;
-                                $total_amount = 0;
-                                $total_discount = 0;
-                                $total_payable = 0;
-                                $total_paid = 0;
-                                $total_remaining = 0;
-                            @endphp
-
-                            @foreach($rows as $row)
-                                @php
-                                    $total_deposit+= ($row->deposit);
-                                    $complete_price+= ($row->complete_price);
-                                    $total_amount+= ($row->total_amt);
-                                    $total_discount+= ($row->total_discount);
-                                    $total_payable+= ($row->total_payable);
-                                @endphp
-                                <tr style="@if($loop->index % 2 > 0) background-color: #f1f1f1; @endif">
-                                    <td class="text-left">{{ (($rows->currentPage()-1)*$rows->perPage())+$count++ }}</td>
-                                    <td>{{$row->invoice_number }}</td>
-                                    <td>{{\Carbon\Carbon::parse($row->_date_)->format('d/m/Y') }}</td>
-                                    <td>{{$row->customer->name}}</td>
-                                    <td>{{$row->customer->phone}}</td>
-                                    <td>$ {{number_format($row->deposit ,2)}}</td>
-                                    <td>$ {{number_format($row->complete_price ,2)}}</td>
-                                    <td>$ {{number_format($row->total_amt ,2)}}</td>
-                                    <td>$ {{number_format($row->total_discount ,2)}}</td>
-                                    <td>$ {{number_format($row->total_payable ,2)}}</td>
-                                </tr>
-                            @endforeach
-                            <tr style="background-color: #428BCA; color: white;">
-                                <th style="text-align: right;">Total</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-
-                                <td style="padding-left: 15px;">$ {{number_format($total_deposit,2)}} </td>
-                                <td style="padding-left: 15px;">$ {{number_format($complete_price,2)}} </td>
-                                <td style="padding-left: 15px;">$ {{number_format($total_amount,2)}} </td>
-                                <td style="padding-left: 15px;">$ {{number_format($total_discount,2)}} </td>
-                                <td style="padding-left: 15px;">$ {{number_format($total_payable,2)}} </td>
-                            </tr>
-                        </table>
-
-                        <div align="center" class="my-paginate" >
-                            {!! $rows->links() !!}
-                        </div>
                     </div>
-                @else
-                    <h2 align="center">{{_t('Not Record Found')}}</h2>
-                @endif
+
             </div>
         </div>
     </div>
 @endsection
 @section('graph_script')
     <script src="{{ asset('vendor/adminlte/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                url: '{{url('/admin/report-type/sale/discount/data')}}',
+                type: 'GET',
+                async: false,
+                dataType: 'html',
+                data: {
+                    q:''
+                },
+                success: function (d) {
+                    $('.show-item-list').html(d);
+                },
+                error: function (d) {
+                    alert('error');
+                }
+            });
+            $('#q').on('keyup',function (e) {
+                e.preventDefault();
+                var q = $('#q').val();
+                $.ajax({
+                    url: '{{url('/admin/report-type/sale/discount/data')}}',
+                    type: 'GET',
+                    async: false,
+                    dataType: 'html',
+                    data: {
+                        q:q
+                    },
+                    success: function (d) {
+                        $('.show-item-list').html(d);
+                    },
+                    error: function (d) {
+                        alert('error');
+                    }
+                });
+            });
+
+            $('.search-button').on('click', function (e) {
+                e.preventDefault();
+
+                var q = $('#q').val();
+                $.ajax({
+                    url: '{{url('/admin/report-type/sale/discount/data')}}',
+                    type: 'GET',
+                    async: false,
+                    dataType: 'html',
+                    data: {
+                        q:q
+                    },
+                    success: function (d) {
+                        $('.show-item-list').html(d);
+                    },
+                    error: function (d) {
+                        alert('error');
+                    }
+                });
+            });
+
+            $('body').delegate('.my-paginate ul li a', 'click', function (e) {
+                e.preventDefault();
+                var report_url = $(this).prop('href');
+                $.ajax({
+                    url: report_url,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function (d) {
+                        $('.show-item-list').html(d);
+                    },
+                    error: function (d) {
+                        alert('error');
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
+
 
 {{--<td><span class="label label-success">Approved</span></td>--}}
 

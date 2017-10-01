@@ -3,13 +3,13 @@
     <tr style="background-color: #7B7777; color: white;">
 
 
-        <th>No</th>
-        <th>Code</th>
-        <th>Name</th>
-        <th>Begin</th>
-        <th>Total In</th>
-        <th>Total Out</th>
-        <th>Balance</th>
+        <th>{{_t('No')}}</th>
+        <th>{{_t('Code')}}</th>
+        <th>{{_t('Name')}}</th>
+        <th>{{_t('Begin')}}</th>
+        <th>{{_t('Total In')}}</th>
+        <th>{{_t('Total Out')}}</th>
+        <th>{{_t('Balance')}}</th>
     </tr>
     @php
         $count = 1;
@@ -36,9 +36,9 @@
     </tr>
     @endforeach
     <tr style="background-color: #428BCA; color: white;">
-        <th>[No]</th>
-        <th>[Code]</th>
-        <th>[Name]</th>
+        <th>[{{_t('No')}}]</th>
+        <th>[{{_t('Code')}}]</th>
+        <th>[{{_t('Name')}}]</th>
         <th>{{$total_begin}}</th>
         <th>{{$total_in}}</th>
         <th>{{$total_out}}</th>

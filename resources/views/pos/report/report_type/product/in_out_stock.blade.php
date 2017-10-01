@@ -11,11 +11,11 @@
 @section('header')
     <section class="content-header">
         <h1>
-            {{_t('Open Item List') }}
+            {{_t('Product In/Out Stock') }}
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-            <li class="active">{{_t('open item list')}}</li>
+            <li class="active">{{_t('product in/out stock')}}</li>
         </ol>
     </section>
 @endsection
@@ -29,17 +29,17 @@
 
                         <div class="box-tools">
                             <div class="input-group input-group-sm" style="width: 400px;">
-                                <input type="text" id="q" name="table_search" class="form-control pull-right" placeholder="Search">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input type="text" class="form-control pull-right" id="reservation">
-                                        <input type="hidden" id="from-date">
-                                        <input type="hidden" id="to-date">
-                                        <span class="input-group-btn">
-                                      <button type="button" class="btn btn-info btn-flat" id="search-report-by-date">{{_t('Search')}}</button>
-                                      {{--<button type="button" class="btn btn-info btn-flat" id="btnPrint">{{_t('Print')}}</button>--}}
-                                    </span>
+                                <input type="text" id="q" name="table_search" class="form-control pull-right" placeholder="{{_t('Search')}}">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                    <input type="text" class="form-control pull-right" id="reservation">
+                                    <input type="hidden" id="from-date">
+                                    <input type="hidden" id="to-date">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-info btn-flat" id="search-report-by-date">{{_t('Search')}}</button>
+                              {{--<button type="button" class="btn btn-info btn-flat" id="btnPrint">{{_t('Print')}}</button>--}}
+                                </span>
 
                             </div>
                         </div>

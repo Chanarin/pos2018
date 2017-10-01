@@ -27,7 +27,7 @@
 
                     <div class="box-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" id="q" name="table_search" class="form-control pull-right" placeholder="Search">
+                            <input type="text" id="q" name="table_search" class="form-control pull-right" placeholder="{{_t('Search')}}">
 
                             <div class="input-group-btn">
                                 <button type="submit" class="btn btn-default search-button"><i class="fa fa-search"></i></button>
@@ -41,7 +41,7 @@
                     }
                 </style>
 
-                <div class="box-body table-responsive open-item-list">
+                <div class="box-body table-responsive show-item-list">
 
 
 
@@ -56,7 +56,7 @@
     <script>
         $(function () {
             $.ajax({
-                url: '{{url('/admin/report-type/open-item/data')}}',
+                url: '{{url('/admin/report-type/open-item/list/data')}}',
                 type: 'GET',
                 async: false,
                 dataType: 'html',
@@ -64,7 +64,7 @@
                     q:''
                 },
                 success: function (d) {
-                    $('.open-item-list').html(d);
+                    $('.show-item-list').html(d);
                 },
                 error: function (d) {
                     alert('error');
@@ -74,7 +74,7 @@
                 e.preventDefault();
                 var q = $('#q').val();
                 $.ajax({
-                    url: '{{url('/admin/report-type/open-item/data')}}',
+                    url: '{{url('/admin/report-type/open-item/list/data')}}',
                     type: 'GET',
                     async: false,
                     dataType: 'html',
@@ -82,7 +82,7 @@
                         q:q
                     },
                     success: function (d) {
-                        $('.open-item-list').html(d);
+                        $('.show-item-list').html(d);
                     },
                     error: function (d) {
                         alert('error');
@@ -95,7 +95,7 @@
 
                 var q = $('#q').val();
                 $.ajax({
-                    url: '{{url('/admin/report-type/open-item/data')}}',
+                    url: '{{url('/admin/report-type/open-item/list/data')}}',
                     type: 'GET',
                     async: false,
                     dataType: 'html',
@@ -103,7 +103,7 @@
                         q:q
                     },
                     success: function (d) {
-                        $('.open-item-list').html(d);
+                        $('.show-item-list').html(d);
                     },
                     error: function (d) {
                         alert('error');
@@ -119,7 +119,7 @@
                     type: 'GET',
                     dataType: 'html',
                     success: function (d) {
-                        $('.open-item-list').html(d);
+                        $('.show-item-list').html(d);
                     },
                     error: function (d) {
                         alert('error');

@@ -27,10 +27,10 @@
 
                     <div class="box-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                            <input type="text" id="q" name="table_search" class="form-control pull-right" placeholder="{{_t('Search')}}">
 
                             <div class="input-group-btn">
-                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                <button type="submit" class="btn btn-default search-button"><i class="fa fa-search"></i></button>
                             </div>
                         </div>
                     </div>
@@ -40,75 +40,92 @@
                         border-top: 1px solid #CCCCCC;
                     }
                 </style>
-                @if(count($rows) > 0)
-                    <div class="box-body table-responsive">
 
-                        <table class="table table-hover" border="1" style="border-color: #CCCCCC">
-                            <tr style="background-color: #7B7777; color: white;border-color: #CCCCCC">
-                                <th>{{_t('No')}}</th>
-                                <th>{{_t('Customer')}}</th>
-                                <th>{{_t('Purchase No')}}</th>
-                                <th>{{_t('Date')}}</th>
-                                <th>{{_t('Description')}}</th>
-                                <th>{{_t('Total Qty')}}</th>
-                                <th>{{_t('Total Cost')}}</th>
-                            </tr>
+                    <div class="box-body table-responsive show-item-list">
 
-                            @php
-                                $count = 1;
-                                $total_all_qty = 0;
-                                $total_all_cost = 0;
-                            @endphp
-
-                            @foreach($rows as $row)
-                                @php
-                                    $total_qty = 0;
-                                    $total_cost = 0;
-                                   $purchase_details = \App\Models\PurchaseDetail::where('ref_id','=',$row->id)->get();
-                                @endphp
-                                @foreach($purchase_details as $purchase_detail)
-                                    @php
-                                        $total_qty+= ($purchase_detail->qty);
-                                        $total_cost+= ($purchase_detail->cost);
-
-                                        $total_all_qty+= ($purchase_detail->qty);
-                                        $total_all_cost+= ($purchase_detail->cost);
-                                    @endphp
-                                @endforeach
-                                <tr style="@if($loop->index % 2 > 0) background-color: #f1f1f1; @endif">
-                                    <td>{{ (($rows->currentPage()-1)*$rows->perPage())+$count++ }}</td>
-                                    <td>{{$row->customer->name }}</td>
-                                    <td>{{$row->purchase_number }}</td>
-                                    <td>{{\Carbon\Carbon::parse($row->_date_)->format('d/m/Y') }}</td>
-                                    <td>{{$row->description}}</td>
-                                    <td>{{number_format($total_qty)}} @if($total_qty > 1) {{_t('Units')}}  @else {{_t('Unit')}} @endif</td>
-                                    <td>$ {{number_format($total_cost,2)}}</td>
-                                </tr>
-                            @endforeach
-                            <tr style="background-color: #428BCA; color: white;">
-                                <th style="text-align: right;">[{{_t('Total')}}]</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th style="padding-left: 15px;">{{$total_all_qty}} @if($total_all_qty > 1) {{_t('Units')}}  @else {{_t('Unit')}} @endif </th>
-                                <th style="padding-left: 15px;">$ {{number_format($total_all_cost,2)}}</th>
-                            </tr>
-                        </table>
-
-                        <div align="center" class="my-paginate" >
-                            {!! $rows->links() !!}
-                        </div>
                     </div>
-                @else
-                    <h2 align="center">{{_t('Not Record Found')}}</h2>
-                @endif
+
             </div>
         </div>
     </div>
 @endsection
 @section('graph_script')
     <script src="{{ asset('vendor/adminlte/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                url: '{{url('/admin/report-type/purchase-item/list/data')}}',
+                type: 'GET',
+                async: false,
+                dataType: 'html',
+                data: {
+                    q:''
+                },
+                success: function (d) {
+                    $('.show-item-list').html(d);
+                },
+                error: function (d) {
+                    alert('error');
+                }
+            });
+            $('#q').on('keyup',function (e) {
+                e.preventDefault();
+                var q = $('#q').val();
+                $.ajax({
+                    url: '{{url('/admin/report-type/purchase-item/list/data')}}',
+                    type: 'GET',
+                    async: false,
+                    dataType: 'html',
+                    data: {
+                        q:q
+                    },
+                    success: function (d) {
+                        $('.show-item-list').html(d);
+                    },
+                    error: function (d) {
+                        alert('error');
+                    }
+                });
+            });
+
+            $('.search-button').on('click', function (e) {
+                e.preventDefault();
+
+                var q = $('#q').val();
+                $.ajax({
+                    url: '{{url('/admin/report-type/purchase-item/list/data')}}',
+                    type: 'GET',
+                    async: false,
+                    dataType: 'html',
+                    data: {
+                        q:q
+                    },
+                    success: function (d) {
+                        $('.show-item-list').html(d);
+                    },
+                    error: function (d) {
+                        alert('error');
+                    }
+                });
+            });
+
+            $('body').delegate('.my-paginate ul li a', 'click', function (e) {
+                e.preventDefault();
+                var report_url = $(this).prop('href');
+                $.ajax({
+                    url: report_url,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function (d) {
+                        $('.show-item-list').html(d);
+                    },
+                    error: function (d) {
+                        alert('error');
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
 
 {{--<td><span class="label label-success">Approved</span></td>--}}

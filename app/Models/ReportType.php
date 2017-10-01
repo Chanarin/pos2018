@@ -23,17 +23,8 @@ class ReportType extends Model
 
     static function purchaseItemReport($request,$limit=100)
     {
-        $from_date = isset($request->from_date)?$request->from_date:Carbon::now()->format('Y-m-d');
-        $to_date = isset($request->to_date)?$request->to_date:Carbon::now()->format('Y-m-d');
         $q = $request->q;
-        $report_option = $request->report_option;
-        $m = Purchase::whereBetween('_date_', array($from_date, $to_date));
-
-        if ($report_option == 'between') {
-            $m->whereBetween('_date_', array($from_date, $to_date));
-        } else {
-            $m->where('_date_', '<=', $to_date);
-        }
+        $m = Purchase::orderBy('id','ASC');
 
         if ($q != null && $q != ''){
             $m->where(function ($query) use($q){
@@ -42,21 +33,12 @@ class ReportType extends Model
                 ;
             });
         }
-        return $m->orderBy('id','ASC')->paginate($limit);
+        return $m->paginate($limit);
     }
     static function productionItemReport($request,$limit=100)
     {
-        $from_date = isset($request->from_date)?$request->from_date:Carbon::now()->format('Y-m-d');
-        $to_date = isset($request->to_date)?$request->to_date:Carbon::now()->format('Y-m-d');
         $q = $request->q;
-        $report_option = $request->report_option;
-
-        $m = Production::whereBetween('_date_', array($from_date, $to_date));
-        if ($report_option == 'between') {
-            $m->whereBetween('_date_', array($from_date, $to_date));
-        } else {
-            $m->where('_date_', '<=', $to_date);
-        }
+        $m = Production::orderBy('id','ASC');
 
         if ($q != null && $q != ''){
             $m->where(function ($query) use($q){
@@ -65,21 +47,13 @@ class ReportType extends Model
                 ;
             });
         }
-        return $m->orderBy('id','ASC')->paginate($limit);
+        return $m->paginate($limit);
     }
+
     static function invoiceItemReport($request,$limit=100)
     {
-        $from_date = isset($request->from_date)?$request->from_date:Carbon::now()->format('Y-m-d');
-        $to_date = isset($request->to_date)?$request->to_date:Carbon::now()->format('Y-m-d');
         $q = $request->q;
-        $report_option = $request->report_option;
-
-        $m = Invoice::whereBetween('_date_', array($from_date, $to_date));
-        if ($report_option == 'between') {
-            $m->whereBetween('_date_', array($from_date, $to_date));
-        } else {
-            $m->where('_date_', '<=', $to_date);
-        }
+        $m = Invoice::orderBy('id','ASC');
 
         if ($q != null && $q != ''){
             $m->where(function ($query) use($q){
@@ -88,7 +62,26 @@ class ReportType extends Model
                 ;
             });
         }
-        return $m->orderBy('id','ASC')->paginate($limit);
+        return $m->paginate($limit);
+
+    }
+    static function invoiceDiscountItemReport($request,$limit=100)
+    {
+        $q = $request->q;
+
+
+        $m = Invoice::where('total_discount','<>',null)
+            ->where('total_discount','<>',0);
+
+        if ($q != null && $q != ''){
+            $m->where(function ($query) use($q){
+                $query->where('invoice_number','like',"%{$q}%")
+                    ->orWhere('description','like',"%{$q}%")
+                ;
+            });
+        }
+        return $m->paginate($limit);
+
     }
 
     static function productInOut($request,$limit=100){
