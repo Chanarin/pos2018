@@ -8,11 +8,11 @@
 @section('header')
     <section class="content-header">
         <h1>
-            {{_t('Sale Product Detial') }}
+            {{_t('Sale Report Detial') }}
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-            <li class="active">{{_t('sale product detail')}}</li>
+            <li class="active">{{_t('sale report detail')}}</li>
         </ol>
     </section>
 @endsection

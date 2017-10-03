@@ -5,11 +5,11 @@
 @section('header')
     <section class="content-header">
         <h1>
-            {{_t('Open Item List') }}
+            {{_t('Sale Monthly Report') }}
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-            <li class="active">{{_t('Sale Report Detail')}}</li>
+            <li class="active">{{_t('sale monthly report')}}</li>
         </ol>
     </section>
 @endsection
