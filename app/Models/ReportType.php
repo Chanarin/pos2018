@@ -65,6 +65,37 @@ class ReportType extends Model
         return $m->paginate($limit);
 
     }
+
+    static function invoiceCustomerReport($request,$limit=100)
+    {
+        $q = $request->q;
+        $m = DB::table('customers')->join('invoice','customers.id','invoice.customer_id')
+                ->select('customers.*','invoice.invoice_number','invoice._date_','invoice.description','invoice.customer_note','invoice.payment_note',
+                    'invoice.deposit','invoice.total_amt','invoice.total_discount','invoice.total_payable','invoice.paid','invoice.paid_kh','invoice.exchange_rate',
+                    'invoice.status','invoice.complete_date','invoice.complete_price')
+                ->orderBy('id','ASC');
+        if ($q != null && $q != ''){
+            $m->where(function ($query) use($q){
+                $query->where('name','like',"%{$q}%")
+                    ->orWhere('gender','like',"%{$q}%")
+                    ->orWhere('phone','like',"%{$q}%")
+                    ->orWhere('invoice_number','like',"%{$q}%")
+                    ->orWhere('customer_note','like',"%{$q}%")
+                    ->orWhere('payment_note','like',"%{$q}%")
+                    ->orWhere('deposit','like',"%{$q}%")
+                    ->orWhere('total_amt','like',"%{$q}%")
+                    ->orWhere('total_discount','like',"%{$q}%")
+                    ->orWhere('total_payable','like',"%{$q}%")
+                    ->orWhere('paid','like',"%{$q}%")
+                    ->orWhere('paid_kh','like',"%{$q}%")
+                    ->orWhere('complete_price','like',"%{$q}%")
+                ;
+            });
+        }
+        return $m->paginate($limit);
+
+    }
+
     static function invoiceDiscountItemReport($request,$limit=100)
     {
         $q = $request->q;

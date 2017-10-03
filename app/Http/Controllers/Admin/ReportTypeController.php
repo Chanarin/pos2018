@@ -94,7 +94,7 @@ class ReportTypeController extends Controller
 //=============
     public function saleCustomerData(Request $request){
         $q = $request->q;
-        $rows = ReportType::invoiceItemReport($request);
+        $rows = ReportType::invoiceCustomerReport($request);
         $rows->appends([
             'q'=>$q
         ]);

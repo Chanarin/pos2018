@@ -36,8 +36,8 @@
                 <td class="text-left">{{ (($rows->currentPage()-1)*$rows->perPage())+$count++ }}</td>
                 <td>{{$row->invoice_number }}</td>
                 <td>{{\Carbon\Carbon::parse($row->_date_)->format('d/m/Y') }}</td>
-                <td>{{$row->customer->name}}</td>
-                <td>{{$row->customer->phone}}</td>
+                <td>{{$row->name}}</td>
+                <td>{{$row->phone}}</td>
                 <td>$ {{number_format($row->deposit ,2)}}</td>
                 <td>$ {{number_format($row->complete_price ,2)}}</td>
                 <td>$ {{number_format($row->total_amt ,2)}}</td>
@@ -45,7 +45,7 @@
                 <td>$ {{number_format($row->total_payable ,2)}}</td>
                 <td class="">
                     <div class="text-center">
-                        <a target="_blank" class="tip" title="" href="{{url('/admin/customer-history').'?customer_id='.$row->customer->id}}">
+                        <a target="_blank" class="tip" title="" href="{{url('/admin/customer-history').'?customer_id='.$row->id}}">
                             <span class="label label-primary">View Report</span>
                         </a>
                     </div>
