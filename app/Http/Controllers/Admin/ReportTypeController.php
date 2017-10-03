@@ -103,13 +103,7 @@ class ReportTypeController extends Controller
     public function saleCustomer(){
         return view('pos.report.report_type.sale.customer');
     }
-//=============
-    public function saleDaily(){
-        return view('pos.report.report_type.sale.daily');
-    }
-    public function saleMonthly(){
-        return view('pos.report.report_type.sale.monthly');
-    }
+
 //    ==============
     public function saleProfitData(Request $request,$limit=100){
         $q = $request->q;
@@ -148,5 +142,30 @@ class ReportTypeController extends Controller
         return view('pos.report.report_type.product.in_out_stock');
     }
 
+//=============
+    public function saleDaily(){
+        return view('pos.report.report_type.sale.daily');
+    }
+    public function saleMonthly(){
 
+        return view('pos.report.report_type.sale.monthly');
+    }
 }
+
+//public function monthlyReported(Request $request)
+//{
+//    if (can('monthlyReported')) {
+//        $to_date = $request->to_date;
+//
+//        $date = \DateTime::createFromFormat('Y/m/d', $to_date);
+//        $m = $date->format('n');
+//        $y = $date->format('Y');
+//
+//        $data = Report::getSaleMonthReport($m, $y);
+//
+//        return view('reports.monthly-reported', $data);
+//    } else {
+//        return 'Accessing deny!!';
+//    }
+//
+//}
