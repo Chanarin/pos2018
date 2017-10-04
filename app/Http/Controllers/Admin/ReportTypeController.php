@@ -144,28 +144,11 @@ class ReportTypeController extends Controller
 
 //=============
     public function saleDaily(){
+
         return view('pos.report.report_type.sale.daily');
     }
-    public function saleMonthly(){
+    public function saleMonthly(Request $request){
+            return view('pos.report.report_type.sale.monthly');
 
-        return view('pos.report.report_type.sale.monthly');
     }
 }
-
-//public function monthlyReported(Request $request)
-//{
-//    if (can('monthlyReported')) {
-//        $to_date = $request->to_date;
-//
-//        $date = \DateTime::createFromFormat('Y/m/d', $to_date);
-//        $m = $date->format('n');
-//        $y = $date->format('Y');
-//
-//        $data = Report::getSaleMonthReport($m, $y);
-//
-//        return view('reports.monthly-reported', $data);
-//    } else {
-//        return 'Accessing deny!!';
-//    }
-//
-//}

@@ -126,6 +126,7 @@
                   </span>
                   </a>
                   <ul class="treeview-menu">
+
                     <li><a href="{{url('/admin/report-type/sale/list')}}"><i class="fa fa-fw fa-gavel"></i> <span>{{_t('Sale List')}}</span></a></li>
 
                     <li><a href="{{url('/admin/report-type/sale/detail')}}"><i class="fa fa-fw fa-cart-arrow-down"></i> <span>{{_t('Sale Detail')}}</span></a></li>
@@ -204,6 +205,7 @@
          @endif
 
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/elfinder') }}"><i class="fa fa-files-o"></i> <span>{{_t('File manager')}}</span></a></li>
+
         {{--<li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/setting') }}"><i class="fa fa-cog"></i> <span>{{_t('Settings')}}</span></a></li>--}}
 
         <!-- ======================================= -->

@@ -93,17 +93,13 @@ class ReportType extends Model
             });
         }
         return $m->paginate($limit);
-
     }
 
     static function invoiceDiscountItemReport($request,$limit=100)
     {
         $q = $request->q;
-
-
         $m = Invoice::where('total_discount','<>',null)
             ->where('total_discount','<>',0);
-
         if ($q != null && $q != ''){
             $m->where(function ($query) use($q){
                 $query->where('invoice_number','like',"%{$q}%")
@@ -112,16 +108,12 @@ class ReportType extends Model
             });
         }
         return $m->paginate($limit);
-
     }
-
     static function productInOut($request,$limit=100){
         $from_date = isset($request->from_date)?$request->from_date:Carbon::now()->format('Y-m-d');
         $to_date = isset($request->to_date)?$request->to_date:Carbon::now()->format('Y-m-d');
         $q = $request->q;
-
         $begin = DB::select("SELECT item_id,SUM(qty) as total_qty FROM items_transaction WHERE tran_date < '$from_date' GROUP BY item_id");
-
         $ab = [];
         if(count($begin)>0){
 
@@ -130,11 +122,8 @@ class ReportType extends Model
             }
 
         }
-
-
         $stockin = DB::select("SELECT item_id,SUM(qty) as total_qty FROM items_transaction WHERE tran_date >= '$from_date' 
                 AND tran_date <= '$to_date' AND qty > 0 GROUP BY item_id ");
-
         $ab2 = [];
         if(count($stockin)>0){
 
@@ -143,12 +132,8 @@ class ReportType extends Model
             }
 
         }
-
         $stockout = DB::select("SELECT item_id,SUM(qty) as total_qty FROM items_transaction WHERE tran_date >= '$from_date' 
                 AND tran_date <= '$to_date' AND qty < 0 GROUP BY item_id ");
-
-
-
         $ab3 = [];
         if(count($stockout)>0){
 
@@ -157,10 +142,7 @@ class ReportType extends Model
             }
 
         }
-
-
         $m = Item::orderBy('id','ASC');
-
         if ($q != null && $q != ''){
             $m->where(function ($query) use($q){
                 $query->where('item_code','like',"%{$q}%")
@@ -169,11 +151,7 @@ class ReportType extends Model
                 ;
             });
         }
-
-
-
         $rows = $m->paginate($limit);
-
         $st = [];
         if(count($rows)>0){
             foreach ($rows as $row){
@@ -184,8 +162,6 @@ class ReportType extends Model
                 ];
             }
         }
-
         return ['rows' => $rows , 'stocks' => $st];
-
     }
 }

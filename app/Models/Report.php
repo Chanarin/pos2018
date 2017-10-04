@@ -96,44 +96,4 @@ class Report extends Model
         }
         return $m->orderBy('id','ASC')->paginate($limit);
     }
-//    static function getSaleMonthReport($m,$y){
-//
-//        $sql =
-//
-//        $sql = "SELECT
-//                        rental_details.vehicle_id,
-//                        DATE_FORMAT(rental_details.start_date,'%d%m%Y') as d_key,
-//                        SUM((
-//                        IFNULL(rentals.deposit,0) +
-//                        IFNULL(rentals.total_amount,0) -
-//                        IFNULL(rentals.total_discount,0) +
-//                        IFNULL(rentals.extra_payment,0) +
-//                        IFNULL(rentals.penal,0) +
-//                        IFNULL(rentals.penal,0) -
-//                        IFNULL(rentals.return_deposit,0)
-//                        )) AS amt
-//                        FROM
-//                        rentals
-//                        INNER JOIN rental_details ON rentals.id = rental_details.rental_id
-//                        WHERE MONTH(rental_details.start_date) = {$m} and YEAR(rental_details.start_date) = {$y}
-//                        GROUP BY rental_details.vehicle_id,
-//                        rental_details.start_date";
-//
-//        $rows = DB::select(DB::raw($sql));
-//
-//        $arr = [];
-//        if(count($rows)>0){
-//            foreach ($rows as $row){
-//                $arr[$row->vehicle_id][$row->d_key] = $row->amt;
-//            }
-//        }
-//
-//        $number_of_days_in_month = get_number_of_days_in_month($m,$y);
-//
-//        $rows_v = Vehicle::selectRaw("vehicles.id,
-//                                        vehicles.vehicle_name,
-//                                        vehicles.`engine`")->get();
-//
-//        return ['data' => $arr,'vehicle' => $rows_v,'nd' => $number_of_days_in_month,'m' => $m,'y' => $y];
-//    }
 }
