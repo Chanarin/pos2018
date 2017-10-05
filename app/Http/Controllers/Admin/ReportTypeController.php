@@ -147,8 +147,5 @@ class ReportTypeController extends Controller
 
         return view('pos.report.report_type.sale.daily');
     }
-    public function saleMonthly(Request $request){
-            return view('pos.report.report_type.sale.monthly');
 
-    }
 }

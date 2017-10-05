@@ -80,10 +80,6 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin']
     Route::get('/report-type/sale/discount','ReportTypeController@saleDiscount');
     Route::get('/report-type/sale/discount/data','ReportTypeController@saleDiscountData');
 
-    Route::get('/report-type/sale/daily','ReportTypeController@saleDaily');
-    Route::get('/report-type/sale/monthly','ReportTypeController@saleMonthly');
-
-
     Route::get('/report-type/sale/profit','ReportTypeController@saleProfit');
     Route::get('/report-type/sale/profit/data','ReportTypeController@saleProfitData');
 
@@ -105,5 +101,7 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin']
 
     Route::get('/report-type/product/in-out/data','ReportTypeController@productInOutData');
     Route::get('/report-type/product/in-out','ReportTypeController@productInOut');
+
+    Route::get('/report-type/sale/daily','ReportTypeController@saleDaily');
 
 });

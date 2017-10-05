@@ -118,8 +118,6 @@
 
     @yield('before_scripts')
 
-    <!-- jQuery 2.2.0 -->
-    {{--<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>--}}
     <script src="{{asset('/pos/sweet-alert/')}}/sweetalert-dev.js"></script>
     <link rel="stylesheet" href="{{asset('/pos/sweet-alert/')}}/sweetalert.css">
     <script src="{{asset('/pos/jquery/jquery-2.2.0.min.js')}}"></script>

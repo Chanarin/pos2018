@@ -90,6 +90,14 @@
                     <style>
                         /*========= item add to invoice==*/
                         .table-show-pro{
+                                width:100%;
+                                overflow:auto;
+                                height:350px;
+                                text-align: center;
+                                border-bottom: #ffffff;
+                                position: absolute;
+                            }
+                        .table-show-pro-a{
                             width:100%;
                             overflow:auto;
                             height:350px;
@@ -97,6 +105,11 @@
                             border-bottom: #ffffff;
                             position: absolute;
                         }
+
+
+
+
+
                         /*========= show item list ==*/
                         .items-style{
                             padding-top: 20px;
@@ -121,7 +134,7 @@
                                 </thead>
                             </table>
                         </div>
-                        <div class="table-show-pro">
+                        <div class="table-show-pro" id="table-show-pro">
                             <table style="width:100%;" class="show-order-item" >
         {{--==============================item add ===============--}}
                             </table>
@@ -219,40 +232,40 @@
                 </div>
 
                 <div id="right-section">
-                <div class="col-md-12 cat-items-style">
-                    <div id="slider-2" class="slider slide-shadow">
-                        <div class="slider-wrapper">
-                            @foreach($categories as $category)
-                                <div class="slide" style="padding-right: 5px; padding-left: 5px;">
-                                    <a href="#" data-id="{{ $category->id }}" class="item-by-category active">
-                                        <span>
-                                        <i>
-                                         @php
-                                             $img = json_decode($category->image);
-                                         @endphp
-                                            @if(count($img)>0)
-                                                <img src="{{url('img/cache/original/'.\App\Helpers\Glb::get_basename($img[0]))}}" width="60" height="60">
-                                            @endif
-                                        </i>
-                                        </span>
-                                            <br>
-                                        <span class="fon-size"><b>{{$category->title}}</b></span>
-                                    </a>
-                                </div>
-                            @endforeach
+                    <div class="col-md-12 cat-items-style">
+                        <div id="slider-2" class="slider slide-shadow">
+                            <div class="slider-wrapper">
+                                @foreach($categories as $category)
+                                    <div class="slide" style="padding-right: 5px; padding-left: 5px;">
+                                        <a href="#" data-id="{{ $category->id }}" class="item-by-category active">
+                                            <span>
+                                            <i>
+                                             @php
+                                                 $img = json_decode($category->image);
+                                             @endphp
+                                                @if(count($img)>0)
+                                                    <img src="{{url('img/cache/original/'.\App\Helpers\Glb::get_basename($img[0]))}}" width="60" height="60">
+                                                @endif
+                                            </i>
+                                            </span>
+                                                <br>
+                                            <span class="fon-size"><b>{{$category->title}}</b></span>
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <a href="#" class="slider-button--prev">
+                                <i class="fa fa-fw fa-chevron-left"></i>
+                            </a>
+                            <a href="#" class="slider-button--next">
+                                <i class="fa fa-fw fa-chevron-right"></i>
+                            </a>
                         </div>
-                        <a href="#" class="slider-button--prev">
-                            <i class="fa fa-fw fa-chevron-left"></i>
-                        </a>
-                        <a href="#" class="slider-button--next">
-                            <i class="fa fa-fw fa-chevron-right"></i>
-                        </a>
+                    </div>
+                    <div class="col-md-12 items-style menu-item-by-category">
+                    {{--====================show items by categories==================--}}
                     </div>
                 </div>
-                <div class="col-md-12 items-style menu-item-by-category">
-                {{--====================show items by categories==================--}}
-                </div>
-            </div>
                 <div class="modal fade" id="postPaidModal" tabindex="-1" role="dialog" aria-labelledby="postPaidModal" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -473,6 +486,7 @@
             </div>
         </div>
     </div>
+
 
     <div class="modal fade" id="addCustomerModal" tabindex="-1" role="dialog" aria-labelledby="addCustomerModal" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -714,6 +728,13 @@
 
 @endsection
 @section('graph_script')
+    <script>
+        $(window).resize(function(){
+            if ($(window).width() <= 800){
+
+            }
+        });
+    </script>
     <script src="{{ asset('vendor/adminlte') }}/dist/js/demo.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/plugins/select2/select2.full.min.js"></script>
     <script>

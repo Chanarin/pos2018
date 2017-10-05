@@ -1,6 +1,22 @@
 @extends('backpack::layout')
 @section('graph_style')
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/plugins/morris/morris.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- fullCalendar 2.2.5-->
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/plugins/fullcalendar/fullcalendar.min.css">
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/plugins/fullcalendar/fullcalendar.print.css" media="print">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/dist/css/skins/_all-skins.min.css">
+
+
+    <!-- fullCalendar 2.2.5-->
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/plugins/fullcalendar/fullcalendar.min.css">
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/plugins/fullcalendar/fullcalendar.print.css" media="print">
 @endsection
 @section('header')
     <section class="content-header">
@@ -15,245 +31,239 @@
 @endsection
 @section('content')
 
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box">
-                <!-- /.box-header -->
-                <div class="box-body">
-                   {{--=========--}}
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div id="alerts"></div>
-                            <style>
-                                .table th {
-                                    text-align: center;
-                                }
-
-                                .table td {
-                                    padding: 2px;
-                                }
-
-                                .table td .table td:nth-child(odd) {
-                                    text-align: left;
-                                }
-
-                                .table td .table td:nth-child(even) {
-                                    text-align: right;
-                                }
-
-                                .table a:hover {
-                                    text-decoration: none;
-                                }
-
-                                .cl_wday {
-                                    text-align: center;
-                                    font-weight: bold;
-                                }
-
-                                .cl_equal {
-                                    width: 14%;
-                                }
-
-                                td.day {
-                                    width: 14%;
-                                    padding: 0 !important;
-                                    vertical-align: top !important;
-                                }
-
-                                .day_num {
-                                    width: 100%;
-                                    text-align: left;
-                                    cursor: pointer;
-                                    margin: 0;
-                                    padding: 8px;
-                                }
-
-                                .day_num:hover {
-                                    background: #F5F5F5;
-                                }
-
-                            </style>
-                            <div class="box">
-                                <div class="box-header">
-                                    <h2 class="blue"><i class="fa-fw fa fa-calendar"></i>Sales Daily</h2>
-                                </div>
-                                <div class="box-content">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <p class="introtext">You can click the date to get day's profit and/or loss report. You can change the month by clicking the &gt;&gt; (next) or &lt;&lt; (previous)</p>
-
-                                            <div id="style">
-                                                <table border="0" cellpadding="0" cellspacing="0" class="table table-bordered dfTable">
-
-                                                    <tbody>
-                                                    <tr>
-                                                        <th>
-                                                            <a style="color: #428BCA;" href="http://cloudnet-myanmar.com/iCloudERP_v3_Production/reports/daily_sales/2017/08">
-                                                                <b>&lt;&lt;</b>
-                                                            </a>
-                                                        </th>
-                                                        <th colspan="5" id="month_year">September&nbsp;2017</th>
-                                                        <th>
-                                                            <a style="color: #428BCA;" href="http://cloudnet-myanmar.com/iCloudERP_v3_Production/reports/daily_sales/2017/10">
-                                                                <b>&gt;&gt;</b>
-                                                            </a>
-                                                        </th>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="cl_wday">Sunday</td>
-                                                        <td class="cl_wday">Monday</td>
-                                                        <td class="cl_wday">Tuesday</td>
-                                                        <td class="cl_wday">Wednesday</td>
-                                                        <td class="cl_wday">Thursday</td>
-                                                        <td class="cl_wday">Friday</td>
-                                                        <td class="cl_wday">Saturday</td>
-                                                    </tr>
-
-                                                    <tr class="days">
-                                                        <td class="day">&nbsp;</td>
-                                                        <td class="day">&nbsp;</td>
-                                                        <td class="day">&nbsp;</td>
-                                                        <td class="day">&nbsp;</td>
-                                                        <td class="day">&nbsp;</td>
-                                                        <td class="day">
-                                                            <div class="day_num">1</div>
-                                                        </td><td class="day">
-                                                            <div class="day_num">2</div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr class="days">
-                                                        <td class="day">
-                                                            <div class="day_num">3</div>
-                                                        </td>
-                                                        <td class="day">
-                                                            <div class="day_num">4</div>
-                                                        </td>
-                                                        <td class="day">
-                                                            <div class="day_num">5</div>
-                                                        </td>
-                                                        <td class="day">
-                                                            <div class="day_num">6</div>
-                                                        </td>
-                                                        <td class="day">
-                                                            <div class="day_num">7</div>
-                                                        </td>
-                                                        <td class="day">
-                                                            <div class="day_num">8</div>
-                                                        </td>
-                                                        <td class="day">
-                                                            <div class="day_num">9</div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr class="days">
-                                                        <td class="day">
-                                                            <div class="day_num">10</div>
-                                                        </td>
-                                                        <td class="day">
-                                                            <div class="day_num">11</div>
-                                                        </td><td class="day">
-                                                            <div class="day_num">12</div>
-                                                        </td><td class="day">
-                                                            <div class="day_num">13</div>
-                                                        </td><td class="day">
-                                                            <div class="day_num">14</div>
-                                                        </td><td class="day">
-                                                            <div class="day_num">15</div>
-                                                        </td><td class="day">
-                                                            <div class="day_num">16</div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr class="days">
-                                                        <td class="day">
-                                                            <div class="day_num">17</div>
-                                                        </td>
-                                                        <td class="day">
-                                                            <div class="day_num">18</div>
-                                                        </td>
-                                                        <td class="day">
-                                                            <div class="day_num">19</div>
-                                                        </td>
-                                                        <td class="day">
-                                                            <div class="day_num">20</div>
-                                                        </td>
-                                                        <td class="day">
-                                                            <div class="day_num">21</div>
-                                                        </td>
-                                                        <td class="day">
-                                                            <div class="day_num">22</div>
-                                                        </td>
-                                                        <td class="day">
-                                                            <div class="day_num">23</div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr class="days">
-                                                        <td class="day">
-                                                            <div class="day_num">24</div>
-                                                        </td>
-                                                        <td class="day">
-                                                            <div class="day_num">25</div>
-                                                            <div class="content">
-                                                                <table class="table table-bordered table-hover table-striped table-condensed data" style="margin:0;">
-                                                                    <tbody>
-                                                                        <tr><td>Deposit</td><td>700.00</td></tr>
-                                                                        <tr><td>Complete Price</td><td>0.00</td></tr>
-                                                                        <tr><td>Grand Total</td><td>0.00</td></tr>
-                                                                        <tr><td>Total Discount</td><td>0.00</td></tr>
-                                                                        <tr><td>Total Payable</td><td>0.00</td></tr>
-                                                                        <tr><td>Total Paid</td><td>0.00</td></tr>
-                                                                        <tr><td>Total Remaining</td><td>700.00</td></tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </td><td class="day"><div class="day_num">26</div></td><td class="day">
-                                                            <div class="day_num">27</div>
-                                                            <div class="content"><table class="table table-bordered table-hover table-striped table-condensed data" style="margin:0;">
-                                                                    <tbody>
-                                                                        <tr><td>Deposit</td><td>700.00</td></tr>
-                                                                        <tr><td>Complete Price</td><td>0.00</td></tr>
-                                                                        <tr><td>Grand Total</td><td>0.00</td></tr>
-                                                                        <tr><td>Total Discount</td><td>0.00</td></tr>
-                                                                        <tr><td>Total Payable</td><td>0.00</td></tr>
-                                                                        <tr><td>Total Paid</td><td>0.00</td></tr>
-                                                                        <tr><td>Total Remaining</td><td>700.00</td></tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </td>
-                                                        <td class="day">
-                                                            <div class="day_num highlight">28</div>
-                                                        </td>
-                                                        <td class="day">
-                                                            <div class="day_num">29</div>
-                                                        </td>
-                                                        <td class="day">
-                                                            <div class="day_num">30</div>
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="box box-solid">
+                    <div class="box-header with-border">
+                        <h4 class="box-title">Draggable Events</h4>
+                    </div>
+                    <div class="box-body">
+                        <!-- the events -->
+                        <div id="external-events">
+                            <div class="external-event bg-green">Lunch</div>
+                            <div class="external-event bg-yellow">Go home</div>
+                            <div class="external-event bg-aqua">Do homework</div>
+                            <div class="external-event bg-light-blue">Work on UI design</div>
+                            <div class="external-event bg-red">Sleep tight</div>
+                            <div class="checkbox">
+                                <label for="drop-remove">
+                                    <input type="checkbox" id="drop-remove">
+                                    remove after drop
+                                </label>
                             </div>
-                            <div class="clearfix"></div>
                         </div>
                     </div>
+                    <!-- /.box-body -->
                 </div>
-                <!-- /.box-body -->
+                <!-- /. box -->
+                <div class="box box-solid">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Create Event</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
+                            <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
+                            <ul class="fc-color-picker" id="color-chooser">
+                                <li><a class="text-aqua" href="#"><i class="fa fa-square"></i></a></li>
+                                <li><a class="text-blue" href="#"><i class="fa fa-square"></i></a></li>
+                                <li><a class="text-light-blue" href="#"><i class="fa fa-square"></i></a></li>
+                                <li><a class="text-teal" href="#"><i class="fa fa-square"></i></a></li>
+                                <li><a class="text-yellow" href="#"><i class="fa fa-square"></i></a></li>
+                                <li><a class="text-orange" href="#"><i class="fa fa-square"></i></a></li>
+                                <li><a class="text-green" href="#"><i class="fa fa-square"></i></a></li>
+                                <li><a class="text-lime" href="#"><i class="fa fa-square"></i></a></li>
+                                <li><a class="text-red" href="#"><i class="fa fa-square"></i></a></li>
+                                <li><a class="text-purple" href="#"><i class="fa fa-square"></i></a></li>
+                                <li><a class="text-fuchsia" href="#"><i class="fa fa-square"></i></a></li>
+                                <li><a class="text-muted" href="#"><i class="fa fa-square"></i></a></li>
+                                <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- /btn-group -->
+                        <div class="input-group">
+                            <input id="new-event" type="text" class="form-control" placeholder="Event Title">
+
+                            <div class="input-group-btn">
+                                <button id="add-new-event" type="button" class="btn btn-primary btn-flat">Add</button>
+                            </div>
+                            <!-- /btn-group -->
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                </div>
             </div>
-            <!-- /.box -->
+            <!-- /.col -->
+            <div class="col-md-9">
+                <div class="box box-primary">
+                    <div class="box-body no-padding">
+                        <!-- THE CALENDAR -->
+                        <div id="calendar"></div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /. box -->
+            </div>
+            <!-- /.col -->
         </div>
-        <!-- /.col -->
-    </div>
 
 @endsection
 @section('graph_script')
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script src="{{ asset('vendor/adminlte/') }}/plugins/fullcalendar/fullcalendar.min.js"></script>
+    <script>
+        $(function () {
+            function ini_events(ele) {
+                ele.each(function () {
 
+                    // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+                    // it doesn't need to have a start or end
+                    var eventObject = {
+                        title: $.trim($(this).text()) // use the element's text as the event title
+                    };
+
+                    // store the Event Object in the DOM element so we can get to it later
+                    $(this).data('eventObject', eventObject);
+
+                    // make the event draggable using jQuery UI
+                    $(this).draggable({
+                        zIndex: 1070,
+                        revert: true, // will cause the event to go back to its
+                        revertDuration: 0  //  original position after the drag
+                    });
+
+                });
+            }
+
+            ini_events($('#external-events div.external-event'));
+
+            /* initialize the calendar
+             -----------------------------------------------------------------*/
+            //Date for the calendar events (dummy data)
+            var date = new Date();
+            var d = date.getDate(),
+                m = date.getMonth(),
+                y = date.getFullYear();
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                buttonText: {
+                    today: 'today',
+                    month: 'month',
+                    week: 'week',
+                    day: 'day'
+                },
+                //Random default events
+                events: [
+                    {
+                        title: 'All Day Event',
+                        start: new Date(y, m, 1),
+                        backgroundColor: "#f56954", //red
+                        borderColor: "#f56954" //red
+                    },
+                    {
+                        title: 'Long Event',
+                        start: new Date(y, m, d - 5),
+                        end: new Date(y, m, d - 2),
+                        backgroundColor: "#f39c12", //yellow
+                        borderColor: "#f39c12" //yellow
+                    },
+                    {
+                        title: 'Meeting',
+                        start: new Date(y, m, d, 10, 30),
+                        allDay: false,
+                        backgroundColor: "#0073b7", //Blue
+                        borderColor: "#0073b7" //Blue
+                    },
+                    {
+                        title: 'Lunch',
+                        start: new Date(y, m, d, 12, 0),
+                        end: new Date(y, m, d, 14, 0),
+                        allDay: false,
+                        backgroundColor: "#00c0ef", //Info (aqua)
+                        borderColor: "#00c0ef" //Info (aqua)
+                    },
+                    {
+                        title: 'Birthday Party',
+                        start: new Date(y, m, d + 1, 19, 0),
+                        end: new Date(y, m, d + 1, 22, 30),
+                        allDay: false,
+                        backgroundColor: "#00a65a", //Success (green)
+                        borderColor: "#00a65a" //Success (green)
+                    },
+                    {
+                        title: 'Click for Google',
+                        start: new Date(y, m, 28),
+                        end: new Date(y, m, 29),
+                        url: 'http://google.com/',
+                        backgroundColor: "#3c8dbc", //Primary (light-blue)
+                        borderColor: "#3c8dbc" //Primary (light-blue)
+                    }
+                ],
+                editable: true,
+                droppable: true, // this allows things to be dropped onto the calendar !!!
+                drop: function (date, allDay) { // this function is called when something is dropped
+
+                    // retrieve the dropped element's stored Event Object
+                    var originalEventObject = $(this).data('eventObject');
+
+                    // we need to copy it, so that multiple events don't have a reference to the same object
+                    var copiedEventObject = $.extend({}, originalEventObject);
+
+                    // assign it the date that was reported
+                    copiedEventObject.start = date;
+                    copiedEventObject.allDay = allDay;
+                    copiedEventObject.backgroundColor = $(this).css("background-color");
+                    copiedEventObject.borderColor = $(this).css("border-color");
+
+                    // render the event on the calendar
+                    // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+                    $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+
+                    // is the "remove after drop" checkbox checked?
+                    if ($('#drop-remove').is(':checked')) {
+                        // if so, remove the element from the "Draggable Events" list
+                        $(this).remove();
+                    }
+
+                }
+            });
+
+            /* ADDING EVENTS */
+            var currColor = "#3c8dbc"; //Red by default
+            //Color chooser button
+            var colorChooser = $("#color-chooser-btn");
+            $("#color-chooser > li > a").click(function (e) {
+                e.preventDefault();
+                //Save color
+                currColor = $(this).css("color");
+                //Add color effect to button
+                $('#add-new-event').css({"background-color": currColor, "border-color": currColor});
+            });
+            $("#add-new-event").click(function (e) {
+                e.preventDefault();
+                //Get value and make sure it is not null
+                var val = $("#new-event").val();
+                if (val.length == 0) {
+                    return;
+                }
+
+                //Create events
+                var event = $("<div />");
+                event.css({"background-color": currColor, "border-color": currColor, "color": "#fff"}).addClass("external-event");
+                event.html(val);
+                $('#external-events').prepend(event);
+
+                //Add draggable funtionality
+                ini_events(event);
+
+                //Remove event from text input
+                $("#new-event").val("");
+            });
+        });
+    </script>
 @endsection
 
