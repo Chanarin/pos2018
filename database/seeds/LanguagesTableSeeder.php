@@ -230,7 +230,7 @@ class LanguagesTableSeeder extends Seeder
                 'id' => 24,
                 'key' => 'unit',
                 'en' => 'Unit',
-                'km' => 'ឯកតា',
+                'km' => 'ឯកតា/ខ្នាត',
                 'created_at' => '2017-08-31 01:42:48',
                 'updated_at' => '2017-08-31 01:42:48',
             ),
@@ -2363,10 +2363,101 @@ class LanguagesTableSeeder extends Seeder
             array (
                 'id' => 291,
                 'key' => 'profit_report',
-                'en' => NULL,
-                'km' => NULL,
+                'en' => 'Profit Report',
+                'km' => 'របាយការណ៍ចំណូល',
                 'created_at' => '2017-10-03 02:32:00',
                 'updated_at' => '2017-10-03 02:32:00',
+            ),
+            260 => 
+            array (
+                'id' => 292,
+                'key' => 'last_item_code',
+                'en' => 'Last Item Code',
+                'km' => 'លេខកូដចុងក្រោយ',
+                'created_at' => '2017-10-08 17:17:48',
+                'updated_at' => '2017-10-08 17:17:48',
+            ),
+            261 => 
+            array (
+                'id' => 293,
+                'key' => 'photo',
+                'en' => 'Photo',
+                'km' => 'រូបភាព',
+                'created_at' => '2017-10-08 17:22:40',
+                'updated_at' => '2017-10-08 17:22:40',
+            ),
+            262 => 
+            array (
+                'id' => 294,
+                'key' => 'role',
+                'en' => 'Role',
+                'km' => 'តូនាទី',
+                'created_at' => '2017-10-08 17:22:40',
+                'updated_at' => '2017-10-08 17:22:40',
+            ),
+            263 => 
+            array (
+                'id' => 295,
+                'key' => 'user_name',
+                'en' => 'Username',
+                'km' => 'ឈ្មោះ​អ្នកប្រើប្រាស់
+',
+                'created_at' => '2017-10-08 17:22:40',
+                'updated_at' => '2017-10-08 17:22:40',
+            ),
+            264 => 
+            array (
+                'id' => 296,
+                'key' => 'e-mail',
+                'en' => 'E-mail',
+                'km' => 'អ៊ីម៉ែល',
+                'created_at' => '2017-10-08 17:22:40',
+                'updated_at' => '2017-10-08 17:22:40',
+            ),
+            265 => 
+            array (
+                'id' => 297,
+                'key' => 'password_confirm',
+                'en' => 'Password Confirm',
+                'km' => 'បញ្ជាក់ពាក្យសម្ងាត់',
+                'created_at' => '2017-10-08 17:22:40',
+                'updated_at' => '2017-10-08 17:22:40',
+            ),
+            266 => 
+            array (
+                'id' => 298,
+                'key' => 'sale_report_detial',
+                'en' => 'Sale Report Detail',
+                'km' => 'របាយការណ៍លំអិតពីការលក់',
+                'created_at' => '2017-10-08 17:37:30',
+                'updated_at' => '2017-10-08 17:37:30',
+            ),
+            267 => 
+            array (
+                'id' => 299,
+                'key' => 'production_item_list',
+                'en' => 'Production Item List',
+                'km' => 'បញ្ជីផលិតកម្ម',
+                'created_at' => '2017-10-08 17:37:47',
+                'updated_at' => '2017-10-08 17:37:47',
+            ),
+            268 => 
+            array (
+                'id' => 300,
+                'key' => 'production_item_detail',
+                'en' => 'Production Item Detail',
+                'km' => 'ព័ត៌មានអំពីផលិតកម្ម',
+                'created_at' => '2017-10-08 17:37:52',
+                'updated_at' => '2017-10-08 17:37:52',
+            ),
+            269 => 
+            array (
+                'id' => 301,
+                'key' => 'users',
+                'en' => 'Users ',
+                'km' => 'អ្នកប្រើប្រាស់',
+                'created_at' => '2017-10-08 17:52:34',
+                'updated_at' => '2017-10-08 17:52:34',
             ),
         ));
         

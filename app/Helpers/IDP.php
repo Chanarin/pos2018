@@ -192,7 +192,9 @@ class ItemDetailP
         $this->item_id = $item_id;
         $this->item_code = $item_code;
         $this->qty = $qty - 0;
+
         $this->xqty = $qty>0?$qty:1;
+
         $this->count_qty = $count_qty - 0;
         $this->cost = $cost - 0;
         $this->price = $price - 0;
@@ -235,6 +237,7 @@ class ItemDetailP
             $rrr->unit = $this->unit;
             $rrr->num_qty = $this->num_qty;
             $rrr->qty = $this->qty/$this->xqty;
+
             $rrr->cost = $this->cost/$this->xqty;
             $rrr->price = $this->price/$this->xqty;
             $rrr->note = $this->note;

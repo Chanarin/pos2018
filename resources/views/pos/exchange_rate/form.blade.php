@@ -5,9 +5,10 @@
                 'name' => 'en',
                 'value' => isset($crud->entry->en)?$crud->entry->en:null,
                 'label' => _t('Dollar'),
-                 'attributes' => ["number" => "number"],
-                'type' => 'text'
-                ];
+                 'attributes' => [
+                'readonly' => 'readonly',
+            ],
+        ];
         @endphp
         @include('vendor.backpack.crud.fields.text', compact('crud', 'entry', 'field'))
     </div>
