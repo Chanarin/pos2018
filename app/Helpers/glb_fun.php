@@ -21,3 +21,9 @@ function getINVNext(){
     }
     return getInvFormat($n,date('Y-m-d'),'INV');
 }
+
+function getFormat($n,$pre='ID'){
+
+    return $pre.'-'. \Carbon\Carbon::now()->format('dmY')
+        .'-'.str_pad($n,7,'0',STR_PAD_LEFT);
+}

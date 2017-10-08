@@ -10,7 +10,11 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
             'name' => 'purchase_number',
             'type' => 'text',
             'label' => _t('Purchase Number'),
+             'default' => getFormat(\App\Models\Purchase::max('id') +1,'PUR') ,
             'value' => isset($crud->entry->purchase_number)?$crud->entry->purchase_number:null,
+             'attributes' => [
+                'readonly' => 'readonly',
+            ],
             // optional:
         ];
         @endphp

@@ -9,8 +9,12 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
         $field = [   // date_picker
             'name' => 'production_number',
             'type' => 'text',
+              'default' => getFormat(\App\Models\Production::max('id') +1,'PRO') ,
             'label' => _t('Production Number'),
             'value' => isset($crud->entry->production_number)?$crud->entry->production_number:null,
+             'attributes' => [
+                'readonly' => 'readonly',
+            ],
         ];
         @endphp
         @include('vendor.backpack.crud.custom.text2',compact('crud', 'entry', 'field'))

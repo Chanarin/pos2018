@@ -28,9 +28,13 @@
         $field = [   // date_picker
             'name' => 'checklist_number',
             'type' => 'text',
+            'default' => getFormat(\App\Models\Checklist::max('id') +1,'CH') ,
             'label' => _t('Checklist Number'),
             'value' => isset($crud->entry->checklist_number)?$crud->entry->checklist_number:null,
             // optional:
+             'attributes' => [
+                'readonly' => 'readonly',
+            ],
         ];
         @endphp
         @include('vendor.backpack.crud.custom.text2',compact('crud', 'entry', 'field'))

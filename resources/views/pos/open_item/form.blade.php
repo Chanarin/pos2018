@@ -9,8 +9,12 @@ $dataDetails = (new \App\Helpers\IDP([],$data_type,$ref_id))->getAllDetail();
         $field = [   // date_picker
             'name' => 'open_number',
             'type' => 'text',
+            'default' => getFormat(\App\Models\OpenItem::max('id') +1,'OP') ,
             'label' => _t('Open Number'),
             'value' => isset($crud->entry->open_number)?$crud->entry->open_number:null,
+            'attributes' => [
+                'readonly' => 'readonly',
+            ],
             // optional:
         ];
         @endphp

@@ -7,6 +7,13 @@
     $readonly = \App\Helpers\_POS_::invoice == $data_type? ' readonly="readonly" ':'';
 @endphp
 <tbody class="table-origin-body" style="display: none;">
+@php
+    $last_item_code = \App\Models\Item::orderBy('id','desc')->first();
+
+@endphp
+
+<div><span style="color: red ; font-weight: bold;">{{_t('Last Item Code')}} :  {{ $last_item_code != null?$last_item_code->item_code:'' }} </span></div>
+
 @for($i_loop = 1;$i_loop <= 1 ;$i_loop++)
     @php
         //$x1 = rand(11111, 99999) .  time() . rand(1000, 5000);
@@ -48,7 +55,7 @@
             </td>
             @if($k == 'unit')
                 <td>
-                <input  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx" number="number"   vvvv-{{$num_qty['name']}}-vvvv
+                    <input  data-subid="uid-xxxx-uid-xxxx-sub" data-mainid="uid-xxxx-uid-xxxx" number="number"   vvvv-{{$num_qty['name']}}-vvvv
                         xx_name_xx="_data_[xxxx-uid-xxxx][{{$num_qty['name']}}]" style="width: 100%; "
                         class="form-control input-sm {{$num_qty['name']}}{{$r_id}}  {{$num_qty['name']}} {{$num_qty['name']}}-main" type="text">
                 </td>
