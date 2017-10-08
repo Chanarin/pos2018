@@ -365,7 +365,7 @@
                                                             </td>
                                                             {{--====================--}}
                                                             <td class="text-right">
-                                                                <input name="paid_kh" number="number" type="text" id="other_cur_paid" class="form-control input-lg kb-pad currencies-payment-kh" style="text-align:right;">
+                                                                <input name="paid_kh" number="number" type="text" id="other_cur_paid" class="form-control paid_kh input-lg kb-pad currencies-payment-kh" style="text-align:right;">
                                                             </td>
                                                         </tr>
                                         {{--===========================end paid===============================--}}
@@ -1254,6 +1254,14 @@
                 $('.main_remain_1_kh').html(_r(paid - payable));
             });
 
+//            =====================================================
+            $('.paid_kh').on('keyup',function () {
+                var paid = $(this).val() - 0;
+                var payable = $('.p-total-payable-en').val() -0;
+                $('.main_remain_1').html(_c(paid - payable));
+                $('.main_remain_1_kh').html(_r(paid - payable));
+            });
+//            =====================================================
             $('.quick-cash').on('click',function(e){
                 e.preventDefault();
                 var p = $(this).html()-0;

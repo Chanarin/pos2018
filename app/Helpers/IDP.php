@@ -174,6 +174,8 @@ class ItemDetailP
     public $updated_at;
     public $deleted_at;
 
+    public $xqty = 1;
+
     public function __construct($type = null, $id = null, $ref_id = null,
                                 $item_id = null, $item_code = null,
                                 $title = null, $unit = null, $num_qty = 1, $qty = 0, $count_qty = 0,
@@ -190,6 +192,7 @@ class ItemDetailP
         $this->item_id = $item_id;
         $this->item_code = $item_code;
         $this->qty = $qty - 0;
+        $this->xqty = $qty>0?$qty:1;
         $this->count_qty = $count_qty - 0;
         $this->cost = $cost - 0;
         $this->price = $price - 0;
@@ -231,9 +234,9 @@ class ItemDetailP
             $rrr->title = $this->title;
             $rrr->unit = $this->unit;
             $rrr->num_qty = $this->num_qty;
-            $rrr->qty = $this->qty;
-            $rrr->cost = $this->cost;
-            $rrr->price = $this->price;
+            $rrr->qty = $this->qty/$this->xqty;
+            $rrr->cost = $this->cost/$this->xqty;
+            $rrr->price = $this->price/$this->xqty;
             $rrr->note = $this->note;
 
             $rrr->save();
@@ -276,9 +279,9 @@ class ItemDetailP
             $rrr->title = $this->title;
             $rrr->unit = $this->unit;
             $rrr->num_qty = $this->num_qty;
-            $rrr->qty = $this->qty;
-            $rrr->cost = $this->cost;
-            $rrr->price = $this->price;
+            $rrr->qty = $this->qty/$this->xqty;
+            $rrr->cost = $this->cost/$this->xqty;
+            $rrr->price = $this->price/$this->xqty;
             $rrr->note = $this->note;
 
             $rrr->save();
@@ -387,10 +390,10 @@ class ItemDetailP
                         $mff->title = $title;
                         $mff->description = $description;
                         $mff->unit = $unit;
-                        $mff->qty = $qty;
+                        $mff->qty = $qty/$this->xqty;
                         $mff->num_qty = $num_qty;
-                        $mff->cost = $cost;
-                        $mff->price = $price;
+                        $mff->cost = $cost/$this->xqty;
+                        $mff->price = $price/$this->xqty;
                         $mff->note = $note;
                         $mff->save();
                     }
@@ -604,9 +607,9 @@ class ItemDetailP
                             $mddd->num_qty = 0;
                         }
                         $mddd->description = isset($item_dd['description']) ? $item_dd['description'] : '';
-                        $mddd->qty = isset($item_dd['qty']) ? $item_dd['qty'] - 0 : 0;
-                        $mddd->cost = isset($item_dd['cost']) ? $item_dd['cost'] - 0 : 0;
-                        $mddd->price = isset($item_dd['price']) ? $item_dd['price'] - 0 : 0;
+                        $mddd->qty = (isset($item_dd['qty']) ? $item_dd['qty'] - 0 : 0)/$this->xqty;
+                        $mddd->cost = (isset($item_dd['cost']) ? $item_dd['cost'] - 0 : 0)/$this->xqty;
+                        $mddd->price = (isset($item_dd['price']) ? $item_dd['price'] - 0 : 0)/$this->xqty;
                         $mddd->note = isset($item_dd['note']) ? $item_dd['note'] : '';
 
                         $mddd->save();
