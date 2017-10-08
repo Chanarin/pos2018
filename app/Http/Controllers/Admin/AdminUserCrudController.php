@@ -64,20 +64,21 @@ class AdminUserCrudController extends CrudController
         */
         $this->crud->addColumn([
             'name' => 'name',
-            'label' => 'Name',
+            'label' => _t('Name'),
         ]);
 
         $this->crud->addColumn([
             'name' => 'email',
-            'label' => 'Email',
+            'label' =>  _t('Email'),
         ]);
         $this->crud->addColumn([
             'name' => 'phone',
-            'label' => 'Phone',
+            'label' => _t('Phone'),
         ]);
 
         $this->crud->addColumn([
             'name' => 'photo',
+            'label' => _t('Photo'),
             'type' => 'image',
             'attributes' => [ // Optional (style by default is height: 48px;)
                 'alt' => 'User avatar',
@@ -90,7 +91,7 @@ class AdminUserCrudController extends CrudController
         // ------ CRUD FIELDS
         $this->crud->addField([    // SELECT
             'name' => 'role_id',
-            'label' => "Role",
+            'label' => _t('Role'),
             'type' => 'select2_from_array',
             'options' => GH::getRoleArray(),
             'allows_null' => false,
@@ -98,40 +99,40 @@ class AdminUserCrudController extends CrudController
 
         $this->crud->addField([
             'name' => 'name',
-            'label' => 'Name',
+            'label' => _t('Name'),
         ]);
 
         $this->crud->addField([
             'name' => 'username',
-            'label' => 'User Name',
+            'label' => _t('User Name'),
         ]);
 
         $this->crud->addField([
             'name' => 'email',
-            'label' => 'E-mail',
+            'label' =>  _t('E-mail'),
             'type' => 'email'
         ]);
 
         $this->crud->addField([
             'name' => 'phone',
-            'label' => 'Phone',
+            'label' => _t('Phone'),
         ]);
 
         $this->crud->addField([
             'name' => 'password',
-            'label' => 'Password',
+            'label' => _t('Password'),
             'type' => 'password',
         ]);
 
         $this->crud->addField([
             'name' => 'password_confirmation',
-            'label' => 'Password Confirm',
+            'label' => _t('Password Confirm'),
             'type' => 'password',
         ]);
 
         $this->crud->addField([ // image
             'default' => asset('No_Image_Available.jpg'),
-            'label' => "Photo",
+            'label' => _t('Photo'),
             'name' => "photo",
             'type' => 'image2',
             'upload' => true,
@@ -142,7 +143,7 @@ class AdminUserCrudController extends CrudController
 
         $this->crud->addField([    // SELECT
             'name' => 'status',
-            'label' => "Status",
+            'label' => _t('Status'),
             'type' => 'select2_from_array',
             'options' => ['1'=>'ACTIVE','0'=>'INACTIVE'],
             'allows_null' => false,

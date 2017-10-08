@@ -36,6 +36,7 @@ return array(
         public_path('uploads/donate'),
         public_path('uploads/gallery'),
         public_path('images'),
+        public_path('images/users'),
         public_path('images/items'),
         public_path('images/item_categories'),
     ),
