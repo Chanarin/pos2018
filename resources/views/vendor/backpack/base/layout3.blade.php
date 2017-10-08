@@ -10,13 +10,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/plugins/iCheck/square/blue.css">
+
     <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed|Hanuman" rel="stylesheet">
     <style>
-        /* @import url('https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed|Hanuman');*/
-        body{
+        body {
+            overflow: hidden;
+            background: white;
             font-family: 'Encode Sans Semi Condensed', sans-serif;
             font-family: 'Hanuman', serif;
+            /*background: radial-gradient(ellipse at bottom left, rgba(104, 128, 138, 0.4) 10%, rgba(138, 114, 76, 0) 40%), linear-gradient(to bottom, rgba(57, 173, 219, .25), rgba(42, 60, 87, 0.4)), linear-gradient(135deg, #670d10, #092756);*/
         }
+
     </style>
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -25,14 +29,7 @@
 </head>
 {{--style="background-attachment: fixed; overflow: hidden;" background="{{asset("pos/img/login/background.jpg")}}"--}}
 <body>
-<style>
-    body {
-        overflow: hidden;
-        background: white;
-        /*background: radial-gradient(ellipse at bottom left, rgba(104, 128, 138, 0.4) 10%, rgba(138, 114, 76, 0) 40%), linear-gradient(to bottom, rgba(57, 173, 219, .25), rgba(42, 60, 87, 0.4)), linear-gradient(135deg, #670d10, #092756);*/
-    }
 
-</style>
     @yield('content')
 <!-- jQuery 2.2.3 -->
 <script src="{{asset('/pos/sweet-alert/')}}/sweetalert-dev.js"></script>

@@ -1,21 +1,17 @@
 @extends('backpack::layout')
 @section('graph_style')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/dist/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte/') }}/dist/css/skins/_all-skins.min.css">
 
 @endsection
 @section('header')
-                                <section class="content-header">
-                                    <h1>
-                                        {{_t('Purchase Item List') }}
-                                    </h1>
-                                    <ol class="breadcrumb">
-                                        <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
-                                        <li class="active">{{_t('purchase item list')}}</li>
-                                    </ol>
-                                </section>
+    <section class="content-header">
+        <h1>
+            {{_t('Purchase Item List') }}
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ url(config('backpack.base.route_prefix', 'admin')) }}">{{ config('backpack.base.project_name') }}</a></li>
+            <li class="active">{{_t('purchase item list')}}</li>
+        </ol>
+    </section>
 @endsection
 @section('content')
 
@@ -50,7 +46,6 @@
     </div>
 @endsection
 @section('graph_script')
-    <script src="{{ asset('vendor/adminlte/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
     <script>
         $(function () {
             $.ajax({
@@ -127,6 +122,4 @@
         });
     </script>
 @endsection
-
-{{--<td><span class="label label-success">Approved</span></td>--}}
 
