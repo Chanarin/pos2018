@@ -136,6 +136,7 @@
                             {!! $rows->links() !!}
                         </div>
                     @else
+                        <h2 align="center">{{_t('Not Record Found')}}</h2>
 
                     @endif
                 </div>
