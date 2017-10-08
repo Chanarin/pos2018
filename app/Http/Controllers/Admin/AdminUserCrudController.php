@@ -55,7 +55,7 @@ class AdminUserCrudController extends CrudController
         */
         $this->crud->setModel('App\Models\AdminUser');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/adminuser');
-        $this->crud->setEntityNameStrings('User', 'Users');
+        $this->crud->setEntityNameStrings(_t('User'), _t('Users'));
 
         /*
         |--------------------------------------------------------------------------
@@ -262,8 +262,7 @@ class AdminUserCrudController extends CrudController
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'email' => 'required|string|email|max:255',
         ]);
 
         if ($validator->fails()) {

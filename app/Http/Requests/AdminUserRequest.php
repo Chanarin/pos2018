@@ -28,8 +28,7 @@ class AdminUserRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'email' => 'required|string|email|max:255',
         ];
     }
 
