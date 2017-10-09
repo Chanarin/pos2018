@@ -77,16 +77,6 @@ class UnitsTableSeeder extends Seeder
                 'updated_at' => '2017-09-11 01:39:20',
                 'deleted_at' => NULL,
             ),
-            6 => 
-            array (
-                'id' => 7,
-                'name' => 'ឯកតា',
-                'unit' => 1.0,
-                'note' => 'ឯកតា',
-                'created_at' => '2017-09-11 01:39:42',
-                'updated_at' => '2017-09-11 01:39:42',
-                'deleted_at' => NULL,
-            ),
         ));
         
         
