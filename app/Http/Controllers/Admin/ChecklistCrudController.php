@@ -11,6 +11,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\ChecklistRequest as StoreRequest;
 use App\Http\Requests\ChecklistRequest as UpdateRequest;
+use Illuminate\Support\Facades\Validator;
 
 class ChecklistCrudController extends CrudController
 {
@@ -128,6 +129,13 @@ class ChecklistCrudController extends CrudController
 
     public function store(StoreRequest $request)
     {
+        $validator = Validator::make($request->all(), [
+            'checklist_number' => 'required|unique:open_items,open_number',
+            '_date_' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect('admin/checklist')->withErrors($validator);
+        }
        // dd($request->_data_);
         // your additional operations before save here
         $redirect_location = parent::storeCrud($request);
@@ -140,6 +148,13 @@ class ChecklistCrudController extends CrudController
 
     public function update(UpdateRequest $request)
     {
+        $validator = Validator::make($request->all(), [
+            'checklist_number' => 'required|unique:open_items,open_number',
+            '_date_' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect('admin/checklist')->withErrors($validator);
+        }
         // your additional operations before save here
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here

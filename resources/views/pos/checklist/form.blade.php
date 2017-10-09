@@ -70,9 +70,9 @@
                             <th class="text-center">Name</th>
                             <th class="text-center" style="width: 80px !important;">Unit</th>
                             <th class="text-center"  style="width: 80px !important;">Qty</th>
-                            <th class="text-center" style="width: 80px !important;">Num.Qty</th>
-                            <th class="text-center" style="width: 80px !important;">Count</th>
-                            <th class="text-center" style="width: 150px !important;">Note</th>
+                            <th class="text-center hidden" style="width: 80px !important;">Num.Qty</th>
+                            <th class="text-center" style="width: 120px !important;">Count</th>
+                            <th class="text-center" style="width: 170px !important;">Note</th>
                             <th class="text-center" style="width: 10px">Tick</th>
                         </tr>
                         </thead>
@@ -102,7 +102,7 @@
                                 <td class="text-center">
                                     @php
                                         $img = json_decode($row->image);
-
+                                        $units = \App\Models\Unit::where('id',$row->unit)->first();
                                     @endphp
                                     @if(count($img)>0)
                                         <img src="{{url('img/cache/original/'.\App\Helpers\Glb::get_basename($img[0]))}}" width="50" height="50">
@@ -110,9 +110,9 @@
                                 </td>
                                 <td class="text-left">{{$row->item_code}}</td>
                                 <td class="text-left">{{$row->title}} </td>
-                                <td class="text-left">{{$row->unit}}</td>
+                                <td class="text-left">{{isset($units->name)?$units->name:''}}</td>
                                 <td class="text-right">{{$transaction}}</td>
-                                <td class="text-center">
+                                <td class="text-center hidden">
                                     <input name="_data_[{{$r_id}}][item_id]" value="{{ $row->id }}"  type="hidden">
                                     <input name="_data_[{{$r_id}}][item_code]" value="{{ $row->item_code }}"  type="hidden">
                                     <input name="_data_[{{$r_id}}][title]" value="{{ $row->title }}"  type="hidden">
