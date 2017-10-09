@@ -230,6 +230,7 @@ class ItemDetailP
                 $rrr = new ItemDetail();
             }
 
+
             $rrr->ref_id = $this->ref_id;
             $rrr->item_id = $this->item_id;
             $rrr->item_code = $this->item_code;
@@ -238,8 +239,10 @@ class ItemDetailP
             $rrr->num_qty = $this->num_qty;
             $rrr->qty = $this->qty/$this->xqty;
 
-            $rrr->cost = $this->cost/$this->xqty;
-            $rrr->price = $this->price/$this->xqty;
+            $rrr->cost = $this->cost;
+
+            $rrr->price = $this->price;
+
             $rrr->note = $this->note;
 
             $rrr->save();
@@ -283,8 +286,8 @@ class ItemDetailP
             $rrr->unit = $this->unit;
             $rrr->num_qty = $this->num_qty;
             $rrr->qty = $this->qty/$this->xqty;
-            $rrr->cost = $this->cost/$this->xqty;
-            $rrr->price = $this->price/$this->xqty;
+            $rrr->cost = $this->cost;
+            $rrr->price = $this->price;
             $rrr->note = $this->note;
 
             $rrr->save();
@@ -395,8 +398,8 @@ class ItemDetailP
                         $mff->unit = $unit;
                         $mff->qty = $qty/$this->xqty;
                         $mff->num_qty = $num_qty;
-                        $mff->cost = $cost/$this->xqty;
-                        $mff->price = $price/$this->xqty;
+                        $mff->cost = $cost;
+                        $mff->price = $price;
                         $mff->note = $note;
                         $mff->save();
                     }
@@ -611,8 +614,8 @@ class ItemDetailP
                         }
                         $mddd->description = isset($item_dd['description']) ? $item_dd['description'] : '';
                         $mddd->qty = (isset($item_dd['qty']) ? $item_dd['qty'] - 0 : 0)/$this->xqty;
-                        $mddd->cost = (isset($item_dd['cost']) ? $item_dd['cost'] - 0 : 0)/$this->xqty;
-                        $mddd->price = (isset($item_dd['price']) ? $item_dd['price'] - 0 : 0)/$this->xqty;
+                        $mddd->cost = (isset($item_dd['cost']) ? $item_dd['cost'] - 0 : 0);
+                        $mddd->price = (isset($item_dd['price']) ? $item_dd['price'] - 0 : 0);
                         $mddd->note = isset($item_dd['note']) ? $item_dd['note'] : '';
 
                         $mddd->save();
