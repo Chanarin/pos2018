@@ -208,6 +208,27 @@ class InvoiceCrudController extends CrudController
         }
     }
 
+    public function edit($id)
+    {
+
+            $ivd = Invoice::where('id',$id)->first();
+            if($ivd != null){
+                return redirect('admin/invoice')->withErrors('This Product has been sold. So, You cannot edit it.');
+            }
+
+        // your additional operations before save here
+        $this->crud->hasAccessOrFail('update');
+        // get the info for that entry
+        $this->data['entry'] = $this->crud->getEntry($id);
+        $this->data['crud'] = $this->crud;
+        $this->data['saveAction'] = $this->getSaveAction();
+        $this->data['fields'] = $this->crud->getUpdateFields($id);
+        $this->data['title'] = trans('backpack::crud.edit') . ' ' . $this->crud->entity_name;
+        $this->data['id'] = $id;
+        // load the view from /resources/views/vendor/backpack/crud/ if it exists, otherwise load the one in the package
+        return view($this->crud->getEditView(), $this->data);
+    }
+
     public function update(UpdateRequest $request)
     {
         $validator = Validator::make($request->all(), [
