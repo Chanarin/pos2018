@@ -9,7 +9,7 @@
                 'entity' => 'children',
                 'attribute' => 'title',
                 'model' => "App\Models\ItemCategory",
-                'showOneTime' => 1
+                'showOneTime' => 1,
                 ];
         @endphp
         @include('vendor.backpack.crud.custom.select2', compact('crud', 'entry', 'field'))

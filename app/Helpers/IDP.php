@@ -225,7 +225,7 @@ class ItemDetailP
             $rrr = ItemDetail::where('ref_id', $this->ref_id)
                 ->where('item_id', $this->item_id)->first();
 
-            // dd($rrr);
+
             if ($rrr == null) {
                 $rrr = new ItemDetail();
             }
@@ -237,7 +237,8 @@ class ItemDetailP
             $rrr->title = $this->title;
             $rrr->unit = $this->unit;
             $rrr->num_qty = $this->num_qty;
-            $rrr->qty = $this->qty/$this->xqty;
+//            /$this->xqty
+            $rrr->qty = $this->qty;
 
             $rrr->cost = $this->cost;
 
@@ -396,7 +397,8 @@ class ItemDetailP
                         $mff->title = $title;
                         $mff->description = $description;
                         $mff->unit = $unit;
-                        $mff->qty = $qty/$this->xqty;
+//                        /$this->xqty
+                        $mff->qty = $qty;
                         $mff->num_qty = $num_qty;
                         $mff->cost = $cost;
                         $mff->price = $price;
@@ -613,7 +615,8 @@ class ItemDetailP
                             $mddd->num_qty = 0;
                         }
                         $mddd->description = isset($item_dd['description']) ? $item_dd['description'] : '';
-                        $mddd->qty = (isset($item_dd['qty']) ? $item_dd['qty'] - 0 : 0)/$this->xqty;
+//                        /$this->xqty
+                        $mddd->qty = (isset($item_dd['qty']) ? $item_dd['qty'] - 0 : 0);
                         $mddd->cost = (isset($item_dd['cost']) ? $item_dd['cost'] - 0 : 0);
                         $mddd->price = (isset($item_dd['price']) ? $item_dd['price'] - 0 : 0);
                         $mddd->note = isset($item_dd['note']) ? $item_dd['note'] : '';
