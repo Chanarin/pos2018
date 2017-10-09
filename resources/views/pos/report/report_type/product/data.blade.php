@@ -23,7 +23,7 @@
             $total_begin+= ($stocks[$row->id]['begin']);
             $total_in+= ($stocks[$row->id]['in']);
             $total_out+= ($stocks[$row->id]['out']);
-            $total_balance+= ($stocks[$row->id]['begin'] + $stocks[$row->id]['in'] - $stocks[$row->id]['out']);
+            $total_balance+= ($stocks[$row->id]['begin'] + $stocks[$row->id]['in'] + $stocks[$row->id]['out']);
         @endphp
     <tr style="@if($loop->index % 2 > 0) background-color: #f1f1f1; @endif">
         <td>{{ (($rows->currentPage()-1)*$rows->perPage())+$count++ }}</td>
@@ -32,7 +32,7 @@
         <td>{{$stocks[$row->id]['begin']}}</td>
         <td>{{$stocks[$row->id]['in']}}</td>
         <td>{{$stocks[$row->id]['out']}}</td>
-        <td>{{$stocks[$row->id]['begin'] + $stocks[$row->id]['in'] - $stocks[$row->id]['out']}}</td>
+        <td>{{$stocks[$row->id]['begin'] + $stocks[$row->id]['in'] + $stocks[$row->id]['out']}}</td>
     </tr>
     @endforeach
     <tr style="background-color: #428BCA; color: white;">
