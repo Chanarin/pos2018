@@ -21,7 +21,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 1,
                 'category_id' => 13,
-                'item_code' => 'ព1',
+                'item_code' => '1',
                 'title' => 'ពេជ្រ 1.2លី',
                 'description' => 'ពេជ្រ 1.2លី',
                 'image' => '["http:\\/\\/localhost:8000\\/images\\/items\\/88915_1506245893_3845.png"]',
@@ -37,7 +37,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 2,
                 'category_id' => 13,
-                'item_code' => 'ព2',
+                'item_code' => '2',
                 'title' => 'ពេជ្រ 1.5លី',
                 'description' => 'ពេជ្រ 1.5លី',
                 'image' => '["http:\\/\\/localhost:8000\\/images\\/items\\/61076_1506245931_3904.png"]',
@@ -53,7 +53,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 3,
                 'category_id' => 13,
-                'item_code' => 'ព3',
+                'item_code' => '3',
                 'title' => 'ពេជ្រ 2លី',
                 'description' => 'ពេជ្រ 2លី',
                 'image' => '["images\\/items\\/83202_1506246059_1921.png"]',
@@ -69,7 +69,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 4,
                 'category_id' => 13,
-                'item_code' => 'ព4',
+                'item_code' => '4',
                 'title' => 'ពេជ្រ 2.5លី',
                 'description' => 'ពេជ្រ 2.5លី',
                 'image' => '["images\\/items\\/75221_1506246276_4061.png"]',
@@ -85,7 +85,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 5,
                 'category_id' => 13,
-                'item_code' => 'ព5',
+                'item_code' => '5',
                 'title' => 'ពេជ្រ 3លី',
                 'description' => 'ពេជ្រ 3លី',
                 'image' => '["images\\/items\\/28998_1506246357_2590.png"]',
@@ -101,7 +101,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 6,
                 'category_id' => 13,
-                'item_code' => 'ព6',
+                'item_code' => '6',
                 'title' => 'ពេជ្រ 3.5លី',
                 'description' => 'ពេជ្រ 3.5លី',
                 'image' => '["images\\/items\\/87189_1506246631_2199.png"]',
@@ -117,7 +117,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 7,
                 'category_id' => 13,
-                'item_code' => 'ព7',
+                'item_code' => '7',
                 'title' => 'ពេជ្រ 4លី',
                 'description' => 'ពេជ្រ 4លី',
                 'image' => '["images\\/items\\/58510_1506246684_3912.png"]',
@@ -133,7 +133,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 8,
                 'category_id' => 13,
-                'item_code' => 'ព8',
+                'item_code' => '8',
                 'title' => 'ពេជ្រ 4.5លី',
                 'description' => 'ពេជ្រ 4.5លី',
                 'image' => '["http:\\/\\/localhost:8000\\/images\\/items\\/36565_1506246747_4081.png"]',
@@ -149,7 +149,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 9,
                 'category_id' => 13,
-                'item_code' => 'ព9',
+                'item_code' => '9',
                 'title' => 'ពេជ្រ 5លី',
                 'description' => 'ពេជ្រ 5លី',
                 'image' => '["http:\\/\\/localhost:8000\\/images\\/items\\/60937_1506246794_4652.png"]',
@@ -165,7 +165,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 10,
                 'category_id' => 13,
-                'item_code' => 'ព10',
+                'item_code' => '10',
                 'title' => 'ពេជ្រ 5.5លី',
                 'description' => 'ពេជ្រ 5.5លី',
                 'image' => '["http:\\/\\/localhost:8000\\/images\\/items\\/88932_1506246849_2868.png"]',
@@ -181,7 +181,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 11,
                 'category_id' => 13,
-                'item_code' => 'ព11',
+                'item_code' => '11',
                 'title' => 'ពេជ្រ 6លី',
                 'description' => 'ពេជ្រ 6លី',
                 'image' => '["http:\\/\\/localhost:8000\\/images\\/items\\/35990_1506246888_1063.png"]',
@@ -197,7 +197,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 12,
                 'category_id' => 13,
-                'item_code' => 'ព12',
+                'item_code' => '12',
                 'title' => 'ពេជ្រ 6.5លី',
                 'description' => 'ពេជ្រ 6.5លី',
                 'image' => '["http:\\/\\/localhost:8000\\/images\\/items\\/64074_1506246930_1647.png"]',
@@ -213,7 +213,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 13,
                 'category_id' => 13,
-                'item_code' => 'ព13',
+                'item_code' => '13',
                 'title' => 'ពេជ្រ 7លី',
                 'description' => 'ពេជ្រ 7លី',
                 'image' => '["http:\\/\\/localhost:8000\\/images\\/items\\/28928_1506247108_1798.png"]',
@@ -229,7 +229,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 14,
                 'category_id' => 13,
-                'item_code' => 'ព14',
+                'item_code' => '14',
                 'title' => 'ពេជ្រ 7.5លី',
                 'description' => 'ពេជ្រ 7.5លី',
                 'image' => '["http:\\/\\/localhost:8000\\/images\\/items\\/51678_1506247279_2474.png"]',
@@ -245,7 +245,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 16,
                 'category_id' => 13,
-                'item_code' => 'ព15',
+                'item_code' => '15',
                 'title' => 'ពេជ្រ 8លី',
                 'description' => 'ពេជ្រ 8លី',
                 'image' => '["images\\/items\\/13882_1506247539_2471.png"]',
@@ -261,7 +261,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 17,
                 'category_id' => 13,
-                'item_code' => 'ព16',
+                'item_code' => '16',
                 'title' => 'ពេជ្រ 8.5លី',
                 'description' => 'ពេជ្រ 8.5លី',
                 'image' => '["images\\/items\\/23268_1506247617_1170.png"]',
@@ -277,7 +277,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 18,
                 'category_id' => 13,
-                'item_code' => 'ព17',
+                'item_code' => '17',
                 'title' => 'ពេជ្រ 9លី',
                 'description' => 'ពេជ្រ 9លី',
                 'image' => '["images\\/items\\/60834_1506247661_2496.png"]',
@@ -293,7 +293,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 19,
                 'category_id' => 13,
-                'item_code' => 'ព18',
+                'item_code' => '18',
                 'title' => 'ពេជ្រ 9.5លី',
                 'description' => 'ពេជ្រ 9.5លី',
                 'image' => '["images\\/items\\/13796_1506247817_1340.png"]',
@@ -309,7 +309,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 20,
                 'category_id' => 13,
-                'item_code' => 'ព19',
+                'item_code' => '19',
                 'title' => 'ពេជ្រ 10លី',
                 'description' => 'ពេជ្រ 10លី',
                 'image' => '["images\\/items\\/43856_1506247864_3691.png"]',
@@ -325,7 +325,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 21,
                 'category_id' => 16,
-                'item_code' => 'ផ1',
+                'item_code' => '20',
                 'title' => 'ផ្លាទីន​ 70%',
                 'description' => 'ផ្លាទីន​ 70%',
                 'image' => '["images\\/items\\/52299_1506303605_1793.png"]',
@@ -341,7 +341,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 22,
                 'category_id' => 16,
-                'item_code' => 'ផ2',
+                'item_code' => '21',
                 'title' => 'ផ្លាទីន​ 75%',
                 'description' => 'ផ្លាទីន​ 75%',
                 'image' => '["images\\/items\\/33305_1506303639_2515.png"]',
@@ -357,7 +357,7 @@ class ItemsTableSeeder extends Seeder
             array (
                 'id' => 23,
                 'category_id' => NULL,
-                'item_code' => 'ឈ1',
+                'item_code' => '22',
                 'title' => 'ថ្លៃឈ្នួល',
                 'description' => 'ថ្លៃឈ្នួល',
                 'image' => '[]',
