@@ -20,6 +20,7 @@ class ReportController extends Controller
         $report_option = $request->report_option;
 
         $rows = Report::openItemReport($request);
+
         $rows->appends([
             'from_date'=>$from_date,
             'to_date'=>$to_date,

@@ -70,7 +70,7 @@
                             <th class="text-center">Name</th>
                             <th class="text-center" style="width: 80px !important;">Unit</th>
                             <th class="text-center"  style="width: 80px !important;">Qty</th>
-                            <th class="text-center hidden" style="width: 80px !important;">Num.Qty</th>
+                            <th class="text-center" style="width: 80px !important;">Num.Qty</th>
                             <th class="text-center" style="width: 120px !important;">Count</th>
                             <th class="text-center" style="width: 170px !important;">Note</th>
                             <th class="text-center" style="width: 10px">Tick</th>
@@ -112,7 +112,7 @@
                                 <td class="text-left">{{$row->title}} </td>
                                 <td class="text-left">{{isset($units->name)?$units->name:''}}</td>
                                 <td class="text-right">{{$transaction}}</td>
-                                <td class="text-center hidden">
+                                <td class="text-center">
                                     <input name="_data_[{{$r_id}}][item_id]" value="{{ $row->id }}"  type="hidden">
                                     <input name="_data_[{{$r_id}}][item_code]" value="{{ $row->item_code }}"  type="hidden">
                                     <input name="_data_[{{$r_id}}][title]" value="{{ $row->title }}"  type="hidden">
