@@ -23,115 +23,82 @@
 
         </div>
       </div>
+      <nav style="padding-left: 5px; margin-left: 5px;">
+        <ul class="sidebar-menu">
 
-      <ul class="sidebar-menu">
-        <li class="header"><h4>{{_t('Select Report Type')}}</h4></li>
+            <h3 style="text-align: center; font-weight: bold;">{{_t('Select Report Type')}}</h3>
+            <h4 style="font-weight: bold;">{{_t('Sale Report')}}</h4>
+            <li>
+              <label for="invoice_list">
+                <input data-url="{{url('/api/report/invoice/list')}}" type="radio"
+                       id="invoice_list"
+                       class="report-option" name="report"><span>{{_t('List')}}</span>
+              </label>
+            </li>
+            <li>
+              <label for="invoice_detial">
+                <input data-url="{{url('/api/report/invoice/detail')}}" type="radio"
+                       id="invoice_detial"
+                       class="report-option" name="report"> <span>{{_t('Detail')}}</span>
+              </label>
+            </li>
+            <li>
+              <label for="invoice_profit">
+                <input data-url="{{url('/api/report/invoice/profit')}}" type="radio"
+                       id="invoice_profit"
+                       class="report-option" name="report"> <span>{{_t('Profit')}}</span>
+              </label>
+            </li>
 
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-fw fa-file-excel-o"></i>
-            <span>{{_t('Sale Report')}}</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
+            <h4 style="font-weight: bold;">{{_t('Open Item')}}</h4>
             <li>
-              <a href="#">
-                <input data-url="{{url('/api/report/invoice/list')}}" type="radio" name="name-report-option" class="minimal report-option">
-                <span>{{_t('List')}}</span>
-              </a>
+              <label for="open_list">
+                <input data-url="{{url('/api/report/open-item/list')}}" type="radio"
+                       id="open_list"
+                       class="report-option" name="report"><span>{{_t('List')}}</span>
+              </label>
             </li>
             <li>
-              <a href="#">
-                <input data-url="{{url('/api/report/invoice/detail')}}" type="radio" name="name-report-option" class="minimal report-option">
-                <span>{{_t('Detail')}}</span>
-              </a>
+              <label for="open_detial">
+                <input data-url="{{url('/api/report/open-item/detail')}}" type="radio"
+                       id="open_detial"
+                       class="report-option" name="report"> <span>{{_t('Detail')}}</span>
+              </label>
             </li>
 
+            <h4 style="font-weight: bold;">{{_t('Purchase Item')}}</h4>
             <li>
-              <a href="#">
-                <input data-url="{{url('/api/report/invoice/profit')}}" type="radio" name="name-report-option" class="minimal report-option">
-                <span>{{_t('Profit')}}</span>
-              </a>
+              <label for="purchase_list">
+                <input data-url="{{url('/api/report/purchase-item/list')}}" type="radio"
+                       id="purchase_list"
+                       class="report-option" name="report"><span>{{_t('List')}}</span>
+              </label>
             </li>
-          </ul>
-        </li>
+            <li>
+              <label for="purchase_detial">
+                <input data-url="{{url('/api/report/purchase-item/detail')}}" type="radio"
+                       id="purchase_detial"
+                       class="report-option" name="report"> <span>{{_t('Detail')}}</span>
+              </label>
+            </li>
 
-         <li class="treeview">
-          <a href="#">
-            <i class="fa fa-fw fa-book"></i>
-            <span>{{_t('Open Item')}}</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
+            <h4 style="font-weight: bold;">{{_t('Production Item')}}</h4>
             <li>
-              <a href="#">
-                <input data-url="{{url('/api/report/open-item/list')}}" type="radio" name="name-report-option" class="minimal report-option">
-                <span>{{_t('List')}}</span>
-              </a>
+              <label for="production_list">
+                <input data-url="{{url('/api/report/production-item/list')}}" type="radio"
+                       id="production_list"
+                       class="report-option" name="report"><span>{{_t('List')}}</span>
+              </label>
             </li>
             <li>
-              <a href="#">
-                <input data-url="{{url('/api/report/open-item/detail')}}" type="radio" name="name-report-option" class="minimal report-option">
-                <span>{{_t('Detail')}}</span>
-              </a>
+              <label for="production_detail">
+                <input data-url="{{url('/api/report/production-item/detail')}}" type="radio"
+                       id="production_detail"
+                       class="report-option" name="report"> <span>{{_t('Detail')}}</span>
+              </label>
             </li>
-          </ul>
-        </li>
-
-
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-fw fa-cart-arrow-down"></i>
-            <span>{{_t('Purchase Item')}}</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li>
-              <a href="#">
-                <input data-url="{{url('/api/report/purchase-item/list')}}" type="radio" name="name-report-option" class="minimal report-option">
-                <span>{{_t('List')}}</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <input data-url="{{url('/api/report/purchase-item/detail')}}" type="radio" name="name-report-option" class="minimal report-option">
-                <span>{{_t('Detail')}}</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-fw fa-gavel"></i>
-            <span>{{_t('Production Item')}}</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li>
-              <a href="#">
-                <input data-url="{{url('/api/report/production-item/list')}}" type="radio" name="name-report-option" class="minimal report-option">
-                <span>{{_t('List')}}</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <input data-url="{{url('/api/report/production-item/detail')}}" type="radio" name="name-report-option" class="minimal report-option">
-                <span>{{_t('Detail')}}</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-
-
-      </ul>
+        </ul>
+      </nav>
     </section>
     <!-- /.sidebar -->
   </aside>
